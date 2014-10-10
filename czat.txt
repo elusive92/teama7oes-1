@@ -1,1 +1,5 @@
-hjf e ghihsdjkadslk ja'ld \'asa 
+<<<<<<< HEAD
+dgahdas;kdalhda ;dalkd hsa dalskkd s
+=======
+dfngsnghn;lbrtgbn;rgfnk;llnk;
+>>>>>>> origin/master
