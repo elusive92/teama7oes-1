@@ -1,0 +1,1 @@
+Chopaki tu wrzucamy backupy bazy i ewentualną samą strukturę bazy. Przy każdym commicie nowej bazy nadajcie jej nazwe z Data i inicjalami a bedzie gitez!
