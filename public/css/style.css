@@ -1,18 +1,18 @@
 body {
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 15px;
-	padding: 190px 0;
-	padding-left: 30px;
-	background-image:url('../img/logowanie.jpg');
+	padding: 130px 0;
+	padding-left: 450px;
+	background-image:url('../img/log2.jpg');
 	opacity: 0.6;
     background-repeat:no-repeat;
-    background-size:100% auto;
+    background-size:contain;
 }
 
 .logowanie {
 	text-align: center;
-	width: 30%;
-	max-width: 400px;
+	width: 40%;
+	max-width: 500px;
 	margin: 0 auto;
 	background: #ffffff;
 	border: 1px solid #cccccc;
