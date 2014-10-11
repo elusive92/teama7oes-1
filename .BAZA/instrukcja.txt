@@ -1,1 +1,4 @@
-Chopaki tu wrzucamy backupy bazy i ewentualną samą strukturę bazy. Przy każdym commicie nowej bazy nadajcie jej nazwe z Data i inicjalami a bedzie gitez!
+﻿Chopaki tu wrzucamy backupy bazy i ewentualną samą strukturę bazy. Przy każdym commicie nowej bazy nadajcie jej nazwe z Data i inicjalami a bedzie gitez!
+
+teama7oes.sql - AP 11.10.14 21.24 -  aktualna baza danych z relacjami
+teama7oes1.sql - MW -  poprzednia wersja najstarsza

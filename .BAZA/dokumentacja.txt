@@ -1,0 +1,17 @@
+
+Siema, to takie info glownie chyba dla mnie ale może sie przydać
+
+Wszystkie zmiany dałem kaskadowo to to luz z usuwaniami to troche trzeba będzie pomyśleć
+
+
+
+Wiadomości:
+*tabela messages -> na co nam w sumie dwa atrybuty userow ? nie lepiej jednego tego ktory pisal wiadomość ? no bo inaczej jak stwierdzisz który pisał, kto do kogo już jest w samej konwersacji ;)
+
+
+
+Ogólnie tak dam chyba restrict w:
+
+Turnament  - > dla idgames   - dopóki są turnieje nie można skasować gry
+
+

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Czas generowania: 11 Paź 2014, 21:22
+-- Czas generowania: 10 Paź 2014, 19:11
 -- Wersja serwera: 5.6.20
 -- Wersja PHP: 5.5.15
 
@@ -33,14 +33,6 @@ CREATE TABLE IF NOT EXISTS `blacklists` (
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
---
--- RELACJE TABELI `blacklists`:
---   `idA`
---       `users` -> `id`
---   `idB`
---       `users` -> `id`
---
-
 -- --------------------------------------------------------
 
 --
@@ -52,14 +44,6 @@ CREATE TABLE IF NOT EXISTS `conversations` (
   `idA` int(11) NOT NULL,
   `idB` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
-
---
--- RELACJE TABELI `conversations`:
---   `idA`
---       `users` -> `id`
---   `idB`
---       `users` -> `id`
---
 
 -- --------------------------------------------------------
 
@@ -75,12 +59,6 @@ CREATE TABLE IF NOT EXISTS `galleries` (
   `filename` varchar(20) COLLATE utf8_polish_ci NOT NULL,
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
-
---
--- RELACJE TABELI `galleries`:
---   `id`
---       `users` -> `id`
---
 
 -- --------------------------------------------------------
 
@@ -111,16 +89,6 @@ CREATE TABLE IF NOT EXISTS `matches` (
   `round` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
---
--- RELACJE TABELI `matches`:
---   `idtournament`
---       `tournaments` -> `idtournament`
---   `idteamA`
---       `teams` -> `idteam`
---   `idteamB`
---       `teams` -> `idteam`
---
-
 -- --------------------------------------------------------
 
 --
@@ -133,12 +101,6 @@ CREATE TABLE IF NOT EXISTS `matchresult` (
   `resultB` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
---
--- RELACJE TABELI `matchresult`:
---   `idmatch`
---       `matches` -> `idmatch`
---
-
 -- --------------------------------------------------------
 
 --
@@ -150,14 +112,6 @@ CREATE TABLE IF NOT EXISTS `matchsquad` (
   `idteam` int(11) NOT NULL,
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
-
---
--- RELACJE TABELI `matchsquad`:
---   `idteam`
---       `teams` -> `idteam`
---   `id`
---       `users` -> `id`
---
 
 -- --------------------------------------------------------
 
@@ -173,16 +127,6 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `recivedate` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
---
--- RELACJE TABELI `messages`:
---   `idcon`
---       `conversations` -> `idcon`
---   `idA`
---       `users` -> `id`
---   `idB`
---       `users` -> `id`
---
-
 -- --------------------------------------------------------
 
 --
@@ -197,12 +141,6 @@ CREATE TABLE IF NOT EXISTS `news` (
   `photo` varchar(20) COLLATE utf8_polish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
---
--- RELACJE TABELI `news`:
---   `idgame`
---       `games` -> `idgame`
---
-
 -- --------------------------------------------------------
 
 --
@@ -215,14 +153,6 @@ CREATE TABLE IF NOT EXISTS `players` (
   `id` int(11) NOT NULL,
   `nickname` varchar(20) COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
-
---
--- RELACJE TABELI `players`:
---   `idgame`
---       `games` -> `idgame`
---   `id`
---       `users` -> `id`
---
 
 -- --------------------------------------------------------
 
@@ -239,12 +169,6 @@ CREATE TABLE IF NOT EXISTS `teamgalleries` (
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
---
--- RELACJE TABELI `teamgalleries`:
---   `idteam`
---       `teams` -> `idteam`
---
-
 -- --------------------------------------------------------
 
 --
@@ -257,14 +181,6 @@ CREATE TABLE IF NOT EXISTS `teaminvitations` (
   `id` int(11) NOT NULL,
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
-
---
--- RELACJE TABELI `teaminvitations`:
---   `idteam`
---       `teams` -> `idteam`
---   `id`
---       `users` -> `id`
---
 
 -- --------------------------------------------------------
 
@@ -279,14 +195,6 @@ CREATE TABLE IF NOT EXISTS `teammembers` (
   `joindate` datetime NOT NULL,
   `leftdate` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
-
---
--- RELACJE TABELI `teammembers`:
---   `id`
---       `users` -> `id`
---   `idteam`
---       `teams` -> `idteam`
---
 
 -- --------------------------------------------------------
 
@@ -308,14 +216,6 @@ CREATE TABLE IF NOT EXISTS `teams` (
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
---
--- RELACJE TABELI `teams`:
---   `id`
---       `users` -> `id`
---   `idgame`
---       `games` -> `idgame`
---
-
 -- --------------------------------------------------------
 
 --
@@ -327,14 +227,6 @@ CREATE TABLE IF NOT EXISTS `tournamentmembers` (
   `idteam` int(11) NOT NULL,
   `position` int(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
-
---
--- RELACJE TABELI `tournamentmembers`:
---   `idteam`
---       `teams` -> `idteam`
---   `idtournament`
---       `tournaments` -> `idtournament`
---
 
 -- --------------------------------------------------------
 
@@ -353,12 +245,6 @@ CREATE TABLE IF NOT EXISTS `tournaments` (
   `startdate` datetime NOT NULL,
   `status` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
-
---
--- RELACJE TABELI `tournaments`:
---   `idgame`
---       `games` -> `idgame`
---
 
 -- --------------------------------------------------------
 
@@ -389,19 +275,19 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Indexes for table `blacklists`
 --
 ALTER TABLE `blacklists`
- ADD PRIMARY KEY (`idblock`), ADD KEY `idA` (`idA`), ADD KEY `idB` (`idB`);
+ ADD PRIMARY KEY (`idblock`);
 
 --
 -- Indexes for table `conversations`
 --
 ALTER TABLE `conversations`
- ADD PRIMARY KEY (`idcon`), ADD KEY `idA` (`idA`), ADD KEY `idB` (`idB`);
+ ADD PRIMARY KEY (`idcon`);
 
 --
 -- Indexes for table `galleries`
 --
 ALTER TABLE `galleries`
- ADD PRIMARY KEY (`idphoto`), ADD KEY `id` (`id`);
+ ADD PRIMARY KEY (`idphoto`);
 
 --
 -- Indexes for table `games`
@@ -413,73 +299,49 @@ ALTER TABLE `games`
 -- Indexes for table `matches`
 --
 ALTER TABLE `matches`
- ADD PRIMARY KEY (`idmatch`), ADD KEY `idtournament` (`idtournament`), ADD KEY `idteamA` (`idteamA`), ADD KEY `idteamB` (`idteamB`);
-
---
--- Indexes for table `matchresult`
---
-ALTER TABLE `matchresult`
- ADD KEY `idmatch` (`idmatch`);
-
---
--- Indexes for table `matchsquad`
---
-ALTER TABLE `matchsquad`
- ADD KEY `idteam` (`idteam`), ADD KEY `id` (`id`), ADD KEY `idteam_2` (`idteam`), ADD KEY `id_2` (`id`);
-
---
--- Indexes for table `messages`
---
-ALTER TABLE `messages`
- ADD KEY `idA` (`idA`), ADD KEY `idcon` (`idcon`), ADD KEY `idB` (`idB`);
+ ADD PRIMARY KEY (`idmatch`);
 
 --
 -- Indexes for table `news`
 --
 ALTER TABLE `news`
- ADD PRIMARY KEY (`idnews`), ADD KEY `idgame` (`idgame`);
+ ADD PRIMARY KEY (`idnews`);
 
 --
 -- Indexes for table `players`
 --
 ALTER TABLE `players`
- ADD PRIMARY KEY (`idplayer`), ADD KEY `idgame` (`idgame`), ADD KEY `id` (`id`);
+ ADD PRIMARY KEY (`idplayer`);
 
 --
 -- Indexes for table `teamgalleries`
 --
 ALTER TABLE `teamgalleries`
- ADD PRIMARY KEY (`idtphoto`), ADD KEY `idteam` (`idteam`);
+ ADD PRIMARY KEY (`idtphoto`);
 
 --
 -- Indexes for table `teaminvitations`
 --
 ALTER TABLE `teaminvitations`
- ADD PRIMARY KEY (`idinv`), ADD KEY `idteam` (`idteam`), ADD KEY `id` (`id`);
+ ADD PRIMARY KEY (`idinv`);
 
 --
 -- Indexes for table `teammembers`
 --
 ALTER TABLE `teammembers`
- ADD PRIMARY KEY (`idteammember`), ADD KEY `id` (`id`), ADD KEY `idteam` (`idteam`);
+ ADD PRIMARY KEY (`idteammember`);
 
 --
 -- Indexes for table `teams`
 --
 ALTER TABLE `teams`
- ADD PRIMARY KEY (`idteam`), ADD KEY `id` (`id`), ADD KEY `idgame` (`idgame`);
-
---
--- Indexes for table `tournamentmembers`
---
-ALTER TABLE `tournamentmembers`
- ADD KEY `idteam` (`idteam`), ADD KEY `idtournament` (`idtournament`);
+ ADD PRIMARY KEY (`idteam`);
 
 --
 -- Indexes for table `tournaments`
 --
 ALTER TABLE `tournaments`
- ADD PRIMARY KEY (`idtournament`), ADD KEY `idgame` (`idgame`);
+ ADD PRIMARY KEY (`idtournament`);
 
 --
 -- Indexes for table `users`
@@ -556,112 +418,6 @@ MODIFY `idtournament` int(11) NOT NULL AUTO_INCREMENT;
 --
 ALTER TABLE `users`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- Ograniczenia dla zrzutów tabel
---
-
---
--- Ograniczenia dla tabeli `blacklists`
---
-ALTER TABLE `blacklists`
-ADD CONSTRAINT `blacklists_ibfk_1` FOREIGN KEY (`idA`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `blacklists_ibfk_2` FOREIGN KEY (`idB`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ograniczenia dla tabeli `conversations`
---
-ALTER TABLE `conversations`
-ADD CONSTRAINT `conversations_ibfk_1` FOREIGN KEY (`idA`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `conversations_ibfk_2` FOREIGN KEY (`idB`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ograniczenia dla tabeli `galleries`
---
-ALTER TABLE `galleries`
-ADD CONSTRAINT `galleries_ibfk_1` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ograniczenia dla tabeli `matches`
---
-ALTER TABLE `matches`
-ADD CONSTRAINT `matches_ibfk_1` FOREIGN KEY (`idtournament`) REFERENCES `tournaments` (`idtournament`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `matches_ibfk_2` FOREIGN KEY (`idteamA`) REFERENCES `teams` (`idteam`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `matches_ibfk_3` FOREIGN KEY (`idteamB`) REFERENCES `teams` (`idteam`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ograniczenia dla tabeli `matchresult`
---
-ALTER TABLE `matchresult`
-ADD CONSTRAINT `matchresult_ibfk_1` FOREIGN KEY (`idmatch`) REFERENCES `matches` (`idmatch`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ograniczenia dla tabeli `matchsquad`
---
-ALTER TABLE `matchsquad`
-ADD CONSTRAINT `matchsquad_ibfk_1` FOREIGN KEY (`idteam`) REFERENCES `teams` (`idteam`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `matchsquad_ibfk_2` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ograniczenia dla tabeli `messages`
---
-ALTER TABLE `messages`
-ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`idcon`) REFERENCES `conversations` (`idcon`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`idA`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `messages_ibfk_3` FOREIGN KEY (`idB`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ograniczenia dla tabeli `news`
---
-ALTER TABLE `news`
-ADD CONSTRAINT `news_ibfk_1` FOREIGN KEY (`idgame`) REFERENCES `games` (`idgame`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ograniczenia dla tabeli `players`
---
-ALTER TABLE `players`
-ADD CONSTRAINT `players_ibfk_1` FOREIGN KEY (`idgame`) REFERENCES `games` (`idgame`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `players_ibfk_2` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ograniczenia dla tabeli `teamgalleries`
---
-ALTER TABLE `teamgalleries`
-ADD CONSTRAINT `teamgalleries_ibfk_1` FOREIGN KEY (`idteam`) REFERENCES `teams` (`idteam`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ograniczenia dla tabeli `teaminvitations`
---
-ALTER TABLE `teaminvitations`
-ADD CONSTRAINT `teaminvitations_ibfk_1` FOREIGN KEY (`idteam`) REFERENCES `teams` (`idteam`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `teaminvitations_ibfk_2` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ograniczenia dla tabeli `teammembers`
---
-ALTER TABLE `teammembers`
-ADD CONSTRAINT `teammembers_ibfk_1` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `teammembers_ibfk_2` FOREIGN KEY (`idteam`) REFERENCES `teams` (`idteam`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ograniczenia dla tabeli `teams`
---
-ALTER TABLE `teams`
-ADD CONSTRAINT `teams_ibfk_1` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `teams_ibfk_2` FOREIGN KEY (`idgame`) REFERENCES `games` (`idgame`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ograniczenia dla tabeli `tournamentmembers`
---
-ALTER TABLE `tournamentmembers`
-ADD CONSTRAINT `tournamentmembers_ibfk_1` FOREIGN KEY (`idteam`) REFERENCES `teams` (`idteam`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `tournamentmembers_ibfk_2` FOREIGN KEY (`idtournament`) REFERENCES `tournaments` (`idtournament`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ograniczenia dla tabeli `tournaments`
---
-ALTER TABLE `tournaments`
-ADD CONSTRAINT `tournaments_ibfk_1` FOREIGN KEY (`idgame`) REFERENCES `games` (`idgame`) ON DELETE CASCADE ON UPDATE CASCADE;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
