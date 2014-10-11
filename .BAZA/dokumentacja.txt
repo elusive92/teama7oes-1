@@ -1,16 +1,9 @@
-
-Siema, to takie info glownie chyba dla mnie ale może sie przydać
-
-Wszystkie zmiany dałem kaskadowo to to luz z usuwaniami to troche trzeba będzie pomyśleć
-
-
-
-Wiadomości:
+﻿Wiadomości:
 *tabela messages -> na co nam w sumie dwa atrybuty userow ? nie lepiej jednego tego ktory pisal wiadomość ? no bo inaczej jak stwierdzisz który pisał, kto do kogo już jest w samej konwersacji ;)
+MW: w sumie racja nie wiem po co dwa razy pisać kto komu pisze wiadomość. Cały czas też nie jestem pewien "datyodebrania" wiadomości... 
+chciałem zrobić coś ala nieprzeczytane wiadomości i uważam to za dobrą opcje ale w sumie was o zdanie nie pytałem. Pasuje wam to?
 
-
-
-Ogólnie tak dam chyba restrict w:
+Restrict:
 
 Turnament  - > dla idgames   - dopóki są turnieje nie można skasować gry
 
