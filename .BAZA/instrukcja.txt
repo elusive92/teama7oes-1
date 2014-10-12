@@ -1,4 +1,5 @@
 ﻿Chopaki tu wrzucamy backupy bazy i ewentualną samą strukturę bazy. Przy każdym commicie nowej bazy nadajcie jej nazwe z Data i inicjalami a bedzie gitez!
 
-teama7oes.sql - AP 11.10.14 21.24 -  aktualna baza danych z relacjami
+teama7oes.sql2 - AP 11.10.14 21.24 -  aktualna baza danych / dodalem do matches pozycje, zmienilem desc na descript w kilku bo to nazwa specjalna w sql, usunalem w message drugie id, zmienilem na restrict w turnaments dla gier
+teama7oes.sql2 - AP 11.10.14 21.24 -  baza danych z relacjami
 teama7oes1.sql - MW -  poprzednia wersja najstarsza
