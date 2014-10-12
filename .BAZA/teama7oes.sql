@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Czas generowania: 12 Paź 2014, 10:48
+-- Czas generowania: 12 Paź 2014, 10:53
 -- Wersja serwera: 5.6.20
 -- Wersja PHP: 5.5.15
 
@@ -33,6 +33,14 @@ CREATE TABLE IF NOT EXISTS `blacklists` (
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
+--
+-- RELACJE TABELI `blacklists`:
+--   `idA`
+--       `users` -> `id`
+--   `idB`
+--       `users` -> `id`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -44,6 +52,14 @@ CREATE TABLE IF NOT EXISTS `conversations` (
   `idA` int(11) NOT NULL,
   `idB` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
+
+--
+-- RELACJE TABELI `conversations`:
+--   `idA`
+--       `users` -> `id`
+--   `idB`
+--       `users` -> `id`
+--
 
 -- --------------------------------------------------------
 
@@ -59,6 +75,12 @@ CREATE TABLE IF NOT EXISTS `galleries` (
   `filename` varchar(20) COLLATE utf8_polish_ci NOT NULL,
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
+
+--
+-- RELACJE TABELI `galleries`:
+--   `id`
+--       `users` -> `id`
+--
 
 -- --------------------------------------------------------
 
@@ -90,6 +112,16 @@ CREATE TABLE IF NOT EXISTS `matches` (
   `bracket` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
+--
+-- RELACJE TABELI `matches`:
+--   `idtournament`
+--       `tournaments` -> `idtournament`
+--   `idteamA`
+--       `teams` -> `idteam`
+--   `idteamB`
+--       `teams` -> `idteam`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -101,6 +133,12 @@ CREATE TABLE IF NOT EXISTS `matchresult` (
   `resultA` int(1) DEFAULT NULL,
   `resultB` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- RELACJE TABELI `matchresult`:
+--   `idmatch`
+--       `matches` -> `idmatch`
+--
 
 -- --------------------------------------------------------
 
@@ -114,6 +152,14 @@ CREATE TABLE IF NOT EXISTS `matchsquad` (
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
+--
+-- RELACJE TABELI `matchsquad`:
+--   `idteam`
+--       `teams` -> `idteam`
+--   `id`
+--       `users` -> `id`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -126,6 +172,14 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `senddate` datetime NOT NULL,
   `recivedate` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- RELACJE TABELI `messages`:
+--   `idcon`
+--       `conversations` -> `idcon`
+--   `idA`
+--       `users` -> `id`
+--
 
 -- --------------------------------------------------------
 
@@ -141,6 +195,12 @@ CREATE TABLE IF NOT EXISTS `news` (
   `photo` varchar(20) COLLATE utf8_polish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
+--
+-- RELACJE TABELI `news`:
+--   `idgame`
+--       `games` -> `idgame`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -153,6 +213,14 @@ CREATE TABLE IF NOT EXISTS `players` (
   `id` int(11) NOT NULL,
   `nickname` varchar(20) COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
+
+--
+-- RELACJE TABELI `players`:
+--   `idgame`
+--       `games` -> `idgame`
+--   `id`
+--       `users` -> `id`
+--
 
 -- --------------------------------------------------------
 
@@ -169,6 +237,12 @@ CREATE TABLE IF NOT EXISTS `teamgalleries` (
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
+--
+-- RELACJE TABELI `teamgalleries`:
+--   `idteam`
+--       `teams` -> `idteam`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -181,6 +255,14 @@ CREATE TABLE IF NOT EXISTS `teaminvitations` (
   `id` int(11) NOT NULL,
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
+
+--
+-- RELACJE TABELI `teaminvitations`:
+--   `idteam`
+--       `teams` -> `idteam`
+--   `id`
+--       `users` -> `id`
+--
 
 -- --------------------------------------------------------
 
@@ -195,6 +277,14 @@ CREATE TABLE IF NOT EXISTS `teammembers` (
   `joindate` datetime NOT NULL,
   `leftdate` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
+
+--
+-- RELACJE TABELI `teammembers`:
+--   `id`
+--       `users` -> `id`
+--   `idteam`
+--       `teams` -> `idteam`
+--
 
 -- --------------------------------------------------------
 
@@ -216,6 +306,14 @@ CREATE TABLE IF NOT EXISTS `teams` (
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
+--
+-- RELACJE TABELI `teams`:
+--   `id`
+--       `users` -> `id`
+--   `idgame`
+--       `games` -> `idgame`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -227,6 +325,14 @@ CREATE TABLE IF NOT EXISTS `tournamentmembers` (
   `idteam` int(11) NOT NULL,
   `position` int(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- RELACJE TABELI `tournamentmembers`:
+--   `idteam`
+--       `teams` -> `idteam`
+--   `idtournament`
+--       `tournaments` -> `idtournament`
+--
 
 -- --------------------------------------------------------
 
@@ -245,6 +351,12 @@ CREATE TABLE IF NOT EXISTS `tournaments` (
   `startdate` datetime NOT NULL,
   `status` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
+
+--
+-- RELACJE TABELI `tournaments`:
+--   `idgame`
+--       `games` -> `idgame`
+--
 
 -- --------------------------------------------------------
 
