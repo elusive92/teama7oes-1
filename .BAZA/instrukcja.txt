@@ -1,5 +1,7 @@
 ﻿Chopaki tu wrzucamy backupy bazy i ewentualną samą strukturę bazy. Przy każdym commicie nowej bazy nadajcie jej nazwe z Data i inicjalami a bedzie gitez!
+Jak robicie eksport to nie szybki tylko w opcjach zaznaczyc jeszce wyswietlanie zwiazki z kluczem obcym
 
-teama7oes.sql2 - AP 11.10.14 21.24 -  aktualna baza danych / dodalem do matches pozycje, zmienilem desc na descript w kilku bo to nazwa specjalna w sql, usunalem w message drugie id, zmienilem na restrict w turnaments dla gier
+teama7oes1.sq - AP 12.10.14-  takie tam z meczami zmiany i miejscem w drzewku
+teama7oes.sql3 - AP 11.10.14 21.24 -  aktualna baza danych / dodalem do matches pozycje, zmienilem desc na descript w kilku bo to nazwa specjalna w sql, usunalem w message drugie id, zmienilem na restrict w turnaments dla gier
 teama7oes.sql2 - AP 11.10.14 21.24 -  baza danych z relacjami
 teama7oes1.sql - MW -  poprzednia wersja najstarsza

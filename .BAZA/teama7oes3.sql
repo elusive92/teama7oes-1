@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Czas generowania: 13 Paź 2014, 22:51
+-- Czas generowania: 12 Paź 2014, 10:53
 -- Wersja serwera: 5.6.20
 -- Wersja PHP: 5.5.15
 
@@ -158,8 +158,6 @@ CREATE TABLE IF NOT EXISTS `matchsquad` (
 --       `teams` -> `idteam`
 --   `id`
 --       `users` -> `id`
---   `idmatch`
---       `matches` -> `idmatch`
 --
 
 -- --------------------------------------------------------
@@ -425,7 +423,7 @@ ALTER TABLE `matchresult`
 -- Indexes for table `matchsquad`
 --
 ALTER TABLE `matchsquad`
- ADD KEY `idteam` (`idteam`), ADD KEY `id` (`id`), ADD KEY `idteam_2` (`idteam`), ADD KEY `id_2` (`id`), ADD KEY `idmatch` (`idmatch`);
+ ADD KEY `idteam` (`idteam`), ADD KEY `id` (`id`), ADD KEY `idteam_2` (`idteam`), ADD KEY `id_2` (`id`);
 
 --
 -- Indexes for table `messages`
@@ -599,8 +597,7 @@ ADD CONSTRAINT `matchresult_ibfk_1` FOREIGN KEY (`idmatch`) REFERENCES `matches`
 --
 ALTER TABLE `matchsquad`
 ADD CONSTRAINT `matchsquad_ibfk_1` FOREIGN KEY (`idteam`) REFERENCES `teams` (`idteam`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `matchsquad_ibfk_2` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `matchsquad_ibfk_3` FOREIGN KEY (`idmatch`) REFERENCES `matches` (`idmatch`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `matchsquad_ibfk_2` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `messages`
