@@ -3,15 +3,12 @@
 //zwykle stronki for all
 //8===========================================D
 
-<<<<<<< HEAD
-/*Route::get('/', array('as' => 'home', 'uses' => 'HomeController@getIndex'));*/
 
 Route::get('/', array(
 	'as' => 'home', 
 	'uses' => 'HomeController@home'
 ));
-=======
-Route::get('/', array('as' => 'home', 'uses' => 'HomeController@getIndex'));
+
 
 Route::get('tournaments', function()
 {
@@ -42,4 +39,4 @@ Route::group(array('prefix' => 'admin'), function()
     });
 });
 
->>>>>>> origin/master
+
