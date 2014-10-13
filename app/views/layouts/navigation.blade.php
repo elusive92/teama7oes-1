@@ -1,3 +1,4 @@
+{{--
 <ul class="nav nav-pills">
     <li @if(Request::is('/'))class="active"@endif><a href="{{ URL::route('home')}}">Home</a></li>
     <li @if(Request::is('search'))class="active"@endif><a href="{{ URL::route('search')}}">Search</a></li>
@@ -13,3 +14,13 @@
     <li><a href="#" class="topopup2">Registration</a></li>
     @endif
 </ul>
+--}}
+<nav>
+    <ul>
+        <li>ddddddddddd</li>
+        <li>ddddddddddd</li>
+        <li>ddddddddddd</li>
+        <li>ddddddddddd</li>
+        <li>ddddddddddd</li>
+    </ul>
+</nav>
