@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title> Teama7oes </title>
+		<title> @yield('title') | Teama7oes </title>
 		<link rel="stylesheet" href="{{ URL::asset('css/style.css')}}" />
 		<link rel="stylesheet" href="{{ URL::asset('css/bootstrap.css')}}" />
 		<link rel="shortcut icon" type="image/x-icon" href="img/fav.png" />
+    <style>
+      body {background-image: url('img/games/leagueoflegends.jpg')}
+     /* potrzebna metoda, ktora w zaleznosci od wybranej gry ustawia background-image */
+    </style>
 	</head>
 	<body>
 		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
