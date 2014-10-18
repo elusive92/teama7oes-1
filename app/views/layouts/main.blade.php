@@ -6,7 +6,7 @@
 		<link rel="stylesheet" href="{{ URL::asset('css/bootstrap.css')}}" />
 		<link rel="shortcut icon" type="image/x-icon" href="img/fav.png" />
     <style>
-      body {background-image: url('img/gradient.jpg')}
+      body {background-image: url('img/games/pika.jpg')}
      /* potrzebna metoda, ktora w zaleznosci od wybranej gry ustawia background-image */
     </style>
 	</head>
