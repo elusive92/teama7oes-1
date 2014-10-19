@@ -1,31 +1,36 @@
 <?php
-//8===========================================D
-//zwykle stronki for all
-//8===========================================D
+
 
 
 Route::get('/', array(
 	'as' => 'home', 
-	'uses' => 'HomeController@home'
+	'uses' => 'HomeController@showHome'
 ));
 
+Route::get('/teams', array(
+	'as' => 'teams', 
+	'uses' => 'HomeController@showTeams'
+));
 
-Route::get('tournaments', function()
-{
-    return 'Tu beda torunamenty';
-});
+Route::get('/tournaments', array(
+	'as' => 'tournaments', 
+	'uses' => 'HomeController@showTournaments'
+));
 
-Route::get('teams', function()
-{
-    return 'Cokolwiek';
-});
+Route::get('/search', array(
+	'as' => 'search', 
+	'uses' => 'HomeController@showSearch'
+));
 
-Route::get('hailmarcin', function()
-{
-    return ' All hail wybraniec!';
-});
+Route::get('/forum', array(
+	'as' => 'forum', 
+	'uses' => 'HomeController@showForum'
+));
 
-//============================================
+//nie wiem czemu cos takiego nie dziala:
+//Route::get('/', 'HomeController@showHome');
+//i wszedzie trzeba robic array.
+
 // Admin======================================
 //============================================
 //Jak chcecie cos grupowego to napiszcie mi co i jak
