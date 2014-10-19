@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Czas generowania: 19 Paź 2014, 21:54
+-- Czas generowania: 13 Paź 2014, 22:51
 -- Wersja serwera: 5.6.20
 -- Wersja PHP: 5.5.15
 
@@ -109,9 +109,7 @@ CREATE TABLE IF NOT EXISTS `matches` (
   `date` datetime NOT NULL,
   `result` int(1) NOT NULL,
   `round` int(10) NOT NULL,
-  `bracket` int(11) NOT NULL,
-  `resultA` int(1) NOT NULL,
-  `resultB` int(1) NOT NULL
+  `bracket` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
 --
@@ -127,23 +125,41 @@ CREATE TABLE IF NOT EXISTS `matches` (
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla tabeli `matchresult`
+--
+
+CREATE TABLE IF NOT EXISTS `matchresult` (
+  `idmatch` int(11) NOT NULL,
+  `resultA` int(1) DEFAULT NULL,
+  `resultB` int(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- RELACJE TABELI `matchresult`:
+--   `idmatch`
+--       `matches` -> `idmatch`
+--
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla tabeli `matchsquad`
 --
 
 CREATE TABLE IF NOT EXISTS `matchsquad` (
   `idmatch` int(11) NOT NULL,
   `idteam` int(11) NOT NULL,
-  `idteammember` int(11) NOT NULL
+  `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
 -- RELACJE TABELI `matchsquad`:
 --   `idteam`
 --       `teams` -> `idteam`
+--   `id`
+--       `users` -> `id`
 --   `idmatch`
 --       `matches` -> `idmatch`
---   `idteammember`
---       `teammembers` -> `idteammember`
 --
 
 -- --------------------------------------------------------
@@ -362,8 +378,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `about` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  `photo` varchar(20) COLLATE utf8_polish_ci DEFAULT NULL,
-  `remember_token` varchar(100) COLLATE utf8_polish_ci NOT NULL
+  `photo` varchar(20) COLLATE utf8_polish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
 --
@@ -401,10 +416,16 @@ ALTER TABLE `matches`
  ADD PRIMARY KEY (`idmatch`), ADD KEY `idtournament` (`idtournament`), ADD KEY `idteamA` (`idteamA`), ADD KEY `idteamB` (`idteamB`);
 
 --
+-- Indexes for table `matchresult`
+--
+ALTER TABLE `matchresult`
+ ADD KEY `idmatch` (`idmatch`);
+
+--
 -- Indexes for table `matchsquad`
 --
 ALTER TABLE `matchsquad`
- ADD KEY `idteam` (`idteam`), ADD KEY `id` (`idteammember`), ADD KEY `idteam_2` (`idteam`), ADD KEY `id_2` (`idteammember`), ADD KEY `idmatch` (`idmatch`);
+ ADD KEY `idteam` (`idteam`), ADD KEY `id` (`id`), ADD KEY `idteam_2` (`idteam`), ADD KEY `id_2` (`id`), ADD KEY `idmatch` (`idmatch`);
 
 --
 -- Indexes for table `messages`
@@ -568,12 +589,18 @@ ADD CONSTRAINT `matches_ibfk_2` FOREIGN KEY (`idteamA`) REFERENCES `teams` (`idt
 ADD CONSTRAINT `matches_ibfk_3` FOREIGN KEY (`idteamB`) REFERENCES `teams` (`idteam`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Ograniczenia dla tabeli `matchresult`
+--
+ALTER TABLE `matchresult`
+ADD CONSTRAINT `matchresult_ibfk_1` FOREIGN KEY (`idmatch`) REFERENCES `matches` (`idmatch`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Ograniczenia dla tabeli `matchsquad`
 --
 ALTER TABLE `matchsquad`
 ADD CONSTRAINT `matchsquad_ibfk_1` FOREIGN KEY (`idteam`) REFERENCES `teams` (`idteam`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `matchsquad_ibfk_3` FOREIGN KEY (`idmatch`) REFERENCES `matches` (`idmatch`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `matchsquad_ibfk_4` FOREIGN KEY (`idteammember`) REFERENCES `teammembers` (`idteammember`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `matchsquad_ibfk_2` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `matchsquad_ibfk_3` FOREIGN KEY (`idmatch`) REFERENCES `matches` (`idmatch`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `messages`
