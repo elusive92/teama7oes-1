@@ -2,7 +2,7 @@
     <div class="close"></div>
     <!-- <span class="ecs_tooltip">Press Esc to close <span class="arrow"></span></span> -->
     <div id="popup_content"> <!--your content start-->
-        <form action="#" method="post">
+        <form action="{{ URL::route('account-create-post') }}" method="post">
             <div class="form-group">
                 <label for="Email">Email:</label> <input type="text" name="email" class="form-control" id="Email" placeholder="Enter email" {{ (Input::old('email')) ? 'value="' . e(Input::old('email')) . '"' : '' }} />
 
