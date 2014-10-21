@@ -13,18 +13,18 @@ class GameController extends BaseController {
 
     public function postAddGame(){
 
-/**
+
         $validator = Validator::make(Input::all(), Games::$rules);
         if($validator->fails()){
             return Redirect::route('addGame')
                 ->withErrors($validator)
                 ->withInput()
                 ->with('flash_notice', 'Error 717');
-        }else{*/
+        }else{
 
         $games = new Games;
         $games->gamename 		= Input::get('gamename');
-        $games->descript 	    = Input::get('description');
+        $games->descript 	    = Input::get('descript');
         $games->logo 	        = Input::get('logo');
 
         $games->save();
@@ -38,6 +38,6 @@ class GameController extends BaseController {
 
 
         }
-   //}
+   }
 
 }
