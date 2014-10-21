@@ -137,4 +137,7 @@ Route::group(array('prefix' => 'admin'), function()
     });
 });
 
-
+Route::get('games/{gamename}', function($gamename)
+{
+    return $gamename
+});
