@@ -26,12 +26,12 @@
 
 
             <div class="form-group">
-                Game Name: {{Form::text('Game Name')}}</div>
+                Game Name: {{Form::text('gamename')}}</div>
              <div class="form-group">
-                Description: {{Form::text('Short Description!')}}
+                Description: {{Form::text('descript')}}
              </div>
              <div class="form-group">
-                Logo: {{Form::text('Kiedys to zmienie')}}
+                Logo: {{Form::text('logo')}}
              </div>
               <input type="submit" value="Create" class="btn btn-default"/>
             </form>

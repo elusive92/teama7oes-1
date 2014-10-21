@@ -21,19 +21,17 @@ class GameController extends BaseController {
                 ->withInput()
                 ->with('flash_notice', 'Error 717');
         }else{*/
-        $gamename 		= Input::get('gamename');
-        $descript 	    = Input::get('description');
-        $logo 	        = Input::get('logo');
 
-        $game 	= Games::create(array(
-            'gamename' => $gamename,
-            'descript' => $descript,
-            'logo'  => $logo
-        ));
-        $game->save();
+        $games = new Games;
+        $games->gamename 		= Input::get('gamename');
+        $games->descript 	    = Input::get('description');
+        $games->logo 	        = Input::get('logo');
+
+        $games->save();
 
 
-            if($game){
+
+            if($games){
                 return Redirect::route('addGame')
                     ->with('flash_notice', 'Game Added!');
             }
