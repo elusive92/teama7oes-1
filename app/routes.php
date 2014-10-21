@@ -137,10 +137,6 @@ Route::group(array('prefix' => 'admin'), function()
     });
 });
 
-Route::get('/{gamename}', function($gamename)
-{
-    return $gamename;
-});
 //-------------------------------------------------
 //----------------Fromularz gier-----------------
 ////////////////////////////////////////////////////
