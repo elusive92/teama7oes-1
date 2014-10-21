@@ -1,9 +1,14 @@
-@extends('layout.main')
+﻿<!DOCTYPE html>
 
-@section('content')
-<div class='form'>
-   
-    <table>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+<div>
+
+     <table>
        <tr>
            <td colspan="2" >Profil</td>
        </tr>
@@ -13,14 +18,13 @@
             <p>About: {{ Auth::user()->about }}<p>
            </td>
        </tr>
-       <tr>  
-        <td colspan="2" > 
+       <tr>  <td colspan="2" > 
            <input id="Edycja" type="button" value="edytuj" />
            <input id="DodawanieGier" type="button" value="dodaj gre" />
-        </td>
+             </td>
        </tr>
    </table>
 
 </div>
-
-@stop
+</body>
+</html>
