@@ -2,13 +2,13 @@
 <html>
 	<head>
 		<title> @yield('title') | Teama7oes </title>
-		<link rel="stylesheet" href="{{ URL::asset('css/style.css')}}" />
-		<link rel="stylesheet" href="{{ URL::asset('css/bootstrap.css')}}" />
-		<link rel="shortcut icon" type="image/x-icon" href="img/fav.png" />
+		<link rel="stylesheet" href="{{ URL::asset('/') }}css/style.css" />
+		<link rel="stylesheet" href="{{ URL::asset('/') }}css/bootstrap.css" />
+		<link rel="shortcut icon" type="image/x-icon" href="{{ URL::asset('/') }}img/fav.png" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"> </script>
     <script type="text/javascript" src="js/popup.js"></script>
     <style>
-      body {background-image: url('img/games/pika.jpg')}
+      body {background-image: url('{{ URL::asset('/') }}img/games/pika.jpg')}
      /* potrzebna metoda, ktora w zaleznosci od wybranej gry ustawia background-image */
     </style>
 

@@ -1,5 +1,9 @@
 @extends('layout.main')
 
+@section('title')
+  Profile
+@stop
+
 @section('content')
 <div class='form'>
    

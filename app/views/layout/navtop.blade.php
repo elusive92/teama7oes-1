@@ -1,7 +1,7 @@
 <script src="js/popup.js"></script>
 
 <ul id="nav">
-	<img class="logo" src="img/nav_logo.png" alt="Tema7oes" height="25" width="160">
+	<img class="logo" src="{{ URL::asset('/') }}img/nav_logo.png" alt="Tema7oes" height="25" width="160">
 	@if(Auth::check())
 
     <li><a href="{{ URL::route('account-sign-out') }}">Log out</a></li>
