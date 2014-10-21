@@ -52,6 +52,11 @@ Route::group(array('before' => 'auth'), function() {
         'uses' => 'AccountController@getSignOut'
     ));
 
+    Route::get('/account/profile', array(
+        'as' => 'account-profile',
+        'uses' => 'AccountController@getProfile'
+    ));
+
 });
 
 Route::group(array('before' => 'guest'), function() {
