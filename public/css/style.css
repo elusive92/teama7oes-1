@@ -168,3 +168,48 @@ div#popup_content {
     margin: 4px 7px;
 
 }
+
+#profile { 
+    display: block; 
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;  
+}
+
+.profilepic {
+    float: left; 
+    display: block; 
+    margin-right: 10px;
+}
+
+.profilepic a img { 
+    padding: 7px; 
+    background: #fff; 
+    border: 1px solid #ccc; 
+}
+
+#userStats { 
+    display: block; 
+    width: auto; 
+    background-color: #f9f9f9; 
+    border: 1px solid #ccc; 
+
+    border-radius: 5px; 
+    padding: 12px; 
+}
+
+.sep { 
+    clear: both; 
+    margin-top: 10px; 
+    width: auto; 
+    height: 1px; 
+    border-bottom: 1px solid #ccc; 
+    margin-bottom: 0; 
+}
+#pright {
+    text-align: right;
+}
+
+.nickname {
+    margin-bottom: 6em;
+}

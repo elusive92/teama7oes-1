@@ -17,20 +17,14 @@
     @include('layout.navtop')
     @include('layout.navmain')
 
-  @include('layout.popuplogin')
-  @include('layout.popupcreate')
+ 	@include('layout.popuplogin')
+ 	@include('layout.popupcreate')
 
    		<div class="main-box">
    			@yield('content')
    		</div>
+   	@include('layout.footer')
 
-	   	<footer>
-	        <div id="footer">
-	                <div class="text-center">
-	                    <p>Copyright &copy; 2014</p>
-	                </div>
-	        </div>
-   		</footer>
     <!--pokasowac script, dodac include do oddzielnego pliku z css, js -->
 		<script src="js/jQuery.js"></script>
  		<script src="js/bootstrap.min.js"></script>
