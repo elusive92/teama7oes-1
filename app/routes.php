@@ -140,11 +140,12 @@ Route::group(array('prefix' => 'admin'), function()
 //-------------------------------------------------
 //----------------Fromularz gier-----------------
 ////////////////////////////////////////////////////
-Route::get('addGames', function()
-{
-    return View::make('game-form');
-});
+Route::get('/addGames', array(
+    'as' => 'addGame',
+    'uses' => 'GameController@getAddGame'
+));
 
-Route::post('addGames',function(){
-   //process the form here
-});
+Route::post('/addGames', array(
+    'as' => 'postAddGame',
+    'uses' => 'GameController@postAddGame'
+));
