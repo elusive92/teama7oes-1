@@ -137,7 +137,18 @@ Route::group(array('prefix' => 'admin'), function()
     });
 });
 
-Route::get('games/{gamename}', function($gamename)
+Route::get('/{gamename}', function($gamename)
 {
-    return $gamename
+    return $gamename;
+});
+//-------------------------------------------------
+//----------------Fromularz gier-----------------
+////////////////////////////////////////////////////
+Route::get('addGames', function()
+{
+    return View::make('game-form');
+});
+
+Route::post('addGames',function(){
+   //process the form here
 });
