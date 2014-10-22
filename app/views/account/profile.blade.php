@@ -14,6 +14,7 @@
         </div>
         <div id="pright">
         <button type="button" class="btn btn-default">Edit profile</button>
+        <a href="{{ URL::route('account-editprofile')}}">Edit profile</a>
         </div>
         <div class="data">
           <div  class="nickname"><h1>{{ Auth::user()->username }}</h1></div>

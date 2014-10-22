@@ -49,6 +49,10 @@ class AccountController extends BaseController {
 	public function getProfile(){		
 		return View::make('account.profile');
 	}
+
+	public function getEditProfile(){		
+		return View::make('account.editprofile');
+	}
 	
 	public function getCreate() {
 		return View::make('account.create');
