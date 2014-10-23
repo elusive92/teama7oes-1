@@ -33,12 +33,8 @@ class AccountController extends BaseController {
         ), $remember);
 
         if($auth){
-            return Redirect::route('account-sign-in');
-            return Response::json([
-                'success'=>false,
-                'error'=> array('error' => 'udalo sie'),
-                'redirect'=> Redirect::intended('/')
-            ]);
+            //return Redirect::route('account-sign-in');
+            return Response::json(['success'=>true]);
         }else{
             return Response::json([
                 'success'=>false,
