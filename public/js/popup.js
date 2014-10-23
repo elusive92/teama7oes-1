@@ -27,16 +27,22 @@ jQuery(function($) {
 				);
 
 	$("div.close").click(function() {
+        var info = $('.info');
+        info.hide().find('ul').empty();
 		disablePopup();  // function close pop up
 	});
 
 	$(this).keyup(function(event) {
 		if (event.which == 27) { // 27 is 'Ecs' in the keyboard
+            var info = $('.info');
+            info.hide().find('ul').empty();
 			disablePopup();  // function close pop up
 		}
 	});
 
         $("div#backgroundPopup").click(function() {
+            var info = $('.info');
+            info.hide().find('ul').empty();
 		disablePopup();  // function close pop up
 	});
 

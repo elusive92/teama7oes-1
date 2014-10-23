@@ -83,19 +83,23 @@ Route::group(array('before' => 'guest'), function() {
             'uses' => 'AccountController@postCreate'
         ));
 
-        //Route::post('/account/sign-in', array(
-        //    'as' => 'account-sign-in-post',
-        //    'uses' => 'AccountController@postSignIn'
-        //));
         Route::post('/account/sign-in', array(
+            'as' => 'account-sign-in-post',
+            'uses' => 'AccountController@postSignIn'
+        ));
+        /*
+
+         Route::post('/account/sign-in', array(
             'as' => 'account-sign-in-post',
             'uses' => function(){
             $validator = Validator::make(
                 array(
-                    'email' => Input::get('email')
+                    'email' => Input::get('email'),
+                    'password' => Input::get('password')
                 ),
                 array(
-                    'email' => 'required'
+                    'email' => 'required|email',
+                    'password' => 'required'
                 )
             );
             if($validator->fails()){
@@ -104,8 +108,26 @@ Route::group(array('before' => 'guest'), function() {
                     'error'=>$validator->errors()->toArray()
                 ]);
             }
-            return Response::json(['success' => true]);
+                $remember = (Input::has('remember')) ? true : false;
+
+                $auth = Auth::attempt(array(
+                    'email' => Input::get('email'),
+                    'password' => Input::get('password'),
+                    'active' => 1
+                ), $remember);
+
+                if($auth){
+                    return Redirect::intended('/');
+                }else{
+                    return Response::json([
+                        'success'=>false,
+                        'error'=> array('error' => 'Your account might be still not activated.')
+                    ]);
+
+                }
+                return Redirect::intended('/');
         }));
+        */
 
     });
 

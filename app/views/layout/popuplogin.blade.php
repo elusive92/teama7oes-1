@@ -6,14 +6,14 @@
     <div class="alert alert-info info" style="display: none;">
         <ul></ul>
     </div>
-        <form action="{{ URL::route('account-sign-in-post') }}" method="post">
+        <form action="{{ URL::route('account-sign-in-post') }}" method="post" id="loginin">
             <div class="form-group">
                 <label for="Email">Email:</label> <input type="text" name="email" class="form-control" id="email" placeholder="Enter email" {{ (Input::old('email')) ? 'value="' . e(Input::old('email')) . '"' : '' }} />
 
             </div>
 
             <div class="form-group">
-                <label for="Password">Password: </label><input type="password" name="password" class="form-control" id="Password" placeholder="Password" />
+                <label for="Password">Password: </label><input type="password" name="password" class="form-control" id="password" placeholder="Password" />
 
             </div>
             <div class="checkbox">
@@ -39,21 +39,21 @@
 
 <script>
     $(document).ready(function(){
-        var base_url = 'http://localhost/teama7oes/public/'
         var info = $('.info');
 
-        $('form').submit(function(e){
+        $('#loginin').submit(function(e){
+            $.ajaxSetup({
+                headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+            });
             e.preventDefault();
 
             var formData = new FormData();
             formData.append('email', $('#email').val());
+            formData.append('password', $('#password').val());
 
-            $.ajaxSetup({
-               headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
-            });
 
             $.ajax({
-                url: base_url+'{{ URL::route('account-sign-in-post') }}',
+                url: '{{ URL::route('account-sign-in-post') }}',
                 method: 'post',
                 processData: false,
                 contentType: false,
@@ -61,19 +61,15 @@
                 dataType: 'json',
                 data: formData,
                 success: function(data){
-
                 info.hide().find('ul').empty();
-
+                console.log(data);
                 if(!data.success){
-                    //$.each(data.errors , function(index, error){
-                    //    info.find('ul').append('<li>'+error+'</li>');
-                    //});
-                    //die(echo 'kutas nie udal sie');
+                    $.each(data.error , function(index, error){
+                        info.find('ul').append('<li>'+error+'</li>');
+                    });
                     info.slideDown();
                 }else{
-                    //info.find('ul').append('<li>dziala kurda!</li>');
-                    die(echo 'kutas');
-                    info.slideDown();
+
                 }
 
                 },
@@ -81,5 +77,6 @@
             });
 
         });
+
     });
 </script>

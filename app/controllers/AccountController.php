@@ -5,9 +5,51 @@ class AccountController extends BaseController {
 	public function getSignIn(){
 		return View::make('account.signin');
 	}
-	
+
 	public function postSignIn(){
-		$validator = Validator::make(Input::all(),
+
+        $validator = Validator::make(
+            array(
+                'email' => Input::get('email'),
+                'password' => Input::get('password')
+            ),
+            array(
+                'email' => 'required|email',
+                'password' => 'required'
+            )
+        );
+        if($validator->fails()){
+            return Response::json([
+                'success'=>false,
+                'error'=>$validator->errors()->toArray()
+            ]);
+        }
+        $remember = (Input::has('remember')) ? true : false;
+
+        $auth = Auth::attempt(array(
+            'email' => Input::get('email'),
+            'password' => Input::get('password'),
+            'active' => 1
+        ), $remember);
+
+        if($auth){
+            return Redirect::route('account-sign-in');
+            return Response::json([
+                'success'=>false,
+                'error'=> array('error' => 'udalo sie'),
+                'redirect'=> Redirect::intended('/')
+            ]);
+        }else{
+            return Response::json([
+                'success'=>false,
+                'error'=> array('error' => 'Email/password wrong or your account is still not activated.'),
+                'redirect'=> Redirect::intended('/')
+            ]);
+
+        }
+    }
+		/*
+		 * $validator = Validator::make(Input::all(),
 			array(
 				'email' => 'required|email',
 				'password' => 'required'
@@ -40,7 +82,7 @@ class AccountController extends BaseController {
 			->with('global', 'There was a problem with signing you in.');
 		
 	}
-	
+	*/
 	public function getSignOut(){
 		Auth::logout();
 		return Redirect::route('home');
