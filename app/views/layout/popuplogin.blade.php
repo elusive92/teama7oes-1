@@ -6,7 +6,7 @@
     <div class="alert alert-info info" style="display: none;">
         <ul></ul>
     </div>
-        <form action="{{ URL::route('account-sign-in-post') }}" method="post" id="loginin">
+        <form action="{{ URL::route('account-sign-in-post') }}" method="post" id="signin">
             <div class="form-group">
                 <label for="Email">Email:</label> <input type="text" name="email" class="form-control" id="email" placeholder="Enter email" {{ (Input::old('email')) ? 'value="' . e(Input::old('email')) . '"' : '' }} />
 
@@ -41,7 +41,7 @@
     $(document).ready(function(){
         var info = $('.info');
 
-        $('#loginin').submit(function(e){
+        $('#signin').submit(function(e){
             $.ajaxSetup({
                 headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
             });
