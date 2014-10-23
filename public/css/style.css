@@ -92,10 +92,10 @@ body {
     color: #333333;
     display: none;
     font-size: 14px;
-    left: 50%;
-    margin-left: -410px;
+    margin: auto;  
     position: fixed;
-    top: 20%;
+    left:0;
+    right: 0;
     width: 400px;
     z-index: 2;
     text-align: left;
@@ -109,12 +109,18 @@ body {
     color: #333333;
     display: none;
     font-size: 14px;
-    left: 50%;
-    margin-left: -410px;
+    margin: auto;  
     position: fixed;
-    top: 20%;
+    left:0;
+    right: 0;
     width: 400px;
     z-index: 2;
+}
+
+.checkbox {
+    display: block;
+    clear: both;
+    margin-left: 20px;
 }
 
 div.loader {
