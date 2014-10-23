@@ -3,8 +3,13 @@
 
 
 Route::get('/', array(
-	'as' => 'home', 
-	'uses' => 'HomeController@showHome'
+    'as' => 'home',
+    'uses' => 'HomeController@showHome'
+));
+
+Route::get('/home', array(
+    'as' => 'home',
+    'uses' => 'HomeController@showHome'
 ));
 
 Route::get('/teams', array(
