@@ -52,6 +52,16 @@ Route::group(array('before' => 'auth'), function() {
         'uses' => 'AccountController@getSignOut'
     ));
 
+    Route::get('/account/profile', array(
+        'as' => 'account-profile',
+        'uses' => 'AccountController@getProfile'
+    ));
+
+    Route::get('/account/editprofile', array(
+        'as' => 'account-editprofile',
+        'uses' => 'AccountController@getEditProfile'
+    ));
+
 });
 
 Route::group(array('before' => 'guest'), function() {
@@ -134,4 +144,15 @@ Route::group(array('prefix' => 'admin'), function()
     });
 });
 
+//-------------------------------------------------
+//----------------Fromularz gier-----------------
+////////////////////////////////////////////////////
+Route::get('/addGames', array(
+    'as' => 'addGame',
+    'uses' => 'GameController@getAddGame'
+));
 
+Route::post('/addGames', array(
+    'as' => 'postAddGame',
+    'uses' => 'GameController@postAddGame'
+));

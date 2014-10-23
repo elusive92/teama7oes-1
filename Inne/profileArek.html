@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+<div>
+
+     <table>
+       <tr>
+           <td colspan="2" >Profil</td>
+       </tr>
+       <tr>
+           <td><p><img src="{{ Auth::user()->photo }}"/><p></td>
+           <td><p>UserName: {{ Auth::user()->username }}<p>
+            <p>About: {{ Auth::user()->about }}<p>
+           </td>
+       </tr>
+       <tr>  <td colspan="2" > 
+           <input id="Edycja" type="button" value="edytuj" />
+           <input id="DodawanieGier" type="button" value="dodaj gre" />
+             </td>
+       </tr>
+   </table>
+
+</div>
+</body>
+</html>
