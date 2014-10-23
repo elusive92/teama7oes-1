@@ -73,27 +73,29 @@ Route::group(array('before' => 'guest'), function() {
             'uses' => 'AccountController@postCreate'
         ));
 
+        //Route::post('/account/sign-in', array(
+        //    'as' => 'account-sign-in-post',
+        //    'uses' => 'AccountController@postSignIn'
+        //));
         Route::post('/account/sign-in', array(
             'as' => 'account-sign-in-post',
-            'uses' => 'AccountController@postSignIn'
-        ));
-        //Route::post('submit', function(){
-        //    $validator = Validator::make(
-        //        array(
-        //            'email' => Input::get('email')
-        //        ),
-        //        array(
-        //            'email' => 'required'
-        //        )
-        //    );
-        //    if($validator->fails()){
-        //       return Response::json([
-        //            'success'=>false,
-        //            'error'=>$validator->errors()->toArray()
-        //        ]);
-        //    }
-        //    return Response::json(['success' => true]);
-        //});
+            'uses' => function(){
+            $validator = Validator::make(
+                array(
+                    'email' => Input::get('email')
+                ),
+                array(
+                    'email' => 'required'
+                )
+            );
+            if($validator->fails()){
+               return Response::json([
+                    'success'=>false,
+                    'error'=>$validator->errors()->toArray()
+                ]);
+            }
+            return Response::json(['success' => true]);
+        }));
 
     });
 

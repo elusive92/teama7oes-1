@@ -36,10 +36,10 @@
 
 <div class="loader"></div>
 <div id="backgroundPopup"></div>
-<!-- nieudany ajax
+
 <script>
     $(document).ready(function(){
-
+        var base_url = 'http://localhost/teama7oes/public/'
         var info = $('.info');
 
         $('form').submit(function(e){
@@ -48,8 +48,12 @@
             var formData = new FormData();
             formData.append('email', $('#email').val());
 
+            $.ajaxSetup({
+               headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+            });
+
             $.ajax({
-                url: 'submit',
+                url: base_url+'{{ URL::route('account-sign-in-post') }}',
                 method: 'post',
                 processData: false,
                 contentType: false,
@@ -61,12 +65,14 @@
                 info.hide().find('ul').empty();
 
                 if(!data.success){
-                    $.each(data.errors , function(index, error){
-                        info.find('ul').append('<li>'+error+'</li>');
-                    });
+                    //$.each(data.errors , function(index, error){
+                    //    info.find('ul').append('<li>'+error+'</li>');
+                    //});
+                    //die(echo 'kutas nie udal sie');
                     info.slideDown();
                 }else{
-                    info.find('ul').append('<li>dziala kurda!</li>');
+                    //info.find('ul').append('<li>dziala kurda!</li>');
+                    die(echo 'kutas');
                     info.slideDown();
                 }
 
@@ -77,4 +83,3 @@
         });
     });
 </script>
--->

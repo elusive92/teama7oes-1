@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title> @yield('title') | Teama7oes </title>
+		<meta name="_token" content="{{ csrf_token() }}"/>
 		<link rel="stylesheet" href="{{ URL::asset('css/style.css')}}" />
 		<link rel="stylesheet" href="{{ URL::asset('css/bootstrap.css')}}" />
 		<link rel="shortcut icon" type="image/x-icon" href="img/fav.png" />
