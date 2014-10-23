@@ -69,7 +69,7 @@
                     });
                     info.slideDown();
                 }else{
-                    location.href = '{{ URL::route('home') }}';
+                    location.href = "{{Route::currentRouteName()}}";
                 }
 
                 },
