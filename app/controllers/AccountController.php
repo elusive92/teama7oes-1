@@ -279,6 +279,73 @@ class AccountController extends BaseController {
 		return Redirect::route('account-forgot-password')
 			->with('global', 'Could not request new password.');
 	}
+
+	public function postEdit() {
+		/*$validator = Validator::make(Input::all(),
+			array(
+				'email'			=> 'required|max:50|email|unique:users',
+				'username' 		=> 'required|max:20|min:3|unique:users',
+				'password' 		=> 'required|min:6',
+				'password_' 	=> 'required|same:password'
+			)
+		);
+        */
+        $validator = Validator::make(
+            array(
+                'email' => Input::get('email2'),
+                'username' => Input::get('username'),
+                'password' => Input::get('password2'),
+                'password_again' => Input::get('password2_')
+            ),
+            array(
+                'email' => 'required|min:4|max:50|email|unique:users',
+                'username' => 'required|max:20|min:3|unique:users',
+                'password' => 'required|min:6',
+                'password_again' => 'required|same:password'
+            )
+        );
+
+        if($validator->fails()){
+            return Response::json([
+                'success'=>false,
+                'error'=>$validator->errors()->toArray()
+            ]);
+        }else{
+		/*
+		if($validator->fails()){
+			return Redirect::route('account-create')
+					->withErrors($validator)
+					->withInput();
+		*/
+
+			$email 		= Input::get('email2');
+			$username 	= Input::get('username');
+			$password 	= Input::get('password2');
+			
+			$code 		= str_random(60);
+			
+						
+			if($user) {
+				
+				Mail::send('emails.auth.authentication', array(
+					'link' => URL::route('account-activate', $code),
+					'username' => $username),
+					function($message) use ($user) {
+						$message->to($user->email, $user->username)->subject('Activate your account');
+					}
+			
+				
+				);
+
+                return Response::json(['success'=>true]);
+				//return Redirect::route('home')
+				//	->with('global', 'Your account has been created! We have sent you an email to activate your account.');
+			}
+			
+			
+		}
+		
+	}
 	
 	public function getRecover($code){
 		$user = User::where('code', '=', $code)

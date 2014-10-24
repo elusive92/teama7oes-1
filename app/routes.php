@@ -67,6 +67,11 @@ Route::group(array('before' => 'auth'), function() {
         'uses' => 'AccountController@getEditProfile'
     ));
 
+    Route::post('/account/create', array(
+            'as' => 'account-edit-post',
+            'uses' => 'AccountController@postEdit'
+    ));
+
 });
 
 Route::group(array('before' => 'guest'), function() {
