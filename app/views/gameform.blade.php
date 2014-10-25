@@ -22,7 +22,7 @@
 
 		<!-- FORM STARTS HERE -->
 		<div class='form'>
-            <form action="{{ URL::route('postAddGame') }}" method="post">
+           {{Form::open(array(URL::route('postAddGame'), 'files'=>true ))}}
 
 
             <div class="form-group">
@@ -31,10 +31,10 @@
                 Description: {{Form::text('descript')}}
              </div>
              <div class="form-group">
-                Logo: {{Form::text('logo')}}
+                Logo: {{Form::file('logo')}}
              </div>
               <input type="submit" value="Create" class="btn btn-default"/>
-            </form>
+            {{Form::close()}}
 	</div>
 </div></div>
 
