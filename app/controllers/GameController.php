@@ -20,13 +20,13 @@ class GameController extends BaseController {
         $filename = $name = Input::file('logo')->getClientOriginalName();
         $destinationPath = 'media/games/';
         Input::file('logo')->move($destinationPath, $filename);
-        $path = Input::file('logo')->getRealPath();
+
 
         $validator = Validator::make(
             array(
                 'gamename'  => Input::get('gamename'),
-                'descript'  =>Input::get('descript'),
-                'logo' => $path),
+                'descript'  =>Input::get('descript')),
+
 
             Games::$rules);
 
@@ -44,7 +44,7 @@ class GameController extends BaseController {
         $games = new Games;
         $games->gamename 		= Input::get('gamename');
         $games->descript 	    = Input::get('descript');
-        $games->logo 	        = $path;
+        $games->logo 	        = $destinationPath . $filename;
 
 
         $games->save();
