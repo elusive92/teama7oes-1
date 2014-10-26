@@ -17,37 +17,38 @@ class GameController extends BaseController {
 /** -----------------------------------------------------------------------------
  * @var chuj nie mam pomyslu jak sciezke ustawić
  ------------------------------------------------------------------------------*/
-        $filename = $name = Input::file('logo')->getClientOriginalName();
-        $destinationPath = 'media/games/';
-        Input::file('logo')->move($destinationPath, $filename);
+        $extension = Input::file('logo')->getClientOriginalExtension();
 
+        if($extension == 'jpg' OR $extension == 'png'){
+        //---------------------------------------------------------------------------
 
-        $validator = Validator::make(
-            array(
-                'gamename'  => Input::get('gamename'),
-                'descript'  =>Input::get('descript')),
-
-
-            Games::$rules);
-
-        if($validator->fails()){
-            return Redirect::route('addGame')
-                ->withErrors($validator)
-                ->withInput();
-
-        }else{
+            $filename = Input::file('logo')->getClientOriginalName();
+            $destinationPath = 'media/games/';
+            Input::file('logo')->move($destinationPath, $filename);
 
 
 
+            $validator = Validator::make(
+                array(
+                    'gamename'  => Input::get('gamename'),
+                    'descript'  =>Input::get('descript')),
 
 
-        $games = new Games;
-        $games->gamename 		= Input::get('gamename');
-        $games->descript 	    = Input::get('descript');
-        $games->logo 	        = $destinationPath . $filename;
+               Games::$rules);
 
 
-        $games->save();
+            if($validator->fails()){
+                return Redirect::route('addGame')
+                    ->withErrors($validator)
+                    ->withInput();
+
+            }else{
+
+                $games = new Games;
+                $games->gamename 		= Input::get('gamename');
+                $games->descript 	    = Input::get('descript');
+                $games->logo 	        = $destinationPath . $filename;
+                $games->save();
 
 
 
@@ -58,6 +59,8 @@ class GameController extends BaseController {
 
 
         }
-   }
+   }else{
+            return Redirect::route('home');
+        }
 
-}
+}}
