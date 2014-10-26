@@ -44,7 +44,7 @@ class GameController extends BaseController {
         $games = new Games;
         $games->gamename 		= Input::get('gamename');
         $games->descript 	    = Input::get('descript');
-        $games->logo 	        = $destinationPath . $filename;
+        $games->logo 	        = $filename;
 
 
         $games->save();

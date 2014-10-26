@@ -9,7 +9,7 @@ class Games extends Eloquent {
     public static  $rules = array(
         'gamename'			=> 'required|max:50|unique:games',
         'descript' 		    => 'required|min:1|max:255',
-        //'logo'              => 'required|max:50'
+        'logo'              => 'required|max:50|mimes:jpeg,bmp,png'
 
             );
 
