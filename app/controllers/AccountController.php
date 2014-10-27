@@ -350,12 +350,4 @@ class AccountController extends BaseController {
 		
 	}
 
-	/* $extension = Input::file('zdjecie')->getClientOriginalExtension();
-
-        if($extension == 'jpg' OR $extension == 'png'){
-
-            $filename = Input::file('zdjecie')->getClientOriginalName();
-            $destinationPath = 'media/photo/';
-            Input::file('zdjecie')->move($destinationPath, $filename);*/
-
 }
