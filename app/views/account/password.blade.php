@@ -22,9 +22,6 @@
             {{ $errors->first('password_again') }}
             @endif
         </div>
-
-
-
         <input type="submit" value="Change password" class="btn btn-default"/>
         {{ Form::token() }}
     </form>
