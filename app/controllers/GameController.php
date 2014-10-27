@@ -15,7 +15,7 @@ class GameController extends BaseController {
 
         //$image = Input::file('logo');
 /** -----------------------------------------------------------------------------
- * @var 
+ * @var
  ------------------------------------------------------------------------------*/
 
 
@@ -33,12 +33,12 @@ class GameController extends BaseController {
             array(
                 'gamename'  => Input::get('gamename'),
                 'descript'  =>Input::get('descript')),
-
+                //'logo'      =>Input::file('logo')->getClientOriginalName()),
 
             Games::$rules);
 
         if($validator->fails()){
-            return Redirect::route('addGame')
+            return Redirect::route('home')
                 ->withErrors($validator)
                 ->withInput();
 
