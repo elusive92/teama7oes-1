@@ -15,11 +15,18 @@ class GameController extends BaseController {
 
         //$image = Input::file('logo');
 /** -----------------------------------------------------------------------------
- * @var chuj nie mam pomyslu jak sciezke ustawić
+ * @var 
  ------------------------------------------------------------------------------*/
-        $filename = $name = Input::file('logo')->getClientOriginalName();
-        $destinationPath = 'media/games/';
-        Input::file('logo')->move($destinationPath, $filename);
+
+
+        $extension = Input::file('logo')->getClientOriginalExtension();
+
+        if($extension == 'jpg' OR $extension == 'png'){
+
+            $filename = Input::file('logo')->getClientOriginalName();
+            $destinationPath = 'media/games/';
+            Input::file('logo')->move($destinationPath, $filename);
+
 
 
         $validator = Validator::make(
@@ -44,7 +51,7 @@ class GameController extends BaseController {
         $games = new Games;
         $games->gamename 		= Input::get('gamename');
         $games->descript 	    = Input::get('descript');
-        $games->logo 	        = $destinationPath . $filename;
+        $games->logo 	        = $filename;
 
 
         $games->save();
@@ -58,6 +65,9 @@ class GameController extends BaseController {
 
 
         }
-   }
 
-}
+   }else{
+            return Redirect::route('home');
+        }
+
+}}
