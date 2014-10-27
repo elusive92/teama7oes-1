@@ -8,11 +8,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-        <a class="navbar-brand" href="{{ URL::route('home')}}">Home</a>
+
       </div>
 
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
         <ul class="nav navbar-nav">
+          <li><a href="{{ URL::route('home')}}">Home</a></li>
           <li @if(Request::is('teams'))class="active"@endif><a href="{{ URL::route('teams')}}">Teams</a></li>
           <li @if(Request::is('tournaments'))class="active"@endif><a href="{{ URL::route('tournaments')}}">Tournaments</a></li>
           <li @if(Request::is('search'))class="active"@endif><a href="{{ URL::route('search')}}">Search</a></li>
