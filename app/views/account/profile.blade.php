@@ -10,11 +10,14 @@
     
       <div id="userStats">
         <div class="profilepic">
+          @if(Auth::user()->photo)
           <a href="#"><img src="{{ Auth::user()->photo }}" width="150" height="150" /></a>
+          @else
+          <a href="#"><img src="{{ URL::asset('/') }}img/default1.jpg" width="150" height="150" /></a>
+          @endif
         </div>
         <div id="pright">
-        <button type="button" class="btn btn-default">Edit profile</button>
-        <a href="{{ URL::route('account-editprofile')}}">Edit profile</a>
+        <a href="{{ URL::route('account-editprofile')}}"><button <a href= type="button" class="btn btn-default">Edit profile</button></a>
         </div>
         <div class="data">
           <div  class="nickname"><h1>{{ Auth::user()->username }}</h1></div>
