@@ -305,47 +305,30 @@ class AccountController extends BaseController {
 		
 	}
 
-	public function postEdit() {
 
-		$validator = Validator::make( 
+	/////////////////////////////////////////******************************///////////////////////////////////////////////
+	//////////////////***************************///////////////////***************************///////////////////////////
+	///////***********************///////////////////**********///////////*******************************************////
+	////*******************************************************************************************************//////////
+	////TUTAJ JEST EDDYCJA PROFILU BIT**S??????????????????????????????????????/////////////////////////////////////
+
+	public function postEdit(){
+		$validator = Validator::make(
 			array(
 				'old_password'	 	=> 'required',
-				'password' 			=> 'required|min:6',
-				'password_again' 	=> 'required|same:password',
-				'email' 			=> 'required|min:4|max:50|email|unique:users'
+				'password' 			=> 'min:6',
+				'password_again' 	=> 'same:password',
+				'email'				=> 'required|email',
+				'about' 			=> ''
 			)
 		);
-		
 		if($validator->fails()){
 			return Redirect::route('home')
 				->withErrors($validator);
 		}else{
 			
-			$user 			= User::find(Auth::user()->id);			
-			$old_password 	= Input::get('old_password');
-			$password 		= Input::get('password');
-			$email 			= Input::get('email');
-			//$from			= Input::get('from');
-			$about			= Input::get('about');
-			
-			
-			if(Hash::check($old_password, $user->getAuthPassword())){
-				$user->password = Hash::make($password);
-				$user->email = make($email);
-				$user->about = make($about);
-				if($user->save()){
-					return Redirect::route('home')
-						->with('global', 'Your profile has been changed.');
-				}
-			}else{
-				return Redirect::route('account-edit-post')
-			->with('global', 'Your old password is incorrect.');
-			}
-			
 		}
 		
-		return Redirect::route('account-edit-post')
-			->with('global', 'Your profile cant be changed.');
 	}
 
 }
