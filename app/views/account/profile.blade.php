@@ -17,14 +17,14 @@
           @endif
         </div>
         <div id="pright">
-        <a href="{{ URL::route('account-editprofile')}}"><button <a href= type="button" class="btn btn-default">Edit profile</button></a>
+        <a href="{{ URL::route('account-editprofile')}}" class="btn btn-default">Edit profile</a>
         </div>
         <div class="data">
           <div  class="nickname"><h1>{{ Auth::user()->username }}</h1></div>
           <h5>From: (kraj, moze flaga?)</h5>
           <h5>Registered: </h5>
           <h5>Games: <input id="DodawanieGier" type="button" value="dodaj gre" /></h5>
-          <h5>Teams: <input id="StworzTeam" type="button" value="stworz team" /></h5>
+          <h5>Teams: <a href="{{ URL::route('team-create')}}" class="btn btn-default">Create team</a></h5>
           <h5>tematy na forum, posty? </h5>
 
         </div>

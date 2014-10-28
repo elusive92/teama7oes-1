@@ -1,14 +1,15 @@
-
 <?php
 
-class TeamController extends BaseController {
+class Team extends Eloquent
+{
 
 
-	public function showTeams(){
-        return View::make('teams');
-    }
+    protected $fillable = array('id', 'teamname', 'logo', 'ranking', 'win', 'lose', 'updated_at', 'created_at');
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'teams';
 
-    public function getTeam(){
-        return $this -> teamname;
-    }
 }

@@ -72,6 +72,16 @@ Route::group(array('before' => 'auth'), function() {
             'uses' => 'AccountController@postEdit'
     ));
 
+    Route::get('/team/create', array(
+        'as' => 'team-create',
+        'uses' => 'TeamController@getCreate'
+    ));
+
+    Route::post('/team/create', array(
+        'as' => 'team-create-post',
+        'uses' => 'TeamController@postCreate'
+    ));
+
 });
 
 Route::group(array('before' => 'guest'), function() {
