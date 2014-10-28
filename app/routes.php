@@ -168,11 +168,11 @@ Route::group(array('before' => 'guest'), function() {
 //Jak chcecie cos grupowego to napiszcie mi co i jak
 // ja glupi wiec bez modelu nic nie napisze:)))
 
-Route::group(array('prefix' => 'admin'), function()
+Route::group(array('prefix' => 'admin','before'=>'adminAuth'), function()
 {
     Route::get('/', function()
     {
-        return View::make('powiedzmy głwona admina');
+        return 'huehuehueView::make(powiedzmy głwona admina)';
     });
 });
 

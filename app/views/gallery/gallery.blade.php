@@ -24,11 +24,17 @@
         <div class="carousel-inner">
        @foreach($photos as $photo)
 
-            @if($x=== 0)
-                <div class="active item">{{ HTML::image($photo->filename)}}</div>
+            @if($x === 0)
+                <div class="active item">{{ HTML::image($photo->filename)}}
+                <div class="carousel-caption"><p>{{$photo -> title}}</p></div>
+                </div>
+
                 <?php $x++ ?>
             @else
-                   <div class="item">{{ HTML::image($photo->filename) }}</div>
+                   <div class="item">{{ HTML::image($photo->filename) }}
+                   <div class="carousel-caption"><p>{{$photo -> title}}</p></div>
+                   </div>
+
             @endif
        @endforeach
         </div>
@@ -42,7 +48,10 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-     $("#myCarousel").carousel();
+     $("#myCarousel").carousel({
+     interval : 3000,
+              pause: false
+     });
 });
 </script>
 @stop
