@@ -1,5 +1,13 @@
 @extends('layout.main')
 
+@section('title')
+	@if($team)
+	{{ e($team->teamname) }}
+	@else
+	404
+	@endif
+@stop
+
 @section('content')
 @if($team)
 <div id="teamsView">

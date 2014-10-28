@@ -1,5 +1,9 @@
 @extends('layout.main')
 
+@section('title')
+  Create Team
+@stop
+
 @section('content')
 <div class='form'>
     <form action="{{ URL::route('team-create-post') }}" method="post">
