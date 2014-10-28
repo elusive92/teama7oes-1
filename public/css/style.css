@@ -220,3 +220,16 @@ div#popup_content {
 .nickname {
     margin-bottom: 6em;
 }
+
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+
+table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 12px;
+    
+}
+
