@@ -12,11 +12,6 @@ Route::get('/home', array(
     'uses' => 'HomeController@showHome'
 ));
 
-Route::get('/teams', array(
-	'as' => 'teams', 
-	'uses' => 'HomeController@showTeams'
-));
-
 Route::get('/tournaments', array(
 	'as' => 'tournaments', 
 	'uses' => 'HomeController@showTournaments'
@@ -25,6 +20,11 @@ Route::get('/tournaments', array(
 Route::get('/search', array(
 	'as' => 'search', 
 	'uses' => 'HomeController@showSearch'
+));
+
+Route::get('/team/{teamname}', array(
+    'as' => 'teamprofile',
+    'uses' => 'TeamController@teamprofile',
 ));
 
 Route::get('/forum', array(
@@ -72,12 +72,12 @@ Route::group(array('before' => 'auth'), function() {
             'uses' => 'AccountController@postEdit'
     ));
 
-    Route::get('/team/create', array(
+    Route::get('/team-create', array(
         'as' => 'team-create',
         'uses' => 'TeamController@getCreate'
     ));
 
-    Route::post('/team/create', array(
+    Route::post('/team-create', array(
         'as' => 'team-create-post',
         'uses' => 'TeamController@postCreate'
     ));

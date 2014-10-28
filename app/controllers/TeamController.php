@@ -3,13 +3,11 @@
 class TeamController extends BaseController {
 
 
-    public function showTeams(){
-        return View::make('teams');
-    }
 
     public function getTeam(){
         return $this -> teamname;
     }
+
 
 	public function getCreate() {
 		return View::make('team.create');
@@ -46,8 +44,7 @@ class TeamController extends BaseController {
 					//'leftdate' => ,
 				));
 				if($teammember) {
-					return Redirect::route('teams')
-									->with('global', 'Your team has been created!');
+					return Redirect::action('TeamController@teamprofile', array('teamname' => $teamname));
 				}
 				
 			}
@@ -56,6 +53,22 @@ class TeamController extends BaseController {
 		}
 		
 	}
-	
-	
+
+    public function teamprofile($teamname){
+        $team = Team::where('teamname', '=', $teamname);
+
+        if($team->count()){
+            $team = $team->first();
+
+
+            return View::make('team.teamprofile')
+                ->with('team', $team);
+        }
+
+        return View::make('team.teamprofile')
+            ->with('team', false);
+    }
+
+
+
 }
