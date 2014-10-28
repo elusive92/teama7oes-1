@@ -188,3 +188,10 @@ Route::post('/addGames', array(
     'as' => 'postAddGame',
     'uses' => 'GameController@postAddGame'
 ));
+//-------------------------------------------------
+//---------------------Testowa Galeryja------------
+//-------------------------------------------------
+Route::get('/ugallery', array(
+    'as' => 'ugallery',
+    'uses' => 'GalleryController@getGallery'
+));
