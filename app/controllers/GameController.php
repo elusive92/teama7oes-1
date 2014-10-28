@@ -32,8 +32,8 @@ class GameController extends BaseController {
         $validator = Validator::make(
             array(
                 'gamename'  => Input::get('gamename'),
-                'descript'  =>Input::get('descript'),
-                'logo'      =>Input::file('logo')->getMimeType()),
+                'descript'  =>Input::get('descript')),
+                //'logo'      =>Input::file('logo')->getMimeType()),
 
             Games::$rules);
 
