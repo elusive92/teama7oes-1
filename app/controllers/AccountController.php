@@ -312,8 +312,7 @@ class AccountController extends BaseController {
 	////*******************************************************************************************************//////////
 	////TUTAJ JEST EDDYCJA PROFILU BIT**S??????????????????????????????????????/////////////////////////////////////
 
-	public function postEdit(){
-		if(Input::file('photo')!=""){
+	public function postEdit(){		
 		$extension = Input::file('photo')->getClientOriginalExtension();
 
         if($extension == 'jpg' OR $extension == 'png'){
@@ -321,7 +320,7 @@ class AccountController extends BaseController {
             $filename = "1";
             $destinationPath = 'media/profilePhoto/';
             Input::file('photo')->move($destinationPath, $filename);
-        }}
+        }
 
 		$validator = Validator::make(
             array(
