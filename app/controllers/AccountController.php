@@ -312,21 +312,50 @@ class AccountController extends BaseController {
 	////*******************************************************************************************************//////////
 	////TUTAJ JEST EDDYCJA PROFILU BIT**S??????????????????????????????????????/////////////////////////////////////
 
-	public function postEdit(){
+	public function postEdit(){		
+		$extension = Input::file('photo')->getClientOriginalExtension();
+
+        if($extension == 'jpg' OR $extension == 'png'){
+
+            $filename = "1";
+            $destinationPath = 'media/profilePhoto/';
+            Input::file('photo')->move($destinationPath, $filename);
+        }
+
 		$validator = Validator::make(
-			array(
-				'old_password'	 	=> 'required',
-				'password' 			=> 'min:6',
+            array(
+                'email' => Input::get('email'),
+                'old_password' => Input::get('old_password'),
+                'password' 	=> Input::get('password'),
+				'password_again' => Input::get('password_again'),
+                'about' => Input::get('about'),
+                'from' => Input::get('from'),
+            ),
+            array(
+                'old_password'	 	=> 'required',
+                'password' 			=> 'min:6',
 				'password_again' 	=> 'same:password',
 				'email'				=> 'required|email',
-				'about' 			=> ''
-			)
-		);
+				'about' 			=> 'min:5',
+				'from' 				=> 'min:5'
+            )
+        );
+		
 		if($validator->fails()){
 			return Redirect::route('home')
 				->withErrors($validator);
 		}else{
-			
+			$index = 1;
+			$user = User::find($index);
+			$user->about = Input::get('about');	
+			$user->email = Input::get('email');
+			$user->photo = $index;
+			$user->fromc = Input::get('from');
+			$user->save();	
+			if($user->save()){
+				return Redirect::route('home')
+					->with('global', 'Your account has been chaned');
+					}	
 		}
 		
 	}
