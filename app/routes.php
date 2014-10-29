@@ -184,20 +184,22 @@ Route::group(array('prefix' => 'admin','before'=>'adminAuth'), function()
     {
         return 'huehuehueView::make(powiedzmy głwona admina)';
     });
+    Route::get('/addGames', array(
+        'as' => 'addGame',
+        'uses' => 'GameController@getAddGame'
+    ));
+
+    Route::post('/addGames', array(
+        'as' => 'postAddGame',
+        'uses' => 'GameController@postAddGame'
+    ));
+
 });
 
 //-------------------------------------------------
 //----------------Fromularz gier-----------------
 ////////////////////////////////////////////////////
-Route::get('/addGames', array(
-    'as' => 'addGame',
-    'uses' => 'GameController@getAddGame'
-));
 
-Route::post('/addGames', array(
-    'as' => 'postAddGame',
-    'uses' => 'GameController@postAddGame'
-));
 //-------------------------------------------------
 //---------------------Testowa Galeryja------------
 //-------------------------------------------------
