@@ -313,14 +313,14 @@ class AccountController extends BaseController {
 	////TUTAJ JEST EDDYCJA PROFILU BIT**S??????????????????????????????????????/////////////////////////////////////
 
 	public function postEdit(){		
-		$extension = Input::file('photo')->getClientOriginalExtension();
+		/*$extension = Input::file('photo')->getClientOriginalExtension();
 
         if($extension == 'jpg' OR $extension == 'png'){
 
-            $filename = "1";
+            $filename = Auth::user()->id;
             $destinationPath = 'media/profilePhoto/';
             Input::file('photo')->move($destinationPath, $filename);
-        }
+        }*/
 
 		$validator = Validator::make(
             array(
@@ -345,7 +345,7 @@ class AccountController extends BaseController {
 			return Redirect::route('home')
 				->withErrors($validator);
 		}else{
-			$index = 1;
+			$index = Auth::user()->id;
 			$user = User::find($index);
 			$user->about = Input::get('about');	
 			$user->email = Input::get('email');
