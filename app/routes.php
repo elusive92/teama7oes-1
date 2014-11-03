@@ -32,6 +32,11 @@ Route::get('/forum', array(
 	'uses' => 'HomeController@showForum'
 ));
 
+Route::get('/team', array(
+    'as' => 'team',
+    'uses' => 'TeamController@myTeam'
+));
+
 //nie wiem czemu cos takiego nie dziala:
 //Route::get('/', 'HomeController@showHome');
 //i wszedzie trzeba robic array.

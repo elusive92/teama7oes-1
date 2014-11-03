@@ -69,6 +69,31 @@ class TeamController extends BaseController {
             ->with('team', false);
     }
 
+    public function myTeam(){
+        if(Auth::check()){
+            $teammember = Teammember::where('id', '=', Auth::user()->id)
+                ->whereNull('leftdate');
+            //->where('idgame', '=', KOEKGEJ);
+            if($teammember->count()) {
+                $teammember = $teammember->first();
+                if ($teammember) {
+                    $idteam = $teammember->idteam;
+                    $team = Team::where('idteam', '=', $idteam)
+                        ->where('status', '=', '0');
+                    if($team->count()){
+                        $team = $team->first();
+                        return View::make('team.myteam')
+                            ->with('team', $team);
+                    }
+                }
+            }
+
+        }
+        return View::make('team.myteam')
+            ->with('team', false);
+
+
+    }
 
 
 }

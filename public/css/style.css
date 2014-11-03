@@ -233,3 +233,10 @@ table {
     
 }
 
+.rank {
+    float: left;
+}
+
+.myteam {
+    float: right;
+}
