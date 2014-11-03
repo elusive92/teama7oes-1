@@ -5,5 +5,6 @@
 @stop
 
 @section('content')
-	wyszukiwarka
+	<a href="{{ URL::route('teamsearch')}}" class="btn btn-default">Search teams</a>
+	<a href="" class="btn btn-default">Search users</a>
 @stop

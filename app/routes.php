@@ -27,6 +27,17 @@ Route::get('/team/{teamname}', array(
     'uses' => 'TeamController@teamprofile',
 ));
 
+Route::get('/search/team', array(
+    'as' => 'teamsearch',
+    'uses' => 'TeamController@showTeamsearch',
+));
+
+Route::get('/search/team/result', array(
+    'as' => 'team-searchTeam',
+    'uses' => 'TeamController@showTeamsearchResult',
+));
+
+
 Route::get('/forum', array(
 	'as' => 'forum', 
 	'uses' => 'HomeController@showForum'
