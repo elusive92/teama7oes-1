@@ -25,13 +25,13 @@ class TeamController extends BaseController {
 			return Redirect::route('teamsearch')
 				->withErrors($validator);
 		}else{
-			$name = Input::get('name')
+			$name = Input::get('name');
 			$teamss = team::where('teamname', 'LIKE', '%'.$name.'%')->get();
 
-			var_dump('serach reasult')
+			var_dump('serach reasult');
 
 			foreach ($teamss as $team) {
-				var_dump($teamss->teamname)
+				var_dump($teamss->teamname);
 				# code...
 			}
 		}
