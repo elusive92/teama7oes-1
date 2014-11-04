@@ -19,8 +19,12 @@
           <h5>From: (kraj, moze flaga?)</h5>
           <h5>Registered: </h5>
           <h5>Games:</h5>
-          <h5>Członkowie: </h5>
-
+          @if($teammembers)
+          <h5>Teammembers: </h5>
+          @foreach($teammembers as $teammember)
+            <p>{{ e($teammember->user->username) }}</p>
+          @endforeach
+          @endif
         </div>
         <div class="sep"></div>
       </div>

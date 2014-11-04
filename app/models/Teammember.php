@@ -10,4 +10,8 @@ class Teammember extends Eloquent  {
      */
     protected $table = 'teammembers';
     public $timestamps = false;
+    public function user()
+    {
+        return $this->hasOne('User', 'id', 'id');
+    }
 }

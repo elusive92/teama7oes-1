@@ -22,8 +22,12 @@
           <h5>From: </h5>
           <h5>Registered: {{ e($team->created_at->format('d F Y')) }}</h5>
           <h5>Games:</h5>
-          <h5>Członkowie: </h5>
-
+          @if($teammembers)
+          <h5>Teammembers: </h5>
+          @foreach($teammembers as $teammember)
+            <p>{{ e($teammember->user->username) }}</p>
+          @endforeach
+          @endif
         </div>
         <div class="sep"></div>
       </div>

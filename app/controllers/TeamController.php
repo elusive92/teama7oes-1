@@ -89,9 +89,12 @@ class TeamController extends BaseController {
 
         if($team->count()){
             $team = $team->first();
-
+            $teammembers = Teammember::where('idteam', '=', $team->idteam)
+                ->whereNull('leftdate')
+                ->get();
 
             return View::make('team.teamprofile')
+                ->with('teammembers', $teammembers)
                 ->with('team', $team);
         }
 
@@ -112,8 +115,13 @@ class TeamController extends BaseController {
                         ->where('status', '=', '0');
                     if($team->count()){
                         $team = $team->first();
+                        $teammembers = Teammember::where('idteam', '=', $idteam)
+                            ->whereNull('leftdate')
+                            ->get();
                         return View::make('team.myteam')
+                            ->with('teammembers', $teammembers)
                             ->with('team', $team);
+
                     }
                 }
             }
