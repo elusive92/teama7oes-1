@@ -22,6 +22,7 @@ Route::get('/search', array(
 	'uses' => 'HomeController@showSearch'
 ));
 
+//druzyny i wyszukiwanie druzyn
 Route::get('/team/{teamname}', array(
     'as' => 'teamprofile',
     'uses' => 'TeamController@teamprofile',
@@ -36,7 +37,6 @@ Route::get('/search/team/result', array(
     'as' => 'team-searchTeam',
     'uses' => 'TeamController@showTeamsearchResult',
 ));
-
 
 Route::get('/forum', array(
 	'as' => 'forum', 
@@ -243,6 +243,23 @@ Route::get('/ugallery', array(
     'uses' => 'GalleryController@getGallery'
 ));
 
+//wyszukiwarka wedlug https://www.youtube.com/watch?v=VylYa6seBaU , troche nie bangla
+// Route::post('/search', function(){
+//     $keyword = Input::get('keyword');
+
+//     $users = User::where('keyword', 'LIKE', '%'.$keyword.'%')->get();
+
+//     var_dump('search results');
+    
+//     foreach ($users as $user) {
+//         var_dump($user->username);
+//     }
+// });
+
+Route::post('/search-user', array(
+        'as' => 'search-user',
+        'uses' => 'UserController@postSearchResults'
+));
 ///////carna lista test////
 Route::get('/blacklist', array(
    'as' => 'blacklist',
