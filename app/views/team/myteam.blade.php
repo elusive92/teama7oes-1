@@ -35,7 +35,7 @@
 
 <div id="teamsView" class="myteam">
 @if($team)
-    <a href="{{ URL::route('team-quit')}}" class="btn btn-default">Quit your team.</a>
+    <a href="{{ URL::route('team-quit')}}" class="btn btn-default">Quit team</a>
     @if($team->id == Auth::check())
         <a href="{{ URL::route('team-edit')}}" class="btn btn-default">Edit team</a>
     @endif
