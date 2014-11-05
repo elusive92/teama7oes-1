@@ -181,6 +181,11 @@ Route::group(array('before' => 'guest'), function() {
 
     });
 
+    Route::get('/login', array(
+        'as' => 'account-sign-in',
+        'uses' => 'AccountController@getSignIn'
+    ));
+
     Route::get('/account/sign-in', array(
         'as' => 'account-sign-in',
         'uses' => 'AccountController@getSignIn'
