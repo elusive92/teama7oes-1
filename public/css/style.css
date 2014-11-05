@@ -199,7 +199,18 @@ div#popup_content {
     border: 1px solid #ccc; 
 }
 
-#userStats { 
+.data {
+    float: left; 
+    margin-right: 10px;
+}
+
+.clear {
+    clear: both;
+    margin-top: 1em;
+    padding-left: 3px;
+}
+
+#profilebox { 
     display: block; 
     width: auto; 
     background-color: #f9f9f9; 
@@ -222,7 +233,7 @@ div#popup_content {
 }
 
 .nickname {
-    margin-bottom: 6em;
+    margin-bottom: 3em;
 }
 
 td, th {
