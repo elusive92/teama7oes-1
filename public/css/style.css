@@ -62,16 +62,20 @@ body {
 	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6); 
 	}
 #nav li {
-	float: right; }
+	float: right;
+}
 #nav li a {
 	display: block;
-	padding: 2px 10px;
+	padding: 4px 10px;
 	text-decoration: none;
 	color: #ccc;
 	}
 #nav li a:hover {
 	color: #F05526;
-	}
+}
+#nav img {
+    padding: 1px;
+}
 
 
 /* Login / register */
@@ -88,8 +92,8 @@ body {
 #toPopup {
     font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
     background: none repeat scroll 0 0 #FFFFFF;
-    border: 10px solid #ccc;
-    border-radius: 3px 3px 3px 3px;
+    border: 10px solid #353e38;
+    border-radius: 10px 10px 10px 10px;
     color: #333333;
     display: none;
     font-size: 14px;
@@ -105,8 +109,8 @@ body {
 #toPopup2 {
     font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
     background: none repeat scroll 0 0 #FFFFFF;
-    border: 10px solid #ccc;
-    border-radius: 3px 3px 3px 3px;
+    border: 10px solid #353e38;
+    border-radius: 10px 10px 10px 10px;
     color: #333333;
     display: none;
     font-size: 14px;
@@ -172,7 +176,7 @@ span.arrow {
     width: 1px;
 }
 div#popup_content {
-    margin: 4px 7px;
+    margin: 10px 12px;
 
 }
 
@@ -235,6 +239,11 @@ table {
 
 .rank {
     float: left;
+    width: 500px;
+}
+
+.team {
+    display: block;
 }
 
 .myteam {

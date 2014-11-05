@@ -10,7 +10,27 @@
 
 @section('content')
 <div class="rank">
-    <h2>Ranking</h2>
+<table class="table table-bordered table-striped">
+    <thead>
+        <!--<h2>Ranking</h2> -->
+    </thead>
+    <tr>
+        <td></td>
+        <td>Team Name</td>
+        <td>Ranking</td>
+    </tr>
+<?php $i = 1; ?>
+    @foreach($teams as $teamrank)
+    <tr>
+        <td><?php echo $i; ?>.</td>
+        <td><a href="{{ URL::route('teamprofile', $teamrank->teamname) }}">{{ e($teamrank->teamname) }}</a></td>
+        <td>{{ e($teamrank->ranking) }}</td>
+        <?php $i++; ?>
+    </tr>
+
+
+    @endforeach
+</table>
 </div>
 
 <div id="teamsView" class="myteam">
@@ -19,9 +39,11 @@
     @if($team->id == Auth::check())
         <a href="{{ URL::route('team-edit')}}" class="btn btn-default">Edit team</a>
     @endif
+    @if($team->logo)
     <div class="teamphoto">
         <a href="#"><img src="" width="150" height="150" /></a>
     </div>
+    @endif
     <div class="data">
         <div  class="teamName"><h1>{{ e($team->teamname) }}</h1></div>
         <h5>From: </h5>

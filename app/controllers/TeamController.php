@@ -91,6 +91,12 @@ class TeamController extends BaseController {
     }
 
     public function myTeam(){
+        $teams = DB::table('teams')
+            ->where('status', '=', '0')
+            //->where('idgame', '=', 'koekgejuch')
+            ->orderBy('ranking', 'desc')
+            ->take(100)
+            ->get();
         if(Auth::check()){
             $teammember = Teammember::where('id', '=', Auth::user()->id)
                 ->whereNull('leftdate');
@@ -109,7 +115,8 @@ class TeamController extends BaseController {
                             ->get();
                         return View::make('team.myteam')
                             ->with('teammembers', $teammembers)
-                            ->with('team', $team);
+                            ->with('team', $team)
+                            ->with('teams', $teams);
 
                     }
                 }
@@ -117,7 +124,8 @@ class TeamController extends BaseController {
 
         }
         return View::make('team.myteam')
-            ->with('team', false);
+            ->with('team', false)
+            ->with('teams', $teams);
 
 
     }
