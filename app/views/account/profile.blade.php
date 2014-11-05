@@ -24,7 +24,7 @@
           <h5>From: (kraj, moze flaga?)</h5>
           <h5>Registered: </h5>
           <h5>Games: <input id="DodawanieGier" type="button" value="dodaj gre" /></h5>
-          <h5>Teams: <a href="{{ URL::route('team-create')}}" class="btn btn-default">Create team</a></h5>
+          <h5>Teams:
           <h5>tematy na forum, posty? </h5>
 
         </div>

@@ -9,6 +9,7 @@ class Teammember extends Eloquent  {
      * @var string
      */
     protected $table = 'teammembers';
+    protected $primaryKey = 'idteammember';
     public $timestamps = false;
     public function user()
     {

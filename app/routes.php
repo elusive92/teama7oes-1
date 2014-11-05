@@ -98,6 +98,20 @@ Route::group(array('before' => 'auth'), function() {
         'uses' => 'TeamController@postCreate'
     ));
 
+    Route::get('/team-quit', array(
+        'as' => 'team-quit',
+        'uses' => 'TeamController@quitTeam'
+    ));
+
+    Route::get('/team-edit', array(
+        'as' => 'team-edit',
+        'uses' => 'TeamController@getEditTeam'
+    ));
+
+    Route::post('/team-edit', array(
+        'as' => 'team-edit-post',
+        'uses' => 'TeamController@postEditTeam'
+    ));
 });
 
 Route::group(array('before' => 'guest'), function() {
