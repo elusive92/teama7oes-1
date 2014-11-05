@@ -23,7 +23,7 @@ class TeamController extends BaseController {
     foreach ($teams as $teams) {
         var_dump($team->teamname);
     }
-	
+	}
 
 	public function getCreate() {
 		return View::make('team.create');
