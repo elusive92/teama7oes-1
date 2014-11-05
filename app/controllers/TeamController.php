@@ -12,31 +12,17 @@ class TeamController extends BaseController {
 		return View::make('team.teamsearch');
 	}
 
-	public function TeamsearchResult(){
-		$validator = Validator::make(
-            array(
-                'name' => Input::get('name'),
-            ),
-            array(
-                'name'	 	=> 'required',
-            )
-        );
-	if($validator->fails()){
-			return Redirect::route('teamsearch')
-				->withErrors($validator);
-		}else{
-			$name = Input::get('name');
-			$teamss = team::where('teamname', 'LIKE', '%'.$name.'%')->get();
+    public function postSearchResults() {
 
-			var_dump('serach reasult');
+    $keyword = Input::get('keyword');
 
-			foreach ($teamss as $team) {
-				var_dump($teamss->teamname);
-				# code...
-			}
-		}
-		
-	}
+    $teams = Team::where('teamname', 'LIKE', '%'.$keyword.'%')->get();
+
+    var_dump('search results');
+    
+    foreach ($teams as $teams) {
+        var_dump($team->teamname);
+    }
 	
 
 	public function getCreate() {

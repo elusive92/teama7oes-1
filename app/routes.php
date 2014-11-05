@@ -260,6 +260,11 @@ Route::post('/search-user', array(
         'as' => 'search-user',
         'uses' => 'UserController@postSearchResults'
 ));
+
+Route::post('/search-team', array(
+        'as' => 'search-team',
+        'uses' => 'TeamController@postSearchResults'
+));
 ///////carna lista test////
 Route::get('/blacklist', array(
    'as' => 'blacklist',

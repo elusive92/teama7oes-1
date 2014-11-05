@@ -16,4 +16,9 @@
 		{{Form::submit('Search')}}
 	{{Form::close()}}
 	
+
+	{{Form::open(array('url' =>'search-team'))}}
+		{{Form::text('keyword', null, array('placeholder'=> 'Search Team'))}}
+		{{Form::submit('Search')}}
+	{{Form::close()}}
 @stop
