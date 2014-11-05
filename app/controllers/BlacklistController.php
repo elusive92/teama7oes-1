@@ -1,4 +1,12 @@
 <?php
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
+App::error(function(ModelNotFoundException $e)
+{
+    return  Redirect::route('blacklist');
+});
+
+
 class BlacklistController extends BaseController {
 
     public function getBlacklist(){
@@ -6,9 +14,7 @@ class BlacklistController extends BaseController {
         return View::make('bltest');
     }
 
-    public function getDBlacklist(){
-        return View::make('blacklist.D_black');
-    }
+
 
     public function getPlayerBlackList(){
 
@@ -22,21 +28,50 @@ class BlacklistController extends BaseController {
 
     public function postBanPlayer()
     {
+
         $player = Auth::user()->id;
         $bannedPlayer = Input::get('bannedplayer');
 
         $idBannedPlayer = User::where('username', '=', $bannedPlayer)->firstOrFail();
         $id2 = $idBannedPlayer->id;
+        $result= Blacklist::where('idA','=',$player)
+            -> where('idB', '=', $id2)->get();
 
 
-        //if($idBannedPlayer){
+        $validator = Validator::make(
+            array(
+                'idA' => $player,
+                'idB' => $id2,
+            ),
+            array(
+                'idA' => 'required|max:11',
+                'idB' => 'required|max:11',
+            )
+        );
+
+        if($validator->fails()) {
+            return Response::json([
+                'success' => false,
+                'error' => $validator->errors()->toArray()
+            ]);
+        }elseif($result) {
+
+            return Redirect::route('blacklist');
+
+    }
+
+        else{
 
             $blist = new Blacklist();
             $blist->idA = $player;
             $blist->idB = $id2;
             $blist->date = date("Y-m-d H:i:s");
             $blist -> save();
-       // }
+
+            if($blist){
+                return Redirect::route('blacklist');
+            }
+        }
 
     }
 
@@ -46,11 +81,12 @@ class BlacklistController extends BaseController {
 
         $block = Blacklist::find(Input::get('id'));
 
-        var_dump(Input::get('id'));
+
 
          if($block->delete()){
-            return 'blocked deleted';
+            return  Redirect::route('playerBlackList');
         }
+
 
 
 
