@@ -242,3 +242,21 @@ Route::get('/ugallery', array(
     'as' => 'ugallery',
     'uses' => 'GalleryController@getGallery'
 ));
+
+///////carna lista test////
+Route::get('/blacklist', array(
+   'as' => 'blacklist',
+    'uses' => 'BlacklistController@getBlacklist'
+));
+
+Route::post('/blacklist', array(
+    'as' => 'postBlacklist',
+    'uses' => 'BlacklistController@postBanPlayer'
+));
+
+   Route::get('/playerblacklist', array(
+    'as' =>'playerBlackList',
+    'uses' => 'BlacklistController@getPlayerBlacklist'
+));
+//////////////////////deleting
+Route::controller('blacklist', 'BlacklistController');
