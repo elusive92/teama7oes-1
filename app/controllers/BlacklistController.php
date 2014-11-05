@@ -9,6 +9,8 @@ App::error(function(ModelNotFoundException $e)
 
 class BlacklistController extends BaseController {
 
+
+
     public function getBlacklist(){
 
         return View::make('bltest');
@@ -54,9 +56,9 @@ class BlacklistController extends BaseController {
                 'success' => false,
                 'error' => $validator->errors()->toArray()
             ]);
-        }elseif($result) {
+        }elseif($result->count()) {
 
-            return Redirect::route('blacklist');
+                return Redirect::route('blacklist');
 
     }
 
