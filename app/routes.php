@@ -112,7 +112,26 @@ Route::group(array('before' => 'auth'), function() {
         'as' => 'team-edit-post',
         'uses' => 'TeamController@postEditTeam'
     ));
+    ///////carna lista test////
+    Route::get('/blacklist', array(
+        'as' => 'blacklist',
+        'uses' => 'BlacklistController@getBlacklist'
+    ));
+
+    Route::post('/blacklist', array(
+        'as' => 'postBlacklist',
+        'uses' => 'BlacklistController@postBanPlayer'
+    ));
+
+    Route::get('/playerblacklist', array(
+        'as' =>'playerBlackList',
+        'uses' => 'BlacklistController@getPlayerBlacklist'
+    ));
+//////////////////////deleting
+    Route::controller('blacklist', 'BlacklistController');
 });
+
+
 
 Route::group(array('before' => 'guest'), function() {
 
@@ -243,20 +262,4 @@ Route::get('/ugallery', array(
     'uses' => 'GalleryController@getGallery'
 ));
 
-///////carna lista test////
-Route::get('/blacklist', array(
-   'as' => 'blacklist',
-    'uses' => 'BlacklistController@getBlacklist'
-));
 
-Route::post('/blacklist', array(
-    'as' => 'postBlacklist',
-    'uses' => 'BlacklistController@postBanPlayer'
-));
-
-   Route::get('/playerblacklist', array(
-    'as' =>'playerBlackList',
-    'uses' => 'BlacklistController@getPlayerBlacklist'
-));
-//////////////////////deleting
-Route::controller('blacklist', 'BlacklistController');
