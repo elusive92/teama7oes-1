@@ -5,6 +5,20 @@
 @stop
 
 @section('content')
-	<a href="{{ URL::route('teamsearch')}}" class="btn btn-default">Search teams</a>
-	<a href="" class="btn btn-default">Search users</a>
+	<div class="sep"></div>Team Search<div class="sep"></div>
+	<a href="{{ URL::route('teamsearch')}}" class="btn btn-default">Team name</a>
+    <div class="sep"></div>User Search<div class="sep"></div>
+    <a href="#" class="btn btn-default">Username</a>
+	
+	</br></br>test
+	{{Form::open(array('url' =>'search-user'))}}
+		{{Form::text('keyword', null, array('placeholder'=> 'Search User'))}}
+		{{Form::submit('Search')}}
+	{{Form::close()}}
+	
+
+	{{Form::open(array('url' =>'search-team'))}}
+		{{Form::text('keyword', null, array('placeholder'=> 'Search Team'))}}
+		{{Form::submit('Search')}}
+	{{Form::close()}}
 @stop

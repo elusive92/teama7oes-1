@@ -25,10 +25,12 @@
 
             <br>
             <input type="submit" value="Sign in" class="btn btn-default" />
+            <a href="{{ URL::route('account-forgot-password') }}" class="btn btn-default">Forgot my password</a>
             {{ Form::token() }}
         </form>
 
-        <p><a href="{{ URL::route('account-forgot-password') }}" class="btn btn-default">Forgot my password</a></p>
+
+
 
     </div> <!--your content end-->
 

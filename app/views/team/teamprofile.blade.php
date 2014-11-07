@@ -16,9 +16,8 @@
         </div>
         <div class="data">
           <div  class="teamName"><h1>{{ e($team->teamname) }}</h1></div>
-          <h5>From: (kraj, moze flaga?)</h5>
-          <h5>Registered: </h5>
-          <h5>Games:</h5>
+          <h5>From:</h5>
+          <h5>Registered: {{ e($team->created_at->format('d F Y')) }}</h5>
           @if($teammembers)
           <h5>Teammembers: </h5>
           @foreach($teammembers as $teammember)

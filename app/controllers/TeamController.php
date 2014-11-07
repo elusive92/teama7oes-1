@@ -12,32 +12,18 @@ class TeamController extends BaseController {
 		return View::make('team.teamsearch');
 	}
 
-	public function TeamsearchResult(){
-		$validator = Validator::make(
-            array(
-                'name' => Input::get('name'),
-            ),
-            array(
-                'name'	 	=> 'required',
-            )
-        );
-	if($validator->fails()){
-			return Redirect::route('teamsearch')
-				->withErrors($validator);
-		}else{
-			$name = Input::get('name');
-			$teamss = team::where('teamname', 'LIKE', '%'.$name.'%')->get();
+    public function postSearchResults() {
 
-			var_dump('serach reasult');
+    $keyword = Input::get('keyword');
 
-			foreach ($teamss as $team) {
-				var_dump($teamss->teamname);
-				# code...
-			}
-		}
-		
+    $teams = Team::where('teamname', 'LIKE', '%'.$keyword.'%')->get();
+
+    var_dump('search results');
+    
+    foreach ($teams as $teams) {
+        var_dump($team->teamname);
+    }
 	}
-	
 
 	public function getCreate() {
 		return View::make('team.create');
@@ -105,6 +91,12 @@ class TeamController extends BaseController {
     }
 
     public function myTeam(){
+        $teams = DB::table('teams')
+            ->where('status', '=', '0')
+            //->where('idgame', '=', 'koekgejuch')
+            ->orderBy('ranking', 'desc')
+            ->take(100)
+            ->get();
         if(Auth::check()){
             $teammember = Teammember::where('id', '=', Auth::user()->id)
                 ->whereNull('leftdate');
@@ -123,7 +115,8 @@ class TeamController extends BaseController {
                             ->get();
                         return View::make('team.myteam')
                             ->with('teammembers', $teammembers)
-                            ->with('team', $team);
+                            ->with('team', $team)
+                            ->with('teams', $teams);
 
                     }
                 }
@@ -131,7 +124,8 @@ class TeamController extends BaseController {
 
         }
         return View::make('team.myteam')
-            ->with('team', false);
+            ->with('team', false)
+            ->with('teams', $teams);
 
 
     }

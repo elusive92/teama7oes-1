@@ -10,5 +10,20 @@
 class UserController extends BaseController {
     
 
+	public function postSearchResults() {
+
+    $keyword = Input::get('keyword');
+
+    $users = User::where('username', 'LIKE', '%'.$keyword.'%')->get();
+
+    var_dump('search results');
     
+    foreach ($users as $user) {
+        var_dump($user->username);
+    }
+	
+
+	
+    
+	}
 }
