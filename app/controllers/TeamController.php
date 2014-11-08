@@ -55,7 +55,7 @@ class TeamController extends BaseController {
 				$teamid = $team->idteam;
 
 				$teammember = Teammember::create(array(
-                    'id_users'     => $userid,
+                    'user_id'     => $userid,
 					'id' => $teamid,
 					'joindate' => date("Y-m-d H:i:s")
 					//'leftdate' => ,
