@@ -250,6 +250,10 @@ Route::group(array('prefix' => 'admin','before'=>'adminAuth'), function()
 
 });
 
+Route::group(array('before'=>'modAuth'),function(){
+    
+});
+
 //-------------------------------------------------
 //----------------Fromularz gier-----------------
 ////////////////////////////////////////////////////
