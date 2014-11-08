@@ -21,7 +21,7 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Games <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#">League of Legends</a></li>
+              <li><a href="games/LeagueOfLegends">League of Legends</a></li>
               <li><a href="#">CS:GO</a></li>
               <li class="divider"></li>
               <li><a href="#">WoT</a></li>

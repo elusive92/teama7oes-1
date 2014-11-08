@@ -268,15 +268,12 @@ Route::group(array('before'=>'modAuth'),function(){
 //-------------------------------------------------
 //----------------Gry test-----------------
 ////////////////////////////////////////////////////
-Route::get('games/{gamename}', function($gamename){
+Route::get('games/{gamename}', array(
 
+    'uses' => 'GameController@getGame'
 
-    $game = Game::where('gamename', '=', $gamename)->firstOrFail();
-    $gameid = $game->idgame;
+));
 
-    return View::make('games.games')
-    ->withCookie(Cookie::queue('gameid',$gameid,30));
-	});
 
 //-------------------------------------------------
 //---------------------Testowa Galeryja------------
@@ -286,4 +283,7 @@ Route::get('/ugallery', array(
     'uses' => 'GalleryController@getGallery'
 ));
 
+Route::get('/test', function(){
+    return View::make('test');
+});
 

@@ -2,10 +2,23 @@
 
 class GameController extends BaseController {
 
-    public function getGame(){
-        return View::make('games');
+    public function getGame($gamename){
+        $game = Game::where('gamename', '=', $gamename)->firstOrFail();
+        $gameid = $game->idgame;
+
+        return View::make('home')
+            ->withCookie(Cookie::queue('gameid',$gameid,60*24));
+
     }
 
+   /** public function postGameId(){
+        $game = Game::where('gamename', '=', Input::get('gamename'))->firstOrFail();
+        $gameid = $game->idgame;
+        return View::make('home')
+            ->withCookie(Cookie::queue('gameid',$gameid,60*24));
+    }
+
+*/
     public function getAddGame(){
 
         return View::make('gameform');
@@ -14,6 +27,7 @@ class GameController extends BaseController {
     public function postAddGame(){
 
         //$image = Input::file('logo');
+
 /** -----------------------------------------------------------------------------
  * @var
  ------------------------------------------------------------------------------*/
