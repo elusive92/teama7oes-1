@@ -4,7 +4,8 @@ class Games extends Eloquent {
 
     public $timestamps = false;
     protected $table = 'games';
-    protected $fillable = array('gamename', 'descript', 'logo');
+    protected $primaryKey = 'idgame';
+    protected $fillable = array('idgame','gamename', 'descript', 'logo');
 
     public static  $rules = array(
         'gamename'			=> 'required|max:50|unique:games',

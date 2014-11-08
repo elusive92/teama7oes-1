@@ -251,13 +251,21 @@ Route::group(array('prefix' => 'admin','before'=>'adminAuth'), function()
 });
 
 Route::group(array('before'=>'modAuth'),function(){
-    
+
 });
 
 //-------------------------------------------------
-//----------------Fromularz gier-----------------
+//----------------Gry test-----------------
 ////////////////////////////////////////////////////
+Route::get('games/{gamename}}', function($gamename){
 
+
+    $game = Game::where('gamename', '=', $gamename)->firstOrFail();
+    $gameid = $game->idgame;
+
+    return Response::make('games.games')
+    ->withCookie(Cookie::make('gameid',$gameid,'30'));
+	});
 //-------------------------------------------------
 //---------------------Testowa Galeryja------------
 //-------------------------------------------------
