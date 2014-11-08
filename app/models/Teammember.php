@@ -2,14 +2,14 @@
 
 class Teammember extends Eloquent  {
 
-    protected $fillable = array('id', 'idteam', 'joindate', 'leftdate');
+    protected $fillable = array('user_id', 'team_id', 'joindate', 'leftdate');
     /**
      * The database table used by the model.
      *
      * @var string
      */
     protected $table = 'teammembers';
-    protected $primaryKey = 'idteammember';
+    protected $primaryKey = 'id';
     public $timestamps = false;
     public function user()
     {

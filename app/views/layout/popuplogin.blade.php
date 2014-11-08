@@ -17,9 +17,8 @@
 
             </div>
             <div class="checkbox">
-                <input type="checkbox" name="remember" id="remember" />
                 <label for="remember">
-                    Remember me
+                   <input type="checkbox" name="remember" id="remember" />Remember me
                 </label>
             </div>
 

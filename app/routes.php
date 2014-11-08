@@ -22,11 +22,22 @@ Route::get('/search', array(
 	'uses' => 'HomeController@showSearch'
 ));
 
+Route::post('/search-user', array(
+        'as' => 'search-user',
+        'uses' => 'UserController@postSearchResults'
+));
+
 Route::get('/team/{teamname}', array(
     'as' => 'teamprofile',
     'uses' => 'TeamController@teamprofile',
 ));
 
+Route::post('/search-team', array(
+        'as' => 'search-team',
+        'uses' => 'TeamController@postSearchResults'
+));
+
+///search/team, search/team/results bylo zle chyba
 Route::get('/search/team', array(
     'as' => 'teamsearch',
     'uses' => 'TeamController@showTeamsearch',

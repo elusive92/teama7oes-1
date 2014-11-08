@@ -5,8 +5,8 @@ class Blacklist extends Eloquent{
 
     protected $table = 'blacklists';
 
-    protected $primaryKey = 'idblock';
+    protected $primaryKey = 'id';
 
-    protected $fillable = array('idblock','idA','idB','date');
+    protected $fillable = array('id','id_A','id_B','date');
 
 }
