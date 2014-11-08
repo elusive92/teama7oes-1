@@ -2,7 +2,7 @@
 
 class Teammember extends Eloquent  {
 
-    protected $fillable = array('id_users', 'id_teams', 'joindate', 'leftdate');
+    protected $fillable = array('user_id', 'team_id', 'joindate', 'leftdate');
     /**
      * The database table used by the model.
      *

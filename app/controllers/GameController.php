@@ -35,7 +35,7 @@ class GameController extends BaseController {
                 'descript'  =>Input::get('descript')),
                // 'logo'      =>Input::file('logo')->getMimeType()),
 
-            Games::$rules);
+            Game::$rules);
 
         if($validator->fails()){
             return Redirect::route('home')
@@ -48,7 +48,7 @@ class GameController extends BaseController {
 
 
 
-        $games = new Games;
+        $games = new Game;
         $games->gamename 		= Input::get('gamename');
         $games->descript 	    = Input::get('descript');
         $games->logo 	        = $filename;
