@@ -257,15 +257,16 @@ Route::group(array('before'=>'modAuth'),function(){
 //-------------------------------------------------
 //----------------Gry test-----------------
 ////////////////////////////////////////////////////
-Route::get('games/{gamename}}', function($gamename){
+Route::get('games/{gamename}', function($gamename){
 
 
     $game = Game::where('gamename', '=', $gamename)->firstOrFail();
     $gameid = $game->idgame;
 
-    return Response::make('games.games')
-    ->withCookie(Cookie::make('gameid',$gameid,'30'));
+    return View::make('games.games')
+    ->withCookie(Cookie::queue('gameid',$gameid,30));
 	});
+
 //-------------------------------------------------
 //---------------------Testowa Galeryja------------
 //-------------------------------------------------

@@ -1,6 +1,6 @@
 <?php
 
-class Games extends Eloquent {
+class Game extends Eloquent {
 
     public $timestamps = false;
     protected $table = 'games';
