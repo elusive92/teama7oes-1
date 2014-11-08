@@ -5,6 +5,6 @@ class Gallery extends Eloquent{
 
     protected $table = 'galleries';
 
-    protected $fillable = array('id', 'title', 'descript', 'filename', 'date');
+    protected $fillable = array('id_users', 'title', 'descript', 'filename', 'date');
 
 }

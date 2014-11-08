@@ -1,8 +1,8 @@
 ﻿Chopaki tu wrzucamy backupy bazy i ewentualną samą strukturę bazy. Przy każdym commicie nowej bazy nadajcie jej nazwe z Data i inicjalami a bedzie gitez!
 Jak robicie eksport to nie szybki tylko w opcjach zaznaczyc jeszce wyswietlanie zwiazki z kluczem obcym
 
-
-teama7oes.sq - AP 19.10.14 - takie tam po hance zmiany + do usera cos dodane
+teama7oes.sq - AP 08.11.14 - gruntowne zmiany wszystkie tabele maja teraz "id" , pozostałe nazywają sie analogicznie id_users, dodana tabela friendlist, dodane pola "comefrom" do users (from nazwa specjalna)
+teama7oes5.sq - AP 19.10.14 - takie tam po hance zmiany + do usera cos dodane
 teama7oes4.sq - AP 12.10.14-  takie tam z meczami zmiany i miejscem w drzewku
 teama7oes3.sql3 - AP 11.10.14 21.24 -  aktualna baza danych / dodalem do matches pozycje, zmienilem desc na descript w kilku bo to nazwa specjalna w sql, usunalem w message drugie id, zmienilem na restrict w turnaments dla gier
 teama7oes2.sql2 - AP 11.10.14 21.24 -  baza danych z relacjami
