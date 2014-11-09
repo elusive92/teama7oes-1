@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Czas generowania: 09 Lis 2014, 17:59
+-- Czas generowania: 08 Lis 2014, 17:43
 -- Wersja serwera: 5.6.20
 -- Wersja PHP: 5.5.15
 
@@ -33,6 +33,14 @@ CREATE TABLE IF NOT EXISTS `blacklists` (
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
+--
+-- RELACJE TABELI `blacklists`:
+--   `id_A`
+--       `users` -> `id`
+--   `id_B`
+--       `users` -> `id`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -57,6 +65,14 @@ CREATE TABLE IF NOT EXISTS `friendlist` (
   `id_friend` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- RELACJE TABELI `friendlist`:
+--   `id_adding`
+--       `users` -> `id`
+--   `id_friend`
+--       `users` -> `id`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -71,6 +87,12 @@ CREATE TABLE IF NOT EXISTS `galleries` (
   `filename` varchar(20) COLLATE utf8_polish_ci NOT NULL,
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
+
+--
+-- RELACJE TABELI `galleries`:
+--   `user_id`
+--       `users` -> `id`
+--
 
 -- --------------------------------------------------------
 
@@ -93,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `games` (
 
 CREATE TABLE IF NOT EXISTS `matches` (
 `id` int(11) NOT NULL,
-  `tournament_id` int(11) NOT NULL,
+  `id_tournaments` int(11) NOT NULL,
   `id_teamsA` int(11) DEFAULT NULL,
   `id_teamsB` int(11) DEFAULT NULL,
   `date` datetime NOT NULL,
@@ -104,6 +126,16 @@ CREATE TABLE IF NOT EXISTS `matches` (
   `resultB` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
+--
+-- RELACJE TABELI `matches`:
+--   `id_tournaments`
+--       `tournaments` -> `id`
+--   `id_teamsA`
+--       `teams` -> `id`
+--   `id_teamsB`
+--       `teams` -> `id`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -111,11 +143,20 @@ CREATE TABLE IF NOT EXISTS `matches` (
 --
 
 CREATE TABLE IF NOT EXISTS `matchsquad` (
-`id` int(11) NOT NULL,
-  `match_id` int(11) NOT NULL,
-  `team_id` int(11) NOT NULL,
-  `teammember_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
+  `id_matches` int(11) NOT NULL,
+  `id_teams` int(11) NOT NULL,
+  `id_teammembers` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- RELACJE TABELI `matchsquad`:
+--   `id_matches`
+--       `matches` -> `id`
+--   `id_teams`
+--       `teams` -> `id`
+--   `id_teammembers`
+--       `teammembers` -> `id`
+--
 
 -- --------------------------------------------------------
 
@@ -124,12 +165,19 @@ CREATE TABLE IF NOT EXISTS `matchsquad` (
 --
 
 CREATE TABLE IF NOT EXISTS `messages` (
-`id` int(11) NOT NULL,
-  `conversation_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `id_conversations` int(11) NOT NULL,
+  `id_A` int(11) NOT NULL,
   `senddate` datetime NOT NULL,
   `recivedate` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- RELACJE TABELI `messages`:
+--   `id_conversations`
+--       `conversations` -> `id`
+--   `id_A`
+--       `users` -> `id`
+--
 
 -- --------------------------------------------------------
 
@@ -145,6 +193,12 @@ CREATE TABLE IF NOT EXISTS `news` (
   `photo` varchar(20) COLLATE utf8_polish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
+--
+-- RELACJE TABELI `news`:
+--   `game_id`
+--       `games` -> `id`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -157,6 +211,14 @@ CREATE TABLE IF NOT EXISTS `players` (
   `user_id` int(11) NOT NULL,
   `nickname` varchar(20) COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
+
+--
+-- RELACJE TABELI `players`:
+--   `game_id`
+--       `games` -> `id`
+--   `user_id`
+--       `users` -> `id`
+--
 
 -- --------------------------------------------------------
 
@@ -173,6 +235,12 @@ CREATE TABLE IF NOT EXISTS `teamgalleries` (
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
+--
+-- RELACJE TABELI `teamgalleries`:
+--   `team_id`
+--       `teams` -> `id`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -185,6 +253,14 @@ CREATE TABLE IF NOT EXISTS `teaminvitations` (
   `user_id` int(11) NOT NULL,
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
+
+--
+-- RELACJE TABELI `teaminvitations`:
+--   `team_id`
+--       `teams` -> `id`
+--   `user_id`
+--       `users` -> `id`
+--
 
 -- --------------------------------------------------------
 
@@ -199,6 +275,14 @@ CREATE TABLE IF NOT EXISTS `teammembers` (
   `joindate` datetime NOT NULL,
   `leftdate` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
+
+--
+-- RELACJE TABELI `teammembers`:
+--   `user_id`
+--       `users` -> `id`
+--   `team_id`
+--       `teams` -> `id`
+--
 
 -- --------------------------------------------------------
 
@@ -220,6 +304,14 @@ CREATE TABLE IF NOT EXISTS `teams` (
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
+--
+-- RELACJE TABELI `teams`:
+--   `user_id`
+--       `users` -> `id`
+--   `game_id`
+--       `games` -> `id`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -232,6 +324,14 @@ CREATE TABLE IF NOT EXISTS `tournamentmembers` (
   `team_id` int(11) NOT NULL,
   `position` int(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
+
+--
+-- RELACJE TABELI `tournamentmembers`:
+--   `tournament_id`
+--       `tournaments` -> `id`
+--   `team_id`
+--       `teams` -> `id`
+--
 
 -- --------------------------------------------------------
 
@@ -250,6 +350,12 @@ CREATE TABLE IF NOT EXISTS `tournaments` (
   `startdate` datetime NOT NULL,
   `status` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
+
+--
+-- RELACJE TABELI `tournaments`:
+--   `game_id`
+--       `games` -> `id`
+--
 
 -- --------------------------------------------------------
 
@@ -319,19 +425,19 @@ ALTER TABLE `games`
 -- Indexes for table `matches`
 --
 ALTER TABLE `matches`
- ADD PRIMARY KEY (`id`), ADD KEY `idtournament` (`tournament_id`), ADD KEY `idteamA` (`id_teamsA`), ADD KEY `idteamB` (`id_teamsB`);
+ ADD PRIMARY KEY (`id`), ADD KEY `idtournament` (`id_tournaments`), ADD KEY `idteamA` (`id_teamsA`), ADD KEY `idteamB` (`id_teamsB`);
 
 --
 -- Indexes for table `matchsquad`
 --
 ALTER TABLE `matchsquad`
- ADD PRIMARY KEY (`id`), ADD KEY `idteam` (`team_id`), ADD KEY `id` (`teammember_id`), ADD KEY `idteam_2` (`team_id`), ADD KEY `id_2` (`teammember_id`), ADD KEY `idmatch` (`match_id`);
+ ADD KEY `idteam` (`id_teams`), ADD KEY `id` (`id_teammembers`), ADD KEY `idteam_2` (`id_teams`), ADD KEY `id_2` (`id_teammembers`), ADD KEY `idmatch` (`id_matches`);
 
 --
 -- Indexes for table `messages`
 --
 ALTER TABLE `messages`
- ADD PRIMARY KEY (`id`), ADD KEY `idA` (`user_id`), ADD KEY `idcon` (`conversation_id`);
+ ADD KEY `idA` (`id_A`), ADD KEY `idcon` (`id_conversations`);
 
 --
 -- Indexes for table `news`
@@ -422,16 +528,6 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `matches`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT dla tabeli `matchsquad`
---
-ALTER TABLE `matchsquad`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT dla tabeli `messages`
---
-ALTER TABLE `messages`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT dla tabeli `news`
 --
 ALTER TABLE `news`
@@ -504,24 +600,24 @@ ADD CONSTRAINT `galleries_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`i
 -- Ograniczenia dla tabeli `matches`
 --
 ALTER TABLE `matches`
+ADD CONSTRAINT `matches_ibfk_1` FOREIGN KEY (`id_tournaments`) REFERENCES `tournaments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 ADD CONSTRAINT `matches_ibfk_2` FOREIGN KEY (`id_teamsA`) REFERENCES `teams` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-ADD CONSTRAINT `matches_ibfk_3` FOREIGN KEY (`id_teamsB`) REFERENCES `teams` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-ADD CONSTRAINT `matches_ibfk_4` FOREIGN KEY (`tournament_id`) REFERENCES `tournaments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `matches_ibfk_3` FOREIGN KEY (`id_teamsB`) REFERENCES `teams` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `matchsquad`
 --
 ALTER TABLE `matchsquad`
-ADD CONSTRAINT `matchsquad_ibfk_1` FOREIGN KEY (`match_id`) REFERENCES `matches` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `matchsquad_ibfk_2` FOREIGN KEY (`team_id`) REFERENCES `teams` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `matchsquad_ibfk_3` FOREIGN KEY (`teammember_id`) REFERENCES `teammembers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `matchsquad_ibfk_1` FOREIGN KEY (`id_matches`) REFERENCES `matches` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `matchsquad_ibfk_2` FOREIGN KEY (`id_teams`) REFERENCES `teams` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `matchsquad_ibfk_3` FOREIGN KEY (`id_teammembers`) REFERENCES `teammembers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `messages`
 --
 ALTER TABLE `messages`
-ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`conversation_id`) REFERENCES `conversations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`id_conversations`) REFERENCES `conversations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`id_A`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `news`
