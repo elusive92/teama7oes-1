@@ -3,7 +3,20 @@
 class HomeController extends BaseController {
 
 	public function showHome(){
-		return View::make('home');
+
+		$news = News::where('draft', '=', 0)
+		->orderBy('created_at', 'desc')
+		->get();
+
+
+		
+		return View::make('home')->with('news', $news);
+	}
+
+	public function showNews($id){
+		$news = News::where('id', '=', $id)->firstOrFail();
+
+		return View::make('news.show')->with('news', $news);
 	}
 
 	public function showTeams(){

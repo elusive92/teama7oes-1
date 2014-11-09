@@ -7,6 +7,11 @@ Route::get('/', array(
     'uses' => 'HomeController@showHome'
 ));
 
+Route::get('/news/{id}', array(
+    'as' => 'news-show',
+    'uses' => 'HomeController@showNews'
+));
+
 Route::get('/home', array(
     'as' => 'home',
     'uses' => 'HomeController@showHome'

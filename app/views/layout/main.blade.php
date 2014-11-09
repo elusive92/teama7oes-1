@@ -11,7 +11,7 @@
     <script src="js/jQuery.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <style>
-      body {background-image: url('{{ URL::asset('/') }}img/games/bg.jpg')}
+      body {background-image: url('{{ URL::asset('/') }}img/games/bg2.jpg')}
      /* potrzebna metoda, ktora w zaleznosci od wybranej gry ustawia background-image */
     </style>
 
