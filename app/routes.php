@@ -124,12 +124,9 @@ Route::group(array('before' => 'auth'), function() {
         'uses' => 'TeamController@postEditTeam'
     ));
     ///////carna lista test////
-    Route::get('/blacklist', array(
-        'as' => 'blacklist',
-        'uses' => 'BlacklistController@getBlacklist'
-    ));
 
-    Route::post('/blacklist', array(
+
+    Route::post('/playerblacklist', array(
         'as' => 'postBlacklist',
         'uses' => 'BlacklistController@postBanPlayer'
     ));

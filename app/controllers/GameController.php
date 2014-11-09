@@ -4,7 +4,7 @@ class GameController extends BaseController {
 
     public function getGame($gamename){
         $game = Game::where('gamename', '=', $gamename)->firstOrFail();
-        $gameid = $game->idgame;
+        $gameid = $game->id;
 
         return View::make('home')
             ->withCookie(Cookie::queue('gameid',$gameid,60*24));
@@ -85,8 +85,5 @@ class GameController extends BaseController {
         }
 
 }
-    public function getGameId($gamename){
-        $gameid = Game::where('gamename','=',$gamename)->firstOrFail();
-        return View::make('games')->with('gameid',$gameid->id);
-    }
+
 }
