@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-	
+
 	@if($news->count())
 		@foreach($news as $new)
 			<ul id="news_list">
@@ -21,7 +21,11 @@
 			</ul>
 		@endforeach
 	@endif
+	@if(Auth::user()->permissions == 1)
 
+	<a href="{{ URL::route('news-add')}}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span> Manage News Section</a>
+
+    @endif
 
 
 @stop

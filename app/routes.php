@@ -12,6 +12,16 @@ Route::get('/news/{id}', array(
     'uses' => 'HomeController@showNews'
 ));
 
+Route::get('/news-add', array(
+    'as' => 'news-add',
+    'uses' => 'HomeController@addNews'
+));
+
+ Route::post('/news-add', array(
+    'as' => 'news-add-post',
+    'uses' => 'HomeController@postNews'
+));
+
 Route::get('/home', array(
     'as' => 'home',
     'uses' => 'HomeController@showHome'
@@ -141,6 +151,7 @@ Route::group(array('before' => 'auth'), function() {
         'uses' => 'BlacklistController@getPlayerBlacklist'
     ));
 //////////////////////deleting
+    //ten route jest dziwny xd, jak dam /news/{id ktorego nie ma} to wywala ze nie znalzlo sciezki do blacklisty ;p
     Route::controller('blacklist', 'BlacklistController');
 });
 

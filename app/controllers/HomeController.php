@@ -19,6 +19,14 @@ class HomeController extends BaseController {
 		return View::make('news.show')->with('news', $news);
 	}
 
+	public function addNews(){
+		return View::make('news.add');
+	}
+
+	public function postNews(){
+		
+	}
+
 	public function showTeams(){
 		return View::make('teams');
 	}
