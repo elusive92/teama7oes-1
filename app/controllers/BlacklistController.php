@@ -21,7 +21,7 @@ class BlacklistController extends BaseController {
 
     public function getPlayerBlackList(){
 
-        $blacklists = Blacklist::where('idA', '=',Auth::user()->id)->get();
+        $blacklists = Blacklist::where('id_A', '=',Auth::user()->id)->get();
         //return View::make('blacklist.blacklistView', compact($blacklists));
 
 
@@ -37,18 +37,18 @@ class BlacklistController extends BaseController {
 
         $idBannedPlayer = User::where('username', '=', $bannedPlayer)->firstOrFail();
         $id2 = $idBannedPlayer->id;
-        $result= Blacklist::where('idA','=',$player)
+        $result= Blacklist::where('id_A','=',$player)
             -> where('idB', '=', $id2)->get();
 
 
         $validator = Validator::make(
             array(
-                'idA' => $player,
-                'idB' => $id2,
+                'id_A' => $player,
+                'id_B' => $id2,
             ),
             array(
-                'idA' => 'required|max:11',
-                'idB' => 'required|max:11',
+                'id_A' => 'required|max:11',
+                'id_B' => 'required|max:11',
             )
         );
 
@@ -66,8 +66,8 @@ class BlacklistController extends BaseController {
         else{
 
             $blist = new Blacklist();
-            $blist->idA = $player;
-            $blist->idB = $id2;
+            $blist->id_A = $player;
+            $blist->id_B = $id2;
             $blist->date = date("Y-m-d H:i:s");
             $blist -> save();
 
