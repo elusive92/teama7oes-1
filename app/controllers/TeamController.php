@@ -206,11 +206,28 @@ class TeamController extends BaseController {
             if($team->count()){
                 $team = $team->first();
                 if($team->user_id == $teammember->user_id){
-
+                    $extension = strtolower(Input::file('logo')->getClientOriginalExtension());
+                    $filename = $team->id . '.' . $extension;
+                    $destinationPath = 'img/teams/logos/';
+                    if(($extension == 'jpg') || ($extension == 'jpeg') || ($extension == 'png')){
+                        if($team->logo){
+                            File::delete(public_path().'/'.$destinationPath.$team->logo);
+                        }
+                        $uploadSuccess = Input::file('logo')->move($destinationPath, $filename);
+                        if($uploadSuccess) {
+                            $team->logo = $filename;
+                            $team->save();
+                            return Redirect::action('TeamController@getEditTeam');
+                        }
+                    }
                 }
             }
         }
         return Redirect::action('TeamController@myTeam');
+    }
+
+    public function postTeamInv(){
+
     }
 
 
