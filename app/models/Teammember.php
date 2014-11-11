@@ -12,6 +12,6 @@ class Teammember extends Eloquent  {
     public $timestamps = false;
     public function user()
     {
-        return $this->hasOne('User', 'user_id', 'id');
+        return $this->hasOne('User', 'id', 'user_id');
     }
 }
