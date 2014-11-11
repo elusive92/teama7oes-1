@@ -34,13 +34,22 @@ class BlacklistController extends BaseController {
 
         $idBannedPlayer = User::where('username', '=', $bannedPlayer)->firstOrFail();
         $id2 = $idBannedPlayer->id;
+<<<<<<< HEAD
         $result= Blacklist::where('id_A','=',$id1)
             -> where('id_B', '=', $id2)->get();
+=======
+        $result= Blacklist::where('id_A','=',$player)
+            -> where('idB', '=', $id2)->get();
+>>>>>>> origin/master
 
 
         $validator = Validator::make(
             array(
+<<<<<<< HEAD
                 'id_A' => $id1,
+=======
+                'id_A' => $player,
+>>>>>>> origin/master
                 'id_B' => $id2,
             ),
             array(
@@ -63,7 +72,11 @@ class BlacklistController extends BaseController {
         else{
 
             $blist = new Blacklist();
+<<<<<<< HEAD
             $blist->id_A = $id1;
+=======
+            $blist->id_A = $player;
+>>>>>>> origin/master
             $blist->id_B = $id2;
             $blist->date = date("Y-m-d H:i:s");
             $blist -> save();
