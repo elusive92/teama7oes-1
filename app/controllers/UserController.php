@@ -24,15 +24,25 @@ class UserController extends BaseController {
 	}
 
 //////////////////////////WYSWIETLANIE PROFILU/////////////////////////////////////////
-    
+
     public function userprofile($username){
         $user = User::where('username', '=', $username);
 
         if($user->count()){
             $user = $user->first();
 
+            $friend = Friendlist::where('id_adding', '=', Auth::user()->id)
+                    ->where('id_friend', '=', $user->id);
+
+            if($friend->first()){   
+                $friend = true;
+            } else{
+                $friend = false;
+            }
+
             return View::make('user.profile')
-                ->with('user', $user);
+                ->with('user', $user)
+                ->with('friend', $friend);
         }
 
         return View::make('user.profile')

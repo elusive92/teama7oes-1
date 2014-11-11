@@ -23,7 +23,9 @@
               <div class="clear"><a href="{{ URL::route('account-editprofile')}}" class="btn btn-default">Edit profile</a></div>
               <div class="clear"><a href="{{ URL::route('playerBlackList')}}" class="btn btn-default">Black List</a></div>
             @else
-              <div class="clear"><a href="{{ URL::route('addFriendList', $user->username) }}" class="btn btn-default">Add friend</a></div>
+              @if(true)   <!-- tutaj chce sprawdzac czy friend juz jest -->
+                <div class="clear"><a href="{{ URL::route('addFriendList', $user->username) }}" class="btn btn-default">Add friend</a></div>
+              @endif
             @endif
           </div>
           
