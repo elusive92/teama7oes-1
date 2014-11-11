@@ -22,6 +22,8 @@
             @if(e($user->id ) == e(Auth::user()->id))
               <div class="clear"><a href="{{ URL::route('account-editprofile')}}" class="btn btn-default">Edit profile</a></div>
               <div class="clear"><a href="{{ URL::route('playerBlackList')}}" class="btn btn-default">Black List</a></div>
+            @else
+              <div class="clear"><a href="{{ URL::route('addFriendList')}}" class="btn btn-default">Add friend</a></div>
             @endif
           </div>
           

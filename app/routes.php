@@ -37,10 +37,7 @@ Route::get('/search', array(
 	'uses' => 'HomeController@showSearch'
 ));
 
-Route::post('/search-user', array(
-        'as' => 'search-user',
-        'uses' => 'UserController@postSearchResults'
-));
+
 
 Route::get('/team/{teamname}', array(
     'as' => 'teamprofile',
@@ -73,13 +70,26 @@ Route::get('/team', array(
     'as' => 'team',
     'uses' => 'TeamController@myTeam'
 ));
-
+///////////////////////////////USER CONTROLER//////////////////////////////////////////
 
 Route::get('/user/{username}', array(
     'as' => 'userprofile',
     'uses' => 'UserController@userprofile',
 ));
 
+Route::post('/search-user', array(
+        'as' => 'search-user',
+        'uses' => 'UserController@postSearchResults'
+));
+
+/////////////////////////////////// FIREND LIST CONTROLER////////////////////////
+
+Route::get('/user/{username}', array(
+    'as' => 'addFriendList',
+    'uses' => 'UserController@userprofile',
+));
+
+/////////////////////////////////////////////////////////////////////////////////
 //nie wiem czemu cos takiego nie dziala:
 //Route::get('/', 'HomeController@showHome');
 //i wszedzie trzeba robic array.
