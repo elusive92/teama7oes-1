@@ -1,3 +1,7 @@
 <?php 
 
-class News extends Eloquent {}
+class News extends Eloquent {
+
+
+	
+}
