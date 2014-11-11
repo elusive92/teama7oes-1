@@ -1,0 +1,19 @@
+1. Niemo¿liwe logowanie/rejestracja w odzyskiwaniu has³a (prawdopodobnie nazwa pola wszystko jebie) 
+2. Brak obs³ugi/odpowiedniego wyœwietlania b³êdów 
+3. Brak resizera/sprawdzania wielkosci obrazka 
+4. Dodawanie zapraszanie graczy do teamów 
+5. Wyœwietlanie zaproszeñ 
+6. Kasowanie graczy z teamów 
+7. Flagi 
+8. Edycja profilu odra¿aj¹ca 
+9. Przycisk od dodawania zdjêæ 
+10.Zmiana nazw pól w bazie 
+12.Dodanie do u¿ytkowników narodowoœci 
+13.Galeria 
+14.Galeria teamów 
+15.Czarne listy 
+16.Dodawanie gier 
+17.Ustawianie gier 
+18.Przypisanie routów do admina i moderatora
+19.Dodawanie do przyjació³
+20. Poprawa wyszukiwarek

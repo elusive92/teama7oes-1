@@ -23,7 +23,9 @@ class UserController extends BaseController {
     }   
 	}
 
-    public function userprofile($username){
+//////////////////////////WYSWIETLANIE PROFILU/////////////////////////////////////////
+
+    public function addFriend($username){
         $user = User::where('username', '=', $username);
 
         if($user->count()){
@@ -36,4 +38,7 @@ class UserController extends BaseController {
         return View::make('user.profile')
             ->with('user', false);
     }
+///////////////////////////////////////////////////////////////////////////////////////
+
+
 }

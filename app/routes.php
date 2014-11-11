@@ -86,7 +86,7 @@ Route::post('/search-user', array(
 
 Route::get('/user/{username}', array(
     'as' => 'addFriendList',
-    'uses' => 'UserController@userprofile',
+    'uses' => 'FriendlistController@addFriendList', /////dalem tylko zeby bledu nie
 ));
 
 /////////////////////////////////////////////////////////////////////////////////
