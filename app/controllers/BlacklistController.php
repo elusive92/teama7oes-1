@@ -3,7 +3,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 App::error(function(ModelNotFoundException $e)
 {
-    return  Redirect::route('blacklist');
+    return  Redirect::route('playerblacklist');
     ;
 });
 
@@ -12,16 +12,10 @@ class BlacklistController extends BaseController {
 
 
 
-    public function getBlacklist(){
-
-        return View::make('bltest');
-    }
-
-
 
     public function getPlayerBlackList(){
 
-        $blacklists = Blacklist::where('idA', '=',Auth::user()->id)->get();
+        $blacklists = Blacklist::where('id_A', '=',Auth::user()->id)->get();
         //return View::make('blacklist.blacklistView', compact($blacklists));
 
 
@@ -29,26 +23,29 @@ class BlacklistController extends BaseController {
         return View::make('blacklist.blacklistView')->with('blacklists', $blacklists);
     }
 
+
+
+
     public function postBanPlayer()
     {
 
-        $player = Auth::user()->id;
+        $id1 = Auth::user()->id;
         $bannedPlayer = Input::get('bannedplayer');
 
         $idBannedPlayer = User::where('username', '=', $bannedPlayer)->firstOrFail();
         $id2 = $idBannedPlayer->id;
-        $result= Blacklist::where('idA','=',$player)
-            -> where('idB', '=', $id2)->get();
+        $result= Blacklist::where('id_A','=',$id1)
+            -> where('id_B', '=', $id2)->get();
 
 
         $validator = Validator::make(
             array(
-                'idA' => $player,
-                'idB' => $id2,
+                'id_A' => $id1,
+                'id_B' => $id2,
             ),
             array(
-                'idA' => 'required|max:11',
-                'idB' => 'required|max:11',
+                'id_A' => 'required|max:11',
+                'id_B' => 'required|max:11',
             )
         );
 
@@ -59,20 +56,20 @@ class BlacklistController extends BaseController {
             ]);
         }elseif($result->count()) {
 
-                return Redirect::route('blacklist');
+                return Redirect::route('playerBlackList');
 
     }
 
         else{
 
             $blist = new Blacklist();
-            $blist->idA = $player;
-            $blist->idB = $id2;
+            $blist->id_A = $id1;
+            $blist->id_B = $id2;
             $blist->date = date("Y-m-d H:i:s");
             $blist -> save();
 
             if($blist){
-                return Redirect::route('blacklist');
+                return Redirect::route('playerBlackList');
             }
         }
 
