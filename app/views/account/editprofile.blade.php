@@ -44,7 +44,7 @@
         <p class='error'>{{ $errors->first('about') }}</p>
         @endif
         <div class="form-group">
-            <label for="photo">photo:</label> <input type="file" accept="jpg" name="photo" class="form-control" id="photo" placeholder="photo"/>
+            <label for="photo">photo:</label> <input type="file" accept="image/jpeg" name="photo" class="form-control" id="photo" placeholder="photo"/>
         </div>
         @if($errors->has('photo'))
         <p class='error'>{{ $errors->first('photo') }}</p>

@@ -20,10 +20,20 @@ class UserController extends BaseController {
     
     foreach ($users as $user) {
         var_dump($user->username);
-    }
-	
-
-	
-    
+    }   
 	}
+
+    public function userprofile($username){
+        $user = User::where('username', '=', $username);
+
+        if($user->count()){
+            $user = $user->first();
+
+            return View::make('user.profile')
+                ->with('user', $user);
+        }
+
+        return View::make('user.profile')
+            ->with('user', false);
+    }
 }

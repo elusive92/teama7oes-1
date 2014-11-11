@@ -74,6 +74,12 @@ Route::get('/team', array(
     'uses' => 'TeamController@myTeam'
 ));
 
+
+Route::get('/user/{username}', array(
+    'as' => 'userprofile',
+    'uses' => 'UserController@userprofile',
+));
+
 //nie wiem czemu cos takiego nie dziala:
 //Route::get('/', 'HomeController@showHome');
 //i wszedzie trzeba robic array.

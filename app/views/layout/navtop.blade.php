@@ -5,7 +5,7 @@
 	@if(Auth::check())
 	
     <li><a href="{{ URL::route('account-sign-out') }}">Log out</a></li>
-    <li><a href="{{ URL::route('account-profile') }}">{{ Auth::user()->username }}</a></li>
+    <li><a href="{{ URL::route('userprofile', Auth::user()->username) }}">{{ Auth::user()->username }}</a></li>
 
         @if(Auth::user()->photo)
         <li><img src="{{ Auth::user()->photo }}" width="30" height="30" /></li>
