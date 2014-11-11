@@ -35,11 +35,10 @@ class UserController extends BaseController {
                     ->where('id_friend', '=', $user->id);
 
             if($friend->first()){   
-                $friend = true;
-            } else{
                 $friend = false;
+            } else{
+                $friend = true;
             }
-
             return View::make('user.profile')
                 ->with('user', $user)
                 ->with('friend', $friend);

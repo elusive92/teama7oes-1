@@ -11,12 +11,12 @@ class FriendlistController extends BaseController {
                 'id_adding' => Auth::user()->id,
                 'id_friend' => $user->id,
             ));
-
-	            return View::make('user.profile')
-	                ->with('user', $user);
+                return Redirect::action('UserController@userprofile', array('username' => $username));
+	            //return View::make('user.profile')
+	            //    ->with('user', $user);
 	        }
 
-	        return View::make('user.profile')
-	            ->with('user', false);
+	        //return View::make('user.profile')
+	        //    ->with('user', false);
 	}
 }
