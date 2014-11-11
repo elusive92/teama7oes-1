@@ -19,7 +19,7 @@ Route::get('/news-add', array(
 
  Route::post('/news-add', array(
     'as' => 'news-add-post',
-    'uses' => 'HomeController@postNews'
+    'uses' => 'NewsController@postNews'
 ));
 
 Route::get('/home', array(

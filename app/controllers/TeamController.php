@@ -17,12 +17,11 @@ class TeamController extends BaseController {
     $keyword = Input::get('keyword');
 
     $teams = Team::where('teamname', 'LIKE', '%'.$keyword.'%')->get();
-
-    var_dump('search results');
     
-    foreach ($teams as $teams) {
-        var_dump($team->teamname);
+    foreach ($teams as $team) {
+       var_dump($team->teamname);
     }
+
 	}
 
 	public function getCreate() {

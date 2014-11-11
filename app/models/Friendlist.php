@@ -1,7 +1,6 @@
 <?php
 class Friendlist extends Eloquent{
 
-    public $timestamps = false;
 
     protected $table = 'friendlist';
 

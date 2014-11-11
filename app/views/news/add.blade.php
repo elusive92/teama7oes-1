@@ -26,7 +26,7 @@
     </label>    
     <label>
         <span>Upload photo :</span>
-        <input id="name" type="text" name="name" placeholder="opisz fotke ktora dodasz xD" />
+        <input id="photo" type="text" name="photo" placeholder="opisz fotke ktora dodasz xD" />
     </label> 
      <label>
         <span>&nbsp;</span> 

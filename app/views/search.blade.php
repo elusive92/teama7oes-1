@@ -58,5 +58,4 @@ $(document).ready(function(){
 		{{Form::submit('Search')}}
 	{{Form::close()}}
 	</div>
-
 @stop
