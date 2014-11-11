@@ -84,9 +84,6 @@ class AccountController extends BaseController {
 		return Redirect::route('home');
 	}
 
-	public function getProfile(){		
-		return View::make('account.profile');
-	}
 
 	public function getEditProfile(){		
 		return View::make('account.editprofile');

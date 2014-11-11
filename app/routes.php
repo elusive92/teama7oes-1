@@ -105,11 +105,6 @@ Route::group(array('before' => 'auth'), function() {
         'uses' => 'AccountController@getSignOut'
     ));
 
-    Route::get('/account/profile', array(
-        'as' => 'account-profile',
-        'uses' => 'AccountController@getProfile'
-    ));
-
     Route::get('/account/editprofile', array(
         'as' => 'account-editprofile',
         'uses' => 'AccountController@getEditProfile'
