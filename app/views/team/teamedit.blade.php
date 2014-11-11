@@ -10,9 +10,19 @@
 
 @section('content')
 @if($team->id == Auth::check())
+<div class="alert alert-info info" style="display: none;">
+        <ul></ul>
+</div>
 <div class="myteamedit">
     <div class="teamphoto">
             WYBÓR ZDJĘCIA
+            {{ Form::open( array('route' => 'team-edit-post', 'class'=>'form-horizontal', 'files' => true)) }}
+
+            {{Form::file('logo')}}
+
+            {{ Form::submit('Submit', array('class' => 'btn btn-default')) }}
+
+            {{ Form::close() }}
         </div>
         <div class="data">
             <h5>From: </h5> WYBÓR KRAJU

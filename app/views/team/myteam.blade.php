@@ -39,11 +39,13 @@
     @if($team->id == Auth::check())
         <a href="{{ URL::route('team-edit')}}" class="btn btn-default">Edit team</a>
     @endif
-    @if($team->logo)
+
     <div class="teamphoto">
-        <a href="#"><img src="" width="150" height="150" /></a>
-    </div>
+    @if($team->logo)
+        {{ HTML::image('img/teams/logos/'.$team->logo, '', ['width' => '180', 'height' => '180']) }}
     @endif
+    </div>
+
     <div class="data">
         <div  class="teamName"><h1>{{ e($team->teamname) }}</h1></div>
         <h5>From: </h5>

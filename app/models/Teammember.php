@@ -9,10 +9,9 @@ class Teammember extends Eloquent  {
      * @var string
      */
     protected $table = 'teammembers';
-    protected $primaryKey = 'id';
     public $timestamps = false;
     public function user()
     {
-        return $this->hasOne('User', 'id', 'id');
+        return $this->hasOne('User', 'user_id', 'id');
     }
 }

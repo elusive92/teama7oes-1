@@ -46,17 +46,17 @@ class TeamController extends BaseController {
 			$teamname 	= Input::get('teamname');
 			$team 	= Team::create(array(
 				'teamname' => $teamname,
-                'id'       => $userid,
+                'user_id'       => $userid,
                 //'idgame'   => $idgame
 			));
 			
 			
 			if($team) {
-				$teamid = $team->idteam;
+				$teamid = $team->id;
 
 				$teammember = Teammember::create(array(
                     'user_id'     => $userid,
-					'id' => $teamid,
+					'team_id' => $teamid,
 					'joindate' => date("Y-m-d H:i:s")
 					//'leftdate' => ,
 				));

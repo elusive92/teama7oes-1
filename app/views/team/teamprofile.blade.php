@@ -12,7 +12,9 @@
 @if($team)
 <div id="teamsView">
         <div class="teamphoto">
-          <a href="#"><img src="" width="150" height="150" /></a>
+          @if($team->logo)
+            {{ HTML::image('img/teams/logos/'.$team->logo, '', ['width' => '180', 'height' => '180']) }}
+          @endif
         </div>
         <div class="data">
           <div  class="teamName"><h1>{{ e($team->teamname) }}</h1></div>
