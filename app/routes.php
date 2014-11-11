@@ -182,14 +182,23 @@ Route::group(array('before' => 'guest'), function() {
 
     Route::group(array('before' => 'csrf'), function() {
 
-        Route::post('/account/create', array(
+        Route::post('/create', array(
             'as' => 'account-create-post',
             'uses' => 'AccountController@postCreate'
         ));
 
-        Route::post('/account/sign-in', array(
+        Route::post('/create2', array(
+            'as' => 'account-create-post2',
+            'uses' => 'AccountController@postCreate2'
+        ));
+
+        Route::post('/sign-in', array(
             'as' => 'account-sign-in-post',
             'uses' => 'AccountController@postSignIn'
+        ));
+        Route::post('/sign-in2', array(
+            'as' => 'account-sign-in-post2',
+            'uses' => 'AccountController@postSignIn2'
         ));
         /*
 
@@ -240,12 +249,12 @@ Route::group(array('before' => 'guest'), function() {
         'uses' => 'AccountController@getSignIn'
     ));
 
-    Route::get('/account/sign-in', array(
+    Route::get('/sign-in', array(
         'as' => 'account-sign-in',
         'uses' => 'AccountController@getSignIn'
     ));
 
-    Route::get('/account/create', array(
+    Route::get('/create', array(
         'as' => 'account-create',
         'uses' => 'AccountController@getCreate'
     ));

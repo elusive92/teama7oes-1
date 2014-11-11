@@ -6,12 +6,52 @@ class AccountController extends BaseController {
 		return View::make('account.signin');
 	}
 
-	public function postSignIn(){
+    public function postSignIn()
+    {
 
         $validator = Validator::make(
             array(
                 'email' => Input::get('email'),
                 'password' => Input::get('password')
+            ),
+            array(
+                'email' => 'required|email',
+                'password' => 'required'
+            )
+        );
+        if ($validator->fails()) {
+            return Response::json([
+                'success' => false,
+                'error' => $validator->errors()->toArray()
+            ]);
+        }
+        $remember = (Input::has('remember')) ? true : false;
+
+        $auth = Auth::attempt(array(
+            'email' => Input::get('email'),
+            'password' => Input::get('password'),
+            'active' => 1
+        ), $remember);
+
+        if ($auth) {
+            //return Redirect::route('account-sign-in');
+            return Response::json(['success' => true]);
+        } else {
+            return Response::json([
+                'success' => false,
+                'error' => array('error' => 'Email/password wrong or your account is still not activated.'),
+                'redirect' => Redirect::intended('/')
+            ]);
+
+        }
+    }
+
+	public function postSignIn2(){
+
+        $validator = Validator::make(
+            array(
+                'email' => Input::get('email3'),
+                'password' => Input::get('password3')
             ),
             array(
                 'email' => 'required|email',
@@ -27,8 +67,8 @@ class AccountController extends BaseController {
         $remember = (Input::has('remember')) ? true : false;
 
         $auth = Auth::attempt(array(
-            'email' => Input::get('email'),
-            'password' => Input::get('password'),
+            'email' => Input::get('email3'),
+            'password' => Input::get('password3'),
             'active' => 1
         ), $remember);
 
@@ -166,6 +206,80 @@ class AccountController extends BaseController {
 		}
 		
 	}
+
+    public function postCreate2() {
+        /*$validator = Validator::make(Input::all(),
+            array(
+                'email'			=> 'required|max:50|email|unique:users',
+                'username' 		=> 'required|max:20|min:3|unique:users',
+                'password' 		=> 'required|min:6',
+                'password_' 	=> 'required|same:password'
+            )
+        );
+        */
+        $validator = Validator::make(
+            array(
+                'email' => Input::get('email3'),
+                'username' => Input::get('username2'),
+                'password' => Input::get('password3'),
+                'password_again' => Input::get('password3_')
+            ),
+            array(
+                'email' => 'required|min:4|max:50|email|unique:users',
+                'username' => 'required|max:20|min:3|unique:users',
+                'password' => 'required|min:6',
+                'password_again' => 'required|same:password'
+            )
+        );
+
+        if($validator->fails()){
+            return Response::json([
+                'success'=>false,
+                'error'=>$validator->errors()->toArray()
+            ]);
+        }else{
+            /*
+            if($validator->fails()){
+                return Redirect::route('account-create')
+                        ->withErrors($validator)
+                        ->withInput();
+            */
+
+            $email 		= Input::get('email3');
+            $username 	= Input::get('username2');
+            $password 	= Input::get('password3');
+
+            $code 		= str_random(60);
+
+            $user 	= User::create(array(
+                'email' => $email,
+                'username' => $username,
+                'password' => Hash::make($password),
+                'code' => $code,
+                'active' => 0
+            ));
+
+            if($user) {
+
+                Mail::send('emails.auth.authentication', array(
+                        'link' => URL::route('account-activate', $code),
+                        'username' => $username),
+                    function($message) use ($user) {
+                        $message->to($user->email, $user->username)->subject('Activate your account');
+                    }
+
+
+                );
+
+                return Response::json(['success'=>true]);
+                //return Redirect::route('home')
+                //	->with('global', 'Your account has been created! We have sent you an email to activate your account.');
+            }
+
+
+        }
+
+    }
 	
 	public function getActivate($code){
 		$user = User::where('code', '=', $code)->where('active','=',0);

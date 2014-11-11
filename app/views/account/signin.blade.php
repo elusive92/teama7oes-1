@@ -1,24 +1,23 @@
 @extends('layout.main')
 
 @section('content')
+<div class="alert alert-info info2" style="display: none;">
+    <ul></ul>
+</div>
 <div class='form'>
-    <form action="{{ URL::route('account-sign-in-post') }}" method="post">
+    <form action="{{ URL::route('account-sign-in-post2') }}" method="post" id="loginin">
         <div class="form-group">
-            <label for="email">Email: </label><input type="text" name="email" class="form-control" id="email" placeholder="Enter email" {{ (Input::old('email')) ? 'value="' . e(Input::old('email')) . '"' : '' }} />
+            <label for="email">Email: </label><input type="text" name="email3" class="form-control" id="email3" placeholder="Enter email" {{ (Input::old('email3')) ? 'value="' . e(Input::old('email3')) . '"' : '' }} />
 
         </div>
-        @if($errors->has('email'))
-        <p class='error'>{{ $errors->first('email') }}</p>
-        @endif
+
         <div class="form-group">
-            <label for="password">Password: </label><input type="password" name="password" class="form-control" id="password" placeholder="Password"/>
+            <label for="password">Password: </label><input type="password" name="password3" class="form-control" id="password3" placeholder="Password"/>
 
         </div>
-        @if($errors->has('password'))
-        <p class='error'>{{ $errors->first('password') }}</p>
-        @endif
+
         <div class="checkbox">
-            <input type="checkbox" name="remember" id="remember" />
+            <input type="checkbox" name="remember" id="remember" style="margin-left: 0!important" />
             <label for="remember">
                 Remember me
             </label>
@@ -31,4 +30,47 @@
 
     <p><a href="{{ URL::route('account-forgot-password') }}" class="btn btn-default">Forgot my password</a></p>
 </div>
+<script>
+    $(document).ready(function(){
+        var info = $('.info2');
+
+        $('#loginin').submit(function(e){
+            $.ajaxSetup({
+                headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+            });
+            e.preventDefault();
+
+            var formData = new FormData();
+            formData.append('email3', $('#email3').val());
+            formData.append('password3', $('#password3').val());
+
+
+            $.ajax({
+                url: '{{ URL::route('account-sign-in-post2') }}',
+                method: 'post',
+                processData: false,
+                contentType: false,
+                cache: false,
+                dataType: 'json',
+                data: formData,
+                success: function(data){
+                info.hide().find('ul').empty();
+                console.log(data);
+                if(!data.success){
+                    $.each(data.error , function(index, error){
+                        info.find('ul').append('<li>'+error+'</li>');
+                    });
+                    info.slideDown();
+                }else{
+                    location.href = "{{URL::route('home')}}";
+                }
+
+                },
+                error: function(){}
+            });
+
+        });
+
+    });
+</script>
 @stop
