@@ -2,7 +2,8 @@
 Jak robicie eksport to nie szybki tylko w opcjach zaznaczyc jeszce wyswietlanie zwiazki z kluczem obcym
 
 
-teama7oes.sq - AP 09.11.14 - wszystkie id_ zmienione na user_id itp , i tak beda jeszcze zmiany ale to juz pozniej na koniec mysle
+teama7oes.sq - AP 11.11.14 - wazny update do newsow
+teama7oes8.sq - AP 09.11.14 - wszystkie id_ zmienione na user_id itp , i tak beda jeszcze zmiany ale to juz pozniej na koniec mysle
 teama7oes7.sq - AP 08.11.14 - zmiana id znowu - wiekszosc zrobiona czesc jeszcze musze dokonczyc ale poki co zrobilem tabele z ktorych korzystamy
 teama7oes6.sq - AP 08.11.14 - gruntowne zmiany wszystkie tabele maja teraz "id" , pozostałe nazywają sie analogicznie id_users, dodana tabela friendlist, dodane pola "comefrom" do users (from nazwa specjalna)
 teama7oes5.sq - AP 19.10.14 - takie tam po hance zmiany + do usera cos dodane

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Czas generowania: 11 Lis 2014, 19:16
+-- Czas generowania: 09 Lis 2014, 18:02
 -- Wersja serwera: 5.6.20
 -- Wersja PHP: 5.5.15
 
@@ -62,9 +62,8 @@ CREATE TABLE IF NOT EXISTS `conversations` (
 CREATE TABLE IF NOT EXISTS `friendlist` (
 `id` int(11) NOT NULL,
   `id_adding` int(11) NOT NULL,
-  `id_friend` int(11) NOT NULL,
-  `data` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+  `id_friend` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- RELACJE TABELI `friendlist`:
@@ -73,13 +72,6 @@ CREATE TABLE IF NOT EXISTS `friendlist` (
 --   `id_friend`
 --       `users` -> `id`
 --
-
---
--- Zrzut danych tabeli `friendlist`
---
-
-INSERT INTO `friendlist` (`id`, `id_adding`, `id_friend`, `data`) VALUES
-(8, 3, 1, '2014-11-11 15:07:34');
 
 -- --------------------------------------------------------
 
@@ -113,14 +105,7 @@ CREATE TABLE IF NOT EXISTS `games` (
   `gamename` varchar(50) COLLATE utf8_polish_ci NOT NULL,
   `descript` varchar(255) COLLATE utf8_polish_ci NOT NULL,
   `logo` varchar(20) COLLATE utf8_polish_ci DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=2 ;
-
---
--- Zrzut danych tabeli `games`
---
-
-INSERT INTO `games` (`id`, `gamename`, `descript`, `logo`) VALUES
-(1, 'Pokemon', 'Gra w pokemony , red blue itp', 'pokemon.jpg');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -207,24 +192,14 @@ CREATE TABLE IF NOT EXISTS `news` (
   `game_id` int(11) NOT NULL,
   `title` varchar(50) COLLATE utf8_polish_ci NOT NULL,
   `descript` varchar(255) COLLATE utf8_polish_ci NOT NULL,
-  `photo` varchar(20) COLLATE utf8_polish_ci DEFAULT NULL,
-  `draft` tinyint(1) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=4 ;
+  `photo` varchar(20) COLLATE utf8_polish_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
 --
 -- RELACJE TABELI `news`:
 --   `game_id`
 --       `games` -> `id`
 --
-
---
--- Zrzut danych tabeli `news`
---
-
-INSERT INTO `news` (`id`, `game_id`, `title`, `descript`, `photo`, `draft`, `created_at`, `updated_at`) VALUES
-(3, 1, 'POkemony do boju', 'nowy post o pokemonach. Dizsiaj wchodzi nowa gra do boju o wolnosc', NULL, 0, '2014-11-11 18:02:34', '2014-11-11 17:01:53');
 
 -- --------------------------------------------------------
 
@@ -301,7 +276,7 @@ CREATE TABLE IF NOT EXISTS `teammembers` (
   `team_id` int(11) NOT NULL,
   `joindate` datetime NOT NULL,
   `leftdate` datetime DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
 --
 -- RELACJE TABELI `teammembers`:
@@ -310,13 +285,6 @@ CREATE TABLE IF NOT EXISTS `teammembers` (
 --   `team_id`
 --       `teams` -> `id`
 --
-
---
--- Zrzut danych tabeli `teammembers`
---
-
-INSERT INTO `teammembers` (`id`, `user_id`, `team_id`, `joindate`, `leftdate`) VALUES
-(1, 1, 4, '2014-11-11 11:24:06', NULL);
 
 -- --------------------------------------------------------
 
@@ -327,7 +295,7 @@ INSERT INTO `teammembers` (`id`, `user_id`, `team_id`, `joindate`, `leftdate`) V
 CREATE TABLE IF NOT EXISTS `teams` (
 `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `game_id` int(11) DEFAULT NULL,
+  `game_id` int(11) NOT NULL,
   `teamname` varchar(50) COLLATE utf8_polish_ci NOT NULL,
   `logo` varchar(20) COLLATE utf8_polish_ci DEFAULT NULL,
   `ranking` int(5) NOT NULL DEFAULT '1000',
@@ -336,7 +304,7 @@ CREATE TABLE IF NOT EXISTS `teams` (
   `status` int(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
 --
 -- RELACJE TABELI `teams`:
@@ -345,13 +313,6 @@ CREATE TABLE IF NOT EXISTS `teams` (
 --   `game_id`
 --       `games` -> `id`
 --
-
---
--- Zrzut danych tabeli `teams`
---
-
-INSERT INTO `teams` (`id`, `user_id`, `game_id`, `teamname`, `logo`, `ranking`, `win`, `lose`, `status`, `created_at`, `updated_at`) VALUES
-(4, 1, NULL, 'PokeCenter', NULL, 1000, 0, 0, 0, '2014-11-11 11:24:06', '2014-11-11 11:24:06');
 
 -- --------------------------------------------------------
 
@@ -419,15 +380,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `photo` varchar(20) COLLATE utf8_polish_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8_polish_ci NOT NULL,
   `comefrom` varchar(20) COLLATE utf8_polish_ci NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=2 ;
 
 --
 -- Zrzut danych tabeli `users`
 --
 
 INSERT INTO `users` (`id`, `email`, `username`, `password`, `password_temp`, `code`, `active`, `permissions`, `about`, `created_at`, `updated_at`, `photo`, `remember_token`, `comefrom`) VALUES
-(1, 'elusive9225@gmail.com', 'elusive92', '$2y$10$FbYsCManSOWJC/T9KreUHOMOWVIdIDRtJSPbPRKe2dvMv.rdOve5m', '', '', 1, 1, NULL, '2014-11-08 16:08:28', '2014-11-08 16:08:57', NULL, 'HdcJSdYYJoTyJdfqgtSaV6WH2n3TdzETUzUyB2Xvn4RtvbUVvttYQWhICJRC', ''),
-(3, 'elusive92@gmail.com', 'elu', '$2y$10$rFEbfq9IDySqmxXIhM9lOuVVTboU9o7vBEJtVtNYFQixVJb9LrGpK', '', '', 1, 1, NULL, '2014-11-11 11:59:37', '2014-11-11 12:00:03', NULL, 'B6enKafVlYmixiIr4VY9As8HWdsnXnTtuAoDYpJCpK4Plebz6t9X12VrAI7m', '');
+(1, 'elusive9225@gmail.com', 'elusive92', '$2y$10$FbYsCManSOWJC/T9KreUHOMOWVIdIDRtJSPbPRKe2dvMv.rdOve5m', '', '', 1, 0, NULL, '2014-11-08 16:08:28', '2014-11-08 16:08:57', NULL, '', '');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -553,7 +513,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT dla tabeli `friendlist`
 --
 ALTER TABLE `friendlist`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT dla tabeli `galleries`
 --
@@ -563,7 +523,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT dla tabeli `games`
 --
 ALTER TABLE `games`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT dla tabeli `matches`
 --
@@ -583,7 +543,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT dla tabeli `news`
 --
 ALTER TABLE `news`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT dla tabeli `players`
 --
@@ -603,12 +563,12 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT dla tabeli `teammembers`
 --
 ALTER TABLE `teammembers`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT dla tabeli `teams`
 --
 ALTER TABLE `teams`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT dla tabeli `tournamentmembers`
 --
@@ -623,7 +583,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- Ograniczenia dla zrzutów tabel
 --
