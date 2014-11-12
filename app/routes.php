@@ -149,6 +149,11 @@ Route::group(array('before' => 'auth'), function() {
         'as' => 'team-edit-post',
         'uses' => 'TeamController@postEditTeam'
     ));
+
+    Route::post('/addPlayer', array(
+        'as' => 'team-add-player',
+        'uses' => 'TeaminvitationController@postTeamInv'
+    ));
     ///////carna lista test////
 
 
