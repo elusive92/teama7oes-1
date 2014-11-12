@@ -21,8 +21,8 @@ class NewsController extends BaseController {
                 'selection' => Input::get('selection'),
             ),
             array(
-                'title' => 'required|min:4|max:50',
-                'descript' => 'required|max:255',
+                'title' => 'required|min:4|max:80',
+                'descript' => 'required|max:3000',
                 'selection' => 'required'
             )
         );

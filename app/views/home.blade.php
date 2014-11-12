@@ -15,7 +15,7 @@
 					</a>
 					<h3><a href="{{ URL::action('news-show', $new->id) }}">{{$new->title}} </a></h3>
 					<p> {{Str::limit($new->descript, 200)}}</p>
-					<a href="{{ URL::action('news-show', $new->id) }}">Read moar </a>
+					<a href="{{ URL::action('news-show', $new->id) }}">Read more </a>
 					<p class="ptime"> Created at {{ $new->created_at }} </p>
 				</li>
 			</ul>
@@ -24,7 +24,7 @@
 	@if(Auth::check())
         @if(Auth::user()->permissions == 1)
 
-        <a href="{{ URL::route('news-add')}}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span> Manage News Section</a>
+        <a href="{{ URL::route('news-add')}}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span>Add news</a>
 
         @endif
     @endif

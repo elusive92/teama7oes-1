@@ -16,7 +16,7 @@
     
     <label for="Descript">
         <span>Description :</span>
-        <textarea id="message" name="message" placeholder="Your Message to Us"></textarea>
+        <textarea id="message" name="message" placeholder="Full description here"></textarea>
     </label> 
      <label for="Draft">
         <span>Public status :</span><select name="selection">
@@ -26,8 +26,11 @@
     </label>    
     <label>
         <span>Upload photo :</span>
-        <input id="photo" type="text" name="photo" placeholder="opisz fotke ktora dodasz xD" />
+        <button type="button" class="btn btn-default btn-sm">
+          <span><img src="{{ URL::asset('/') }}img/ico/upload.png"/></span> Upload article photo
+        </button>
     </label> 
+    <br><h1></h1>
      <label>
         <span>&nbsp;</span> 
         <input type="submit" class="button" value="Send" />
