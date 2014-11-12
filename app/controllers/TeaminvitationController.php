@@ -19,6 +19,13 @@ class TeaminvitationController extends BaseController {
         }
         $user = User::where('username', '=', Input::get('name'))
             ->first();
+        if($user->id == Auth::user()->id){
+            return Response::json([
+                'success' => false,
+                'error' => array('error' => 'You cant add yourself.'),
+                'redirect' => Redirect::intended('/')
+            ]);
+        }
 
         if($user){
             $team = Team::where('user_id', '=', Auth::user()->id)
