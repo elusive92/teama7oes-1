@@ -18,11 +18,12 @@ class TeaminvitationController extends BaseController {
             ]);
         }
         $user = User::where('username', '=', Input::get('name'))
-            ->firstOrFail();
+            ->first();
+
         if($user){
             $team = Team::where('user_id', '=', Auth::user()->id)
                 //->where('game_id', '=', $gameid)
-                ->firstOrFail();
+                ->first();
             $teaminv = Teaminvitation::where('user_id', '=', $user->id)
                 ->where('team_id', '=', $team->id);
             if(!($teaminv->first())){
