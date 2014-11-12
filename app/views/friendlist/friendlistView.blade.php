@@ -11,7 +11,7 @@
                     <div class="form-group">
                         Nick: {{Form::text('friendplyer')}}</div>
 
-                      <input type="submit" value="Add!" class="btn btn-default"/>
+                      <input type="submit" value="Add" class="btn btn-default"/>
                     {{Form::close()}}
         	</div>
 

@@ -8,7 +8,7 @@ class FriendlistController extends BaseController {
 	        if($user->count()){
 	            $user = $user->first();
 	        $friend   = Friendlist::create(array(
-                'id_addingdding' => Auth::user()->id,
+                'id_adding' => Auth::user()->id,
                 'id_friend' => $user->id,
             ));
                 return Redirect::action('UserController@userprofile', array('username' => $username));
