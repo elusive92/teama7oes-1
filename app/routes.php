@@ -149,6 +149,19 @@ Route::group(array('before' => 'auth'), function() {
         'as' => 'team-edit-post',
         'uses' => 'TeamController@postEditTeam'
     ));
+    //////////friend list//////////////
+
+    Route::post('/playerfriendlist', array(
+        'as' => 'postFriendlist',
+        'uses' => 'FriendlistController@postFriendPlayer'
+    ));
+
+    Route::get('/playerfriendlist', array(
+        'as' =>'playerFriendList',
+        'uses' => 'FriendlistController@getPlayerFriendlist'
+    ));
+
+
     ///////carna lista test////
 
 
@@ -161,9 +174,11 @@ Route::group(array('before' => 'auth'), function() {
         'as' =>'playerBlackList',
         'uses' => 'BlacklistController@getPlayerBlacklist'
     ));
+
+
 //////////////////////deleting
     //ten route jest dziwny xd, jak dam /news/{id ktorego nie ma} to wywala ze nie znalzlo sciezki do blacklisty ;p
-    Route::controller('blacklist', 'BlacklistController');
+    // Route::controller('blacklist', 'BlacklistController');
 });
 
 
