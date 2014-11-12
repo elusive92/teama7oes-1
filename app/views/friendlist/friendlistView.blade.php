@@ -7,7 +7,7 @@
     <h5>{{Auth::user()-> username}} Friend List</h5>
 
      <div class='form'>
-                   {{Form::open(array(URL::route('postfriendlist')) )}}
+                   {{Form::open(array(URL::route('postFriendlist')) )}}
                     <div class="form-group">
                         Nick: {{Form::text('friendplyer')}}</div>
 

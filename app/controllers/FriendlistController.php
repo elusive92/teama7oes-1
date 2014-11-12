@@ -26,12 +26,9 @@ class FriendlistController extends BaseController {
 
 	public function getPlayerFriendlist(){
 
-        $Friendlists = Friendlist::where('id_adding', '=',Auth::user()->id)->get();
-        //return View::make('Friendlist.FriendlistView', compact($Friendlists));
+        $friendlists = Friendlist::where('id_adding', '=',Auth::user()->id)->get();
 
-
-
-        return View::make('Friendlist.FriendlistView')->with('Friendlists', $Friendlists);
+        return View::make('Friendlist.FriendlistView')->with('friendlists', $friendlists);
     }
 
 

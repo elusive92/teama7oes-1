@@ -42,7 +42,7 @@ class NewsController extends BaseController {
                 'selection' => $selection,
                 'game_id' => $game_id
             ));
-            if($news->save()){
+            if($news){
                 return Redirect::route('home')
                     ->with('global', 'Your news has been create');
                     }   
