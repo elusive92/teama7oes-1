@@ -28,9 +28,24 @@ class TeaminvitationController extends BaseController {
         }
 
         if($user){
+
             $team = Team::where('user_id', '=', Auth::user()->id)
                 //->where('game_id', '=', $gameid)
                 ->first();
+            $teammembers = Teammember::where('user_id', '=', $user->id)
+                ->whereNull('leftdate')
+                ->get();
+            foreach($teammembers as $teammember){
+                $team2 = Team::where('id', '=', $teammember->team_id)
+                    ->first();
+                if(($team->game_id) == ($team2->game_id)){
+                    return Response::json([
+                        'success' => false,
+                        'error' => array('error' => 'User already have a team.'),
+                        'redirect' => Redirect::intended('/')
+                    ]);
+                }
+            }
             $teaminv = Teaminvitation::where('user_id', '=', $user->id)
                 ->where('team_id', '=', $team->id);
             if(!($teaminv->first())){
