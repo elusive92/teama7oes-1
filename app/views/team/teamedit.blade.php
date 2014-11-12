@@ -44,6 +44,12 @@
                 <p>{{ e($teammember->user->username) }}</p>
             @endforeach
         @endif
+        @if($teaminvitations)
+            <h5>Pending invitations: </h5>
+            @foreach($teaminvitations as $teaminvitation)
+                <p>{{ e($teaminvitation->user->username) }}</p>
+            @endforeach
+        @endif
     </div>
     <div class="sep"></div>
 </div>

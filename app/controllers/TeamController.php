@@ -182,9 +182,11 @@ class TeamController extends BaseController {
                             $teammembers = Teammember::where('team_id', '=', $idteam)
                                 ->whereNull('leftdate')
                                 ->get();
+                            $teaminvitations = Teaminvitation::where('team_id', '=', $idteam)->get();
                             return View::make('team.teamedit')
                                 ->with('teammembers', $teammembers)
-                                ->with('team', $team);
+                                ->with('team', $team)
+                                ->with('teaminvitations', $teaminvitations);
                         }
 
                     }
@@ -225,10 +227,5 @@ class TeamController extends BaseController {
         }
         return Redirect::action('TeamController@myTeam');
     }
-
-    public function postTeamInv(){
-
-    }
-
 
 }
