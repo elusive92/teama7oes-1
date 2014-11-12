@@ -65,7 +65,7 @@ class FriendlistController extends BaseController {
             ]);
         }elseif($result->count()) {
 
-                return Redirect::route('playerFriendlist');
+                return Redirect::route('friendlistPlayer');
     }
 
         else{
@@ -77,7 +77,7 @@ class FriendlistController extends BaseController {
             $blist -> save();
 
             if($blist){
-                return Redirect::route('playerFriendlist');
+                return Redirect::route('friendlistPlayer');
             }
         }
 
@@ -85,8 +85,9 @@ class FriendlistController extends BaseController {
 
     public function postDestroy(){
         $block = Friendlist::find(Input::get('id'));
+
          if($block->delete()){
-            return  Redirect::route('playerFriendlist');
+            return  Redirect::route('friendlistPlayer');
         }
     }
 }
