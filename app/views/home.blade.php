@@ -21,15 +21,11 @@
 			</ul>
 		@endforeach
 	@endif
+
 	@if(Auth::check())
         @if(Auth::user()->permissions == 1)
-
-        <a href="{{ URL::route('news-add')}}" class="btn btn-default btn-sm" class="myteam">
-
-
+        <a href="{{ URL::route('news-add')}}" class="btn btn-default btn-sm">
           <span><img src="{{ URL::asset('/') }}img/ico/pencil.png"/></span> Add news
-
-
     	</a>
         @endif
     @endif
