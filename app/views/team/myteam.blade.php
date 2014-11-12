@@ -24,7 +24,7 @@
     <tr>
         <td><?php echo $i; ?>.</td>
         <td><a href="{{ URL::route('teamprofile', $teamrank->teamname) }}">{{ e($teamrank->teamname) }}</a></td>
-        <td>{{ e($teamrank->ranking) }}</td>
+        <td style="text-align:right">{{ e($teamrank->ranking) }}</td>
         <?php $i++; ?>
     </tr>
 
