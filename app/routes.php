@@ -168,6 +168,11 @@ Route::group(array('before' => 'auth'), function() {
         'uses' => 'TeaminvitationController@postTeamInv'
     ));
 
+    Route::post('/delPlayerInv', array(
+        'as' => 'team-del-player',
+        'uses' => 'TeaminvitationController@delTeamInv'
+    ));
+
     ///////carna lista test////
 
 

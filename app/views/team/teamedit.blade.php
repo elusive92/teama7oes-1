@@ -53,7 +53,17 @@
         @if($teaminvitations)
             <h5>Pending invitations: </h5>
             @foreach($teaminvitations as $teaminvitation)
-                <p>{{ e($teaminvitation->user->username) }}</p>
+                <ul class="nav navbar-nav">
+                <li>{{ e($teaminvitation->user->username) }}</li>
+                <li style="float:right; padding-left: 15px;">{{Form::open(array('route' => 'team-del-player'))}}
+                                                    {{Form::hidden('id', $teaminvitation->id)}}
+                                                    <button type="submit"  class="btn btn-danger btn-xs">Delete</button>
+                                                    {{Form::close()}}</li>
+
+                </ul>
+
+
+
             @endforeach
         @endif
     </div>

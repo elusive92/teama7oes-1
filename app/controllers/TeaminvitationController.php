@@ -66,6 +66,13 @@ class TeaminvitationController extends BaseController {
 
     }
 
+    public function delTeamInv(){
+        $teaminv = Teaminvitation::find(Input::get('id'));
+        if($teaminv->delete()){
+            return Redirect::action('TeamController@getEditTeam');
+        }
+    }
+
     public function acceptTeamInv(){
 
     }
