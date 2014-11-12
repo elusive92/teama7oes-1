@@ -58,10 +58,8 @@ class BlacklistController extends BaseController {
         );
 
         if($validator->fails()) {
-            return Response::json([
-                'success' => false,
-                'error' => $validator->errors()->toArray()
-            ]);
+            return Redirect::route('playerBlackList');
+
         }elseif($result->count()) {
 
                 return Redirect::route('playerBlackList');

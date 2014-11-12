@@ -13,7 +13,7 @@
                     <div class="form-group">
                         Nick: {{Form::text('bannedplayer')}}</div>
 
-                      <input type="submit" value="Add!" class="btn btn-default"/>
+                      <input type="submit" value="Add" class="btn btn-default"/>
                     {{Form::close()}}
         	</div>
 
@@ -27,12 +27,12 @@
         <tbody>
         @foreach($blacklists as $blacklist)
 
-                    <?php $us = User::where('id','=',$blacklist->id_B)->firstOrFail();;
+                    <?php $us = User::where('id','=',$blacklist->id_B)->firstOrFail();
                          ?>
                    <tr>
                         <td>{{$us -> username}} </td>
                     <td>
-                        {{Form::open(array('url'=>'blacklist/destroy'))}}
+                        {{Form::open(array(URL::route('destroyPlayer')))}}
                         {{Form::hidden('id', $blacklist->id)}}
                         <button type="submit"  class="btn btn-danger">Delete</button>
                         {{Form::close()}}

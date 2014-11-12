@@ -35,7 +35,7 @@ class GameController extends BaseController {
 
         $extension = Input::file('logo')->getClientOriginalExtension();
 
-        if($extension == 'jpg' OR $extension == 'png'){
+        if($extension == 'jpg' OR $extension == 'png' OR $extension=='jpeg'){
 
             $filename = Input::file('logo')->getClientOriginalName();
             $destinationPath = 'media/games/';

@@ -158,7 +158,7 @@ Route::group(array('before' => 'auth'), function() {
     ));
 
     Route::get('/playerfriendlist', array(
-        'as' =>'friendlistPlayer',
+        'as' =>'playerFriendList',
         'uses' => 'FriendlistController@getPlayerFriendlist'
     ));
     
@@ -184,6 +184,11 @@ Route::group(array('before' => 'auth'), function() {
     Route::get('/playerblacklist', array(
         'as' =>'playerBlackList',
         'uses' => 'BlacklistController@getPlayerBlacklist'
+    ));
+
+    Route::post('/playerblacklist', array(
+        'as' => 'destroyPlayer',
+        'uses' => 'BlacklistController@postDestroy'
     ));
 
 
