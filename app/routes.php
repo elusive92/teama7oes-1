@@ -149,7 +149,7 @@ Route::group(array('before' => 'auth'), function() {
         'as' => 'team-edit-post',
         'uses' => 'TeamController@postEditTeam'
     ));
-<<<<<<< HEAD
+
     //////////friend list//////////////
 
     Route::post('/playerfriendlist', array(
@@ -161,15 +161,13 @@ Route::group(array('before' => 'auth'), function() {
         'as' =>'playerFriendList',
         'uses' => 'FriendlistController@getPlayerFriendlist'
     ));
-
-
-=======
+    
 
     Route::post('/addPlayer', array(
         'as' => 'team-add-player',
         'uses' => 'TeaminvitationController@postTeamInv'
     ));
->>>>>>> origin/master
+
     ///////carna lista test////
 
 
