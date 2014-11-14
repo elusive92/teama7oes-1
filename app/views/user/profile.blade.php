@@ -53,6 +53,16 @@
 
           <h3>About Me:</h3>
           <p>{{ e($user->about) }}</p>
+          <div class="sep"></div><br>
+            @if(e($user->id ) == e(Auth::user()->id))
+            <div id="brejker">
+            <div class="newsbutton">
+             <a href="{{ URL::route('account-editprofile')}}" class="btn btn-default">Edit profile</a>
+             <a href="{{ URL::route('playerBlackList')}}" class="btn btn-default">Black List</a>
+             <a href="{{ URL::route('friendlistPlayer')}}" class="btn btn-default">Friend List</a>
+           </div></div>
+            @endif
+
       </div> 
     @else
     <h1>This user doesn't exists</h1>
