@@ -5,39 +5,39 @@ class NewsController extends BaseController {
 
     public function postNews(){
 
-        $validator = Validator::make(
-            array(
-                'title' => Input::get('name'),
-                'descript' => Input::get('message'),
-                'selection' => Input::get('selection'),
-            ),
-            array(
-                'title' => 'required|min:4|max:80',
-                'descript' => 'required|max:3000',
-                'selection' => 'required'
-            )
-        );
+        // $validator = Validator::make(
+        //     array(
+        //         'title' => Input::get('name'),
+        //         'descript' => Input::get('message'),
+        //         'selection' => Input::get('selection'),
+        //     ),
+        //     array(
+        //         'title' => 'required|min:4|max:80',
+        //         'descript' => 'required|max:3000',
+        //         'selection' => 'required'
+        //     )
+        // );
 
-        if($validator->fails()){
-            return Redirect::route('home')
-                ->withErrors($validator);
-        }else{
+        // if($validator->fails()){
+        //     return Redirect::route('home')
+        //         ->withErrors($validator);
+        // }else{
             $title = Input::get('name');
             $descript = Input::get('message');
-            $selection   = Input::get('selection');
+            $draft   =  Input::get('selection');
             $game_id = 1;
             
             $news   = News::create(array(
                 'title' => $title,
                 'descript' => $descript,
-                'selection' => $selection,
+                'draft' => $draft,
                 'game_id' => $game_id
             ));
             if($news){
                 return Redirect::route('home')
                     ->with('message', 'Your news has been create');
                     }   
-            }
+            
         }
 
     public function deleteNews($id){
@@ -61,6 +61,18 @@ class NewsController extends BaseController {
         // var_dump("edit $news ");
         return View::make('news.edit')->with('news', $news);       
         
+
+    }
+
+    public function manageNews(){
+
+        $news = News::where('draft', '=', 1)
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+
+        
+        return View::make('home')->with('news', $news);
 
     }
 

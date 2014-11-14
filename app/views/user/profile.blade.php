@@ -10,6 +10,18 @@
 
 @section('content')
 
+<ol class="breadcrumb">
+      <li><a href="{{ URL::route('home')}}">Home</a></li>
+      <li><a href="{{ URL::route('userprofile', Auth::user()->username) }}">Profile</a></li>
+      <li class="active"> 
+        @if($user)
+        {{ e($user->username) }}
+        @else
+        User profile
+        @endif
+      </li>
+</ol>
+
   <div id="profile">  
   @if($user)  
       <div id="profilebox">

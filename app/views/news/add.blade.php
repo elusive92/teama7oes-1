@@ -5,6 +5,7 @@
 @stop
 
 @section('content')
+
 <form action="{{ URL::route('news-add-post') }}" method="post" class="basic-grey">
     <h1>Add news
         <span>Please fill all the texts in the fields.</span>
@@ -19,7 +20,8 @@
         <textarea id="message" name="message" placeholder="Full description here"></textarea>
     </label> 
      <label for="Draft">
-        <span>Public status :</span><select name="selection">
+        <span>Public status :</span>
+        <select name="selection">
         <option value="0">Publish</option>
         <option value="1">Draft</option>
         </select>

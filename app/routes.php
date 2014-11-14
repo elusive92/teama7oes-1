@@ -32,6 +32,11 @@ Route::get('/news-delete/{id}', array(
     'uses' => 'NewsController@deleteNews'
 ));
 
+Route::get('/manage-news', array(
+    'as' => 'manage-news',
+    'uses' => 'NewsController@manageNews'
+));
+
 Route::get('/home', array(
     'as' => 'home',
     'uses' => 'HomeController@showHome'

@@ -30,11 +30,8 @@
 
 	@if(Auth::check())
         @if(Auth::user()->permissions == 1)
-        <a href="{{ URL::route('news-add')}}" class="btn btn-default btn-xs">
+        <a href="{{ URL::route('news-add')}}" class="btn btn-default btn-sm">
           <span><img src="{{ URL::asset('/') }}img/ico/pencil.png"/></span> Add news
-    	</a>
-    	<a href="{{ URL::route('manage-news')}}" class="btn btn-default btn-xs">
-          <span><img src="{{ URL::asset('/') }}img/ico/pencil.png"/></span> Manage news
     	</a>
         @endif
     @endif
