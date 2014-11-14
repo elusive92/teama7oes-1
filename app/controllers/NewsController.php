@@ -1,16 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Piotrek
- * Date: 2014-10-19
- * Time: 08:44
- */
-//** User controller */
 
 class NewsController extends BaseController {
     
-
-//////////////////////////WYSWIETLANIE PROFILU/////////////////////////////////////////
 
     public function postNews(){
 
@@ -44,11 +35,33 @@ class NewsController extends BaseController {
             ));
             if($news){
                 return Redirect::route('home')
-                    ->with('global', 'Your news has been create');
+                    ->with('message', 'Your news has been create');
                     }   
             }
         }
-///////////////////////////////////////////////////////////////////////////////////////
 
+    public function deleteNews($id){
+        // $news = News::where('id', '=', $id)->firstOrFail();
+        // var_dump("deleting $news ");
+
+        $news = News::find($id);
+        $dstr = $news->delete();
+
+        if($dstr){
+            return Redirect::route('home')
+                ->with('message', 'usuneiteo usuneiteo usuneiteo usuneiteo usuneiteo usuneiteo ');
+        }
+
+    }
+
+    public function editNews($id){
+
+        $news = News::find($id);
+
+        // var_dump("edit $news ");
+        return View::make('news.edit')->with('news', $news);       
+        
+
+    }
 
 }
