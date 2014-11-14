@@ -320,6 +320,21 @@ table {
     float:right;
 }
 
+#brejker {
+    padding-bottom: 25px;
+}
+
+.newsbutton {
+    float:right;
+    padding-right: 20px;
+}
+
+.imgsize {
+    /*float: left;     */ /* caly div sie od tego sypie, a musi byc float left...  */  
+    margin: 0px 15px 15px 0px;
+    max-width:800px;
+}
+
 /* form, z tego http://www.sanwebe.com/2013/10/css-html-form-styles */
 .basic-grey {
     margin-left:auto;

@@ -11,9 +11,9 @@
 			<ul id="news_list">
 				<li class="clearfix">
 					<a href="">
-						<img src="{{ URL::asset('/') }}img/avatar_example.jpg" height="50" width="60">
+						<img src="{{ URL::asset('/') }}img/avatar_example.jpg" height="100" width="100">
 					</a>
-					<h3><a href="{{ URL::action('news-show', $new->id) }}">{{$new->title}} </a></h3>
+					<h3><a href="{{ URL::action('news-show', $new->id) }}">{{Str::limit($new->title, 40)}} </a></h3>
 					<p> {{Str::limit($new->descript, 200)}}</p>
 					<a href="{{ URL::action('news-show', $new->id) }}">Read more </a>
 		@if(Auth::check())
@@ -30,12 +30,16 @@
 
 	@if(Auth::check())
         @if(Auth::user()->permissions == 1)
+        <div id="brejker">
+        <div class="newsbutton">
         <a href="{{ URL::route('news-add')}}" class="btn btn-default btn-xs">
           <span><img src="{{ URL::asset('/') }}img/ico/pencil.png"/></span> Add news
     	</a>
     	<a href="{{ URL::route('manage-news')}}" class="btn btn-default btn-xs">
-          <span><img src="{{ URL::asset('/') }}img/ico/pencil.png"/></span> Manage news
+          <span><img src="{{ URL::asset('/') }}img/ico/news.png"/></span> Manage news
     	</a>
+    	</div>
+    	</div>
         @endif
     @endif
 
