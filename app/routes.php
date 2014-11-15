@@ -22,6 +22,21 @@ Route::get('/news-add', array(
     'uses' => 'NewsController@postNews'
 ));
 
+Route::get('/news-edit/{id}', array(
+    'as' => 'news-edit',
+    'uses' => 'NewsController@editNews'
+));
+
+Route::get('/news-delete/{id}', array(
+    'as' => 'news-delete',
+    'uses' => 'NewsController@deleteNews'
+));
+
+Route::get('/manage-news', array(
+    'as' => 'manage-news',
+    'uses' => 'NewsController@manageNews'
+));
+
 Route::get('/home', array(
     'as' => 'home',
     'uses' => 'HomeController@showHome'
@@ -85,7 +100,7 @@ Route::post('/search-user', array(
 /////////////////////////////////// FIREND LIST CONTROLER////////////////////////
 
 Route::get('/user/add/{username}', array(
-    'as' => 'addFriendList',
+    'as' => 'friendlistPlayer',
     'uses' => 'FriendlistController@addFriendList', /////dalem tylko zeby bledu nie
 ));
 
