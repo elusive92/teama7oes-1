@@ -352,7 +352,11 @@ Route::post('/games', array(
     'uses' => 'GameController@postGameId'
 
 ));
+Route::get('/games/{gamename}', array(
+    'as' => 'getGame',
+    'uses' => 'GameController@getGame'
 
+));
 
 //-------------------------------------------------
 //---------------------Testowa Galeryja------------
