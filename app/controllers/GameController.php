@@ -17,20 +17,13 @@ class GameController extends BaseController {
          }
 
     }*/
-    public function getGame(){
-
-        return View::make('home');
-    }
 
     public function postGameId(){
 
         if (Request::ajax()){
-            $gamename = Input::get('gameid');
-            $game = Game::where('gamename','=',$gamename)->firstOrFail();
-            $gameid = $game->id;
 
 
-            return Response::json(Cookie::queue('gameid',$gameid,60*24));
+            return Response::json(Cookie::queue('gameid',Input::get('gameid'),60*24));
     }
    }
 
