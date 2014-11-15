@@ -20,7 +20,7 @@
           <li @if(Request::is('forum'))class="active"@endif><a href="{{ URL::route('forum')}}">Forum</a></li>
 
           <?php  $games = DB::table('games')->select('gamename')->get();?>
-
+          <li class="dropdown">
                        <a href ="" class="dropdown-toggle" data-toggle="dropdown">Games <span class="caret"></span></a>
                        <ul id = "games" class="dropdown-menu" role="menu">
                        @foreach($games as $game)
@@ -31,13 +31,14 @@
                                 <li id = "0"><a href="">Add</a></li>
                             @endif
                         @endif
-                   </ul>
-                   </ul>
-                   </ul>
-                 </div>
-               </div>
-             </nav>
-           </div>
+                        </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
            <script>
            $(document).ready(function(){
                $('#games li').click( function(e){
