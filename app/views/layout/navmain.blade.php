@@ -43,14 +43,16 @@
                console.log(e)
                e.preventDefault();
 
+               var gameid = e.target.value;
               
 
 
                $.ajax({
                    url: '{{ URL::route('postGame') }}',
-                   dataType: 'html',
-                   data: gameid,
+                   dataType: 'json',
+                   data: {'gameid': gameid},
                    method: 'POST',
+
 
 
                     success:function(responce){console.log(responce)}
