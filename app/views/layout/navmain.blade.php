@@ -23,6 +23,7 @@
                      <li>
                                {{Form::open()}}
                           		<select name="game" id="game">
+                          		<option>Games</option>
                           		@foreach($games as $game)
                           		<option value="{{$game->id}}">{{$game->gamename}}</option>
                           		@endforeach
