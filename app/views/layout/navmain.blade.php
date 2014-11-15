@@ -19,32 +19,28 @@
           <li @if(Request::is('search'))class="active"@endif><a href="{{ URL::route('search')}}">Search</a></li>
           <li @if(Request::is('forum'))class="active"@endif><a href="{{ URL::route('forum')}}">Forum</a></li>
 
-           <?php  $games = DB::table('games')->select('id','gamename')->get();?>
-                     <li>
-                               {{Form::open()}}
-                          		<select name="game" id="game">
-                          		<option>Games</option>
-                          		@foreach($games as $game)
-                          		<option value="{{$game->id}}">{{$game->gamename}}</option>
-                          		@endforeach
-                          		</select>
-                          		{{ Form::close()}}
-                     </li>
-                   </ul>
+          <?php  $games = DB::table('games')->select('gamename')->get();?>
+
+                       <a href ="" class="dropdown-toggle" data-toggle="dropdown">Games <span class="caret"></span></a>
+                       <ul id = "games" class="dropdown-menu" role="menu">
+                       @foreach($games as $game)
+                         <li id={{$game->gamename}}><a href={{URL::to('/games/'.$game->gamename)}}>{{$game->gamename}}</a></li>
+                        @endforeach
+                   </ul></ul>
                  </div>
                </div>
              </nav>
            </div>
            <script>
            $(document).ready(function(){
-               $('#game').on('change', function(e){
+               $('#games li').click( function(e){
                $.ajaxSetup({
                                headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
                            });
                console.log(e)
                e.preventDefault();
 
-               var gameid = e.target.value;
+               var gameid = this.id;
               
 
 
@@ -56,7 +52,8 @@
 
 
 
-                    success:function(responce){console.log(responce)}
+                    success:function(responce){console.log(responce)
+                    location.href = "{{URL::route('forum')}}";}
                })
 
                });
