@@ -19,6 +19,7 @@
           <li @if(Request::is('search'))class="active"@endif><a href="{{ URL::route('search')}}">Search</a></li>
           <li @if(Request::is('forum'))class="active"@endif><a href="{{ URL::route('forum')}}">Forum</a></li>
 
+<<<<<<< HEAD
           <?php  $games = DB::table('games')->select('gamename')->get();?>
 
                        <a href ="" class="dropdown-toggle" data-toggle="dropdown">Games <span class="caret"></span></a>
@@ -27,6 +28,19 @@
                          <li id={{$game->gamename}}><a href={{URL::to('/games/'.$game->gamename)}}>{{$game->gamename}}</a></li>
                         @endforeach
                    </ul></ul>
+=======
+           <?php  $games = DB::table('games')->select('id','gamename')->get();?>
+                     <li>
+                               {{Form::open()}}
+                          		<select name="game" id="game">
+                          		@foreach($games as $game)
+                          		<option value="{{$game->id}}">{{$game->gamename}}</option>
+                          		@endforeach
+                          		</select>
+                          		{{ Form::close()}}
+                     </li>
+                   </ul>
+>>>>>>> parent of 90b3b91... 123
                  </div>
                </div>
              </nav>
