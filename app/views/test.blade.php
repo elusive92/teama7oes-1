@@ -1,11 +1,9 @@
 @extends('layout.main')
 
 @section('title')
-	Tournaments
+	Search
 @stop
 
 @section('content')
-	tournaments
-	{{Cookie::get('gameid')}}
-
+{{Cookie::get('gameid')}}
 @stop

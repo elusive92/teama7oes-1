@@ -332,9 +332,9 @@ Route::group(array('before'=>'modAuth'),function(){
 //-------------------------------------------------
 //----------------Gry test-----------------
 ////////////////////////////////////////////////////
-Route::get('games/{gamename}', array(
-
-    'uses' => 'GameController@getGame'
+Route::post('/games', array(
+    'as' => 'postGame',
+    'uses' => 'GameController@postGameId'
 
 ));
 
