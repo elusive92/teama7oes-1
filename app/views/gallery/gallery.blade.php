@@ -1,57 +1,40 @@
 @extends('layout.main')
 
 
+@section('title')
+	Gallery
+@stop
+
 @section('content')
-<div id="myCarousel" class="carousel slide">
+    <div id="links">
+        @foreach($photos as $photo)
+        <a href={{URL::to('media/gallery/'.Auth::user()->id.'/'.$photo->filename)}} tittle={{$photo->tittle}}>
+           {{ HTML::image('media/gallery/'.Auth::user()->id.'/thumbnails/'.$photo->filename), $photo->tittle }}
+        </a>
+        @endforeach
+        <a href={{URL::to('media/gallery/2/fire.jpg')}}>
+                   {{ HTML::image('media/gallery/2/thumbnails/e1.jpg')}}
+                </a>
+    </div>
+     <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+         <div class="slides"></div>
+         <h3 class="title"></h3>
+         <a class="prev">‹</a>
+         <a class="next">›</a>
+         <a class="close">×</a>
+         <a class="play-pause"></a>
+         <ol class="indicator"></ol>
+     </div>
 
-
-
-    <ol class="carousel-indicators">
-    <?php $i=0 ?>
-    <?php $x=0 ?>
-    @foreach($photos as $photo)
-
-        @if($i === 0)
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <?php $i++ ?>
-          @else
-            <li data-target="#myCarousel" data-slide-to=$i></li>
-            <?php $i++ ?>
-          @endif
-     @endforeach
-        </ol>
-        <!-- Carousel items -->
-        <div class="carousel-inner">
-       @foreach($photos as $photo)
-
-            @if($x === 0)
-                <div class="active item">{{ HTML::image($photo->filename)}}
-                <div class="carousel-caption"><p>{{$photo -> title}}</p></div>
-                </div>
-
-                <?php $x++ ?>
-            @else
-                   <div class="item">{{ HTML::image($photo->filename) }}
-                   <div class="carousel-caption"><p>{{$photo -> title}}</p></div>
-                   </div>
-
-            @endif
-       @endforeach
-        </div>
-
-
- <!-- Carousel nav -->
-    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-</div>
-
-
-<script type="text/javascript">
-$(document).ready(function(){
-     $("#myCarousel").carousel({
-     interval : 3000,
-              pause: false
-     });
-});
-</script>
+   <script src="js/blueimp-gallery.min.js"></script>
+   <script>
+   document.getElementById('links').onclick = function (event) {
+       event = event || window.event;
+       var target = event.target || event.srcElement,
+           link = target.src ? target.parentNode : target,
+           options = {index: link, event: event},
+           links = this.getElementsByTagName('a');
+       blueimp.Gallery(links, options);
+   };
+   </script>
 @stop

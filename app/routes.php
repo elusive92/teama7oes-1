@@ -22,6 +22,21 @@ Route::get('/news-add', array(
     'uses' => 'NewsController@postNews'
 ));
 
+Route::get('/news-edit/{id}', array(
+    'as' => 'news-edit',
+    'uses' => 'NewsController@editNews'
+));
+
+Route::get('/news-delete/{id}', array(
+    'as' => 'news-delete',
+    'uses' => 'NewsController@deleteNews'
+));
+
+Route::get('/manage-news', array(
+    'as' => 'manage-news',
+    'uses' => 'NewsController@manageNews'
+));
+
 Route::get('/home', array(
     'as' => 'home',
     'uses' => 'HomeController@showHome'
@@ -85,7 +100,7 @@ Route::post('/search-user', array(
 /////////////////////////////////// FIREND LIST CONTROLER////////////////////////
 
 Route::get('/user/add/{username}', array(
-    'as' => 'addFriendList',
+    'as' => 'friendlistPlayer',
     'uses' => 'FriendlistController@addFriendList', /////dalem tylko zeby bledu nie
 ));
 
@@ -158,7 +173,7 @@ Route::group(array('before' => 'auth'), function() {
     ));
 
     Route::get('/playerfriendlist', array(
-        'as' =>'friendlistPlayer',
+        'as' =>'playerFriendList',
         'uses' => 'FriendlistController@getPlayerFriendlist'
     ));
     
@@ -184,6 +199,11 @@ Route::group(array('before' => 'auth'), function() {
     Route::get('/playerblacklist', array(
         'as' =>'playerBlackList',
         'uses' => 'BlacklistController@getPlayerBlacklist'
+    ));
+
+    Route::post('/playerblacklist', array(
+        'as' => 'destroyPlayer',
+        'uses' => 'BlacklistController@postDestroy'
     ));
 
 
@@ -299,8 +319,6 @@ Route::group(array('before' => 'guest'), function() {
 
 // Admin======================================
 //============================================
-//Jak chcecie cos grupowego to napiszcie mi co i jak
-// ja glupi wiec bez modelu nic nie napisze:)))
 
 Route::group(array('prefix' => 'admin','before'=>'adminAuth'), function()
 {
@@ -308,6 +326,8 @@ Route::group(array('prefix' => 'admin','before'=>'adminAuth'), function()
     {
         return 'huehuehueView::make(powiedzmy głwona admina)';
     });
+
+
     Route::get('/addGames', array(
         'as' => 'addGame',
         'uses' => 'GameController@getAddGame'
@@ -327,13 +347,21 @@ Route::group(array('before'=>'modAuth'),function(){
 //-------------------------------------------------
 //----------------Gry test-----------------
 ////////////////////////////////////////////////////
-Route::get('games/{gamename}', array(
+Route::post('/games', array(
+    'as' => 'postGame',
+    'uses' => 'GameController@postGameId'
 
+));
+Route::get('/games/{gamename}', array(
+    'as' => 'getGame',
     'uses' => 'GameController@getGame'
 
 ));
+Route::get('/games', array(
+    'as' => 'getGame2',
+    'uses' => 'GameController@getDaGame'
 
-
+));
 //-------------------------------------------------
 //---------------------Testowa Galeryja------------
 //-------------------------------------------------

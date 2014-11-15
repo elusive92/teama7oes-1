@@ -18,19 +18,74 @@
           <li @if(Request::is('tournaments'))class="active"@endif><a href="{{ URL::route('tournaments')}}">Tournaments</a></li>
           <li @if(Request::is('search'))class="active"@endif><a href="{{ URL::route('search')}}">Search</a></li>
           <li @if(Request::is('forum'))class="active"@endif><a href="{{ URL::route('forum')}}">Forum</a></li>
+
+          <?php  $games = DB::table('games')->select('gamename')->get();?>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Games <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="games/LeagueofLegends">League of Legends</a></li>
-              <li><a href="#">CS:GO</a></li>
-              <li class="divider"></li>
-              <li><a href="#">WoT</a></li>
-              <li><a href="#">CS 1.6</a></li>
-              <li><a href="#">Fifa2014</a></li>
-            </ul>
+                       <a href ="" class="dropdown-toggle" data-toggle="dropdown">Games <span class="caret"></span></a>
+                       <ul id = "games" class="dropdown-menu" role="menu">
+                       @foreach($games as $game)
+                         <li id={{$game->gamename}}><a href="">{{$game->gamename}}</a></li>
+                        @endforeach
+                        @if(Auth::check())
+                            @if(Auth::user()->permissions==2)
+                                <li id = "0"><a href="">Add</a></li>
+                            @endif
+                        @endif
+                        </ul>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 </div>
+
+           <script>
+           $(document).ready(function(){
+               $('#games li').click( function(e){
+               $.ajaxSetup({
+                               headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+                           });
+               console.log(e)
+               e.preventDefault();
+
+               var gameid = this.id;
+
+               if(gameid != 0){
+               $.ajax({
+                     url: '{{ URL::route('postGame') }}',
+                      dataType: 'json',
+                      data: {'gameid': gameid},
+                      method: 'POST',
+
+
+
+                     success:function(responce){console.log(responce)
+                     location.href = "{{URL::route('home')}}";}
+                    })
+               }else{
+               $.ajax(
+
+               		{
+
+               		method: "GET",
+
+               		cache: false,
+
+               		url: '{{ URL::route('getGame2') }}',
+
+               		contentType: "text/html",
+
+               		success: function(){location.href = "{{URL::route('addGame')}}";}
+
+
+               });
+
+
+
+               }
+
+
+
+               });
+           });
+           </script>

@@ -37,15 +37,24 @@ $(document).ready(function(){
 </script>
 
     <a class="myteamedit">
-        <span class="leftbutton">Search User</span>
+        <span class="rightbutton">        
+            <button type="button" class="btn btn-default btn-lg">
+          <span><img src="{{ URL::asset('/') }}img/ico/down_arrow.png"/></span> Search user
+        </button>
+        </span>
     </a>
     <a class="myteam">
-        <span class="rightbutton">Search Team</span>
+        <span class="rightbutton">        
+            <button type="button" class="btn btn-default btn-lg">
+          <span><img src="{{ URL::asset('/') }}img/ico/down_arrow.png"/></span> Search team
+        </button>
+        </span>
     </a>
 
 
-<br><br>
+<br><br><br>
 	<div id="left">
+
 	{{Form::open(array('url' =>'search-user'))}}
 		{{Form::text('keyword', null, array('placeholder'=> 'Search User'))}}
 		{{Form::submit('Search')}}

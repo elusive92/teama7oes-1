@@ -14,11 +14,5 @@ class Game extends Eloquent {
 
             );
 
-    public function getGame(){
-        return $this -> gamename;
-    }
 
-    public function getDescript(){
-        return $this -> descript;
-    }
 }

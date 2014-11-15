@@ -5,6 +5,12 @@
 @stop
 
 @section('content')
+    <ol class="breadcrumb">
+          <li><a href="{{ URL::route('home')}}">Home</a></li>
+          <li><a href="{{ URL::route('userprofile', Auth::user()->username) }}">Profile</a></li>
+          <li class="active">Edit profile</li>
+    </ol>   
+    
   <div id="profile">
     <form action="{{ URL::route('account-edit-post') }}" files="true" method="post" >        
         <div class="form-group">

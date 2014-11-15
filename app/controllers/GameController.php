@@ -2,23 +2,46 @@
 
 class GameController extends BaseController {
 
-    public function getGame($gamename){
+    /** public function getGame($gamename){
+        //$games = DB::table('games')->select('id', 'gamename')->get();
         $game = Game::where('gamename', '=', $gamename)->firstOrFail();
-        $gameid = $game->id;
 
-        return View::make('home')
-            ->withCookie(Cookie::queue('gameid',$gameid,60*24));
+         if($game) {
+             $gameid = $game->id;
 
+             return View::make('tournaments')
+                 //->with('games', $games)
+                 ->withCookie(Cookie::queue('gameid', $gameid, 60 * 24));
+         }else{
+             return View::make('tournaments');
+         }
+
+    }*/
+    public function getGame(){
+
+        return View::make('home');
     }
 
-   /** public function postGameId(){
-        $game = Game::where('gamename', '=', Input::get('gamename'))->firstOrFail();
-        $gameid = $game->idgame;
-        return View::make('home')
-            ->withCookie(Cookie::queue('gameid',$gameid,60*24));
-    }
+    public function postGameId(){
 
-*/
+        if (Request::ajax()){
+            $gamename = Input::get('gameid');
+            $game = Game::where('gamename','=',$gamename)->firstOrFail();
+            $gameid = $game->id;
+
+
+            return Response::json(Cookie::queue('gameid',$gameid,60*24));
+    }
+   }
+
+
+   /** public function getGames(){
+        $games = DB::table('games')->select('id', 'gamename')->get();
+        //$games = Game::all();
+        return View::make('tournaments')
+                                ->with('games', $games) ;
+    }*/
+
     public function getAddGame(){
 
         return View::make('gameform');
@@ -35,7 +58,7 @@ class GameController extends BaseController {
 
         $extension = Input::file('logo')->getClientOriginalExtension();
 
-        if($extension == 'jpg' OR $extension == 'png'){
+        if($extension == 'jpg' OR $extension == 'png' OR $extension=='jpeg'){
 
             $filename = Input::file('logo')->getClientOriginalName();
             $destinationPath = 'media/games/';

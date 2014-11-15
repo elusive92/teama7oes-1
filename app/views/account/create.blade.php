@@ -1,4 +1,4 @@
-@extends('layout.main')
+ @extends('layout.main')
 
 @section('content')
 <div class="alert alert-info info2" style="display: none;">
