@@ -319,8 +319,6 @@ Route::group(array('before' => 'guest'), function() {
 
 // Admin======================================
 //============================================
-//Jak chcecie cos grupowego to napiszcie mi co i jak
-// ja glupi wiec bez modelu nic nie napisze:)))
 
 Route::group(array('prefix' => 'admin','before'=>'adminAuth'), function()
 {
@@ -328,6 +326,8 @@ Route::group(array('prefix' => 'admin','before'=>'adminAuth'), function()
     {
         return 'huehuehueView::make(powiedzmy głwona admina)';
     });
+
+
     Route::get('/addGames', array(
         'as' => 'addGame',
         'uses' => 'GameController@getAddGame'
@@ -357,7 +357,11 @@ Route::get('/games/{gamename}', array(
     'uses' => 'GameController@getGame'
 
 ));
+Route::get('/games', array(
+    'as' => 'getGame2',
+    'uses' => 'GameController@getDaGame'
 
+));
 //-------------------------------------------------
 //---------------------Testowa Galeryja------------
 //-------------------------------------------------
