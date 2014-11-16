@@ -138,6 +138,7 @@ class TeamController extends BaseController {
         }
         return View::make('team.myteam')
             ->with('team', false)
+            ->with('teaminvitations', false)
             ->with('teams', $teams);
 
 
