@@ -184,8 +184,23 @@ Route::group(array('before' => 'auth'), function() {
     ));
 
     Route::post('/delPlayerInv', array(
-        'as' => 'team-del-player',
+        'as' => 'team-del-inv-player',
         'uses' => 'TeaminvitationController@delTeamInv'
+    ));
+
+    Route::post('/delPlayer', array(
+        'as' => 'team-del-player',
+        'uses' => 'TeamController@TeamKickPlayer'
+    ));
+
+    Route::post('/accInv', array(
+        'as' => 'team-acc-inv',
+        'uses' => 'TeaminvitationController@accInv'
+    ));
+
+    Route::post('/decInv', array(
+        'as' => 'team-dec-inv',
+        'uses' => 'TeaminvitationController@decInv'
     ));
 
     ///////carna lista test////

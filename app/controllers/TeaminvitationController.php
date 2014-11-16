@@ -87,11 +87,23 @@ class TeaminvitationController extends BaseController {
         }
     }
 
-    public function acceptTeamInv(){
-
+    public function accInv(){
+        $teaminv = Teaminvitation::find(Input::get('id'));
+        $teammember = Teammember::create(array(
+            'user_id'     => $teaminv->user_id,
+            'team_id' => $teaminv->team_id,
+            'joindate' => date("Y-m-d H:i:s")
+        ));
+        if($teammember) {
+            $teaminv->delete();
+            return Redirect::action('TeamController@myTeam');
+        }
     }
 
-    public function declineTeamInv(){
-
+    public function decInv(){
+        $teaminv = Teaminvitation::find(Input::get('id'));
+        if($teaminv->delete()){
+            return Redirect::action('TeamController@myTeam');
+        }
     }
 }

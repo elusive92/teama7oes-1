@@ -47,7 +47,16 @@
         @if($teammembers)
             <h5>Teammembers: </h5>
             @foreach($teammembers as $teammember)
-                <p>{{ e($teammember->user->username) }}</p>
+                <ul class="nav navbar-nav">
+                    <li>{{ e($teammember->user->username) }}</li>
+                    <li style="float:right; padding-left: 15px;">
+                        {{Form::open(array('route' => 'team-del-player'))}}
+                        {{Form::hidden('id', $teammember->id)}}
+                        <button type="submit"  class="btn btn-danger btn-xs">Delete</button>
+                        {{Form::close()}}
+                    </li>
+                </ul>
+                <br>
             @endforeach
         @endif
         @if($teaminvitations)
@@ -56,13 +65,14 @@
                 <ul class="nav navbar-nav">
                 <li>{{ e($teaminvitation->user->username) }}</li>
                 <li style="float:right; padding-left: 15px;">
-                    {{Form::open(array('route' => 'team-del-player'))}}
+                    {{Form::open(array('route' => 'team-del-inv-player'))}}
                     {{Form::hidden('id', $teaminvitation->id)}}
                     <button type="submit"  class="btn btn-danger btn-xs">Delete</button>
                     {{Form::close()}}
                 </li>
 
                 </ul>
+                <br>
 
 
 

@@ -36,7 +36,7 @@
 <div id="teamsView" class="myteam">
 @if($team)
     <a href="{{ URL::route('team-quit')}}" class="btn btn-default">Quit team</a>
-    @if($team->id == Auth::check())
+    @if(($team->user_id) == (Auth::user()->id))
         <a href="{{ URL::route('team-edit')}}" class="btn btn-default">Edit team</a>
     @endif
 
@@ -62,6 +62,29 @@
 @else
     @if(Auth::check())
         <a href="{{ URL::route('team-create')}}" class="btn btn-default">Create team</a>
+        @if($teaminvitations)
+            <p>You have been invited to be a part of team:</p>
+            @foreach($teaminvitations as $teaminvitation)
+                @if((strtotime(date("Y-m-d H:i:s")) - strtotime($teaminvitation->date)) < 604800)
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ URL::route('teamprofile', $teaminvitation->team->teamname) }}" style="padding: 0px;">{{ e($teaminvitation->team->teamname) }}</a></li>
+                        <li style="float:right; padding-left: 15px;">
+                            {{Form::open(array('route' => 'team-dec-inv'))}}
+                            {{Form::hidden('id', $teaminvitation->id)}}
+                            <button type="submit"  class="btn btn-danger btn-xs">Decline</button>
+                            {{Form::close()}}
+                        </li>
+                        <li style="float:right; padding-left: 15px;">
+                            {{Form::open(array('route' => 'team-acc-inv'))}}
+                            {{Form::hidden('id', $teaminvitation->id)}}
+                            <button type="submit"  class="btn btn-success btn-xs">Accept</button>
+                            {{Form::close()}}
+                        </li>
+
+                    </ul>
+                @endif
+            @endforeach
+        @endif
     @endif
 @endif
 </div>

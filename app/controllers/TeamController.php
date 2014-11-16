@@ -112,6 +112,7 @@ class TeamController extends BaseController {
                         $teammembers = Teammember::where('team_id', '=', $idteam)
                             ->whereNull('leftdate')
                             ->get();
+
                         return View::make('team.myteam')
                             ->with('teammembers', $teammembers)
                             ->with('team', $team)
@@ -119,6 +120,18 @@ class TeamController extends BaseController {
 
                     }
                 }
+            }else{
+                $teaminvitations = Teaminvitation::where('user_id', '=', Auth::user()->id)
+                    ->get();
+                if($teaminvitations->count()){
+                    return View::make('team.myteam')
+                        ->with('team', false)
+                        ->with('teams', $teams)
+                        ->with('teaminvitations', $teaminvitations);
+                }
+                return View::make('team.myteam')
+                    ->with('team', false)
+                    ->with('teams', $teams);
             }
 
         }
@@ -137,7 +150,7 @@ class TeamController extends BaseController {
             $teammember = $teammember->first();
             $teammember->leftdate = date("Y-m-d H:i:s");
             $teammember->save();
-            $count = Teammember::where('team_id', '=', $teammember->id)
+            $count = Teammember::where('team_id', '=', $teammember->team_id)
                 ->whereNull('leftdate')
                 ->count();
                 //->where('idgame', '=', KOEKGEJUCH3);
@@ -226,6 +239,42 @@ class TeamController extends BaseController {
             }
         }
         return Redirect::action('TeamController@myTeam');
+    }
+
+    public function TeamKickPlayer(){
+        $teammember = Teammember::find(Input::get('id'))
+            ->whereNull('leftdate');
+        //->where('idgame', '=', KOEKGEJUCH2);
+        if($teammember->count()){
+            $teammember = $teammember->first();
+            $teammember->leftdate = date("Y-m-d H:i:s");
+            $teammember->save();
+            $count = Teammember::where('team_id', '=', $teammember->team_id)
+                ->whereNull('leftdate')
+                ->count();
+            //->where('idgame', '=', KOEKGEJUCH3);
+            $team = Team::where('id', '=', $teammember->team_id);
+            if($team->count()){
+                $team = $team->first();
+                if(($team->user_id == $teammember->user_id) && ($count > 0)){
+                    $teammember = Teammember::where('team_id', '=', $team->id)
+                        ->whereNull('leftdate');
+                    //->where('idgame', '=', KOEKGEJUCH4);
+                    if($teammember->count()) {
+                        $teammember = $teammember->first();
+                        $team->user_id = $teammember->user_id;
+                        $team->save();
+                    }
+                }else{
+                    $team->status = 1;
+                    $team->save();
+                }
+            }
+
+        }
+
+        return Redirect::action('TeamController@getEditTeam');
+
     }
 
 }
