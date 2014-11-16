@@ -5,6 +5,12 @@
 @stop
 
 @section('content')
+<ol class="breadcrumb">
+      <li><a href="{{ URL::route('home')}}">Home</a></li>
+      <li><a href="{{ URL::route('home')}}">News</a></li>
+      <li class="active"> Edit news
+      </li>
+</ol>
 <form action="{{ URL::route('news-add-post') }}" method="post" class="basic-grey">
     <h1>Edit news
         <span>Please fill all the texts in the fields.</span>
@@ -37,6 +43,15 @@
         {{ Form::token() }} 
     </label>    
 </form>
+{{ Form::model($news, array('route' => array('news-add-post', $news->id)), ['method' => 'patch'], ['role' => 'form']) }}
+{{ Form::label('title', 'Title') }}
+{{ Form::text('title') }}
+{{ Form::label('descript', 'Descript') }}
+{{ Form::text('descript') }}
+{{ Form::label('draft', 'Draft') }}
+{{ Form::text('draft') }}
+{{ Form::button('Save', ['type' => 'submit']) }}
+{{ Form::close() }}
 @stop
 
 @stop

@@ -374,3 +374,19 @@ Route::get('/test', function(){
     return View::make('test');
 });
 
+/*test resizera */
+Route::post('upload', function()
+{
+    //var_dump($image=Input::file('image'));
+    $image = Input::file('image');
+
+    //var_dump($image->getRealPath());
+    $filename = $image->getClientOriginalName();
+
+    if(Image::make($image->getRealPath())->resize('200', '200')->save('img/resizer/'. $filename)){
+        return 'dziala';
+    }
+
+
+});
+/* */

@@ -56,11 +56,11 @@ class NewsController extends BaseController {
 
     public function editNews($id){
 
-        $news = News::find($id);
+        $news = News::findOrFail($id);
 
         // var_dump("edit $news ");
-        return View::make('news.edit')->with('news', $news);       
-        
+       // return View::make('news.edit')->withNews('news', $news);       
+        return View::make('news.edit', compact('news'));
 
     }
 
@@ -72,7 +72,7 @@ class NewsController extends BaseController {
 
 
         
-        return View::make('home')->with('news', $news);
+        return View::make('news.manage')->with('news', $news);
 
     }
 

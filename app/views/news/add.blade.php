@@ -5,7 +5,12 @@
 @stop
 
 @section('content')
-
+<ol class="breadcrumb">
+      <li><a href="{{ URL::route('home')}}">Home</a></li>
+      <li><a href="{{ URL::route('home')}}">News</a></li>
+      <li class="active"> Add new
+      </li>
+</ol>
 <form action="{{ URL::route('news-add-post') }}" method="post" class="basic-grey">
     <h1>Add news
         <span>Please fill all the texts in the fields.</span>
