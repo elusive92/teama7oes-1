@@ -29,6 +29,7 @@ class TeaminvitationController extends BaseController {
                 ]);
             }
             $team = Team::where('user_id', '=', Auth::user()->id)
+                ->where('status', '=', '0')
                 //->where('game_id', '=', $gameid)
                 ->first();
             $teammembers = Teammember::where('user_id', '=', $user->id)

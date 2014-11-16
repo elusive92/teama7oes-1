@@ -131,6 +131,7 @@ class TeamController extends BaseController {
                 }
                 return View::make('team.myteam')
                     ->with('team', false)
+                    ->with('teaminvitations', false)
                     ->with('teams', $teams);
             }
 
@@ -167,6 +168,8 @@ class TeamController extends BaseController {
                         $team->save();
                     }
                 }else{
+                    $teaminvitations = Teaminvitation::where('team_id', '=', $team->id);
+                    $teaminvitations->delete();
                     $team->status = 1;
                     $team->save();
                 }
@@ -266,6 +269,8 @@ class TeamController extends BaseController {
                         $team->save();
                     }
                 }else{
+                    $teaminvitations = Teaminvitation::where('team_id', '=', $team->id);
+                    $teaminvitations->delete();
                     $team->status = 1;
                     $team->save();
                 }
