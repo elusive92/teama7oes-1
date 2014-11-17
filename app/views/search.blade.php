@@ -37,7 +37,7 @@ $(document).ready(function(){
 </script>
 
     <a class="myteamedit">
-        <span class="rightbutton">        
+        <span class="leftbutton">        
             <button type="button" class="btn btn-default btn-lg">
           <span><img src="{{ URL::asset('/') }}img/ico/down_arrow.png"/></span> Search user
         </button>
@@ -46,7 +46,7 @@ $(document).ready(function(){
     <a class="myteam">
         <span class="rightbutton">        
             <button type="button" class="btn btn-default btn-lg">
-          <span><img src="{{ URL::asset('/') }}img/ico/down_arrow.png"/></span> Search team
+          <span>Search team <img src="{{ URL::asset('/') }}img/ico/down_arrow.png"/></span>
         </button>
         </span>
     </a>
@@ -67,4 +67,6 @@ $(document).ready(function(){
 		{{Form::submit('Search')}}
 	{{Form::close()}}
 	</div>
+
+
 @stop

@@ -17,16 +17,16 @@
     </h1>
     <label for="Title">
         <span>Title :</span>
-        <input id="name" type="text" name="name" placeholder="Title of article" />
+        <input id="name" type="text" name="title" placeholder="Title of article" />
     </label>
     
     <label for="Descript">
         <span>Description :</span>
-        <textarea id="message" name="message" placeholder="Full description here"></textarea>
+        <textarea id="message" name="descript" placeholder="Full description here"></textarea>
     </label> 
      <label for="Draft">
         <span>Public status :</span>
-        <select name="selection">
+        <select name="draft">
         <option value="0">Publish</option>
         <option value="1">Draft</option>
         </select>

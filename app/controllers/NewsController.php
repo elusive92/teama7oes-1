@@ -22,9 +22,9 @@ class NewsController extends BaseController {
         //     return Redirect::route('home')
         //         ->withErrors($validator);
         // }else{
-            $title = Input::get('name');
-            $descript = Input::get('message');
-            $draft   =  Input::get('selection');
+            $title = Input::get('title');
+            $descript = Input::get('descript');
+            $draft   =  Input::get('draft');
             $game_id = 1;
             
             $news   = News::create(array(

@@ -5,7 +5,10 @@
 @stop
 
 @section('content')
-
+<ol class="breadcrumb">
+      <li><a href="{{ URL::route('home')}}">Home</a></li>
+      <li>News general</li>
+</ol>
 	@if($news->count())
 		@foreach($news as $new)
 			<ul id="news_list">
