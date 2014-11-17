@@ -34,7 +34,7 @@ class GameController extends BaseController {
         if($extension == 'jpg' OR $extension == 'png' OR $extension=='jpeg'){
 
             $filename = Input::file('logo')->getClientOriginalName();
-            $destinationPath = 'media/games/';
+            $destinationPath = 'img/gameslogos/';
 
 
 
@@ -79,6 +79,9 @@ class GameController extends BaseController {
 }*/
     public function postAddGame()
     {
+
+        $extension = Input::file('logo')->getClientOriginalExtension();
+
         $validator = Validator::make(
             array(
                 'gamename' => Input::get('gamename'),
@@ -93,28 +96,16 @@ class GameController extends BaseController {
                 'error' => $validator->errors()->toArray()
             ]);
         }
-        $extension = Input::file('logo')->getClientOriginalExtension();
-
-        if ($extension == 'jpg' OR $extension == 'png' OR $extension == 'jpeg') {
-
-            $filename = Input::file('logo')->getClientOriginalName();
-            $destinationPath = 'media/games/';
-
             $games = new Game;
             $games->gamename 		= Input::get('gamename');
             $games->descript 	    = Input::get('descript');
-            $games->logo 	        = $filename;
+
 
 
             $games->save();
-            Input::file('logo')->move($destinationPath, $filename);
 
-        }else{
-            return Response::json([
-                'success' => false,
-                'error' => array('error' => 'File is not an image'),
-                'redirect' => Redirect::intended('/')
-            ]);
-        }
+
+
+
     }
 }

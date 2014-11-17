@@ -1,11 +1,4 @@
 <?php
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-
-App::error(function(ModelNotFoundException $e)
-{
-    return  Redirect::route('playerblacklist');
-    ;
-});
 
 
 class BlacklistController extends BaseController {
@@ -32,46 +25,28 @@ class BlacklistController extends BaseController {
         $id1 = Auth::user()->id;
         $bannedPlayer = Input::get('bannedplayer');
 
-        $idBannedPlayer = User::where('username', '=', $bannedPlayer)->firstOrFail();
-        $id2 = $idBannedPlayer->id;
-
-        $result= Blacklist::where('id_A','=',$id1)
-            -> where('id_B', '=', $id2)->get();
+        $idBannedPlayer = User::where('username', '=', $bannedPlayer)->first();
 
 
+       if(!$idBannedPlayer){
+            return Redirect::action('BlacklistController@getPlayerBlacklist')
+                ->with('message', 'There is no such player.');
+        }else{
+            $id2 = $idBannedPlayer->id;
 
+            $result= Blacklist::where('id_A','=',$id1)
+                -> where('id_B', '=', $id2)->get();
+        if($result->count()) {
 
-
-        $validator = Validator::make(
-            array(
-
-                'id_A' => $id1,
-
-
-
-                'id_B' => $id2,
-            ),
-            array(
-                'id_A' => 'required|max:11',
-                'id_B' => 'required|max:11',
-            )
-        );
-
-        if($validator->fails()) {
-            return Response::json([
-                'success' => false,
-                'error' => $validator->errors()->toArray()
-            ]);
-
-        }elseif($result->count()) {
-
-            return Response::json([
-                'success' => false,
-                'error' => array('error' => 'Player is already on your Black List.'),
-                'redirect' => Redirect::intended('/')
-            ]);
+        return Redirect::action('BlacklistController@getPlayerBlacklist')
+            ->with('message', 'Player already added.');
 
     }
+        elseif($id1==$id2){
+            return Redirect::action('BlacklistController@getPlayerBlacklist')
+                ->with('message', 'Cant add yourself.');
+
+        }
 
         else{
 
@@ -83,17 +58,17 @@ class BlacklistController extends BaseController {
             $blist -> save();
 
             if($blist){
-                return Response::json(
-                    );
+                return Redirect::action('BlacklistController@getPlayerBlacklist');
             }
         }
 
-    }
+    }}
 
     public function delPlayerB(){
 
         $block = Blacklist::find(Input::get('id'));
-         if($block->delete()){
+        $deleted = $block->delete();
+        if($deleted){
             return  Redirect::action('BlacklistController@getPlayerBlacklist');
         }
 

@@ -216,7 +216,7 @@ Route::group(array('before' => 'auth'), function() {
         'uses' => 'BlacklistController@getPlayerBlacklist'
     ));
 
-    Route::post('/playerblacklist', array(
+    Route::delete('/playerblacklist', array(
         'as' => 'delPlayer',
         'uses' => 'BlacklistController@delPlayerB'
     ));

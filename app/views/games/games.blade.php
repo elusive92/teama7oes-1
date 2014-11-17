@@ -33,13 +33,17 @@
             Game Name: {{Form::text('gamename', null, array('id' => 'gamename'))}}</div>
              <div class="form-group">
             Descript: {{Form::text('descript', null, array('id' => 'descript'))}}</div>
+
             <div class="form-group">
              Logo: {{Form::file('logo')}}
               </div>
+
             {{ Form::submit('Submit', array('class' => 'btn btn-default')) }}
 
             {{ Form::close() }}
         </div>
+
+
     <div class="sep"></div>
 </div>
 </div>
