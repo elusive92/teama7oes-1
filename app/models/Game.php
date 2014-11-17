@@ -8,7 +8,7 @@ class Game extends Eloquent {
     protected $fillable = array('id','gamename', 'descript', 'logo');
 
     public static  $rules = array(
-        'gamename'			=> 'required|max:50|unique:games',
+        'gamename'			=> 'required|max:50|unique:games|min:3',
         'descript' 		    => 'required|min:1|max:255',
         //'logo'              => 'required|max:50|mimes:jpeg,bmp,png'
 

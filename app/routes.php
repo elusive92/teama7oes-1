@@ -217,8 +217,8 @@ Route::group(array('before' => 'auth'), function() {
     ));
 
     Route::post('/playerblacklist', array(
-        'as' => 'destroyPlayer',
-        'uses' => 'BlacklistController@postDestroy'
+        'as' => 'delPlayer',
+        'uses' => 'BlacklistController@delPlayerB'
     ));
 
 
@@ -376,6 +376,14 @@ Route::get('/games', array(
     'as' => 'getGame2',
     'uses' => 'GameController@getDaGame'
 
+));
+Route::get('/addGames', array(
+    'as' => 'addGame1',
+    'uses' => 'GameController@getAddGame'
+));
+Route::post('/addGames', array(
+    'as' => 'postAddGame1',
+    'uses' => 'GameController@postAddGame'
 ));
 //-------------------------------------------------
 //---------------------Testowa Galeryja------------

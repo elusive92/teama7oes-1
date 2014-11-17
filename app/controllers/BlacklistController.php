@@ -20,8 +20,8 @@ class BlacklistController extends BaseController {
 
 
 
-        return View::make('blacklist.blacklistView')->with('blacklists', $blacklists);
-    }
+            return View::make('blacklist.blacklistView')->with('blacklists', $blacklists);
+        }
 
 
 
@@ -58,11 +58,18 @@ class BlacklistController extends BaseController {
         );
 
         if($validator->fails()) {
-            return Redirect::route('playerBlackList');
+            return Response::json([
+                'success' => false,
+                'error' => $validator->errors()->toArray()
+            ]);
 
         }elseif($result->count()) {
 
-                return Redirect::route('playerBlackList');
+            return Response::json([
+                'success' => false,
+                'error' => array('error' => 'Player is already on your Black List.'),
+                'redirect' => Redirect::intended('/')
+            ]);
 
     }
 
@@ -76,22 +83,18 @@ class BlacklistController extends BaseController {
             $blist -> save();
 
             if($blist){
-                return Redirect::route('playerBlackList');
+                return Response::json(
+                    );
             }
         }
 
     }
 
-    public function postDestroy(){
-
-
+    public function delPlayerB(){
 
         $block = Blacklist::find(Input::get('id'));
-
-
-
          if($block->delete()){
-            return  Redirect::route('playerBlackList');
+            return  Redirect::action('BlacklistController@getPlayerBlacklist');
         }
 
 

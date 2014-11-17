@@ -2,6 +2,7 @@
 {{ HTML::script('js/popup.js') }}
 {{ HTML::script('js/bootstrap.js') }}
 {{ HTML::script('js/bootstrap.min.js') }}
+
 {{ HTML::style('css/bootstrap.css') }}
 {{ HTML::style('css/style.css') }}
 
