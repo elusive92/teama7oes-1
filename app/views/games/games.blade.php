@@ -14,9 +14,15 @@
 		body 	{ padding-bottom:40px; padding-top:40px; }
 	</style>
 </head>
-<div class="alert alert-info info2" style="display: none;">
-        <ul></ul>
-</div>
+ @if(Session::has('message'))
+  <p class="alert alert-info">{{ Session::get('message') }}</p>
+ @endif
+ @if($errors->has('gamename'))
+ <p class="alert alert-info">{{$errors->first('gamename')}}</p>
+ @endif
+ @if($errors->has('descript'))
+  <p class="alert alert-info">{{$errors->first('descript')}}</p>
+  @endif
 <body class="container">
 
 <div class="row">
@@ -28,70 +34,28 @@
 
 		<!-- FORM STARTS HERE -->
 		<div class='form'>
-            {{ Form::open( array('route' => 'postAddGame1', 'id' => 'addgame')) }}
-             <div class="form-group">
-            Game Name: {{Form::text('gamename', null, array('id' => 'gamename'))}}</div>
-             <div class="form-group">
-            Descript: {{Form::text('descript', null, array('id' => 'descript'))}}</div>
-
-            <div class="form-group">
-             Logo: {{Form::file('logo')}}
-              </div>
-
-            {{ Form::submit('Submit', array('class' => 'btn btn-default')) }}
-
-            {{ Form::close() }}
-        </div>
+                   {{Form::open(array(URL::route('postAddGame'), 'files'=>true ))}}
 
 
-    <div class="sep"></div>
+                    <div class="form-group">
+                        Game Name: {{Form::text('gamename')}}</div>
+                     <div class="form-group">
+                        Description: {{Form::text('descript')}}
+                     </div>
+                     <div class="form-group">
+                        Logo: {{Form::file('logo')}}
+                     </div>
+                      <input type="submit" value="Create" class="btn btn-default"/>
+                    {{Form::close()}}
+        	</div>
+
+
+
 </div>
 </div>
 
 
 
-<script>
-    $(document).ready(function(){
-        var info = $('.info2');
 
-        $('#addgame').submit(function(e){
-            $.ajaxSetup({
-                headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
-            });
-            e.preventDefault();
-
-            var formData = new FormData();
-            formData.append('gamename', $('#gamename').val());
-            formData.append('descript', $('#descript').val());
-
-
-            $.ajax({
-                url: '{{ URL::route('postAddGame1') }}',
-                method: 'post',
-                processData: false,
-                contentType: false,
-                cache: false,
-                dataType: 'json',
-                data: formData,
-                success: function(data){
-                info.hide().find('ul').empty();
-                console.log(data);
-                if(!data.success){
-                    $.each(data.error , function(index, error){
-                        info.find('ul').append('<li>'+error+'</li>');
-                    });
-                    info.slideDown();
-                }else{
-                    location.href = "{{Route::currentRouteName()}}";
-                }
-
-                },
-                error: function(){}
-            });
-
-        });
-
-    });
-</script>
 
 @stop

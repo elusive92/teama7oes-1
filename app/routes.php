@@ -377,14 +377,7 @@ Route::get('/games', array(
     'uses' => 'GameController@getDaGame'
 
 ));
-Route::get('/addGames', array(
-    'as' => 'addGame1',
-    'uses' => 'GameController@getAddGame'
-));
-Route::post('/addGames', array(
-    'as' => 'postAddGame1',
-    'uses' => 'GameController@postAddGame'
-));
+
 //-------------------------------------------------
 //---------------------Testowa Galeryja------------
 //-------------------------------------------------

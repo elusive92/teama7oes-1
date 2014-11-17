@@ -4,11 +4,12 @@
 
 
 @section('content')
-    <h5>{{Auth::user()-> username}} Black List</h5>
 
   @if(Session::has('message'))
   <p class="alert alert-info">{{ Session::get('message') }}</p>
   @endif
+    <h5>{{Auth::user()-> username}} Black List</h5>
+
 
      <div class='form'>
                    {{ Form::open( array('route' => 'postBlacklist')) }}

@@ -27,13 +27,15 @@ class GameController extends BaseController {
         }
     }
 
-  /**  public function postAddGame(){
-        //$image = Input::file('logo');
+    public function postAddGame(){
+        $image = Input::file('logo');
+        if($image){
         $extension = Input::file('logo')->getClientOriginalExtension();
+
 
         if($extension == 'jpg' OR $extension == 'png' OR $extension=='jpeg'){
 
-            $filename = Input::file('logo')->getClientOriginalName();
+            $filename = str_random(10) . '.' . $extension;
             $destinationPath = 'img/gameslogos/';
 
 
@@ -41,8 +43,8 @@ class GameController extends BaseController {
 
         $validator = Validator::make(
             array(
-                'gamename'  => Input::get('gamename'),
-                'descript'  =>Input::get('descript')),
+                'Game name'  => Input::get('gamename'),
+                'Descript'  =>Input::get('descript')),
                // 'logo'      =>Input::file('logo')->getMimeType()),
 
             Game::$rules);
@@ -66,21 +68,25 @@ class GameController extends BaseController {
 
             if($games){
                 return Redirect::route('addGame')
-                    ->with('flash_notice', 'Game Added!');
+                    ->with('message', 'Game added.');
             }
 
 
         }
 
    }else{
-            return Redirect::route('addGame');
+            return Redirect::route('addGame')
+                ->with('message', 'File is not an image or has wrong extension.');
         }
 
-}*/
-    public function postAddGame()
+    }else{
+            return Redirect::route('addGame')
+                ->with('message', 'Pleas choose an image.');
+            }}
+/**    public function postAddGame()
     {
 
-        $extension = Input::file('logo')->getClientOriginalExtension();
+
 
         $validator = Validator::make(
             array(
@@ -107,5 +113,6 @@ class GameController extends BaseController {
 
 
 
-    }
+    }*/
+
 }
