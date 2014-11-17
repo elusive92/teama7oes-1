@@ -67,6 +67,12 @@ $(document).ready(function(){
 		{{Form::submit('Search')}}
 	{{Form::close()}}
 	</div>
+    @if($users)
+        @foreach($users as $user)
+            <p>{{ e($user->username) }}</p>
+            <p>{{ e($user->created_at) }}</p>
 
+        @endforeach
+    @endif
 
 @stop

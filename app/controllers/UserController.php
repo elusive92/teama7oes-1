@@ -18,10 +18,11 @@ class UserController extends BaseController {
 
     //var_dump('search results');
     
-    foreach ($users as $user) {
-        var_dump($user->username);
-    //return View::make('search')->with('users', $users);
-    }   
+//    foreach ($users as $user) {
+//        var_dump($user->username);
+//
+//    }
+        return View::make('search')->with('users', $users);
 	}
 
 //////////////////////////WYSWIETLANIE PROFILU/////////////////////////////////////////
