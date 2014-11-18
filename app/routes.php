@@ -100,7 +100,7 @@ Route::post('/search-user', array(
 /////////////////////////////////// FIREND LIST CONTROLER////////////////////////
 
 Route::get('/user/add/{username}', array(
-    'as' => 'friendlistPlayer',
+    'as' => 'addFriendList',
     'uses' => 'FriendlistController@addFriendList', /////dalem tylko zeby bledu nie
 ));
 
