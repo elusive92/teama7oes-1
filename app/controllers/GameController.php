@@ -188,6 +188,11 @@ class GameController extends BaseController {
 
         return View::make('games.gameEditOne')->with('game',$game);
     }
+
+    public function getAllGamesView(){
+        $games = Game::all();
+        return View::make('games.games_View')->with('games', $games);
+    }
 /**    public function postAddGame()
     {
 

@@ -394,6 +394,12 @@ Route::post('/editgame/{gameid?}', array(
 
 ));
 
+Route::get('/gamesView', array(
+    'as' => 'gameView',
+    'uses' => 'GameController@getAllGamesView'
+
+));
+
 //-------------------------------------------------
 //---------------------Testowa Galeryja------------
 //-------------------------------------------------

@@ -28,7 +28,8 @@
                         @endforeach
                         @if(Auth::check())
                             @if(Auth::user()->permissions==2)
-                                <li id = "0"><a href="">Add</a></li>
+                                <li id = "0"><a href="">Add Game</a></li>
+                                <li id = "1"><a href="">Edit Game</a></li>
                             @endif
                         @endif
                         </ul>
@@ -50,22 +51,25 @@
 
                var gameid = this.id;
 
-               if(gameid != 0){
+               if(gameid == 1){
+                 $.ajax({
+
+                             		method: "GET",
+
+                             		cache: false,
+
+                             		url: '{{ URL::route('edit-game') }}',
+
+                             		contentType: "text/html",
+
+                             		success: function(){location.href = "{{URL::route('edit-game')}}";}
+
+
+                             })
+               }
+
+               else if(gameid == 0){
                $.ajax({
-                     url: '{{ URL::route('postGame') }}',
-                      dataType: 'json',
-                      data: {'gameid': gameid},
-                      method: 'POST',
-
-
-
-                     success:function(responce){console.log(responce)
-                     location.href = "{{URL::route('home')}}";}
-                    })
-               }else{
-               $.ajax(
-
-               		{
 
                		method: "GET",
 
@@ -78,10 +82,20 @@
                		success: function(){location.href = "{{URL::route('addGame')}}";}
 
 
-               });
+               })
 
 
 
+               }else{
+               $.ajax({
+                                    url: '{{ URL::route('postGame') }}',
+                                     dataType: 'json',
+                                     data: {'gameid': gameid},
+                                     method: 'POST',
+
+                                    success:function(responce){console.log(responce)
+                                    location.href = "{{URL::route('home')}}";}
+                                   })
                }
 
 
