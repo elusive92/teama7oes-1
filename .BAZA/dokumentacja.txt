@@ -1,2 +1,12 @@
-﻿Każda tabela ma swoje id = "id"
-Obce id = id_users , id_games itp.
+﻿Konta testowe:
+
+test@gmail.com
+test1@gmai.com
+...
+...
+
+admin1@gmail.com
+
+
+
+haslo: qwertyu8

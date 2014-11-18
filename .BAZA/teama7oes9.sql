@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Czas generowania: 18 Lis 2014, 14:47
+-- Czas generowania: 11 Lis 2014, 19:16
 -- Wersja serwera: 5.6.20
 -- Wersja PHP: 5.5.15
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `blacklists` (
   `id_A` int(11) NOT NULL,
   `id_B` int(11) NOT NULL,
   `date` datetime NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
 --
 -- RELACJE TABELI `blacklists`:
@@ -40,13 +40,6 @@ CREATE TABLE IF NOT EXISTS `blacklists` (
 --   `id_B`
 --       `users` -> `id`
 --
-
---
--- Zrzut danych tabeli `blacklists`
---
-
-INSERT INTO `blacklists` (`id`, `id_A`, `id_B`, `date`) VALUES
-(2, 3, 4, '2014-11-12 16:31:20');
 
 -- --------------------------------------------------------
 
@@ -70,8 +63,8 @@ CREATE TABLE IF NOT EXISTS `friendlist` (
 `id` int(11) NOT NULL,
   `id_adding` int(11) NOT NULL,
   `id_friend` int(11) NOT NULL,
-  `data` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=4 ;
+  `data` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- RELACJE TABELI `friendlist`:
@@ -86,9 +79,7 @@ CREATE TABLE IF NOT EXISTS `friendlist` (
 --
 
 INSERT INTO `friendlist` (`id`, `id_adding`, `id_friend`, `data`) VALUES
-(1, 3, 1, '2014-11-12 15:20:16'),
-(2, 3, 4, '2014-11-12 16:23:34'),
-(3, 3, 5, '2014-11-12 17:38:21');
+(8, 3, 1, '2014-11-11 15:07:34');
 
 -- --------------------------------------------------------
 
@@ -122,17 +113,14 @@ CREATE TABLE IF NOT EXISTS `games` (
   `gamename` varchar(50) COLLATE utf8_polish_ci NOT NULL,
   `descript` varchar(255) COLLATE utf8_polish_ci NOT NULL,
   `logo` varchar(20) COLLATE utf8_polish_ci DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=2 ;
 
 --
 -- Zrzut danych tabeli `games`
 --
 
 INSERT INTO `games` (`id`, `gamename`, `descript`, `logo`) VALUES
-(1, 'Pokemon', 'Gra w pokemony , red blue itp', 'pokemon.jpg'),
-(2, 'LeagueofLegends', 'LeagueofLegends22', NULL),
-(3, 'World of Warcraft', ' gra komputerowa z gatunku MMORPG wyprodukowana przez amerykańską firmę Blizzard Entertainment. Jej akcja toczy się cztery lata po wydarzeniach przedstawionych w grze Warcraft III: The Frozen Throne, w świecie stworzonym w 1994 roku na potrzeby Warcraft: ', NULL),
-(4, 'Assassin Creed Unity', 'Kolejna pełnoprawna odsłona bestsellerowego cyklu Assassin’s Creed, zapoczątkowanego przez koncern Ubisoft w 2007 roku. Jest to jednocześnie pierwsza część gry, zaprojektowana wyłącznie z myślą o posiadaczach PC i konsol ósmej generacji. Nowa część gry to', NULL);
+(1, 'Pokemon', 'Gra w pokemony , red blue itp', 'pokemon.jpg');
 
 -- --------------------------------------------------------
 
@@ -217,13 +205,13 @@ CREATE TABLE IF NOT EXISTS `messages` (
 CREATE TABLE IF NOT EXISTS `news` (
 `id` int(11) NOT NULL,
   `game_id` int(11) NOT NULL,
-  `title` varchar(80) COLLATE utf8_polish_ci NOT NULL,
-  `descript` varchar(3000) COLLATE utf8_polish_ci NOT NULL,
+  `title` varchar(50) COLLATE utf8_polish_ci NOT NULL,
+  `descript` varchar(255) COLLATE utf8_polish_ci NOT NULL,
   `photo` varchar(20) COLLATE utf8_polish_ci DEFAULT NULL,
   `draft` tinyint(1) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=14 ;
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=4 ;
 
 --
 -- RELACJE TABELI `news`:
@@ -236,13 +224,7 @@ CREATE TABLE IF NOT EXISTS `news` (
 --
 
 INSERT INTO `news` (`id`, `game_id`, `title`, `descript`, `photo`, `draft`, `created_at`, `updated_at`) VALUES
-(4, 1, 'Czolgi', 'dodano aktualizacje do gry', NULL, 0, '2014-11-11 18:22:37', '2014-11-11 18:22:37'),
-(5, 1, 'Koniec wojny ', 'Od 6:10 we wtorek, 11 listopada do 6:00 w poniedzia', NULL, 0, '2014-11-12 15:52:21', '2014-11-12 15:52:21'),
-(6, 1, 'Specjal w czolgach', 'Pięciokrotnie więcej doświadczenia za pierwsze zwycięstwo dnia\r\n\r\nDoświadczenie to najpotężniejsza broń!\r\n\r\n15% zniżki na wszystkie pojazdy standardowe VIII poziomu\r\n\r\nCzas wspiąć się w górę drzewa technologicznego i zdobyć duże czołgi!', NULL, 0, '2014-11-12 15:53:37', '2014-11-12 15:53:37'),
-(7, 1, 'Dalsze losy zwyciestw', '\r\n    Zdobądźcie 111 111 PD w dowolnej liczbie bitew.\r\n    Znajdźcie się pośród 11 graczy, którzy zdobyli najwięcej bazowego doświadczenia podczas bitwy w drużynie (premie za pierwsze zwycięstwo dnia, konto premium itd. nie będą brane pod uwagę).', NULL, 0, '2014-11-12 15:55:19', '2014-11-12 15:55:19'),
-(8, 1, 'Assasin Cread', 'W historyczną rzeczywistość wmieszana jest historia zmagań Assasynów z Templariuszami, i chociaż działalność stronnictw przekłada się na historyczne wydarzenia, to w dalszym ciągu Unity mogłoby służyć jako znakomita pomoc naukowa w nauce historii tego okresu - choćby dlatego, że za sprawą gry ta historia i występujące w niej postacie ożywają: król Francji i król żebraków, Markiz de Sade i Robespierre, Napoleon i Vidoq wkraczają na scenę i zostawiają swój ślad w historii głównego bohatera Arno Doriana.\r\n\r\nWspinając się na 25 puktów widokowych francuskiej stolicy odkrywamy mapę Paryża ostatniej dekady osiemnastego wieku. Lud Paryża gromadzi się na placach i oblega budynki aktualnie sprawujących władzę. Barykady na ulicach, rewolucyjne napisy i dostrzegalne wszędzie ślady zniszczeń nie pozostawiają wątpliwości, że znaleźliśmy się w ważnym dziejowo momencie - słowem, idealna sceografia dla dramatu historycznego w jakim przyszło nam brać udział. Nie zamierzam zdradzać elementów fabuły, bo przechodząc Assasin’s Creed: Unity można się poczuć jak podczas oglądania hollywoodzkiej epopei.', NULL, 0, '2014-11-12 16:57:57', '2014-11-12 16:57:57'),
-(12, 1, 'Oferta dnia w Gamersgate', 'Bus Simulator 2012 - 2.10£\r\n\r\nPo obniżonej cenie możecie również nabyć:\r\n\r\nDefenders of Ardania – 2€ - Steam\r\nDefenders of Ardania Collection – 2.00£ – Steam\r\nImpire – 2.99£ – Steam\r\nMagicka – 1.74£ – Steam\r\nMagicka Collection – 5.74£ – Steam\r\nMagicka – Four Pack – 7.49€ - Steam\r\nWarlock: Master of the Arcane Complete Collection – 4.75£ – Steam', NULL, 0, '2014-11-18 13:37:40', '2014-11-18 13:37:40'),
-(13, 1, 'Oferta dnia na Steamie &#8211; Sakura Spirit ', 'Sakura Spirit – 3.39€\r\n\r\nOferta ważna do środy do godziny 19:00.', NULL, 0, '2014-11-18 13:40:22', '2014-11-18 13:40:22');
+(3, 1, 'POkemony do boju', 'nowy post o pokemonach. Dizsiaj wchodzi nowa gra do boju o wolnosc', NULL, 0, '2014-11-11 18:02:34', '2014-11-11 17:01:53');
 
 -- --------------------------------------------------------
 
@@ -297,7 +279,7 @@ CREATE TABLE IF NOT EXISTS `teaminvitations` (
   `team_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `date` datetime NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
 --
 -- RELACJE TABELI `teaminvitations`:
@@ -306,13 +288,6 @@ CREATE TABLE IF NOT EXISTS `teaminvitations` (
 --   `user_id`
 --       `users` -> `id`
 --
-
---
--- Zrzut danych tabeli `teaminvitations`
---
-
-INSERT INTO `teaminvitations` (`id`, `team_id`, `user_id`, `date`) VALUES
-(5, 6, 4, '2014-11-19 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -324,9 +299,9 @@ CREATE TABLE IF NOT EXISTS `teammembers` (
 `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `team_id` int(11) NOT NULL,
-  `joindate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `joindate` datetime NOT NULL,
   `leftdate` datetime DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=2 ;
 
 --
 -- RELACJE TABELI `teammembers`:
@@ -341,13 +316,7 @@ CREATE TABLE IF NOT EXISTS `teammembers` (
 --
 
 INSERT INTO `teammembers` (`id`, `user_id`, `team_id`, `joindate`, `leftdate`) VALUES
-(1, 1, 4, '2014-11-11 10:24:06', NULL),
-(2, 3, 5, '2014-11-11 18:08:28', '2014-11-11 19:09:59'),
-(3, 3, 6, '2014-11-11 18:10:28', NULL),
-(4, 4, 7, '2014-11-12 14:46:53', NULL),
-(5, 1, 6, '0000-00-00 00:00:00', NULL),
-(6, 5, 6, '2014-11-12 15:50:35', NULL),
-(7, 10, 8, '2014-11-18 12:41:05', NULL);
+(1, 1, 4, '2014-11-11 11:24:06', NULL);
 
 -- --------------------------------------------------------
 
@@ -367,7 +336,7 @@ CREATE TABLE IF NOT EXISTS `teams` (
   `status` int(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=5 ;
 
 --
 -- RELACJE TABELI `teams`:
@@ -382,11 +351,7 @@ CREATE TABLE IF NOT EXISTS `teams` (
 --
 
 INSERT INTO `teams` (`id`, `user_id`, `game_id`, `teamname`, `logo`, `ranking`, `win`, `lose`, `status`, `created_at`, `updated_at`) VALUES
-(4, 1, NULL, 'PokeCenter', NULL, 1000, 0, 0, 0, '2014-11-11 11:24:06', '2014-11-11 11:24:06'),
-(5, 3, NULL, 'RazemPonadKilo', NULL, 1000, 0, 0, 1, '2014-11-11 19:08:28', '2014-11-11 19:09:59'),
-(6, 3, NULL, 'RazemPonadKilo2', '6.jpg', 1000, 0, 0, 0, '2014-11-11 19:10:28', '2014-11-11 19:10:35'),
-(7, 4, NULL, 'World of Tanks', '7.jpg', 1000, 0, 0, 0, '2014-11-12 15:46:53', '2014-11-12 15:47:34'),
-(8, 10, NULL, 'AdministratorzyPower', NULL, 1000, 0, 0, 0, '2014-11-18 13:41:05', '2014-11-18 13:41:05');
+(4, 1, NULL, 'PokeCenter', NULL, 1000, 0, 0, 0, '2014-11-11 11:24:06', '2014-11-11 11:24:06');
 
 -- --------------------------------------------------------
 
@@ -454,22 +419,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `photo` varchar(20) COLLATE utf8_polish_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8_polish_ci NOT NULL,
   `comefrom` varchar(20) COLLATE utf8_polish_ci NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=4 ;
 
 --
 -- Zrzut danych tabeli `users`
 --
 
 INSERT INTO `users` (`id`, `email`, `username`, `password`, `password_temp`, `code`, `active`, `permissions`, `about`, `created_at`, `updated_at`, `photo`, `remember_token`, `comefrom`) VALUES
-(1, 'elusive9225@gmail.com', 'elusive92', '$2y$10$FbYsCManSOWJC/T9KreUHOMOWVIdIDRtJSPbPRKe2dvMv.rdOve5m', '', '', 1, 1, 'Lubie grac w lola', '2014-11-08 16:08:28', '2014-11-08 16:08:57', NULL, 'HdcJSdYYJoTyJdfqgtSaV6WH2n3TdzETUzUyB2Xvn4RtvbUVvttYQWhICJRC', ''),
-(3, 'elusive92@gmail.com', 'elu', '$2y$10$rFEbfq9IDySqmxXIhM9lOuVVTboU9o7vBEJtVtNYFQixVJb9LrGpK', '', '', 1, 1, 'Mam ksywke radzio', '2014-11-11 11:59:37', '2014-11-11 12:00:03', NULL, 'YqZpwqptrsqOgg2erqaWtUV1IEf7qaPWZVhA5MO8yaDZ59J7qfYxkB7ibYKz', ''),
-(4, 'el@gmail.com', 'arek', '$2y$10$ctWyqoJ5J7rNtfFjwodcgu8ESFTGc6Vb3zChhFTjhbg1kiW/kBuG6', '', '', 1, 0, NULL, '2014-11-12 15:45:07', '2014-11-12 15:45:07', NULL, 'kR9i6ecuL40PCDgSm3vH7GEG2uHKEq2IEArpRKthAW0ddEcJeBxZy3ZvrsAp', ''),
-(5, 'els@gmail.com', 'marcinnic', '$2y$10$eg6Sd1fXbgPovLVaLtdG6Ol2IqCgt3gewiOdxqzV62gnTG9Jv.C8C', '', '', 1, 0, 'Jestem czarny, bialy i lubie biale kotki!', '2014-11-12 15:45:37', '2014-11-12 15:45:37', NULL, '', ''),
-(6, 'test@gmail.com', 'test', '$2y$10$xCNH8A1cvkw4rxUZo0ncNeOzDMiMr7RybA2xJsBTwP7yWKHqN.ER2', '', '', 1, 0, 'Konto testowe1', '2014-11-18 13:28:08', '2014-11-18 13:28:08', NULL, 'lpSKD7ZLmCBmvP7IlXlIofOLVGFDYGlXyd39c3xeqawnPcntYUnojTrQpp3z', ''),
-(7, 'test1@gmail.com', 'test1', '$2y$10$yuleFeQkJ/l67oQCa3QA5ebUEfXmYvSdKjLzFh7i/qZwJBbmm6phG', '', '81B0jHgUAvtuAKqZJBwxw5PUeZUKZKAJEQQ3u6Xiln0Uql5fAJGW9upMRk5l', 0, 0, NULL, '2014-11-18 13:31:54', '2014-11-18 13:31:54', NULL, '', ''),
-(8, 'test2@gmail.com', 'test2', '$2y$10$HD3z6HNHokg6vU3mZ6iisee5ex5R0PC.sfGFfv5gkRTvhOfgAXRcy', '', '', 1, 0, NULL, '2014-11-18 13:32:45', '2014-11-18 13:32:45', NULL, '', ''),
-(9, 'test3@gmail.com', 'test3', '$2y$10$dmr1HmvbI65N6HRlP2rCeOabvy/HOGjv/ua6BpHebNClS2mTDGgPC', '', '', 1, 0, NULL, '2014-11-18 13:33:07', '2014-11-18 13:33:07', NULL, '', ''),
-(10, 'admin1@gmail.com', 'admin1', '$2y$10$v4kQuOQlWodWOGev4oq53O8AZCi8eJz9AAV8Cm3MROyP.yqHWHhau', '', '', 1, 1, NULL, '2014-11-18 13:33:26', '2014-11-18 13:33:26', NULL, 'Etp78LAcLwBpFv1DascBtBOQE4BLMuf21YMzR17FH2ncxiSMOvmrRqU3hv6J', '');
+(1, 'elusive9225@gmail.com', 'elusive92', '$2y$10$FbYsCManSOWJC/T9KreUHOMOWVIdIDRtJSPbPRKe2dvMv.rdOve5m', '', '', 1, 1, NULL, '2014-11-08 16:08:28', '2014-11-08 16:08:57', NULL, 'HdcJSdYYJoTyJdfqgtSaV6WH2n3TdzETUzUyB2Xvn4RtvbUVvttYQWhICJRC', ''),
+(3, 'elusive92@gmail.com', 'elu', '$2y$10$rFEbfq9IDySqmxXIhM9lOuVVTboU9o7vBEJtVtNYFQixVJb9LrGpK', '', '', 1, 1, NULL, '2014-11-11 11:59:37', '2014-11-11 12:00:03', NULL, 'B6enKafVlYmixiIr4VY9As8HWdsnXnTtuAoDYpJCpK4Plebz6t9X12VrAI7m', '');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -585,7 +543,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT dla tabeli `blacklists`
 --
 ALTER TABLE `blacklists`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT dla tabeli `conversations`
 --
@@ -595,7 +553,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT dla tabeli `friendlist`
 --
 ALTER TABLE `friendlist`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT dla tabeli `galleries`
 --
@@ -605,7 +563,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT dla tabeli `games`
 --
 ALTER TABLE `games`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT dla tabeli `matches`
 --
@@ -625,7 +583,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT dla tabeli `news`
 --
 ALTER TABLE `news`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT dla tabeli `players`
 --
@@ -640,17 +598,17 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT dla tabeli `teaminvitations`
 --
 ALTER TABLE `teaminvitations`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT dla tabeli `teammembers`
 --
 ALTER TABLE `teammembers`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT dla tabeli `teams`
 --
 ALTER TABLE `teams`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT dla tabeli `tournamentmembers`
 --
@@ -665,7 +623,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- Ograniczenia dla zrzutów tabel
 --
@@ -765,14 +723,6 @@ ADD CONSTRAINT `tournamentmembers_ibfk_2` FOREIGN KEY (`team_id`) REFERENCES `te
 --
 ALTER TABLE `tournaments`
 ADD CONSTRAINT `tournaments_ibfk_1` FOREIGN KEY (`game_id`) REFERENCES `games` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-DELIMITER $$
---
--- Zdarzenia
---
-CREATE DEFINER=`root`@`localhost` EVENT `KasowanieZaproszen` ON SCHEDULE EVERY 1 DAY STARTS '2014-11-17 00:00:00' ON COMPLETION NOT PRESERVE ENABLE DO DELETE FROM `teaminvitations` WHERE CURRENT_TIMESTAMP - `date`>7$$
-
-DELIMITER ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
