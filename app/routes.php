@@ -367,14 +367,30 @@ Route::post('/games', array(
     'uses' => 'GameController@postGameId'
 
 ));
-Route::get('/games/{gamename}', array(
-    'as' => 'getGame',
-    'uses' => 'GameController@getGame'
 
-));
 Route::get('/games', array(
     'as' => 'getGame2',
     'uses' => 'GameController@getDaGame'
+
+));
+Route::get('/gameslist', array(
+    'as' => 'edit-game',
+    'uses' => 'GameController@getAllEditGames'
+
+));
+Route::post('/gameslist', array(
+    'as' => 'delGame',
+    'uses' => 'GameController@postDeleteGame'
+
+));
+Route::get('/editgame/{gameid?}', array(
+    'as' => 'edit-game-one',
+    'uses' => 'GameController@getEditGame'
+
+));
+Route::post('/editgame/{gameid?}', array(
+    'as' => 'edit-game-post',
+    'uses' => 'GameController@postEditGame'
 
 ));
 

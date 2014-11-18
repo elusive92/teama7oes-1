@@ -63,8 +63,7 @@ class GameController extends BaseController {
 
 
         $games->save();
-            Input::file('logo')->move($destinationPath, $filename);
-
+            Image::make($image->getRealPath())->resize('200', '200')->save($destinationPath.$filename);
 
             if($games){
                 return Redirect::route('addGame')
@@ -83,6 +82,112 @@ class GameController extends BaseController {
             return Redirect::route('addGame')
                 ->with('message', 'Pleas choose an image.');
             }}
+
+
+    public function postEditGame(){
+        $image = Input::file('logo');
+        $description = Input::get('descript');
+        $game = Game::where('id','=',Input::get('id'))->first();
+        //$gameid = $game->id;
+        $gamelogo = $game->logo;
+
+
+         if($description and $image){
+            $extension = Input::file('logo')->getClientOriginalExtension();
+            if ($extension == 'jpg' OR $extension == 'png' OR $extension == 'jpeg') {
+
+                $filename = str_random(10) . '.' . $extension;
+                $destinationPath = 'img/gameslogos/';
+                if ($gamelogo) {
+                    File::delete(public_path() . '/' . $destinationPath . $gamelogo);
+                }
+                $validator = Validator::make(
+                    array(
+                        'descript'  =>Input::get('descript')),
+                    array(
+                        'descript' 		    => 'required|min:1|max:255'
+                    ));
+
+                if ($validator->fails()) {
+                    return Redirect::route('edit-game-one',$game->id)
+                        ->withErrors($validator)
+                        ->withInput();
+                } else {
+                    $game->descript = $description;
+                    $game->logo = $filename;
+                    $game->save();
+                    $uploadSuccess = Image::make($image->getRealPath())->resize('200', '200')->save($destinationPath.$filename);
+                    if ($game->save() and $uploadSuccess) {
+                        return Redirect::route('edit-game-one',$game->id)->with('message', 'Game has been changed');
+                    } else {
+                        return Redirect::route('edit-game-one',$game->id)->with('message', 'Something went wrong');
+                    }
+                }
+            }}
+        elseif($image){
+            $extension = Input::file('logo')->getClientOriginalExtension();
+
+
+            if($extension == 'jpg' OR $extension == 'png' OR $extension=='jpeg'){
+
+                $filename = str_random(10) . '.' . $extension;
+                $destinationPath = 'img/gameslogos/';
+                if($gamelogo){
+                    File::delete(public_path().'/'.$destinationPath.$gamelogo);
+                }
+                $uploadSuccess = Image::make($image->getRealPath())->resize('200', '200')->save($destinationPath.$filename);
+
+                if($uploadSuccess) {
+                    $game->logo = $filename;
+                    $game->save();
+                    return Redirect::route('edit-game-one',$game->id)->with('message', 'Game Logo has been changed');
+            }else{
+                return Redirect::route('edit-game-one',$game->id)->with('message', 'Something went wrong');}
+            }else{
+                return Redirect::route('edit-game-one',$game->id)->with('message', 'File is not an image or have wrong extension');
+            }
+        }elseif($description){
+            $validator = Validator::make(
+                array(
+                    'descript'  =>Input::get('descript')),
+                    array(
+                        'descript' 		    => 'required|min:1|max:255'
+                ));
+
+            if($validator->fails()){
+                return Redirect::route('edit-game-one',$game->id)
+                    ->withErrors($validator)
+                    ->withInput();
+        }else{
+                $game->descript = $description;
+                $game->save();
+                return Redirect::route('edit-game-one',$game->id)->with('message', 'Game Description has been changed');
+            }
+        }
+
+
+        else{
+            return Redirect::route('edit-game-one',$game->id)->with('message', 'Please change something');
+        }
+    }
+
+    public function getAllEditGames(){
+        $games = Game::all();
+        return View::make('games.gameEdit')->with('games', $games);
+    }
+
+    public function postDeleteGame(){
+        $game = Game::find(Input::get('id'));
+        if($game->delete()){
+            return Redirect::route('edit-game')->with('message', 'Game deleted');
+        }
+    }
+
+    public function getEditGame($gameid){
+        $game = Game::where('id','=',$gameid)->first();
+
+        return View::make('games.gameEditOne')->with('game',$game);
+    }
 /**    public function postAddGame()
     {
 
