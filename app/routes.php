@@ -173,7 +173,7 @@ Route::group(array('before' => 'auth'), function() {
     ));
 
     Route::get('/playerfriendlist', array(
-        'as' =>'playerFriendList',
+        'as' =>'friendlistPlayer',
         'uses' => 'FriendlistController@getPlayerFriendlist'
     ));
     
