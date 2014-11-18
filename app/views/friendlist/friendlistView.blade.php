@@ -4,7 +4,11 @@
 
 
 @section('content')
-    <h5>{{Auth::user()-> username}} Friend List</h5>
+<ol class="breadcrumb">
+          <li><a href="{{ URL::route('home')}}">Home</a></li>
+          <li><a href="{{ URL::route('userprofile', Auth::user()->username) }}">Profile</a></li>
+          <li class="active">Friend List</li>
+</ol> 
 
      <div class='form'>
                    {{Form::open(array(URL::route('postFriendlist')) )}}
