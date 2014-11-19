@@ -19,17 +19,18 @@
           <li @if(Request::is('search'))class="active"@endif><a href="{{ URL::route('search')}}">Search</a></li>
           <li @if(Request::is('forum'))class="active"@endif><a href="{{ URL::route('forum')}}">Forum</a></li>
 
-          <?php  $games = DB::table('games')->select('gamename')->get();?>
+          <?php  $games = DB::table('games')->select('id','gamename')->get();?>
           <li class="dropdown">
                        <a href ="" class="dropdown-toggle" data-toggle="dropdown">Games <span class="caret"></span></a>
                        <ul id = "games" class="dropdown-menu" role="menu">
                        @foreach($games as $game)
-                         <li id={{$game->gamename}}><a href="">{{$game->gamename}}</a></li>
+                         <li id={{$game->id}}><a href="">{{$game->gamename}}</a></li>
                         @endforeach
+                        <li id = "c"><a href ="">More Games</a></li>
                         @if(Auth::check())
                             @if(Auth::user()->permissions==2)
-                                <li id = "0"><a href="">Add Game</a></li>
-                                <li id = "1"><a href="">Edit Game</a></li>
+                                <li id = "b"><a href="">Add Game</a></li>
+                                <li id = "a"><a href="">Edit Game</a></li>
                             @endif
                         @endif
                         </ul>
@@ -39,19 +40,18 @@
     </div>
   </nav>
 </div>
-
-           <script>
-           $(document).ready(function(){
-               $('#games li').click( function(e){
-               $.ajaxSetup({
-                               headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
-                           });
+ <script>
+      $(document).ready(function(){
+            $('#games li').click( function(e){
+           $.ajaxSetup({
+                         headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+                       });
                console.log(e)
                e.preventDefault();
 
                var gameid = this.id;
 
-               if(gameid == 1){
+               if(gameid == 'a'){
                  $.ajax({
 
                              		method: "GET",
@@ -68,7 +68,7 @@
                              })
                }
 
-               else if(gameid == 0){
+               else if(gameid == 'b'){
                $.ajax({
 
                		method: "GET",
@@ -86,7 +86,26 @@
 
 
 
-               }else{
+               }else if(gameid == 'c'){
+                               $.ajax({
+
+                               		method: "GET",
+
+                               		cache: false,
+
+                               		url: '{{ URL::route('gameViewblank') }}',
+
+                               		contentType: "text/html",
+
+                               		success: function(){location.href = "{{URL::route('gameViewblank')}}";}
+
+
+                               });
+
+
+
+                               }
+               else{
                $.ajax({
                                     url: '{{ URL::route('postGame') }}',
                                      dataType: 'json',
@@ -95,7 +114,7 @@
 
                                     success:function(responce){console.log(responce)
                                     location.href = "{{URL::route('home')}}";}
-                                   })
+                                   });
                }
 
 

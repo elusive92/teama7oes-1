@@ -5,9 +5,9 @@ class GameController extends BaseController {
     {
 
         if (Request::ajax()) {
-            $gamename = Input::get('gameid');
+            $gameid = Input::get('gameid');
 
-            $game = Game::where('gamename', '=', $gamename)->firstOrFail();
+            $game = Game::where('id', '=', $gameid)->firstOrFail();
             $gameid = $game->id;
 
 
@@ -191,7 +191,14 @@ class GameController extends BaseController {
 
     public function getAllGamesView(){
         $games = Game::all();
+        $cookie = Cookie::forget('gameid');
         return View::make('games.games_View')->with('games', $games);
+
+    }
+
+    public function remCookies(){
+        $cookie = Cookie::forget('gameid');
+        return Redirect::route('gameView')->withCookie($cookie);
     }
 /**    public function postAddGame()
     {

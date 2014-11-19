@@ -335,13 +335,8 @@ Route::group(array('before' => 'guest'), function() {
 // Admin======================================
 //============================================
 
-Route::group(array('prefix' => 'admin','before'=>'adminAuth'), function()
+Route::group(array('before'=>'adminAuth'), function()
 {
-    Route::get('/', function()
-    {
-        return 'huehuehueView::make(powiedzmy głwona admina)';
-    });
-
 
     Route::get('/addGames', array(
         'as' => 'addGame',
@@ -351,6 +346,27 @@ Route::group(array('prefix' => 'admin','before'=>'adminAuth'), function()
     Route::post('/addGames', array(
         'as' => 'postAddGame',
         'uses' => 'GameController@postAddGame'
+    ));
+
+    Route::get('/gameslist', array(
+        'as' => 'edit-game',
+        'uses' => 'GameController@getAllEditGames'
+
+    ));
+    Route::post('/gameslist', array(
+        'as' => 'delGame',
+        'uses' => 'GameController@postDeleteGame'
+
+    ));
+    Route::get('/editgame/{gameid?}', array(
+        'as' => 'edit-game-one',
+        'uses' => 'GameController@getEditGame'
+
+    ));
+    Route::post('/editgame/{gameid?}', array(
+        'as' => 'edit-game-post',
+        'uses' => 'GameController@postEditGame'
+
     ));
 
 });
@@ -397,6 +413,11 @@ Route::post('/editgame/{gameid?}', array(
 Route::get('/gamesView', array(
     'as' => 'gameView',
     'uses' => 'GameController@getAllGamesView'
+
+));
+Route::get('/gamesViewblank', array(
+    'as' => 'gameViewblank',
+    'uses' => 'GameController@remCookies'
 
 ));
 

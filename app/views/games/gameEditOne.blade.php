@@ -31,7 +31,8 @@
 		<div class='form'>
                    {{Form::open(array(URL::route('edit-game-post',$game->id), 'files'=>true ))}}
                     <div>
-                        Description: {{Form::textarea('descript')}}
+                       <p>Description:</p>
+                        {{Form::textarea('descript')}}
                      </div>
                      {{Form::hidden('id', $game->id)}}
                      <div class="form-group">
@@ -41,6 +42,8 @@
                       <input type="submit" value="Create" class="btn btn-default"/>
                     {{Form::close()}}
         	</div>
+        	<br>
+        	<a href ="{{URL::route('edit-game')}}" class="btn btn-default">Back</a>
 
         @endif
 </div>
