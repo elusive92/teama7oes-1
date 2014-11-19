@@ -79,7 +79,6 @@ class TeamController extends BaseController {
             $teammembers = Teammember::where('team_id', '=', $team->id)
                 ->whereNull('leftdate')
                 ->get();
-
             return View::make('team.teamprofile')
                 ->with('teammembers', $teammembers)
                 ->with('team', $team);
@@ -168,7 +167,7 @@ class TeamController extends BaseController {
                         $team->user_id = $teammember->user_id;
                         $team->save();
                     }
-                }else{
+                }elseif($count == 0){
                     $teaminvitations = Teaminvitation::where('team_id', '=', $team->id);
                     $teaminvitations->delete();
                     $team->status = 1;
@@ -269,7 +268,7 @@ class TeamController extends BaseController {
                         $team->user_id = $teammember->user_id;
                         $team->save();
                     }
-                }else{
+                }elseif($count == 0){
                     $teaminvitations = Teaminvitation::where('team_id', '=', $team->id);
                     $teaminvitations->delete();
                     $team->status = 1;
