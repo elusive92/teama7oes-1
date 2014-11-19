@@ -123,6 +123,8 @@ class GameController extends BaseController {
                         return Redirect::route('edit-game-one',$game->id)->with('message', 'Something went wrong');
                     }
                 }
+            }else{
+                return Redirect::route('edit-game-one',$game->id)->with('message', 'File is not an image or has wrong extension');
             }}
         elseif($image){
             $extension = Input::file('logo')->getClientOriginalExtension();
@@ -144,7 +146,7 @@ class GameController extends BaseController {
             }else{
                 return Redirect::route('edit-game-one',$game->id)->with('message', 'Something went wrong');}
             }else{
-                return Redirect::route('edit-game-one',$game->id)->with('message', 'File is not an image or have wrong extension');
+                return Redirect::route('edit-game-one',$game->id)->with('message', 'File is not an image or has wrong extension');
             }
         }elseif($description){
             $validator = Validator::make(
