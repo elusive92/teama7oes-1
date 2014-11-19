@@ -35,7 +35,7 @@ class NewsController extends BaseController {
             ));
             if($news){
                 return Redirect::route('home')
-                    ->with('message', 'Your news has been create');
+                    ->with('message', 'Your news has been added');
                     }   
             
         }
@@ -49,7 +49,7 @@ class NewsController extends BaseController {
 
         if($dstr){
             return Redirect::route('home')
-                ->with('message', 'usuneiteo usuneiteo usuneiteo usuneiteo usuneiteo usuneiteo ');
+                ->with('message', 'Your news has been deleted');
         }
 
     }
@@ -61,6 +61,26 @@ class NewsController extends BaseController {
         // var_dump("edit $news ");
        // return View::make('news.edit')->withNews('news', $news);       
         return View::make('news.edit', compact('news'));
+
+    }
+
+    public function updateNews(){
+            $news = Input::get('id');
+            $title = Input::get('title');
+            $descript = Input::get('descript');
+            $draft   =  Input::get('draft');
+            $game_id = 1;
+            
+            News::where('id', $news)->update(array(
+
+            'title' => $title,
+            'descript' => $descript,
+            'draft' => $draft,
+            'game_id' => $game_id
+            ));
+            
+                return Redirect::route('home')->with('message', 'Your news has been updated');
+            
 
     }
 

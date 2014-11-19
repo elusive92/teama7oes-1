@@ -43,15 +43,17 @@
         {{ Form::token() }} 
     </label>    
 </form>
-{{ Form::model($news, array('route' => array('news-add-post', $news->id)), ['method' => 'patch'], ['role' => 'form']) }}
+{{ Form::model($news, array('route' => array('news-update', $news->id)), ['method' => 'put'], ['role' => 'form']) }}
 {{ Form::label('title', 'Title') }}
-{{ Form::text('title') }}
+{{ Form::text('title', $news->title) }}
 {{ Form::label('descript', 'Descript') }}
-{{ Form::text('descript') }}
+{{ Form::text('descript', $news->descript) }}
 {{ Form::label('draft', 'Draft') }}
-{{ Form::text('draft') }}
+{{ Form::text('draft', $news->draft) }}
 {{ Form::button('Save', ['type' => 'submit']) }}
 {{ Form::close() }}
+<br><br>
+
 @stop
 
 @stop

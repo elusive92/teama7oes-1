@@ -27,6 +27,11 @@ Route::get('/news-edit/{id}', array(
     'uses' => 'NewsController@editNews'
 ));
 
+Route::post('/news-edit/update', array(
+    'as' => 'news-update',
+    'uses' => 'NewsController@updateNews'
+));
+
 Route::get('/news-delete/{id}', array(
     'as' => 'news-delete',
     'uses' => 'NewsController@deleteNews'
