@@ -55,14 +55,14 @@ $(document).ready(function(){
 <br><br><br>
 	<div id="left">
 
-	{{Form::open(array('url' =>'search-user'))}}
+	{{Form::open(array('route' =>'search-user'))}}
 		{{Form::text('keyword', null, array('placeholder'=> 'Search User'))}}
 		{{Form::submit('Search')}}
 	{{Form::close()}}
 	</div>	
 
 	<div id="right">
-	{{Form::open(array('url' =>'search-team'))}}
+	{{Form::open(array('route' =>'search-team'))}}
 		{{Form::text('keyword', null, array('placeholder'=> 'Search Team'))}}
 		{{Form::submit('Search')}}
 	{{Form::close()}}
