@@ -55,6 +55,7 @@ $(document).ready(function(){
 <br><br><br>
 	<div id="left">
 
+<<<<<<< HEAD
       <form class="navbar-form navbar-left" role="search">
         {{Form::open(array('url' =>'search-user'))}}
         <div class="form-group">
@@ -64,6 +65,8 @@ $(document).ready(function(){
         {{Form::close()}}
       </form>
 
+=======
+>>>>>>> origin/master
 	{{Form::open(array('route' =>'search-user'))}}
 		{{Form::text('keyword', null, array('placeholder'=> 'Search User'))}}
 		{{Form::submit('Search')}}
