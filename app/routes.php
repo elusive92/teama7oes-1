@@ -12,35 +12,7 @@ Route::get('/news/{id}', array(
     'uses' => 'HomeController@showNews'
 ));
 
-Route::get('/news-add', array(
-    'as' => 'news-add',
-    'uses' => 'HomeController@addNews'
-));
 
- Route::post('/news-add', array(
-    'as' => 'news-add-post',
-    'uses' => 'NewsController@postNews'
-));
-
-Route::get('/news-edit/{id}', array(
-    'as' => 'news-edit',
-    'uses' => 'NewsController@editNews'
-));
-
-Route::post('/news-edit/update', array(
-    'as' => 'news-update',
-    'uses' => 'NewsController@updateNews'
-));
-
-Route::get('/news-delete/{id}', array(
-    'as' => 'news-delete',
-    'uses' => 'NewsController@deleteNews'
-));
-
-Route::get('/manage-news', array(
-    'as' => 'manage-news',
-    'uses' => 'NewsController@manageNews'
-));
 
 Route::get('/home', array(
     'as' => 'home',
@@ -226,6 +198,11 @@ Route::group(array('before' => 'auth'), function() {
         'uses' => 'BlacklistController@delPlayerB'
     ));
 
+    Route::get('/inbox', array(
+        'as' => 'getInbox',
+        'uses' => 'ConversationController@getInbox'
+    ));
+
 
 //////////////////////deleting
     //ten route jest dziwny xd, jak dam /news/{id ktorego nie ma} to wywala ze nie znalzlo sciezki do blacklisty ;p
@@ -373,9 +350,73 @@ Route::group(array('before'=>'adminAuth'), function()
         'uses' => 'GameController@postEditGame'
 
     ));
+<<<<<<< HEAD
+=======
+    //NEWSY
+Route::get('/news-add', array(
+    'as' => 'news-add',
+    'uses' => 'HomeController@addNews'
+));
+
+ Route::post('/news-add', array(
+    'as' => 'news-add-post',
+    'uses' => 'NewsController@postNews'
+));
+
+Route::get('/news-edit/{id}', array(
+    'as' => 'news-edit',
+    'uses' => 'NewsController@editNews'
+));
+
+Route::post('/news-edit/update', array(
+    'as' => 'news-update',
+    'uses' => 'NewsController@updateNews'
+));
+
+Route::get('/news-delete/{id}', array(
+    'as' => 'news-delete',
+    'uses' => 'NewsController@deleteNews'
+));
+
+Route::get('/manage-news', array(
+    'as' => 'manage-news',
+    'uses' => 'NewsController@manageNews'
+));
+>>>>>>> 53f075053a283972c6a0acf6952a562ed9188b3b
 });
 
 Route::group(array('before'=>'modAuth'),function(){
+
+// Newsy tylko dla moderatora    
+Route::get('/news-add', array(
+    'as' => 'news-add',
+    'uses' => 'HomeController@addNews'
+));
+
+ Route::post('/news-add', array(
+    'as' => 'news-add-post',
+    'uses' => 'NewsController@postNews'
+));
+
+Route::get('/news-edit/{id}', array(
+    'as' => 'news-edit',
+    'uses' => 'NewsController@editNews'
+));
+
+Route::post('/news-edit/update', array(
+    'as' => 'news-update',
+    'uses' => 'NewsController@updateNews'
+));
+
+Route::get('/news-delete/{id}', array(
+    'as' => 'news-delete',
+    'uses' => 'NewsController@deleteNews'
+));
+
+Route::get('/manage-news', array(
+    'as' => 'manage-news',
+    'uses' => 'NewsController@manageNews'
+));
 
 });
 

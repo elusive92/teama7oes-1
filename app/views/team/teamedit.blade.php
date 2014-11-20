@@ -15,7 +15,7 @@
 </div>
 <div class="myteamedit">
     <div class="teamphoto">
-            WYBÓR ZDJĘCIA
+            <h5>Upload a team logo: </h5>
             {{ Form::open( array('route' => 'team-edit-post', 'class'=>'form-horizontal', 'files' => true)) }}
 
             {{Form::file('logo')}}
@@ -38,8 +38,9 @@
 </div>
 <div id="teamsView" class="myteam">
     <div class="teamphoto">
-
-        <a href="#"><img src="" width="150" height="150" /></a>
+        @if($team->logo)
+            {{ HTML::image('img/teams/logos/'.$team->logo, '', ['width' => '180', 'height' => '180']) }}
+        @endif
     </div>
     <div class="data">
         <h5>From: </h5>

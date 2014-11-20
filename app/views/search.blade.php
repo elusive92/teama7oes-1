@@ -55,14 +55,25 @@ $(document).ready(function(){
 <br><br><br>
 	<div id="left">
 
-	{{Form::open(array('url' =>'search-user'))}}
+
+      <form class="navbar-form navbar-left" role="search">
+        {{Form::open(array('url' =>'search-user'))}}
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+        {{Form::close()}}
+      </form>
+
+
+	{{Form::open(array('route' =>'search-user'))}}
 		{{Form::text('keyword', null, array('placeholder'=> 'Search User'))}}
 		{{Form::submit('Search')}}
 	{{Form::close()}}
 	</div>	
 
 	<div id="right">
-	{{Form::open(array('url' =>'search-team'))}}
+	{{Form::open(array('route' =>'search-team'))}}
 		{{Form::text('keyword', null, array('placeholder'=> 'Search Team'))}}
 		{{Form::submit('Search')}}
 	{{Form::close()}}
@@ -74,5 +85,7 @@ $(document).ready(function(){
 
         @endforeach
     @endif
+
+
 
 @stop

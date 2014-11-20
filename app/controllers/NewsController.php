@@ -5,23 +5,23 @@ class NewsController extends BaseController {
 
     public function postNews(){
 
-        // $validator = Validator::make(
-        //     array(
-        //         'title' => Input::get('name'),
-        //         'descript' => Input::get('message'),
-        //         'selection' => Input::get('selection'),
-        //     ),
-        //     array(
-        //         'title' => 'required|min:4|max:80',
-        //         'descript' => 'required|max:3000',
-        //         'selection' => 'required'
-        //     )
-        // );
+        $validator = Validator::make(
+            array(
+                'title' => Input::get('title'),
+                'descript' => Input::get('descript'),
+                'draft' => Input::get('draft'),
+            ),
+            array(
+                'title' => 'required|min:4|max:80',
+                'descript' => 'required|max:3000',
+                'draft' => 'required'
+            )
+        );
 
-        // if($validator->fails()){
-        //     return Redirect::route('home')
-        //         ->withErrors($validator);
-        // }else{
+        if($validator->fails()){
+            return Redirect::route('home')
+                ->withErrors($validator);
+        }else{
             $title = Input::get('title');
             $descript = Input::get('descript');
             $draft   =  Input::get('draft');
@@ -38,7 +38,7 @@ class NewsController extends BaseController {
                     ->with('message', 'Your news has been added');
                     }   
             
-        }
+        }}
 
     public function deleteNews($id){
         // $news = News::where('id', '=', $id)->firstOrFail();

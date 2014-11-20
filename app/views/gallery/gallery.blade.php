@@ -6,16 +6,15 @@
 @stop
 
 @section('content')
+ <div class="row">
     <div id="links">
         @foreach($photos as $photo)
-        <a href={{URL::to('media/gallery/'.Auth::user()->id.'/'.$photo->filename)}} tittle={{$photo->tittle}}>
-           {{ HTML::image('media/gallery/'.Auth::user()->id.'/thumbnails/'.$photo->filename), $photo->tittle }}
-        </a>
+        <div class="col-xs-3">
+        <a href={{URL::to('img/gallery/'.Auth::user()->id.'/'.$photo->filename)}} tittle={{$photo->tittle}}>
+           {{ HTML::image('img/gallery/'.Auth::user()->id.'/mini/'.$photo->filename), $photo->tittle }}
+        </a></div>
         @endforeach
-        <a href={{URL::to('media/gallery/2/fire.jpg')}}>
-                   {{ HTML::image('media/gallery/2/thumbnails/e1.jpg')}}
-                </a>
-    </div>
+    </div></div>
      <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
          <div class="slides"></div>
          <h3 class="title"></h3>

@@ -11,7 +11,8 @@ class GalleryController extends BaseController {
         $user = Auth::user()->id;
         $extension = strtolower(Input::file('logo')->getClientOriginalExtension());
         $filename = str_random(10) . '.' . $extension;
-        $destinationPath = 'img/teams/logos/'.$user;
+        $destinationPath = 'img/gallery/'.$user->id;
+        $destinationPath_mini = 'img/gallery/'.$user->id.'/mini';
 
         if(($extension == 'jpg') || ($extension == 'jpeg') || ($extension == 'png')){
 
@@ -35,14 +36,18 @@ class GalleryController extends BaseController {
                 $image->title = Input::get('title');
                 $image->descript = Input::get('descript');
                 $image->date = date("Y-m-d H:i:s");
+                $image->filename = $filename;
                 $image->save();
-
-                if($image){
-                    return Redirect::route('ugallery');
+                $uploadSuccess = Image::make($image->getRealPath())->save($destinationPath.$filename);
+                $uploadSuccess_mini = Image::make($image->getRealPath())->resize('350', '200')->save($destinationPath_mini.$filename);
+                if($image and $uploadSuccess and $uploadSuccess_mini){
+                    return Redirect::route('ugallery')->with('message', 'Image added too gallery');
                 }
 
 
             }
+        }else{
+            return Redirect::route('ugallery')->with('message', 'File is not an image or has wrong extension' );
         }
 
     }

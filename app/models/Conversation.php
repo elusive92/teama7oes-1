@@ -9,4 +9,16 @@ class Conversation extends Eloquent{
 
     protected $fillable = array('id','id_A','id_B');
 
+    public function messages(){
+        return $this->hasMany('Message');
+    }
+    public function userA()
+    {
+        return $this->hasOne('User', 'id', 'id_A');
+    }
+    public function userB()
+    {
+        return $this->hasOne('User', 'id', 'id_B');
+    }
+
 }
