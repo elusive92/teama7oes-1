@@ -350,8 +350,8 @@ Route::group(array('before'=>'adminAuth'), function()
         'uses' => 'GameController@postEditGame'
 
     ));
-<<<<<<< HEAD
-=======
+
+
     //NEWSY
 Route::get('/news-add', array(
     'as' => 'news-add',
@@ -382,7 +382,7 @@ Route::get('/manage-news', array(
     'as' => 'manage-news',
     'uses' => 'NewsController@manageNews'
 ));
->>>>>>> 53f075053a283972c6a0acf6952a562ed9188b3b
+
 });
 
 Route::group(array('before'=>'modAuth'),function(){
