@@ -37,6 +37,14 @@
           <span><img src="{{ URL::asset('/') }}img/ico/upload.png"/></span> Upload article photo
         </button>
     </label> 
+    <label>
+        <span>Upload photo :</span>
+        <input name="photo" id="uploadFile" placeholder="Choose File" disabled="disabled" />
+        <div class="fileUpload btn btn-default btn-sm">
+            <span><img src="{{ URL::asset('/') }}img/ico/upload.png"/></span> Upload article photo
+            <input id="uploadBtn" type="file" class="upload" />
+        </div>
+    </label>
     <br><h1></h1>
      <label>
         <span>&nbsp;</span> 
@@ -44,6 +52,12 @@
         {{ Form::token() }} 
     </label>    
 </form>
+
+<script>
+document.getElementById("uploadBtn").onchange = function () {
+    document.getElementById("uploadFile").value = this.value;
+};
+</script>
 @stop
 
 @stop

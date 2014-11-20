@@ -10,11 +10,13 @@ class NewsController extends BaseController {
                 'title' => Input::get('title'),
                 'descript' => Input::get('descript'),
                 'draft' => Input::get('draft'),
+                //'photo' => Input::get('photo'),
             ),
             array(
                 'title' => 'required|min:4|max:80',
                 'descript' => 'required|max:3000',
-                'draft' => 'required'
+                'draft' => 'required',
+               // 'photo' => 'required',
             )
         );
 
@@ -25,12 +27,17 @@ class NewsController extends BaseController {
             $title = Input::get('title');
             $descript = Input::get('descript');
             $draft   =  Input::get('draft');
+            $photo   =  Input::file('photo');
             $game_id = 1;
             
+            $extension = Input::file('photo')->getClientOriginalExtension();
+            $destinationPath = 'img/ico/';
+
             $news   = News::create(array(
                 'title' => $title,
                 'descript' => $descript,
                 'draft' => $draft,
+                'photo' => $photo,
                 'game_id' => $game_id
             ));
             if($news){
