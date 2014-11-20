@@ -418,3 +418,20 @@ table {
 .basic-grey .button:hover {
     background: #CF7A7A
 }
+#navtop-button {
+    background-color: #2e3140;
+    border-color: #2e3140;
+    color: white;
+    height: 30px;
+}
+#navtop-ul {
+    background-color: #2e3140;
+    color: white;
+}
+#navtop-ul li a{
+    padding: 3px 20px;
+}
+#navtop-ul li a:hover{
+    background-color: #2e3140;
+    color: red;
+}
