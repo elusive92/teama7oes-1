@@ -32,10 +32,9 @@
         <tbody>
         @foreach($blacklists as $blacklist)
 
-                    <?php $us = User::where('id','=',$blacklist->id_B)->firstOrFail();
-                         ?>
+
                    <tr>
-                        <td>{{$us -> username}} </td>
+                        <td>{{ e($blacklist->user->username) }} </td>
                     <td>
                         {{Form::open(array(URL::route('delPlayer'), 'method'=>'DELETE'))}}
                         {{Form::hidden('id', $blacklist->id)}}

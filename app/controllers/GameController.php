@@ -1,6 +1,11 @@
 <?php
 
 class GameController extends BaseController {
+
+    public function getGameViaAjax(){
+
+
+    }
     public function postGameId()
     {
 
