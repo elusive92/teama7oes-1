@@ -8,7 +8,7 @@
   @if(Session::has('message'))
   <p class="alert alert-info">{{ Session::get('message') }}</p>
   @endif
-    <h5>{{Auth::user()-> username}} Black List</h5>
+    <h4>{{Auth::user()-> username}} Black List</h4><br>
 
 
      <div class='form'>
@@ -16,11 +16,12 @@
 
 
                     <div class="form-group">
-                    Nick: {{Form::text('bannedplayer')}}</div>
+                    <label>Nick:</label> {{Form::text('bannedplayer')}}</div>
 
-                      <input type="submit" value="Add" class="btn btn-default"/>
+                      <input type="submit" value="Ban player" class="btn btn-default"/>
                     {{Form::close()}}
         	</div>
+        	<br><br>
 
 
     @if($blacklists ->count())
@@ -38,7 +39,7 @@
                     <td>
                         {{Form::open(array(URL::route('delPlayer'), 'method'=>'DELETE'))}}
                         {{Form::hidden('id', $blacklist->id)}}
-                        <button type="submit"  class="btn btn-danger">Delete</button>
+                        <button type="submit"  class="btn btn-danger btn pull-right">Delete</button>
                         {{Form::close()}}
                     </td>
                    </tr>

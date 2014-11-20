@@ -15,13 +15,13 @@
             @foreach($games as $game)
                 <tr>
                     <td>{{$game->gamename}}</td>
-                    <td><a href="{{ URL::route('edit-game-one',$game->id)}}" class="btn btn-default btn-xs">
+                    <td><a href="{{ URL::route('edit-game-one',$game->id)}}" class="btn btn-default btn-xs btn pull-right">
                                   <span><img src="{{ URL::asset('/') }}img/ico/pencil.png"/></span> Edit game
                             	</a></td>
                     <td>
                         {{Form::open(array(URL::route('delGame'), 'method'=>'POST'))}}
                         {{Form::hidden('id', $game->id)}}
-                        <button type="submit"  class="btn btn-danger">Delete</button>
+                        <button type="submit"  class="btn btn-danger btn pull-right">Delete</button>
                         {{Form::close()}}
                     </td>
                 </tr>
