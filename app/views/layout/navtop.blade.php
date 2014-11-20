@@ -18,7 +18,7 @@
       <ul id="navtop-ul" class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu3">
         <li role="menuitem"><a href="{{ URL::route('userprofile', Auth::user()->username) }}">My profile</a></li>
         <li role="menuitem"><a href="{{ URL::route('account-editprofile')}}">Edit profile</a></li>
-        <li role="menuitem"><a href="#">Messages</a></li>
+        <li role="menuitem"><a href="{{ URL::route('getInbox')}}">Messages</a></li>
         <li role="menuitem"><a href="{{ URL::route('friendlistPlayer')}}">Friend list</a></li>
         <li role="menuitem"><a href="{{ URL::route('playerBlackList')}}">Black list</a></li>
         <li role="menuitem"><a href="{{ URL::route('account-sign-out') }}">Log out</a></li>

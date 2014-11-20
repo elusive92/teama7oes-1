@@ -198,6 +198,11 @@ Route::group(array('before' => 'auth'), function() {
         'uses' => 'BlacklistController@delPlayerB'
     ));
 
+    Route::get('/inbox', array(
+        'as' => 'getInbox',
+        'uses' => 'ConversationController@getInbox'
+    ));
+
 
 //////////////////////deleting
     //ten route jest dziwny xd, jak dam /news/{id ktorego nie ma} to wywala ze nie znalzlo sciezki do blacklisty ;p

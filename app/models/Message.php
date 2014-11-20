@@ -7,6 +7,6 @@ class Message extends Eloquent{
 
     protected $primaryKey = 'id';
 
-    protected $fillable = array('id','conversation_id','user_id','senddate', 'recivedate');
+    protected $fillable = array('id','conversation_id','user_id', 'text', 'senddate', 'recivedate');
 
 }
