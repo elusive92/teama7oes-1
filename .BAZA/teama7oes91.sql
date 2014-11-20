@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Czas generowania: 20 Lis 2014, 20:59
+-- Czas generowania: 18 Lis 2014, 14:47
 -- Wersja serwera: 5.6.20
 -- Wersja PHP: 5.5.15
 
@@ -57,8 +57,7 @@ INSERT INTO `blacklists` (`id`, `id_A`, `id_B`, `date`) VALUES
 CREATE TABLE IF NOT EXISTS `conversations` (
 `id` int(11) NOT NULL,
   `id_A` int(11) NOT NULL,
-  `id_B` int(11) NOT NULL,
-  `last_activity` datetime NOT NULL
+  `id_B` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -72,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `friendlist` (
   `id_adding` int(11) NOT NULL,
   `id_friend` int(11) NOT NULL,
   `data` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=4 ;
 
 --
 -- RELACJE TABELI `friendlist`:
@@ -89,8 +88,7 @@ CREATE TABLE IF NOT EXISTS `friendlist` (
 INSERT INTO `friendlist` (`id`, `id_adding`, `id_friend`, `data`) VALUES
 (1, 3, 1, '2014-11-12 15:20:16'),
 (2, 3, 4, '2014-11-12 16:23:34'),
-(3, 3, 5, '2014-11-12 17:38:21'),
-(4, 6, 7, '2014-11-18 19:21:52');
+(3, 3, 5, '2014-11-12 17:38:21');
 
 -- --------------------------------------------------------
 
@@ -199,8 +197,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `conversation_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `senddate` datetime NOT NULL,
-  `recivedate` datetime DEFAULT NULL,
-  `text` varchar(600) COLLATE utf8_polish_ci NOT NULL
+  `recivedate` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
 --
@@ -300,7 +297,7 @@ CREATE TABLE IF NOT EXISTS `teaminvitations` (
   `team_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `date` datetime NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=18 ;
 
 --
 -- RELACJE TABELI `teaminvitations`:
@@ -465,14 +462,14 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `email`, `username`, `password`, `password_temp`, `code`, `active`, `permissions`, `about`, `created_at`, `updated_at`, `photo`, `remember_token`, `comefrom`) VALUES
 (1, 'elusive9225@gmail.com', 'elusive92', '$2y$10$FbYsCManSOWJC/T9KreUHOMOWVIdIDRtJSPbPRKe2dvMv.rdOve5m', '', '', 1, 1, 'Lubie grac w lola', '2014-11-08 16:08:28', '2014-11-08 16:08:57', NULL, 'HdcJSdYYJoTyJdfqgtSaV6WH2n3TdzETUzUyB2Xvn4RtvbUVvttYQWhICJRC', ''),
-(3, 'elusive92@gmail.com', 'elu', '$2y$10$rFEbfq9IDySqmxXIhM9lOuVVTboU9o7vBEJtVtNYFQixVJb9LrGpK', '', '', 1, 1, 'Mam ksywke radzio', '2014-11-11 11:59:37', '2014-11-11 12:00:03', NULL, 'Buzawu1qnRb2y211fUYvT5qG0MJKaYwLITRB6dlMLZMnoBPbqzIt1OI0BbVA', ''),
+(3, 'elusive92@gmail.com', 'elu', '$2y$10$rFEbfq9IDySqmxXIhM9lOuVVTboU9o7vBEJtVtNYFQixVJb9LrGpK', '', '', 1, 1, 'Mam ksywke radzio', '2014-11-11 11:59:37', '2014-11-11 12:00:03', NULL, 'YqZpwqptrsqOgg2erqaWtUV1IEf7qaPWZVhA5MO8yaDZ59J7qfYxkB7ibYKz', ''),
 (4, 'el@gmail.com', 'arek', '$2y$10$ctWyqoJ5J7rNtfFjwodcgu8ESFTGc6Vb3zChhFTjhbg1kiW/kBuG6', '', '', 1, 0, NULL, '2014-11-12 15:45:07', '2014-11-12 15:45:07', NULL, 'kR9i6ecuL40PCDgSm3vH7GEG2uHKEq2IEArpRKthAW0ddEcJeBxZy3ZvrsAp', ''),
 (5, 'els@gmail.com', 'marcinnic', '$2y$10$eg6Sd1fXbgPovLVaLtdG6Ol2IqCgt3gewiOdxqzV62gnTG9Jv.C8C', '', '', 1, 0, 'Jestem czarny, bialy i lubie biale kotki!', '2014-11-12 15:45:37', '2014-11-12 15:45:37', NULL, '', ''),
-(6, 'test@gmail.com', 'test', '$2y$10$xCNH8A1cvkw4rxUZo0ncNeOzDMiMr7RybA2xJsBTwP7yWKHqN.ER2', '', '', 1, 0, 'Konto testowe1', '2014-11-18 13:28:08', '2014-11-18 13:28:08', NULL, 'WXbjUdYb3vaN7c333WkVEbboTR1Ab2OkdKzWvBpSxdrmgWpzcgZnYKlghfCa', ''),
+(6, 'test@gmail.com', 'test', '$2y$10$xCNH8A1cvkw4rxUZo0ncNeOzDMiMr7RybA2xJsBTwP7yWKHqN.ER2', '', '', 1, 0, 'Konto testowe1', '2014-11-18 13:28:08', '2014-11-18 13:28:08', NULL, 'lpSKD7ZLmCBmvP7IlXlIofOLVGFDYGlXyd39c3xeqawnPcntYUnojTrQpp3z', ''),
 (7, 'test1@gmail.com', 'test1', '$2y$10$yuleFeQkJ/l67oQCa3QA5ebUEfXmYvSdKjLzFh7i/qZwJBbmm6phG', '', '81B0jHgUAvtuAKqZJBwxw5PUeZUKZKAJEQQ3u6Xiln0Uql5fAJGW9upMRk5l', 0, 0, NULL, '2014-11-18 13:31:54', '2014-11-18 13:31:54', NULL, '', ''),
 (8, 'test2@gmail.com', 'test2', '$2y$10$HD3z6HNHokg6vU3mZ6iisee5ex5R0PC.sfGFfv5gkRTvhOfgAXRcy', '', '', 1, 0, NULL, '2014-11-18 13:32:45', '2014-11-18 13:32:45', NULL, '', ''),
 (9, 'test3@gmail.com', 'test3', '$2y$10$dmr1HmvbI65N6HRlP2rCeOabvy/HOGjv/ua6BpHebNClS2mTDGgPC', '', '', 1, 0, NULL, '2014-11-18 13:33:07', '2014-11-18 13:33:07', NULL, '', ''),
-(10, 'admin1@gmail.com', 'admin1', '$2y$10$v4kQuOQlWodWOGev4oq53O8AZCi8eJz9AAV8Cm3MROyP.yqHWHhau', '', '', 1, 1, NULL, '2014-11-18 13:33:26', '2014-11-18 13:33:26', NULL, 'LDQdHno0KWUCHRUXBZ8IGjAQfBxhlquIOslRwJKBpNbULI8hYyQZtc65egJf', '');
+(10, 'admin1@gmail.com', 'admin1', '$2y$10$v4kQuOQlWodWOGev4oq53O8AZCi8eJz9AAV8Cm3MROyP.yqHWHhau', '', '', 1, 1, NULL, '2014-11-18 13:33:26', '2014-11-18 13:33:26', NULL, 'Etp78LAcLwBpFv1DascBtBOQE4BLMuf21YMzR17FH2ncxiSMOvmrRqU3hv6J', '');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -598,7 +595,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT dla tabeli `friendlist`
 --
 ALTER TABLE `friendlist`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT dla tabeli `galleries`
 --
@@ -643,7 +640,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT dla tabeli `teaminvitations`
 --
 ALTER TABLE `teaminvitations`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT dla tabeli `teammembers`
 --
@@ -774,8 +771,6 @@ DELIMITER $$
 -- Zdarzenia
 --
 CREATE DEFINER=`root`@`localhost` EVENT `KasowanieZaproszen` ON SCHEDULE EVERY 1 DAY STARTS '2014-11-17 00:00:00' ON COMPLETION NOT PRESERVE ENABLE DO DELETE FROM `teaminvitations` WHERE CURRENT_TIMESTAMP - `date`>7$$
-
-CREATE DEFINER=`root`@`localhost` EVENT `KasowanieWiadomosci` ON SCHEDULE EVERY 5 DAY STARTS '2014-11-23 00:00:00' ON COMPLETION NOT PRESERVE ENABLE DO DELETE FROM `messages` WHERE CURRENT_TIMESTAMP - `senddate`>180$$
 
 DELIMITER ;
 
