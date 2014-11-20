@@ -373,7 +373,6 @@ Route::group(array('before'=>'adminAuth'), function()
         'uses' => 'GameController@postEditGame'
 
     ));
-
 });
 
 Route::group(array('before'=>'modAuth'),function(){
@@ -394,27 +393,6 @@ Route::get('/games', array(
     'uses' => 'GameController@getDaGame'
 
 ));
-Route::get('/gameslist', array(
-    'as' => 'edit-game',
-    'uses' => 'GameController@getAllEditGames'
-
-));
-Route::post('/gameslist', array(
-    'as' => 'delGame',
-    'uses' => 'GameController@postDeleteGame'
-
-));
-Route::get('/editgame/{gameid?}', array(
-    'as' => 'edit-game-one',
-    'uses' => 'GameController@getEditGame'
-
-));
-Route::post('/editgame/{gameid?}', array(
-    'as' => 'edit-game-post',
-    'uses' => 'GameController@postEditGame'
-
-));
-
 Route::get('/gamesView', array(
     'as' => 'gameView',
     'uses' => 'GameController@getAllGamesView'
