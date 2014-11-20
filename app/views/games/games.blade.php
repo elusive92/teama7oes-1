@@ -38,12 +38,12 @@
 
 
                     <div class="form-group">
-                        Game Name: {{Form::text('gamename')}}</div>
+                        <label>Game Name:</label> {{Form::text('gamename')}}</div>
                      <div class="form-group">
-                        Description: {{Form::text('descript')}}
+                        <label>Game description:</label> {{Form::textarea('descript')}}
                      </div>
                      <div class="form-group">
-                        Logo: {{Form::file('logo')}}
+                        <label>Game logo:</label> {{Form::file('logo')}}
                      </div>
                       <input type="submit" value="Create" class="btn btn-default"/>
                     {{Form::close()}}

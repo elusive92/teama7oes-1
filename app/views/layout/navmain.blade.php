@@ -19,16 +19,18 @@
           <li @if(Request::is('search'))class="active"@endif><a href="{{ URL::route('search')}}">Search</a></li>
           <li @if(Request::is('forum'))class="active"@endif><a href="{{ URL::route('forum')}}">Forum</a></li>
 
-          <?php  $games = DB::table('games')->select('id','gamename')->get();?>
+          <?php  $games = DB::table('games')->select('id','gamename')->get(10);?>
           <li class="dropdown">
                        <a href ="" class="dropdown-toggle" data-toggle="dropdown">Games <span class="caret"></span></a>
-                       <ul id = "games" class="dropdown-menu" role="menu">
+                       <ul id = "games" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuDivider">
                        @foreach($games as $game)
                          <li id={{$game->id}}><a href="">{{$game->gamename}}</a></li>
                         @endforeach
+                        <li role="presentation" class="divider"></li>
                         <li id = "c"><a href ="">More Games</a></li>
                         @if(Auth::check())
                             @if(Auth::user()->permissions==2)
+                                <li role="presentation" class="divider"></li>
                                 <li id = "b"><a href="">Add Game</a></li>
                                 <li id = "a"><a href="">Edit Game</a></li>
                             @endif

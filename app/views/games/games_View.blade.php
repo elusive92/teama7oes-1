@@ -12,14 +12,19 @@
 @if($games->count())
     @foreach($games as $game)
     <div id = "games" class="col-lg-4 col-sm-6 col-xs-12">
+        <div class="photo-grid">
+        <div>
         <a href="" id="{{$game->id}}">
+        <figure>
             @if($game->logo)
                 <img src="{{URL::to('img/gameslogos/'.$game->logo)}}" class="thumbnail img-responsive">
              @else
                 <img src="{{ URL::asset('/') }}img/default1.jpg" class="thumbnail img-responsive">
              @endif
+             <figcaption><p>{{$game->gamename}}</p></figcaption>
+        </figure>
         </a>
-        <p>{{$game->gamename}}</p>
+        </div></div>
         <br>
     </div>
      @endforeach
