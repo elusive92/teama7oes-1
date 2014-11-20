@@ -427,6 +427,7 @@ table {
 #navtop-ul {
     background-color: #2e3140;
     color: white;
+    margin: 0px;
 }
 #navtop-ul li a{
     padding: 3px 20px;
@@ -434,4 +435,7 @@ table {
 #navtop-ul li a:hover{
     background-color: #2e3140;
     color: red;
+}
+.dropdown:hover .dropdown-menu {
+    display: block;
 }
