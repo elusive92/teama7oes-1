@@ -7,7 +7,7 @@ class Conversation extends Eloquent{
 
     protected $primaryKey = 'id';
 
-    protected $fillable = array('id','id_A','id_B');
+    protected $fillable = array('id','id_A','id_B', 'last_activity');
 
     public function messages(){
         return $this->hasMany('Message');

@@ -97,6 +97,16 @@ Route::group(array('before' => 'auth'), function() {
 
     });
 
+    Route::get('/account-sign-in', array(
+        'as' => 'account-sign-in',
+        'uses' => 'HomeController@showHome'
+    ));
+
+    Route::get('/account-create', array(
+        'as' => 'account-create',
+        'uses' => 'HomeController@showHome'
+    ));
+
     Route::get('/account/change-password', array(
         'as' => 'account-change-password',
         'uses' => 'AccountController@getChangePassword'
@@ -201,6 +211,11 @@ Route::group(array('before' => 'auth'), function() {
     Route::get('/inbox', array(
         'as' => 'getInbox',
         'uses' => 'ConversationController@getInbox'
+    ));
+
+    Route::get('/conversation', array(
+        'as' => 'getConversation',
+        'uses' => 'ConversationController@getConversation'
     ));
 
 
