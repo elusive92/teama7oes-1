@@ -2,7 +2,8 @@
 Jak robicie eksport to nie szybki tylko w opcjach zaznaczyc jeszce wyswietlanie zwiazki z kluczem obcym
 
 
-teama7oes91.sq - AP 20.11.14 - dodanie do wiadomosci tekst, do conversacji lastactiviti i automatyczne kasowanie chyba dziala bez testow
+teama7oes.sq - AP 22.11.14 - zmiany wiadomosci, conversacji. dodanie brakujacej relacji
+teama7oes92.sq - AP 20.11.14 - dodanie do wiadomosci tekst, do conversacji lastactiviti i automatyczne kasowanie chyba dziala bez testow
 teama7oes91.sq - AP 18.11.14 - dodanie danych testowych, drobne zmiany, automatyczne kasowanie zaporszen codziennie po 7 dniach
 teama7oes9.sq - AP 11.11.14 - wazny update do newsow
 teama7oes8.sq - AP 09.11.14 - wszystkie id_ zmienione na user_id itp , i tak beda jeszcze zmiany ale to juz pozniej na koniec mysle

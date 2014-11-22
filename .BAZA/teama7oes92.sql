@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Czas generowania: 22 Lis 2014, 11:10
+-- Czas generowania: 20 Lis 2014, 20:59
 -- Wersja serwera: 5.6.20
 -- Wersja PHP: 5.5.15
 
@@ -58,17 +58,8 @@ CREATE TABLE IF NOT EXISTS `conversations` (
 `id` int(11) NOT NULL,
   `id_A` int(11) NOT NULL,
   `id_B` int(11) NOT NULL,
-  `last_activity` datetime NOT NULL,
-  `unreaded` int(3) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=5 ;
-
---
--- RELACJE TABELI `conversations`:
---   `id_B`
---       `users` -> `id`
---   `id_A`
---       `users` -> `id`
---
+  `last_activity` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -208,6 +199,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `conversation_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `senddate` datetime NOT NULL,
+  `recivedate` datetime DEFAULT NULL,
   `text` varchar(600) COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
@@ -472,7 +464,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `username`, `password`, `password_temp`, `code`, `active`, `permissions`, `about`, `created_at`, `updated_at`, `photo`, `remember_token`, `comefrom`) VALUES
-(1, 'elusive9225@gmail.com', 'elusive92', '$2y$10$FbYsCManSOWJC/T9KreUHOMOWVIdIDRtJSPbPRKe2dvMv.rdOve5m', '', '', 1, 1, 'Lubie grac w lola', '2014-11-08 16:08:28', '2014-11-08 16:08:57', NULL, 'Syev56lwRXqLyBZA3e30cOVpHfUFYtvNPdaxWa1Lp4dWUBOCj9taMVCScteb', ''),
+(1, 'elusive9225@gmail.com', 'elusive92', '$2y$10$FbYsCManSOWJC/T9KreUHOMOWVIdIDRtJSPbPRKe2dvMv.rdOve5m', '', '', 1, 1, 'Lubie grac w lola', '2014-11-08 16:08:28', '2014-11-08 16:08:57', NULL, 'HdcJSdYYJoTyJdfqgtSaV6WH2n3TdzETUzUyB2Xvn4RtvbUVvttYQWhICJRC', ''),
 (3, 'elusive92@gmail.com', 'elu', '$2y$10$rFEbfq9IDySqmxXIhM9lOuVVTboU9o7vBEJtVtNYFQixVJb9LrGpK', '', '', 1, 1, 'Mam ksywke radzio', '2014-11-11 11:59:37', '2014-11-11 12:00:03', NULL, 'Buzawu1qnRb2y211fUYvT5qG0MJKaYwLITRB6dlMLZMnoBPbqzIt1OI0BbVA', ''),
 (4, 'el@gmail.com', 'arek', '$2y$10$ctWyqoJ5J7rNtfFjwodcgu8ESFTGc6Vb3zChhFTjhbg1kiW/kBuG6', '', '', 1, 0, NULL, '2014-11-12 15:45:07', '2014-11-12 15:45:07', NULL, 'kR9i6ecuL40PCDgSm3vH7GEG2uHKEq2IEArpRKthAW0ddEcJeBxZy3ZvrsAp', ''),
 (5, 'els@gmail.com', 'marcinnic', '$2y$10$eg6Sd1fXbgPovLVaLtdG6Ol2IqCgt3gewiOdxqzV62gnTG9Jv.C8C', '', '', 1, 0, 'Jestem czarny, bialy i lubie biale kotki!', '2014-11-12 15:45:37', '2014-11-12 15:45:37', NULL, '', ''),
@@ -601,7 +593,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT dla tabeli `conversations`
 --
 ALTER TABLE `conversations`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT dla tabeli `friendlist`
 --
@@ -687,13 +679,6 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 ALTER TABLE `blacklists`
 ADD CONSTRAINT `blacklists_ibfk_1` FOREIGN KEY (`id_A`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 ADD CONSTRAINT `blacklists_ibfk_2` FOREIGN KEY (`id_B`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ograniczenia dla tabeli `conversations`
---
-ALTER TABLE `conversations`
-ADD CONSTRAINT `conversations_ibfk_1` FOREIGN KEY (`id_B`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `conversations_ibfk_2` FOREIGN KEY (`id_A`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `friendlist`
