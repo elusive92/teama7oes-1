@@ -12,7 +12,7 @@
 @if($games->count())
     @foreach($games as $game)
     <div id = "games" class="col-lg-4 col-sm-6 col-xs-12">
-        <div class="photo-grid">
+        <div class="photo-grid row">
         <div>
         <a href="" id="{{$game->id}}">
         <figure>

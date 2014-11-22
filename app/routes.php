@@ -497,9 +497,10 @@ Route::get('/ugallery', array(
     'uses' => 'GalleryController@getGallery'
 ));
 
-Route::get('/test', function(){
-    return View::make('test');
-});
+Route::post('/ugallery', array(
+    'as' => 'ugalleryPost',
+    'uses' => 'GalleryController@postAddPicture'
+));
 
 /*test resizera */
 Route::post('upload', function()

@@ -68,7 +68,7 @@ class GameController extends BaseController {
 
 
         $games->save();
-            Image::make($image->getRealPath())->resize('200', '200')->save($destinationPath.$filename);
+            Image::make($image->getRealPath())->resize('350', '200')->save($destinationPath.$filename);
 
             if($games){
                 return Redirect::route('addGame')
@@ -121,7 +121,7 @@ class GameController extends BaseController {
                     $game->descript = $description;
                     $game->logo = $filename;
                     $game->save();
-                    $uploadSuccess = Image::make($image->getRealPath())->resize('200', '200')->save($destinationPath.$filename);
+                    $uploadSuccess = Image::make($image->getRealPath())->resize('350', '200')->save($destinationPath.$filename);
                     if ($game->save() and $uploadSuccess) {
                         return Redirect::route('edit-game-one',$game->id)->with('message', 'Game has been changed');
                     } else {

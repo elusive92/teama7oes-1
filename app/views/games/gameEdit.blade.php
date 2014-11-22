@@ -14,7 +14,7 @@
             <tbody>
             @foreach($games as $game)
                 <tr>
-                    <td>{{$game->gamename}}</td>
+                    <td><h4>{{$game->gamename}}</h4></td>
                     <td><a href="{{ URL::route('edit-game-one',$game->id)}}" class="btn btn-default btn-xs btn pull-right">
                                   <span><img src="{{ URL::asset('/') }}img/ico/pencil.png"/></span> Edit game
                             	</a></td>
