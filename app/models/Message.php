@@ -7,6 +7,11 @@ class Message extends Eloquent{
 
     protected $primaryKey = 'id';
 
-    protected $fillable = array('id','conversation_id','user_id', 'text', 'senddate', 'recivedate');
+    protected $fillable = array('id','conversation_id','user_id', 'text', 'senddate');
+
+    public function user()
+    {
+        return $this->hasOne('User', 'id', 'user_id');
+    }
 
 }

@@ -218,6 +218,30 @@ Route::group(array('before' => 'auth'), function() {
         'uses' => 'ConversationController@getConversation'
     ));
 
+    Route::get('/messages', array(
+        'as' => 'getMessages',
+        'uses' => 'ConversationController@getMessages'
+    ));
+
+    Route::post('/sendMessage', array(
+        'as' => 'sendMessage',
+        'uses' => 'ConversationController@sendMessage'
+    ));
+
+    Route::post('/addConvs', array(
+        'as' => 'addConvs',
+        'uses' => 'ConversationController@addConvs'
+    ));
+
+    Route::get('/friendConvs', array(
+        'as' => 'friendConvs',
+        'uses' => 'ConversationController@friendList'
+    ));
+
+    Route::get('/otherConvs', array(
+        'as' => 'otherConvs',
+        'uses' => 'ConversationController@otherList'
+    ));
 
 //////////////////////deleting
     //ten route jest dziwny xd, jak dam /news/{id ktorego nie ma} to wywala ze nie znalzlo sciezki do blacklisty ;p
