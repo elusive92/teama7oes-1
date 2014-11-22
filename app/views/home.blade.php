@@ -21,7 +21,8 @@
 					</a>
 					<h3><a href="{{ URL::action('news-show', $new->id) }}">{{Str::limit($new->title, 40)}} </a></h3>
 					<p> {{Str::limit($new->descript, 200)}}</p>
-					<a href="{{ URL::action('news-show', $new->id) }}">Read more </a>
+<span id="news_list"> </span>
+					<a href="{{ URL::action('news-show', $new->id) }}" >Read more </a>
 		@if(Auth::check())
   			    @if((Auth::user()->permissions == 1) || (Auth::user()->permissions == 2))
 				|| <a href="{{ URL::action('news-edit', $new->id) }}">Edit </a>||

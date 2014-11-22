@@ -12,9 +12,27 @@ class UserController extends BaseController {
 
 	public function postSearchResults() {
 
-    $keyword = Input::get('keyword');
+    $validator = Validator::make(
+            array(
+                'keyword' => Input::get('keyword'),
+            ),
+            array(
+                'keyword' => 'required',
+                //'keyword' => 'required|min:3|max:20',
+            )
+        );
 
-    $users = User::where('username', 'LIKE', '%'.$keyword.'%')->get();
+        if($validator->fails()){
+            return Response::json([
+                'success' => false,
+                'error' => $validator->errors()->toArray()
+            ]);
+        }
+
+        // $keyword = Input::get('keyword');
+        // $user = User::where('username', 'LIKE', '%'.$keyword.'%')->first();
+        $user = User::where('username', '=', Input::get('keyword'))
+            ->first();
 
     //var_dump('search results');
     
@@ -22,8 +40,21 @@ class UserController extends BaseController {
 //        var_dump($user->username);
 //
 //    }
-        return View::make('search')->with('users', $users);
-	}
+        if($user){
+            if(($user->id) == (Auth::user()->id)){
+                return Response::json([
+                    'success' => false,
+                    'error' => array('error' => 'You cant search yourself.'),
+                    'redirect' => Redirect::intended('/')
+                ]);
+            } 
+
+        }
+        if($keyword){
+
+        }
+
+    }
 
 //////////////////////////WYSWIETLANIE PROFILU/////////////////////////////////////////
 

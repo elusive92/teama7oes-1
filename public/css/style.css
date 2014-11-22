@@ -439,6 +439,14 @@ table {
 .dropdown:hover .dropdown-menu {
     display: block;
 }
+
+/* search */
+#searchbtn {
+    width: 40%;
+    margin: 0 auto;
+    display: block;
+}
+
 /* upload photo */
 label input[type="file"] {
     position: fixed;
