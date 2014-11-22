@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Czas generowania: 22 Lis 2014, 16:23
+-- Czas generowania: 22 Lis 2014, 11:10
 -- Wersja serwera: 5.6.20
 -- Wersja PHP: 5.5.15
 
@@ -59,8 +59,8 @@ CREATE TABLE IF NOT EXISTS `conversations` (
   `id_A` int(11) NOT NULL,
   `id_B` int(11) NOT NULL,
   `last_activity` datetime NOT NULL,
-  `unreaded` int(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=2 ;
+  `unreaded` int(3) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=5 ;
 
 --
 -- RELACJE TABELI `conversations`:
@@ -69,13 +69,6 @@ CREATE TABLE IF NOT EXISTS `conversations` (
 --   `id_A`
 --       `users` -> `id`
 --
-
---
--- Zrzut danych tabeli `conversations`
---
-
-INSERT INTO `conversations` (`id`, `id_A`, `id_B`, `last_activity`, `unreaded`) VALUES
-(1, 3, 1, '2014-11-22 15:23:01', 0);
 
 -- --------------------------------------------------------
 
@@ -88,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `friendlist` (
   `id_adding` int(11) NOT NULL,
   `id_friend` int(11) NOT NULL,
   `data` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=5 ;
 
 --
 -- RELACJE TABELI `friendlist`:
@@ -106,8 +99,7 @@ INSERT INTO `friendlist` (`id`, `id_adding`, `id_friend`, `data`) VALUES
 (1, 3, 1, '2014-11-12 15:20:16'),
 (2, 3, 4, '2014-11-12 16:23:34'),
 (3, 3, 5, '2014-11-12 17:38:21'),
-(4, 6, 7, '2014-11-18 19:21:52'),
-(5, 1, 3, '2014-11-22 15:23:37');
+(4, 6, 7, '2014-11-18 19:21:52');
 
 -- --------------------------------------------------------
 
@@ -217,7 +209,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `user_id` int(11) NOT NULL,
   `senddate` datetime NOT NULL,
   `text` varchar(600) COLLATE utf8_polish_ci NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
 --
 -- RELACJE TABELI `messages`:
@@ -226,16 +218,6 @@ CREATE TABLE IF NOT EXISTS `messages` (
 --   `user_id`
 --       `users` -> `id`
 --
-
---
--- Zrzut danych tabeli `messages`
---
-
-INSERT INTO `messages` (`id`, `conversation_id`, `user_id`, `senddate`, `text`) VALUES
-(1, 1, 3, '2014-11-22 15:22:13', 'siema'),
-(2, 1, 1, '2014-11-22 15:22:31', 'no hej'),
-(3, 1, 3, '2014-11-22 15:22:56', 'testuje'),
-(4, 1, 1, '2014-11-22 15:23:01', 'dziala');
 
 -- --------------------------------------------------------
 
@@ -491,7 +473,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `email`, `username`, `password`, `password_temp`, `code`, `active`, `permissions`, `about`, `created_at`, `updated_at`, `photo`, `remember_token`, `comefrom`) VALUES
 (1, 'elusive9225@gmail.com', 'elusive92', '$2y$10$FbYsCManSOWJC/T9KreUHOMOWVIdIDRtJSPbPRKe2dvMv.rdOve5m', '', '', 1, 1, 'Lubie grac w lola', '2014-11-08 16:08:28', '2014-11-08 16:08:57', NULL, 'Syev56lwRXqLyBZA3e30cOVpHfUFYtvNPdaxWa1Lp4dWUBOCj9taMVCScteb', ''),
-(3, 'elusive92@gmail.com', 'elu', '$2y$10$rFEbfq9IDySqmxXIhM9lOuVVTboU9o7vBEJtVtNYFQixVJb9LrGpK', '', '', 1, 1, 'Mam ksywke radzio', '2014-11-11 11:59:37', '2014-11-11 12:00:03', NULL, 'V1jYZHXSxl9ZE3cNxa2s9ZBCi7YvIJmhn5J2ADoSssnr0nmeKOzjDCYW0L9g', ''),
+(3, 'elusive92@gmail.com', 'elu', '$2y$10$rFEbfq9IDySqmxXIhM9lOuVVTboU9o7vBEJtVtNYFQixVJb9LrGpK', '', '', 1, 1, 'Mam ksywke radzio', '2014-11-11 11:59:37', '2014-11-11 12:00:03', NULL, 'Buzawu1qnRb2y211fUYvT5qG0MJKaYwLITRB6dlMLZMnoBPbqzIt1OI0BbVA', ''),
 (4, 'el@gmail.com', 'arek', '$2y$10$ctWyqoJ5J7rNtfFjwodcgu8ESFTGc6Vb3zChhFTjhbg1kiW/kBuG6', '', '', 1, 0, NULL, '2014-11-12 15:45:07', '2014-11-12 15:45:07', NULL, 'kR9i6ecuL40PCDgSm3vH7GEG2uHKEq2IEArpRKthAW0ddEcJeBxZy3ZvrsAp', ''),
 (5, 'els@gmail.com', 'marcinnic', '$2y$10$eg6Sd1fXbgPovLVaLtdG6Ol2IqCgt3gewiOdxqzV62gnTG9Jv.C8C', '', '', 1, 0, 'Jestem czarny, bialy i lubie biale kotki!', '2014-11-12 15:45:37', '2014-11-12 15:45:37', NULL, '', ''),
 (6, 'test@gmail.com', 'test', '$2y$10$xCNH8A1cvkw4rxUZo0ncNeOzDMiMr7RybA2xJsBTwP7yWKHqN.ER2', '', '', 1, 0, 'Konto testowe1', '2014-11-18 13:28:08', '2014-11-18 13:28:08', NULL, 'WXbjUdYb3vaN7c333WkVEbboTR1Ab2OkdKzWvBpSxdrmgWpzcgZnYKlghfCa', ''),
@@ -619,12 +601,12 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT dla tabeli `conversations`
 --
 ALTER TABLE `conversations`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT dla tabeli `friendlist`
 --
 ALTER TABLE `friendlist`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT dla tabeli `galleries`
 --
@@ -649,7 +631,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT dla tabeli `messages`
 --
 ALTER TABLE `messages`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT dla tabeli `news`
 --

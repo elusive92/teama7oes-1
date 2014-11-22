@@ -2,6 +2,7 @@
 Jak robicie eksport to nie szybki tylko w opcjach zaznaczyc jeszce wyswietlanie zwiazki z kluczem obcym
 
 
+teama7oes.sq - AP 22.11.14 - ustawienie wartosci domyslnej dla conversacji.
 teama7oes.sq - AP 22.11.14 - zmiany wiadomosci, conversacji. dodanie brakujacej relacji
 teama7oes92.sq - AP 20.11.14 - dodanie do wiadomosci tekst, do conversacji lastactiviti i automatyczne kasowanie chyba dziala bez testow
 teama7oes91.sq - AP 18.11.14 - dodanie danych testowych, drobne zmiany, automatyczne kasowanie zaporszen codziennie po 7 dniach
