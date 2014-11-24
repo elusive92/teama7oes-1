@@ -26,8 +26,9 @@
                     </td>
                 </tr>
             @endforeach
+
             </tbody>
             </table>
 @endif
-
+{{$games->links()}}
 @stop

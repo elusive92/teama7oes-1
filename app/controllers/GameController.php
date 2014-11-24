@@ -48,8 +48,8 @@ class GameController extends BaseController {
 
         $validator = Validator::make(
             array(
-                'Game name'  => Input::get('gamename'),
-                'Descript'  =>Input::get('descript')),
+                'gamename'  => Input::get('gamename'),
+                'descript'  =>Input::get('descript')),
                // 'logo'      =>Input::file('logo')->getMimeType()),
 
             Game::$rules);
@@ -68,7 +68,7 @@ class GameController extends BaseController {
 
 
         $games->save();
-            Image::make($image->getRealPath())->resize('350', '200')->save($destinationPath.$filename);
+            Image::make($image->getRealPath())->resize('200', '300')->save($destinationPath.$filename);
 
             if($games){
                 return Redirect::route('addGame')
@@ -121,7 +121,7 @@ class GameController extends BaseController {
                     $game->descript = $description;
                     $game->logo = $filename;
                     $game->save();
-                    $uploadSuccess = Image::make($image->getRealPath())->resize('350', '200')->save($destinationPath.$filename);
+                    $uploadSuccess = Image::make($image->getRealPath())->resize('200', '300')->save($destinationPath.$filename);
                     if ($game->save() and $uploadSuccess) {
                         return Redirect::route('edit-game-one',$game->id)->with('message', 'Game has been changed');
                     } else {
@@ -142,7 +142,7 @@ class GameController extends BaseController {
                 if($gamelogo){
                     File::delete(public_path().'/'.$destinationPath.$gamelogo);
                 }
-                $uploadSuccess = Image::make($image->getRealPath())->resize('200', '200')->save($destinationPath.$filename);
+                $uploadSuccess = Image::make($image->getRealPath())->resize('200', '300')->save($destinationPath.$filename);
 
                 if($uploadSuccess) {
                     $game->logo = $filename;
@@ -179,7 +179,8 @@ class GameController extends BaseController {
     }
 
     public function getAllEditGames(){
-        $games = Game::all();
+        $games = DB::table('games')->paginate(8);
+
         return View::make('games.gameEdit')->with('games', $games);
     }
 
