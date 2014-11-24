@@ -28,7 +28,7 @@ class FriendlistController extends BaseController {
 
         $friendlists = Friendlist::where('id_adding', '=',Auth::user()->id)->get();
 
-        return View::make('Friendlist.FriendlistView')->with('friendlists', $friendlists);
+        return View::make('friendlist.friendlistView')->with('friendlists', $friendlists);
     }
 
 

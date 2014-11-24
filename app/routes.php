@@ -423,10 +423,22 @@ Route::get('/manage-news', array(
 ));
 
 //////Tournament
-Route::post('/tournament-add', array(
+Route::post('/tournament-create', array(
     'as' => 'tournament-create-post',
     'uses' => 'TournamentController@createTournament'
 ));
+
+Route::post('/tournament-add', array(
+    'as' => 'tournament-add',
+    'uses' => 'TournamentController@addTournament'
+));
+
+Route::post('/tournament-manage', array(
+    'as' => 'manage-tournament',
+    'uses' => 'TournamentController@manageTournament'
+));
+
+
 });
 
 Route::group(array('before'=>'modAuth'),function(){
