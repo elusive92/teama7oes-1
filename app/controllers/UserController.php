@@ -63,15 +63,16 @@ class UserController extends BaseController {
 
         if($user->count()){
             $user = $user->first();
+            if(Auth::check()){   ///////////////////////////////////////////////////////////////TYLKO DLA ZALOGOWANYCH NOW IDEA JAK SPRAWDZIC
+                $friend = Friendlist::where('id_adding', '=', Auth::user()->id)
+                        ->where('id_friend', '=', $user->id);
 
-            $friend = Friendlist::where('id_adding', '=', Auth::user()->id)
-                    ->where('id_friend', '=', $user->id);
-
-            if($friend->first()){   
-                $friend = false;
-            } else{
-                $friend = true;
-            }
+                if($friend->first()){   
+                    $friend = false;
+                } else{
+                    $friend = true;
+                }
+            } else $friend = false;
             return View::make('user.profile')
                 ->with('user', $user)
                 ->with('friend', $friend);
