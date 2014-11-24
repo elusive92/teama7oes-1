@@ -30,9 +30,15 @@ class HomeController extends BaseController {
 	public function showTeams(){
 		return View::make('teams');
 	}
-
+///////////////tournament///////////////////////////////////
 	public function showTournaments(){
-		return View::make('tournaments');
+		$tournaments = DB::table('tournaments')
+            ->where('status', '=', '0')
+            //->where('idgame', '=', 'koekgejuch')
+            ->take(100)
+            ->get();
+		 return View::make('tournaments')
+		 ->with('tournaments', $tournaments);
 	}
 
 	public function showSearch(){

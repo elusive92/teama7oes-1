@@ -19,6 +19,18 @@
     </tr>
 
     </tr>
+
+    <?php $i = 1; ?>
+    @foreach($tournaments as $tournament)
+    <tr>
+        <td><?php echo $i; ?>.</td>
+        <td>{{ e($tournament->name) }}</a></td>
+        <td style="text-align:right">{{ e($tournament->startdate) }}</td>
+        <?php $i++; ?>
+    </tr>
+
+
+    @endforeach
 </table>
 </div>
 
