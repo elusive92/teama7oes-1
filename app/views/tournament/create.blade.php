@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            <label for="dateStart">Koniec rejestracji:</label> <input type="date" name="dateStart" class="form-control" id="dateStart" placeholder="rrrr-mm-dd"/>
+            <label for="dateEnd">Koniec rejestracji:</label> <input type="date" name="dateEnd" class="form-control" id="dateEnd" placeholder="rrrr-mm-dd"/>
         </div>
 
         <div class="form-group">
