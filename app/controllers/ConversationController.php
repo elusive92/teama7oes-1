@@ -149,8 +149,9 @@ class ConversationController extends BaseController {
         {
             $query->select(DB::raw(1))
                 ->from('friendlist')
-                ->whereRaw('friendlist.id_adding = conversations.id_A')
-                ->whereRaw('friendlist.id_friend = conversations.id_B');
+                ->whereRaw('friendlist.id_adding = '.Auth::user()->id.'')
+                ->whereRaw('friendlist.id_friend = conversations.id_B')
+                ->orWhereRaw('friendlist.id_friend = conversations.id_A');
         })
         ->whereNotExists(function($query)
         {
@@ -214,8 +215,15 @@ class ConversationController extends BaseController {
         {
             $query->select(DB::raw(1))
                 ->from('friendlist')
-                ->whereRaw('friendlist.id_adding = conversations.id_A')
+                ->whereRaw('friendlist.id_adding = '.Auth::user()->id.'')
                 ->whereRaw('friendlist.id_friend = conversations.id_B');
+        })
+        ->whereNotExists(function($query)
+        {
+            $query->select(DB::raw(1))
+                ->from('friendlist')
+                ->whereRaw('friendlist.id_adding = '.Auth::user()->id.'')
+                ->whereRaw('friendlist.id_friend = conversations.id_A');
         })
         ->whereNotExists(function($query)
         {
