@@ -37,7 +37,7 @@
 </div>
 
 @if(Auth::check())
-    @if(Auth::user()->permissions == 1)
+    @if(Auth::user()->permissions == 1 || (Auth::user()->permissions == 2)) 
         <div id="brejker">
         <div class="newsbutton">
         <a href="{{ URL::route('tournament-add')}}" class="btn btn-default btn-xs">
