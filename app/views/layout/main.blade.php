@@ -19,8 +19,9 @@
 	</head>
 	<body>
     @include('layout.navtop')
-    @include('layout.navmain')
 
+    <img class="logo_main" src="{{ URL::asset('/') }}img/logo_main.png" alt="Tema7oes" height="200" width="750">
+    @include('layout.navmain') 
  	@include('layout.popuplogin')
  	@include('layout.popupcreate')
 
