@@ -23,6 +23,7 @@
           <li class="dropdown">
                        <a href ="" class="dropdown-toggle" data-toggle="dropdown">Games <span class="caret"></span></a>
                        <ul id = "games" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuDivider">
+                          <li id = "d"><a href="">Teama7oes</a> </li>
                        @foreach($games as $game)
                          <li id={{$game->id}}><a href="">{{$game->gamename}}</a></li>
                         @endforeach
@@ -107,6 +108,16 @@
 
 
                                }
+               else if(gameid == 'd'){
+                        $.ajax({
+                            method: "GET",
+                            cache: false,
+                            url: '{{URL::route('gohome1')}}',
+                            contentType: "text/html",
+                            success: function(){location.href = "{{URL::route('gohome1')}}";}
+
+                        });
+               }
                else{
                $.ajax({
                                     url: '{{ URL::route('postGame') }}',

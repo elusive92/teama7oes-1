@@ -502,6 +502,13 @@ Route::get('/gamesViewblank', array(
     'uses' => 'GameController@remCookies'
 
 ));
+Route::get('/allhome', array(
+    'as' => 'gohome',
+    'uses' => 'GameController@getshowHome'));
+
+Route::get('/allhomego', array(
+    'as' => 'gohome1',
+    'uses' => 'GameController@gethome'));
 
 //-------------------------------------------------
 //---------------------Testowa Galeryja------------

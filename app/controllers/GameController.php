@@ -208,6 +208,14 @@ class GameController extends BaseController {
         $cookie = Cookie::forget('gameid');
         return Redirect::route('gameView')->withCookie($cookie);
     }
+
+    public function getshowHome(){
+        return Redirect::action('HomeController@showHome');
+    }
+    public function gethome(){
+        $cookie = Cookie::forget('gameid');
+        return Redirect::route('gohome')->withCookie($cookie);
+    }
 /**    public function postAddGame()
     {
 
