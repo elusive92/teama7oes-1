@@ -13,7 +13,7 @@
     <form action="{{ URL::route('tournament-create-post') }}" method="post">
 
         <div class="form-group">
-            <label for="tournamentname">Tournament name:</label> <input type="text" name="tournamentname" class="form-control" id="tournamentname" placeholder="Tournament name" {{ (Input::old('tournamentname')) ? 'value="' . e(Input::old('tournamentname')) . '"' : '' }}/>
+            <label for="tournamentname">Tournament name:</label> <input type="text" pattern=".{3,}" name="tournamentname" class="form-control" id="tournamentname" placeholder="Tournament name" {{ (Input::old('tournamentname')) ? 'value="' . e(Input::old('tournamentname')) . '"' : '' }}/>
         </div>
         @if($errors->has('tournamentname'))
         <p class='error'>{{ $errors->first('tournamentname') }}</p>
@@ -22,24 +22,22 @@
         <div class="form-group">
             <label for="descript">Full description here:</label> <input type="text" name="descript" class="form-control" id="descript" placeholder="description"/>
         </div>
-        @if($errors->has('descript'))
-        <p class='error'>{{ $errors->first('descript') }}</p>
-        @endif 
 
         <div class="form-group">
-            <label for="numberofteams">Number of teams:</label> <input type="number" name="numberofteams" class="form-control" id="numberofteams" placeholder="number of teams"/>
+            <label for="numberofteams">Number of teams:</label> <input type="number" pattern="[0-9]" name="numberofteams" class="form-control" id="numberofteams" placeholder="number of teams"/>
         </div>
-        @if($errors->has('numberofteams'))
-        <p class='error'>{{ $errors->first('numberofteams') }}</p>
-        @endif
 
         <div class="form-group">
-            <label for="numberofplayer">Min number of players:</label> <input type="number" name="numberofplayers" class="form-control" id="numberofplayers" placeholder="number of players"/>
+            <label for="numberofplayer">Min number of players:</label> <input type="number" pattern="[0-9]" name="numberofplayers" class="form-control" id="numberofplayers" placeholder="number of players"/>
         </div>
-        @if($errors->has('numberofplayers'))
-        <p class='error'>{{ $errors->first('numberofplayers') }}</p>
-        @endif
 
+        <div class="form-group">
+            <label for="dateStart">Koniec rejestracji:</label> <input type="date" name="dateStart" class="form-control" id="dateStart" placeholder="rrrr-mm-dd"/>
+        </div>
+
+        <div class="form-group">
+            <label for="dateStart">Data turnieju:</label> <input type="date" name="dateStart" class="form-control" id="dateStart" placeholder="rrrr-mm-dd"/>
+        </div>
 
         <input type="submit" value="Create" class="btn btn-default"/>
         {{ Form::token() }}
