@@ -2,7 +2,7 @@
 
 <ul id="nav">
 
-	<a href="{{ URL::route('home')}}"><img class="logo" src="{{ URL::asset('/') }}img/nav_logo.png" alt="Tema7oes" height="30" width="115"></a>
+	<a href="{{ URL::route('home')}}"><img class="logo" src="{{ URL::asset('/') }}img/nav_logo.png" alt="Tema7oes" height="30" width="105"></a>
 	@if(Auth::check())
 	
     <!--<li><a href="{{ URL::route('account-sign-out') }}">Log out <img src="{{ URL::asset('/') }}img/ico/log_out.png"  width="21" height="18" /></a></li>
