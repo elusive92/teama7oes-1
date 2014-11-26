@@ -17,9 +17,9 @@
         <a href="" id="{{$game->id}}">
         <figure>
             @if($game->logo)
-                <img src="{{URL::to('img/gameslogos/'.$game->logo)}}" class="thumbnail img-responsive">
+                <img src="{{URL::to('img/gameslogos/'.$game->logo)}}" class="thumbnail img-responsive" width = "300" height="300">
              @else
-                <img src="{{ URL::asset('/') }}img/default1.jpg" class="thumbnail img-responsive">
+                <img src="{{ URL::asset('/') }}img/games/default.png" class="thumbnail img-responsive">
              @endif
              <figcaption><p>{{$game->gamename}}</p></figcaption>
         </figure>

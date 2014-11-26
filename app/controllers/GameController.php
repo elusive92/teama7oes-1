@@ -68,7 +68,7 @@ class GameController extends BaseController {
 
 
         $games->save();
-            Image::make($image->getRealPath())->resize('200', '300')->save($destinationPath.$filename);
+            Image::make($image->getRealPath())->resize('300', '300')->save($destinationPath.$filename);
 
             if($games){
                 return Redirect::route('addGame')
