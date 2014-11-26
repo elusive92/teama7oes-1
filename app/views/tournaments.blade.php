@@ -7,31 +7,33 @@
 @section('content')
 	tournaments
 	{{Cookie::get('gameid')}}
+
+@if(Session::has('message'))
+  <p class="alert alert-info">{{ Session::get('message') }}</p>
+@endif
+
 <div class="lista">
-<table class="table table-bordered table-striped">
-    <thead>
-        <!--<h2>Ranking</h2> -->
-    </thead>
-    <tr>
-        <td></td>
-        <td>Tournament Name</td>
-        <td>Date</td>
-    </tr>
-
-    </tr>
-
     <?php $i = 1; ?>
     @foreach($tournaments as $tournament)
-    <tr>
-        <td><?php echo $i; ?>.</td>
-        <td>{{ e($tournament->name) }}</a></td>
-        <td style="text-align:right">{{ e($tournament->startdate) }}</td>
-        <?php $i++; ?>
-    </tr>
+    <ul id="news_list">
+                <li class="clearfix">
+                    <a href="">
+                        <img src="{{ URL::asset('/') }}img/avatar_example.jpg" height="100" width="100">
+                    </a>
+                    <h3>{{ e($tournament->name) }}</h3>
+                    <p> {{Str::limit($tournament->descript, 200)}}</p>
+                    <p>{{ e($tournament->startdate) }}</p>
+    <span id="news_list"> </span>
 
-
+    @if(Auth::check())
+                @if((Auth::user()->permissions == 1) || (Auth::user()->permissions == 2))
+                <p>Read more
+                Edit    
+                Delete</p>
+                
+                @endif
+    @endif  
     @endforeach
-</table>
 </div>
 
 @if(Auth::check())

@@ -97,6 +97,24 @@ Route::group(array('before' => 'auth'), function() {
 
     });
 
+    //////Tournament
+    Route::post('/tournament-create', array(
+        'as' => 'tournament-create-post',
+        'uses' => 'TournamentController@createTournament'
+    ));
+
+
+    Route::get('/tournament-manage', array(
+        'as' => 'manage-tournament',
+        'uses' => 'TournamentController@manageTournament'
+    ));
+
+    Route::get('/tournament-add', array(
+    'as' => 'tournament-add',
+    'uses' => 'TournamentController@addTournament'
+    ));
+    
+
     Route::get('/account-sign-in', array(
         'as' => 'account-sign-in',
         'uses' => 'HomeController@showHome'
@@ -420,22 +438,6 @@ Route::get('/news-delete/{id}', array(
 Route::get('/manage-news', array(
     'as' => 'manage-news',
     'uses' => 'NewsController@manageNews'
-));
-
-//////Tournament
-Route::post('/tournament-create', array(
-    'as' => 'tournament-create-post',
-    'uses' => 'TournamentController@createTournament'
-));
-
-Route::post('/tournament-add', array(
-    'as' => 'tournament-add',
-    'uses' => 'TournamentController@addTournament'
-));
-
-Route::post('/tournament-manage', array(
-    'as' => 'manage-tournament',
-    'uses' => 'TournamentController@manageTournament'
 ));
 
 
