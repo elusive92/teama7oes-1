@@ -108,6 +108,8 @@
                         $('#messages').html(data);
 
                 });
+                var elem = document.getElementById('messages');
+                elem.scrollTop = elem.scrollHeight;
             }
         	}, 1000);
 
