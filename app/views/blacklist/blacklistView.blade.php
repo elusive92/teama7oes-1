@@ -4,11 +4,15 @@
 
 
 @section('content')
+<ol class="breadcrumb">
+          <li><a href="{{ URL::route('home')}}">Home</a></li>
+          <li><a href="{{ URL::route('userprofile', Auth::user()->username) }}">Profile</a></li>
+          <li class="active">Black List</li>
+</ol>
 
   @if(Session::has('message'))
   <p class="alert alert-info">{{ Session::get('message') }}</p>
   @endif
-    <h4>{{Auth::user()-> username}} Black List</h4><br>
 
 
      <div class='form'>
@@ -18,7 +22,7 @@
                     <div class="form-group">
                     <label>Nick:</label> {{Form::text('bannedplayer')}}</div>
 
-                      <input type="submit" value="Ban player" class="btn btn-default"/>
+                      <input type="submit" value="Add" class="btn btn-default"/>
                     {{Form::close()}}
         	</div>
         	<br><br>
