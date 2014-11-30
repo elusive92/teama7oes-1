@@ -5,6 +5,10 @@
 @stop
 
 @section('content')
+<ol class="breadcrumb">
+      <li><a href="{{ URL::route('home')}}">Home</a></li>
+      <li>Inbox</li>
+</ol>
 <div class="alert alert-info info2" style="display: none;">
         <ul></ul>
 </div>

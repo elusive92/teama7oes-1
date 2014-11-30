@@ -5,6 +5,10 @@
 @stop
 
 @section('content')
+<ol class="breadcrumb">
+      <li><a href="{{ URL::route('home')}}">Home</a></li>
+      <li>Forum</li>
+</ol>
 
 {{Form::open(array('url' => 'upload', 'files' => true))}}
 	{{Form::file('image')}}

@@ -29,8 +29,9 @@
                          <li id={{$game->id}}><a href="">{{$game->gamename}}</a></li>
                         @endforeach
                         <li role="presentation" class="divider"></li>
+                        <li id = "d"><a href="">Main site</a> </li>
                         <li id = "c"><a href ="">More Games</a></li>
-                        <li id = "d"><a href="">Teama7oes</a> </li>
+
                         @if(Auth::check())
                             @if(Auth::user()->permissions==2)
                                 <li role="presentation" class="divider"></li>

@@ -180,7 +180,7 @@ class ConversationController extends BaseController {
                     }
                     echo '<button type="button" value="'.$friend->id.'" class="btn btn-link getconv">';
                         if($friend->unreaded == 1){
-                            echo '<strong>'.$friend->userB->username.'</strong>';
+                            echo '<strong style="color: #d40d12">'.$friend->userB->username.'</strong>';
                         }else{
                             echo $friend->userB->username;
                         }
@@ -195,7 +195,7 @@ class ConversationController extends BaseController {
                     }
                     echo '<button type="button" value="'.$friend->id.'" class="btn btn-link getconv">';
                         if($friend->unreaded == 2){
-                            echo '<strong>'.$friend->userA->username.'</strong>';
+                            echo '<strong style="color: #d40d12">'.$friend->userA->username.'</strong>';
                         }else{
                             echo $friend->userA->username;
                         }
@@ -252,7 +252,7 @@ class ConversationController extends BaseController {
                 }
                 echo '<button type="button" value="'.$other->id.'" class="btn btn-link getconv">';
                 if($other->unreaded == 1){
-                    echo '<strong>'.$other->userB->username.'</strong>';
+                    echo '<strong style="color: #d40d12">'.$other->userB->username.'</strong>';
                 }else{
                     echo $other->userB->username;
                 }
@@ -267,7 +267,7 @@ class ConversationController extends BaseController {
                 }
                 echo '<button type="button" value="'.$other->id.'" class="btn btn-link getconv">';
                 if($other->unreaded == 2){
-                    echo '<strong>'.$other->userA->username.'</strong>';
+                    echo '<strong style="color: #d40d12">'.$other->userA->username.'</strong>';
                 }else{
                     echo $other->userA->username;
                 }

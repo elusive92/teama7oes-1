@@ -9,11 +9,13 @@
 @stop
 
 @section('content')
+<ol class="breadcrumb">
+      <li><a href="{{ URL::route('home')}}">Home</a></li>
+      <li><a href="{{ URL::route('home')}}">{{ e($game->gamename) }}</a></li>
+      <li>Teams</li>
+</ol>
 <div class="rank">
 <table class="table table-bordered table-striped">
-    <thead>
-        <!--<h2>Ranking</h2> -->
-    </thead>
     <tr>
         <td></td>
         <td>Team Name</td>

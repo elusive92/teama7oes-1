@@ -98,6 +98,7 @@ class TeamController extends BaseController {
 
     public function myTeam(){
         if(Cookie::get('gameid')) {
+            $game = Game::where('id', '=', Cookie::get('gameid'))->first();
             $teams = DB::table('teams')
                 ->where('status', '=', '0')
                 ->where('game_id', '=', Cookie::get('gameid'))
@@ -124,7 +125,8 @@ class TeamController extends BaseController {
                             return View::make('team.myteam')
                                 ->with('teammembers', $teammembers)
                                 ->with('team', $team)
-                                ->with('teams', $teams);
+                                ->with('teams', $teams)
+                                ->with('game', $game);
 
                         }
                     }
@@ -135,19 +137,22 @@ class TeamController extends BaseController {
                         return View::make('team.myteam')
                             ->with('team', false)
                             ->with('teams', $teams)
-                            ->with('teaminvitations', $teaminvitations);
+                            ->with('teaminvitations', $teaminvitations)
+                            ->with('game', $game);
                     }
                     return View::make('team.myteam')
                         ->with('team', false)
                         ->with('teaminvitations', false)
-                        ->with('teams', $teams);
+                        ->with('teams', $teams)
+                        ->with('game', $game);
                 }
 
             }
             return View::make('team.myteam')
                 ->with('team', false)
                 ->with('teaminvitations', false)
-                ->with('teams', $teams);
+                ->with('teams', $teams)
+                ->with('game', $game);
 
         }
         return Redirect::action('HomeController@showHome');
