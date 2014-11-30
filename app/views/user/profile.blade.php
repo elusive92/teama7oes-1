@@ -49,7 +49,6 @@
             <div class="nickname"><h1>{{ e($user->username) }}</h1></div>
             <p>From: {{ e($user->comefrom) }}</p>
             <p>Member since: {{ e($user->created_at) }}</p>
-            <p>Games: </p>
             <p>Teams: </p>
           </div>
           <div class="sep"></div>
