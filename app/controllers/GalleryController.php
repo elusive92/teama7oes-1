@@ -1,12 +1,14 @@
 <?php
 class GalleryController extends BaseController {
 
-    public function getGallery(){
+    public function getGallery($username){
+        $user = User::where('username', '=', $username);
+        if($user->count()){
+            $user = $user->first();
 
-
-        $photos = Gallery::where('user_id','=',Auth::user()->id)->paginate(12);
+        $photos = Gallery::where('user_id','=',$user->id)->paginate(12);
         return View::make('gallery.gallery')->with('photos', $photos);
-    }
+    }}
 
     public function postAddPicture()
     {

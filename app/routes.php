@@ -502,11 +502,7 @@ Route::get('/gamesView', array(
     'uses' => 'GameController@getAllGamesView'
 
 ));
-Route::get('/gamesViewblank', array(
-    'as' => 'gameViewblank',
-    'uses' => 'GameController@remCookies'
 
-));
 Route::get('/allhome', array(
     'as' => 'gohome',
     'uses' => 'GameController@getshowHome'));
@@ -518,12 +514,12 @@ Route::get('/allhomego', array(
 //-------------------------------------------------
 //---------------------Testowa Galeryja------------
 //-------------------------------------------------
-Route::get('/ugallery', array(
+Route::get('/ugallery/{username?}', array(
     'as' => 'ugallery',
     'uses' => 'GalleryController@getGallery'
 ));
 
-Route::post('/ugallery', array(
+Route::post('/ugallery/{username?}', array(
     'as' => 'ugalleryPost',
     'uses' => 'GalleryController@postAddPicture'
 ));

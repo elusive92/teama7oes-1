@@ -12,7 +12,6 @@
 @if($games->count())
     @foreach($games as $game)
     <div id = "games" class="col-lg-4 col-sm-6 col-xs-12">
-        <div>
         <a href="" id="{{$game->id}}">
             @if($game->logo)
                 <img src="{{URL::to('img/gameslogos/'.$game->logo)}}" class="thumbnail img-responsive" width = "300" height="300">
@@ -21,7 +20,6 @@
              @endif
              <figcaption><h4 class="imgText">{{$game->gamename}}</h4></figcaption>
         </a>
-        </div>
         <br>
     </div>
      @endforeach

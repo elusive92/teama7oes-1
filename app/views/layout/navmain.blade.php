@@ -99,11 +99,11 @@
 
                                		cache: false,
 
-                               		url: '{{ URL::route('gameViewblank') }}',
+                               		url: '{{ URL::route('gameView') }}',
 
                                		contentType: "text/html",
 
-                               		success: function(){location.href = "{{URL::route('gameViewblank')}}";}
+                               		success: function(){location.href = "{{URL::route('gameView')}}";}
 
 
                                });

@@ -199,7 +199,7 @@ class GameController extends BaseController {
 
     public function getAllGamesView(){
         $games = Game::all();
-        $cookie = Cookie::forget('gameid');
+
         return View::make('games.games_View')->with('games', $games);
 
     }
