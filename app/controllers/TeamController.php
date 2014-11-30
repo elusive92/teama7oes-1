@@ -34,40 +34,53 @@ class TeamController extends BaseController {
 	public function postCreate() {
 		$validator = Validator::make(Input::all(),
 			array(
-				'teamname' 		=> 'required|max:50|min:3|unique:teams'
+				'teamname' 		=> 'required|max:50|min:3'
 			)
 		);
 		
 		if($validator->fails()){
-			return Redirect::route('team-create')
-					->withErrors($validator)
-					->withInput();
+            return Response::json([
+                'success' => false,
+                'error' => $validator->errors()->toArray()
+                ]);
 		}else{
+
             //$idgame = Input::get('idgame');
             $userid = Auth::user()->id;
 			$teamname 	= Input::get('teamname');
-			$team 	= Team::create(array(
-				'teamname' => $teamname,
-                'user_id'       => $userid,
-                'game_id'   => Cookie::get('gameid')
-			));
-			
-			
-			if($team) {
-				$teamid = $team->id;
+            $team = Team::where('teamname', '=', $teamname)
+                ->where('game_id', '=', Cookie::get('gameid'));
+            if(!$team->count()){
+                $game_id = Cookie::get('gameid');
+                $team 	= Team::create(array(
+                    'teamname' => $teamname,
+                    'user_id'       => $userid,
+                    'game_id'   => $game_id
+                ));
 
-				$teammember = Teammember::create(array(
-                    'user_id'     => $userid,
-					'team_id' => $teamid,
-					'joindate' => date("Y-m-d H:i:s")
-					//'leftdate' => ,
-				));
-				if($teammember) {
-					return Redirect::action('TeamController@myTeam');
-				}
+
+                if($team) {
+                    $teamid = $team->id;
+
+                    $teammember = Teammember::create(array(
+                        'user_id' => $userid,
+                        'team_id' => $teamid,
+                        'joindate' => date("Y-m-d H:i:s")
+                        //'leftdate' => ,
+                    ));
+                    if ($teammember) {
+                        return Response::json(['success' => true]);
+                    }
+                }
 
 				
-			}
+			}else{
+                return Response::json([
+                    'success' => false,
+                    'error' => array('error' => 'Team with this teamname already exists in this game.'),
+                    'redirect' => Redirect::intended('/')
+                ]);
+            }
 			
 			
 		}
