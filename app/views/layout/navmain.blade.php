@@ -22,8 +22,8 @@
           <li @if(Request::is('forum'))class="active"@endif><a href="{{ URL::route('forum')}}">Forum</a></li>
 
           <?php  $games = DB::table('games')->select('id','gamename')->take(7)->get();?>
-          <li class="dropdown">
-                       <a href ="" class="dropdown-toggle" data-toggle="dropdown">Games <span class="caret"></span></a>
+          <li class="dropdown" id="usmiech">
+                       <a href="{{URL::route('gameView')}}" class="dropdown-toggle" data-toggle="dropdown" id ="smutna">Games<span class="caret"></span></a>
                        <ul id = "games" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuDivider">
                        @foreach($games as $game)
                          <li id={{$game->id}}><a href="">{{$game->gamename}}</a></li>
@@ -48,6 +48,34 @@
 </div>
  <script>
       $(document).ready(function(){
+            $('#usmiech a').click( function(e){
+                 $.ajaxSetup({
+                                         headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+                                       });
+                               console.log(e)
+                               e.preventDefault();
+
+                               var gameid = this.id;
+
+                               if(gameid == 'smutna'){
+                                 $.ajax({
+
+                                             		method: "GET",
+
+                                             		cache: false,
+
+                                             		url: '{{ URL::route('gameView') }}',
+
+                                             		contentType: "text/html",
+
+                                             		success: function(){location.href = "{{URL::route('gameView')}}";}
+
+
+                                             })
+                               }
+            })
+
+
 
             $('#games li').click( function(e){
            $.ajaxSetup({

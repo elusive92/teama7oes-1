@@ -1,7 +1,7 @@
 @extends('layout.mainbezfootera')
 
 @section('title')
-	Gallery
+	Team Gallery
 @stop
 
 @section('content')
@@ -14,14 +14,13 @@
 <div id="photoform">
 {{Form::open(array(URL::route('ugalleryPost'), 'files'=>true, 'id'=>'addphoto'))}}
     <div class="form-group">
-        {{Form::hidden('id', Auth::user()->id)}}
-        <label>Image:</label> {{Form::file('image')}}
-    </div>
-    <div class="form-group">
          <label>Title:</label> {{Form::text('title',null,array('class'=>'form-control'))}}</div>
     <div class="form-group">
         <label>Photo description:</label><br> {{Form::textarea('descript',null,array('class'=>'form-control'))}}</div>
-
+    <div class="form-group">
+        {{Form::hidden('id', Auth::user()->id)}}
+        <label>Image:</label> {{Form::file('image')}}
+    </div>
     <input type="submit" value="Add" class="btn btn-default"/>
  {{Form::close()}}
 <br><br></div>
@@ -33,8 +32,8 @@
     <div id="links" class="links">
         @foreach($photos as $photo)
         <div class="col-lg-4 col-sm-6 col-xs-12">
-        <a href={{URL::to('img/gallery/'.$user->id.'/'.$photo->filename)}} title="{{$photo->title}}">
-           {{ HTML::image('img/gallery/'.$user->id.'/mini'.$photo->filename) }}
+        <a href={{URL::to('img/gallery/'.$tgallery->team_id.'/'.$photo->filename)}} title="{{$photo->title}}">
+           {{ HTML::image('img/gallery/'.$tgallery->team_id.'/mini'.$photo->filename) }}
         </a><br><br></div>
         @endforeach
 </div></div>
