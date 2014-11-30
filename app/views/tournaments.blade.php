@@ -5,8 +5,11 @@
 @stop
 
 @section('content')
-	tournaments
-	{{Cookie::get('gameid')}}
+
+<ol class="breadcrumb">
+      <li><a href="{{ URL::route('home')}}">Home</a></li>
+      <li>Tournaments</li>
+</ol>
 
 @if(Session::has('message'))
   <p class="alert alert-info">{{ Session::get('message') }}</p>
@@ -16,23 +19,26 @@
     <?php $i = 1; ?>
     @foreach($tournaments as $tournament)
     <ul id="news_list">
-                <li class="clearfix">
+        <li class="clearfix">
                     <a href="">
                         <img src="{{ URL::asset('/') }}img/avatar_example.jpg" height="100" width="100">
-                    </a>
-                    <h3>{{ e($tournament->name) }}</h3>
+                    </a>                    
+                    <h3><a href="{{ URL::action('tournament-show', $tournament->id) }}">{{Str::limit($tournament->name, 40)}} </a></h3>
                     <p> {{Str::limit($tournament->descript, 200)}}</p>
                     <p>{{ e($tournament->startdate) }}</p>
-    <span id="news_list"> </span>
+        <span id="news_list"> </span>
+        <a href="{{ URL::action('tournament-show', $tournament->id) }}" >Read more </a>
 
     @if(Auth::check())
                 @if((Auth::user()->permissions == 1) || (Auth::user()->permissions == 2))
-                <p>Read more
+                
                 Edit    
-                Delete</p>
+                Delete
                 
                 @endif
-    @endif  
+    @endif
+    </li>
+    </ul>  
     @endforeach
 </div>
 

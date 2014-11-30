@@ -28,7 +28,7 @@
         </div>
 
         <div class="form-group">
-            <label for="numberofplayer">Min number of players:</label> <input type="number" pattern="[0-9]" name="numberofplayers" class="form-control" id="numberofplayers" placeholder="number of players"/>
+            <label for="numberofplayer">Team number of players:</label> <input type="number" pattern="[0-9]" name="numberofplayers" class="form-control" id="numberofplayers" placeholder="number of players"/>
         </div>
 
         <div class="form-group">
@@ -37,6 +37,10 @@
 
         <div class="form-group">
             <label for="dateStart">Data turnieju:</label> <input type="date" name="dateStart" class="form-control" id="dateStart" placeholder="rrrr-mm-dd"/>
+        </div>
+
+        <div class="form-group">
+            <label for="gameid"></label> <input type="hidden"  name="gameid" class="form-control" value="{{Cookie::get('gameid')}}" id="gameid"/>
         </div>
 
         <input type="submit" value="Create" class="btn btn-default"/>

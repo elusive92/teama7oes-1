@@ -12,19 +12,21 @@ class TournamentController extends BaseController {
             $numberofplayers   =  Input::get('numberofplayers');
             $dateStart   =  Input::get('dateStart');
             $dateEnd   =  Input::get('dateEnd'); 
-            $game_id = 1;
+            $game_id = Input::get('gameid');
 
-            $tournament   = Tournament::create(array(
-                'name' => $tournamentname,
-                'descript' => $descript,
-                'numberofteams' => $numberofteams,
-                'numberofplayers' => $numberofplayers,
-                'startdate' => $dateStart,
-                'regdate' => $dateEnd,
-                'game_id' => $game_id
-            ));
+            if($game_id){
+                $tournament   = Tournament::create(array(
+                    'name' => $tournamentname,
+                    'descript' => $descript,
+                    'numberofteams' => $numberofteams,
+                    'numberofplayers' => $numberofplayers,
+                    'startdate' => $dateStart,
+                    'regdate' => $dateEnd,   // nie wiem czemu nie wstawia daty, przesyla sie dobrze sprawdzalem echo($dateEnd) wiec input dobrze bierze
+                    'game_id' => $game_id
+                ));
+            }
             if($tournament){
-			return Redirect::route('home');
+			return Redirect::route('tournaments');
 		}
 	}
 
@@ -41,6 +43,13 @@ class TournamentController extends BaseController {
 	public function joinTournament(){
 
 	}
+
+
+    public function showTournament($id){
+        $tournament = Tournament::where('id', '=', $id)->firstOrFail();
+
+        return View::make('tournament.show')->with('tournament', $tournament);
+    }
 
 	
 

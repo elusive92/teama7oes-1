@@ -35,7 +35,7 @@ class HomeController extends BaseController {
 		$tournaments = DB::table('tournaments')
             ->where('status', '=', '0')
             //->where('idgame', '=', 'koekgejuch')
-            ->take(100)
+            ->take(20)
             ->get();
 		 return View::make('tournaments')
 		 ->with('tournaments', $tournaments);

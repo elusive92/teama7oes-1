@@ -29,6 +29,11 @@ Route::get('/search', array(
 	'uses' => 'HomeController@showSearch'
 ));
 
+Route::get('/tournament/{id}', array(
+    'as' => 'tournament-show',
+    'uses' => 'TournamentController@showTournament'
+));
+
 
 
 Route::get('/team/{teamname}', array(
