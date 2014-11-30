@@ -117,7 +117,7 @@ class ConversationController extends BaseController {
         $conversation_id = Input::get('cid');
         $message_text = htmlentities(strip_tags(Input::get('message')), ENT_QUOTES);
         $sender_id = Input::get('sender');
-        if($message_text) {
+        if(strlen($message_text) > 0) {
             $message = Message::create(array(
                 'conversation_id' => $conversation_id,
                 'user_id' => $sender_id,
