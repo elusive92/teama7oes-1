@@ -34,7 +34,7 @@
 
                         @if(Auth::check())
                             @if(Auth::user()->permissions==2)
-                                <li role="presentation" class="divider"></li>
+                                <li role="presentation" class="divider" style="opacity: 0.6"></li>
                                 <li id = "b"><a href="">Add Game</a></li>
                                 <li id = "a"><a href="">Edit Game</a></li>
                             @endif

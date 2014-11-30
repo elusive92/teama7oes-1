@@ -28,7 +28,7 @@
             <h5>Teammembers: </h5>
             {{ Form::open( array('route' => 'team-add-player', 'class'=>'form-horizontal', 'id' => 'addplayer')) }}
 
-            {{Form::text('name', null, array('id' => 'name'))}}
+            {{Form::text('name', null, array('class'=>'form-control', 'id' => 'name'))}}
 
             {{ Form::submit('Submit', array('class' => 'btn btn-default')) }}
 
