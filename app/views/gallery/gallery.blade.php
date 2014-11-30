@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('layout.mainbezfootera')
 
 @section('title')
 	Gallery
