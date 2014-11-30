@@ -28,7 +28,7 @@
                        @foreach($games as $game)
                          <li id={{$game->id}}><a href="">{{$game->gamename}}</a></li>
                         @endforeach
-                        <li role="presentation" class="divider"></li>
+                        <li role="presentation" class="divider" style="opacity: 0.6"></li>
                         <li id = "d"><a href="">Main site</a> </li>
                         <li id = "c"><a href ="">More Games</a></li>
 

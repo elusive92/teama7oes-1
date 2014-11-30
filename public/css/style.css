@@ -451,6 +451,20 @@ table {
     background-color: #2e3140;
     color: red;
 }
+#games {
+    background-color: #2e3140;
+    color: white;
+    margin: 0px;
+}
+#games li a{
+    opacity: 0.6;
+    color: #ccc;
+    padding: 3px 20px;
+}
+#games li a:hover{
+    background-color: #2e3140;
+    color: red;
+}
 .dropdown:hover .dropdown-menu {
     display: block;
 }
