@@ -5,17 +5,18 @@
 @stop
 
 @section('content')
-@if(Auth::user())
+@if(Auth::check())
+@if(e(Auth::user()->id)==e($user->id))
 <div class="alert alert-info info2" style="display: none;">
     <ul></ul>
 </div>
 <a href ="" id="hideshow" class="btn btn-default">Add photo</a><br><br>
 <div id="photoform">
-{{Form::open(array(URL::route('ugalleryPost'), 'files'=>true, 'id'=>'addphoto' ))}}
+{{Form::open(array(URL::route('ugalleryPost'), 'files'=>true, 'id'=>'addphoto'))}}
     <div class="form-group">
-         <label>Title:</label> {{Form::text('title')}}</div>
+         <label>Title:</label> {{Form::text('title',null,array('class'=>'form-control'))}}</div>
     <div class="form-group">
-        <label>Photo description:</label><br> {{Form::textarea('descript')}}</div>
+        <label>Photo description:</label><br> {{Form::textarea('descript',null,array('class'=>'form-control'))}}</div>
     <div class="form-group">
         {{Form::hidden('id', Auth::user()->id)}}
         <label>Image:</label> {{Form::file('image')}}
@@ -23,20 +24,22 @@
     <input type="submit" value="Add" class="btn btn-default"/>
  {{Form::close()}}
 <br><br></div>
+@endif
+@endif
 @if($photos)
  <div class="row">
 
     <div id="links" class="links">
         @foreach($photos as $photo)
         <div class="col-lg-4 col-sm-6 col-xs-12">
-        <a href={{URL::to('img/gallery/'.Auth::user()->id.'/'.$photo->filename)}} title="{{$photo->title}}">
-           {{ HTML::image('img/gallery/'.Auth::user()->id.'/mini'.$photo->filename) }}
+        <a href={{URL::to('img/gallery/'.$user->id.'/'.$photo->filename)}} title="{{$photo->title}}">
+           {{ HTML::image('img/gallery/'.$user->id.'/mini'.$photo->filename) }}
         </a><br><br></div>
         @endforeach
 </div></div>
 {{$photos->links()}}
 @endif
-@endif
+
 
      <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
          <div class="slides"></div>
@@ -48,7 +51,7 @@
          <ol class="indicator"></ol>
      </div>
 
-   <script src="js/blueimp-gallery.min.js"></script>
+   <script src="{{ URL::asset('/') }}js/blueimp-gallery.min.js"></script>
         <script>
         document.getElementById('links').onclick = function (event) {
             event = event || window.event;
@@ -99,7 +102,7 @@
                         });
                         info.slideDown();
                      }else{
-                     location.href = "{{URL::route('ugallery')}}";
+                     location.href = "{{URL::route('ugallery',$user->username)}}";
                      }
                      },
                      error: function(){}

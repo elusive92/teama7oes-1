@@ -20,7 +20,7 @@
 
 
                     <div class="form-group">
-                    <label>Nick:</label> {{Form::text('bannedplayer')}}</div>
+                    <label>Nick:</label> {{Form::text('bannedplayer',null,array('class'=>'form-control'))}}</div>
 
                       <input type="submit" value="Add" class="btn btn-default"/>
                     {{Form::close()}}

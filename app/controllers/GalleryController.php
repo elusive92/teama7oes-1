@@ -7,7 +7,8 @@ class GalleryController extends BaseController {
             $user = $user->first();
 
         $photos = Gallery::where('user_id','=',$user->id)->paginate(12);
-        return View::make('gallery.gallery')->with('photos', $photos);
+        return View::make('gallery.gallery')->with('photos', $photos)
+                                            ->with('user', $user);
     }}
 
     public function postAddPicture()
