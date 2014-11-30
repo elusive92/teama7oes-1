@@ -7,7 +7,7 @@
 <ol class="breadcrumb">
           <li><a href="{{ URL::route('home')}}">Home</a></li>
           <li><a href="{{ URL::route('userprofile', Auth::user()->username) }}">Profile</a></li>
-          <li class="active">Black List</li>
+          <li>Black List</li>
 </ol>
 
   @if(Session::has('message'))

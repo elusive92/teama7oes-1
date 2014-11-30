@@ -2,6 +2,10 @@
 
 
 @section('content')
+<ol class="breadcrumb">
+          <li><a href="{{ URL::route('home')}}">Home</a></li>
+          <li>Games List</li>
+</ol>
 @if(Auth::check())
     @if(Auth::user()->permissions==2)
         <a href ="{{URL::route('edit-game')}}" class="btn btn-default">Edit Games</a>

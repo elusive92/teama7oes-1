@@ -7,7 +7,7 @@
 <ol class="breadcrumb">
           <li><a href="{{ URL::route('home')}}">Home</a></li>
           <li><a href="{{ URL::route('userprofile', Auth::user()->username) }}">Profile</a></li>
-          <li class="active">Friend List</li>
+          <li>Friend List</li>
 </ol> 
 
      <div class='form'>
