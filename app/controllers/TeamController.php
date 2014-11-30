@@ -120,7 +120,13 @@ class TeamController extends BaseController {
                 ->get();
             if (Auth::check()) {
                 $teammember = Teammember::where('user_id', '=', Auth::user()->id)
-                    ->whereNull('leftdate');
+                    ->whereNull('leftdate')
+                    ->whereExists(function($query){
+                        $query->select(DB::raw(1))
+                            ->from('teams')
+                            ->whereRaw('teams.id = teammembers.team_id')
+                            ->whereRaw('teams.game_id = '. Cookie::get('gameid') .'');
+                    });
                 //die(var_dump($teammember->first()->idteam));
                 if ($teammember->count()) {
                     $teammember = $teammember->first();
@@ -173,7 +179,13 @@ class TeamController extends BaseController {
     public function quitTeam(){
         if(Cookie::get('gameid')) {
             $teammember = Teammember::where('user_id', '=', Auth::user()->id)
-                ->whereNull('leftdate');
+                ->whereNull('leftdate')
+                ->whereExists(function($query){
+                    $query->select(DB::raw(1))
+                        ->from('teams')
+                        ->whereRaw('teams.id = teammembers.team_id')
+                        ->whereRaw('teams.game_id = '. Cookie::get('gameid') .'');
+                });
             if ($teammember->count()) {
                 $teammember = $teammember->first();
                 $teammember->leftdate = date("Y-m-d H:i:s");
@@ -209,7 +221,13 @@ class TeamController extends BaseController {
         if(Auth::check()){
             if(Cookie::get('gameid')) {
                 $teammember = Teammember::where('user_id', '=', Auth::user()->id)
-                    ->whereNull('leftdate');
+                    ->whereNull('leftdate')
+                    ->whereExists(function($query){
+                        $query->select(DB::raw(1))
+                            ->from('teams')
+                            ->whereRaw('teams.id = teammembers.team_id')
+                            ->whereRaw('teams.game_id = '. Cookie::get('gameid') .'');
+                    });
                 //die(var_dump($teammember->first()->idteam));
                 if ($teammember->count()) {
                     $teammember = $teammember->first();
