@@ -48,6 +48,7 @@
 </div>
  <script>
       $(document).ready(function(){
+
             $('#games li').click( function(e){
            $.ajaxSetup({
                          headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
@@ -135,6 +136,17 @@
 
 
 
+               });
+               $('#gohome').click( function(e){
+               e.preventDefault();
+                   $.ajax({
+                    method: "GET",
+                    cache: false,
+                    url: '{{URL::route('gohome1')}}',
+                    contentType: "text/html",
+                    success: function(){location.href = "{{URL::route('gohome1')}}";}
+
+                   });
                });
            });
            </script>

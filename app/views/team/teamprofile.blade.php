@@ -10,6 +10,10 @@
 
 @section('content')
 @if($team)
+<ol class="breadcrumb">
+      <li><a href="{{ URL::route('home')}}">Home</a></li>
+      <li>{{ e($team->teamname) }}</li>
+</ol>
 <div id="teamsView">
         <div class="teamphoto">
           @if($team->logo)

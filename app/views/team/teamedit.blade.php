@@ -11,7 +11,7 @@
 @section('content')
 @if($team->id == Auth::check())
 <ol class="breadcrumb">
-      <li><a href="{{ URL::route('home')}}">Home</a></li>
+      <li id="gohome"><a href="">Home</a></li>
       <li><a href="{{ URL::route('teamprofile', $team->teamname) }}">{{ e($team->teamname) }}</a></li>
       <li>Edit</li>
 </ol>

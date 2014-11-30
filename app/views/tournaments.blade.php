@@ -7,7 +7,7 @@
 @section('content')
 
 <ol class="breadcrumb">
-      <li><a href="{{ URL::route('home')}}">Home</a></li>
+      <li id="gohome"><a href="">Home</a></li>
       <li><a href="{{ URL::route('home')}}">{{ e($game->gamename) }}</a></li>
       <li>Tournaments</li>
 </ol>
