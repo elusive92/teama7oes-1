@@ -116,6 +116,7 @@ class ConversationController extends BaseController {
     public function sendMessage(){
         $conversation_id = Input::get('cid');
         $message_text = htmlentities(strip_tags(Input::get('message')), ENT_QUOTES);
+        $message_text = trim(preg_replace('/\s+/', ' ', $message_text));
         $sender_id = Input::get('sender');
         if(strlen($message_text) > 0) {
             $message = Message::create(array(
