@@ -32,13 +32,16 @@ class HomeController extends BaseController {
 	}
 ///////////////tournament///////////////////////////////////
 	public function showTournaments(){
+		$game = Game::where('id', '=', Cookie::get('gameid'))->first();
 		$tournaments = DB::table('tournaments')
             ->where('status', '=', '0')
             //->where('idgame', '=', 'koekgejuch')
             ->take(20)
             ->get();
 		 return View::make('tournaments')
-		 ->with('tournaments', $tournaments);
+		 ->with('tournaments', $tournaments)
+		 ->with('game', $game);
+
 	}
 
 	public function showSearch(){
