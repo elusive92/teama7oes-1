@@ -12,9 +12,12 @@
 </ol>
 
 		<article>
+
 			<p><a href=""><img src="{{ URL::asset('/') }}img/avatar_example.jpg" class="imgsize"></a></p>
 			<h3> {{$tournament->name}} </h3>
 			<p> {{ $tournament->descript }}</p>
+			<p>Rejestracja do: {{ e($tournament->regdate) }}
+            <p>Start: {{ e($tournament->startdate) }}</p>
 			<a href="{{ URL::route('tournaments')}}"><span><img src="{{ URL::asset('/') }}img/ico/back.png"/></span> Go back</a>
 			
 		</article>

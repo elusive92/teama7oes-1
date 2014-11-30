@@ -24,17 +24,15 @@
                         <img src="{{ URL::asset('/') }}img/avatar_example.jpg" height="100" width="100">
                     </a>                    
                     <h3><a href="{{ URL::action('tournament-show', $tournament->id) }}">{{Str::limit($tournament->name, 40)}} </a></h3>
-                    <p> {{Str::limit($tournament->descript, 200)}}</p>
-                    <p>{{ e($tournament->startdate) }}</p>
+                    <p>Rejestracja do: {{ e($tournament->regdate) }}
+                    <p>Start: {{ e($tournament->startdate) }}</p>
         <span id="news_list"> </span>
         <a href="{{ URL::action('tournament-show', $tournament->id) }}" >Read more </a>
 
     @if(Auth::check())
-                @if((Auth::user()->permissions == 1) || (Auth::user()->permissions == 2))
-                
-                Edit    
-                Delete
-                
+                @if((Auth::user()->permissions == 1) || (Auth::user()->permissions == 2))                
+                    Edit    
+                    Delete
                 @endif
     @endif
     </li>

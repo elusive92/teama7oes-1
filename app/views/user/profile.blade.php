@@ -37,7 +37,10 @@
               <div class="clear"><a href="{{ URL::route('friendlistPlayer')}}" class="btn btn-default">Friend List</a></div>
             @else
               @if($friend)   <!-- tutaj chce sprawdzac czy friend juz jest -->                
-                <div class="clear"><a href="{{ URL::route('addFriendList', $user->username) }}" class="btn btn-default">Add friend</a></div>
+                <div class="clear"><a href="{{ URL::route('addFriendList', $user->username) }}" class="btn btn-default">Add friend</a></div>                
+                @if((Auth::user()->permissions == 2))                
+                    <div class="clear"><a href="{{ URL::route('addFriendList', $user->username) }}" class="btn btn-default">Dopiero robie nadawanie uprawnien</a></div>                        
+                @endif                
               @endif
             @endif
           </div>
