@@ -20,14 +20,14 @@
         <button type="button" id="other" class="btn btn-default" style="width: 49%;">Other</button>
     </li>
   </ul>
-      <div style="height: 400px; overflow: auto;">
+      <div style="color: #666; height: 400px; overflow: auto;">
         <ul id="friendl" class="list-group">
         </ul>
         <ul id="otherl" class="list-group">
         </ul>
       </div>
   </div>
-  <div class="col-md-8" style="padding-left: 0px;">
+  <div class="col-md-8" style="color: #666; padding-left: 0px;">
     <ul class="list-group" style="margin-bottom: 0px">
         <li id="chathead" class="list-group-item" style="padding: 2px 2px 0px 15px; height: 40px;">
             <h5 class="pull-left" id="chattitle"><strong>Chat</strong></h5>
