@@ -10,6 +10,11 @@
 
 @section('content')
 @if($team->id == Auth::check())
+<ol class="breadcrumb">
+      <li><a href="{{ URL::route('home')}}">Home</a></li>
+      <li><a href="{{ URL::route('teamprofile', $team->teamname) }}">{{ e($team->teamname) }}</a></li>
+      <li>Edit</li>
+</ol>
 <div class="alert alert-info info2" style="display: none;">
         <ul></ul>
 </div>
