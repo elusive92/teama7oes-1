@@ -86,5 +86,5 @@ class TeamGalleryController extends BaseController {
                 'error' => array('error' => 'Please choose Image.'),
                 'redirect' => Redirect::intended('/')]);
         }
-    }}
+    }
 }

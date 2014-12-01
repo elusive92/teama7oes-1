@@ -179,7 +179,7 @@ class GameController extends BaseController {
     }
 
     public function getAllEditGames(){
-        $games = DB::table('games')->paginate(8);
+        $games = DB::table('games')->paginate(9);
 
         return View::make('games.gameEdit')->with('games', $games);
     }
