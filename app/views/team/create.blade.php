@@ -13,7 +13,7 @@
 <div class="alert alert-info info2" style="display: none;">
         <ul></ul>
 </div>
-<div class='form'>
+<div class="form">
     <form action="{{ URL::route('team-create-post') }}" id="createteam" method="post">
 
         <div class="form-group">
