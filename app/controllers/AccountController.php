@@ -316,10 +316,9 @@ class AccountController extends BaseController {
 		);
 		
 		if($validator->fails()){
-            return Response::json([
-                'success'=>false,
-                'error'=>$validator->errors()->toArray()
-            ]);
+			return Redirect::route('account-forgot-password')
+				->withErrors($validator)
+				->withInput();
 		}else{
 			
 			$user = User::where('email', '=', Input::get('email'));
@@ -343,16 +342,12 @@ class AccountController extends BaseController {
 					function($message) use ($user){
 						$message->to($user->email, $user->username)->subject('Your new password');	
 					});
-
-                    return Response::json(['success' => true]);
+					
+					return Redirect::route('home')
+						->with('global', 'We have sent you a new password by email.');
 					
 				}
-			}else{
-                return Response::json([
-                    'success'=>false,
-                    'error'=> array('error' => 'There is no user with this email adress')
-                ]);
-            }
+			}
 			
 		}
 		
