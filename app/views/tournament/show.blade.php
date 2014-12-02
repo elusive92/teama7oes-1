@@ -18,6 +18,11 @@
 			<p> {{ $tournament->descript }}</p>
 			<p>Rejestracja do: {{ e($tournament->regdate) }}
             <p>Start: {{ e($tournament->startdate) }}</p>
+
+            @if(true)
+                    <div class="clear"><a href="{{ URL::route('joinTournament', $tournament->id) }}" class="btn btn-default">Join Tournament</a></div>
+            @endif
+
 			<a href="{{ URL::route('tournaments')}}"><span><img src="{{ URL::asset('/') }}img/ico/back.png"/></span> Go back</a>
 			
 		</article>
