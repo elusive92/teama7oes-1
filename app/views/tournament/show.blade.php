@@ -11,17 +11,22 @@
       <li>{{Str::limit($tournament->name, 50)}}</li>
 </ol>
 
+@if(Session::has('message'))
+  <p class="alert alert-info">{{ Session::get('message') }}</p>
+@endif
+
 		<article>
 
 			<p><a href=""><img src="{{ URL::asset('/') }}img/avatar_example.jpg" class="imgsize"></a></p>
-			<h3> {{$tournament->name}} </h3>
-			<p> {{ $tournament->descript }}</p>
+			<h2> {{$tournament->name}} </h3>
+			<p>Description: {{ $tournament->descript }}</p>
 			<p>Rejestracja do: {{ e($tournament->regdate) }}
             <p>Start: {{ e($tournament->startdate) }}</p>
-
-            @if(true)
+        @if(Auth::check())
+            @if($tournament->status == 0 & true)
                     <div class="clear"><a href="{{ URL::route('joinTournament', $tournament->id) }}" class="btn btn-default">Join Tournament</a></div>
             @endif
+        @endif
 
 			<a href="{{ URL::route('tournaments')}}"><span><img src="{{ URL::asset('/') }}img/ico/back.png"/></span> Go back</a>
 			

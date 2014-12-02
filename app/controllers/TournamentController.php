@@ -47,6 +47,7 @@ class TournamentController extends BaseController {
 
     public function showTournament($id){
         $tournament = Tournament::where('id', '=', $id)->firstOrFail();
+        
 
         return View::make('tournament.show')->with('tournament', $tournament);
     }

@@ -31,10 +31,10 @@
             @else
                 <a href="#"><img src="{{ URL::asset('/') }}img/default1.jpg" width="150" height="150" /></a>
               @endif
+            @if(Auth::check())
               @if((Auth::user()->permissions == 2) and $user->permissions == 0)
                         <div class="clear"><a href="{{ URL::route('addFriendList', $user->username) }}" class="btn btn-default">Nadaj Moderatora</a></div>
-              @endif
-            @if(Auth::check())
+              @endif            
                 @if(!(e($user->id ) == e(Auth::user()->id)))
                   {{--<div class="clear"><a href="{{ URL::route('account-editprofile')}}" class="btn btn-default">Edit profile</a></div>--}}
                   {{--<div class="clear"><a href="{{ URL::route('playerBlackList')}}" class="btn btn-default">Black List</a></div>--}}
