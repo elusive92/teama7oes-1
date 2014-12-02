@@ -81,7 +81,7 @@ if($friendplyer){
                 return Redirect::route('friendlistPlayer');
             }
         }
-    }
+    } else return Redirect::route('friendlistPlayer');
     }
 
     public function postDestroy(){
