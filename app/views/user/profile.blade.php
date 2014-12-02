@@ -51,7 +51,11 @@
             <div class="nickname"><h1>{{ e($user->username) }}</h1></div>
             <p>From: {{ e($user->comefrom) }}</p>
             <p>Member since: {{ e($user->created_at) }}</p>
-            <p>Teams: {{$teammembers->first()->team_id}}</p>
+            <p>Teams: 
+              @if($teammembers->first())
+                {{$teammembers->first()->team_id}}
+              @endif
+            </p>
 
           </div>
           <div class="sep"></div>
