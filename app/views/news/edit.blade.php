@@ -11,49 +11,47 @@
       <li class="active"> Edit news
       </li>
 </ol>
-<form action="{{ URL::route('news-add-post') }}" method="post" class="basic-grey">
+
+{{ Form::model($news, array('route' => array('news-update', $news->id)), ['method' => 'post'], ['role' => 'form'] ) }}
+<div class="basic-grey">
+  <input name="newsid" type="hidden" value="{{e($news->id)}}">
     <h1>Edit news
         <span>Please fill all the texts in the fields.</span>
     </h1>
     <label for="Title">
         <span>Title :</span>
-        <input id="name" type="text" name="name" placeholder="Title of article" />
+        {{ Form::text('title', $news->title) }}
     </label>
     
     <label for="Descript">
         <span>Description :</span>
-        <textarea id="message" name="message" placeholder="Full description here"></textarea>
+        {{ Form::text('descript', $news->descript) }}
     </label> 
      <label for="Draft">
-        <span>Public status :</span><select name="selection">
+        <span>Public status :</span>
+        <select name="draft">
         <option value="0">Publish</option>
         <option value="1">Draft</option>
         </select>
     </label>    
     <label>
         <span>Upload photo :</span>
-        <button type="button" class="btn btn-default btn-sm">
-          <span><img src="{{ URL::asset('/') }}img/ico/upload.png"/></span> Upload article photo
-        </button>
-    </label> 
+        <input name="photo" id="uploadFile" placeholder="Choose File" disabled="disabled" />
+        <div class="fileUpload btn btn-default btn-xs">
+            <span><img src="{{ URL::asset('/') }}img/ico/upload.png"/></span> Upload article photo
+            <input id="uploadBtn" type="file" class="upload" />
+        </div>
+    </label>
     <br><h1></h1>
      <label>
         <span>&nbsp;</span> 
         <input type="submit" class="button" value="Save edit" />
         {{ Form::token() }} 
     </label>    
-</form>
-{{ Form::model($news, array('route' => array('news-update', $news->id)), ['method' => 'post'], ['role' => 'form']) }}
-<input name="newsid" type="hidden" value="{{e($news->id)}}">
-{{ Form::label('title', 'Title') }}
-{{ Form::text('title', $news->title) }}
-{{ Form::label('descript', 'Descript') }}
-{{ Form::text('descript', $news->descript) }}
-{{ Form::label('draft', 'Draft') }}
-{{ Form::text('draft', $news->draft) }}
-{{ Form::button('Save', ['type' => 'submit']) }}
+</div>
 {{ Form::close() }}
-<br><br>
+
+
 
 @stop
 

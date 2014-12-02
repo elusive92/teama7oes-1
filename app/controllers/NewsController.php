@@ -76,10 +76,12 @@ class NewsController extends BaseController {
             array(
                 'title' => Input::get('title'),
                 'descript' => Input::get('descript'),
+                'draft' => Input::get('draft'),
             ),
             array(
-                'title'             => 'min:5',
-                'descript'              => 'min:5',
+                'title'  => 'min:5',
+                'descript'  => 'min:5',
+                'draft' => 'required',
             )
         );    
 

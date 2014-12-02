@@ -31,16 +31,11 @@
         <option value="1">Draft</option>
         </select>
     </label>    
-    <label>
-        <span>Upload photo :</span>
-        <button type="button" class="btn btn-default btn-sm">
-          <span><img src="{{ URL::asset('/') }}img/ico/upload.png"/></span> Upload article photo
-        </button>
-    </label> 
+
     <label>
         <span>Upload photo :</span>
         <input name="photo" id="uploadFile" placeholder="Choose File" disabled="disabled" />
-        <div class="fileUpload btn btn-default btn-sm">
+        <div class="fileUpload btn btn-default btn-xs">
             <span><img src="{{ URL::asset('/') }}img/ico/upload.png"/></span> Upload article photo
             <input id="uploadBtn" type="file" class="upload" />
         </div>
