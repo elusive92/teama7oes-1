@@ -14,26 +14,28 @@
       <li><a href="{{ URL::route('home')}}">{{ e($game->gamename) }}</a></li>
       <li>Teams</li>
 </ol>
-<div class="rank">
-<table class="table table-bordered table-striped">
-    <tr>
-        <td></td>
-        <td>Team Name</td>
-        <td>Ranking</td>
-    </tr>
-<?php $i = 1; ?>
-    @foreach($teams as $teamrank)
-    <tr>
-        <td><?php echo $i; ?>.</td>
-        <td><a href="{{ URL::route('teamprofile', $teamrank->teamname) }}">{{ e($teamrank->teamname) }}</a></td>
-        <td style="text-align:right">{{ e($teamrank->ranking) }}</td>
-        <?php $i++; ?>
-    </tr>
+@if($teams)
+    <div class="rank">
+    <table class="table table-bordered table-striped">
+        <tr>
+            <td></td>
+            <td>Team Name</td>
+            <td>Ranking</td>
+        </tr>
+    <?php $i = 1; ?>
+        @foreach($teams as $teamrank)
+        <tr>
+            <td><?php echo $i; ?>.</td>
+            <td><a href="{{ URL::route('teamprofile', $teamrank->teamname) }}">{{ e($teamrank->teamname) }}</a></td>
+            <td style="text-align:right">{{ e($teamrank->ranking) }}</td>
+            <?php $i++; ?>
+        </tr>
 
 
-    @endforeach
-</table>
-</div>
+        @endforeach
+    </table>
+    </div>
+@endif
 
 <div id="teamsView" class="myteam">
 @if($team)
