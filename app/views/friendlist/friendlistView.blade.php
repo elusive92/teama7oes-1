@@ -32,9 +32,9 @@
                    <tr>
                         <td>{{$us -> username}} </td>
                     <td>
-                        {{Form::open(array('url'=>'friendlist/destroy'))}}
+                        {{Form::open(array(URL::route('delFriend'), 'method'=>'DELETE'))}}
                         {{Form::hidden('id', $friendlist->id)}}
-                        <button type="submit"  class="btn btn-danger">Delete</button>
+                        <button type="submit"  class="btn btn-danger btn pull-right">Delete</button>
                         {{Form::close()}}
                     </td>
                    </tr>

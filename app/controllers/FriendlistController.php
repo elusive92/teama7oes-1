@@ -90,4 +90,16 @@ class FriendlistController extends BaseController {
             return  Redirect::route('friendlistPlayer');
         }
     }
+
+
+    public function delFriend(){
+
+        $block = Friendlist::find(Input::get('id'));
+        $deleted = $block->delete();
+        if($deleted){
+            return  Redirect::action('FriendlistController@getPlayerFriendlist');
+        }
+    }
+
+
 }

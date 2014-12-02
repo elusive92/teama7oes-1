@@ -186,6 +186,11 @@ Route::group(array('before' => 'auth'), function() {
         'as' =>'friendlistPlayer',
         'uses' => 'FriendlistController@getPlayerFriendlist'
     ));
+
+    Route::delete('/playerfriendlist', array(
+        'as' => 'delFriend',
+        'uses' => 'FriendlistController@delFriend'
+    ));
     
 
     Route::post('/addPlayer', array(
