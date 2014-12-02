@@ -52,7 +52,7 @@ class TournamentController extends BaseController {
             $teams = Team::where('user_id','=', Auth::user()->id)
                     ->where('game_id', '=', Cookie::get('gameid'));
 
-            if($teams){
+            if($teams->first()){
                 $addteam = true;
             } else $addteam = false;
         } else $addteam = false;
