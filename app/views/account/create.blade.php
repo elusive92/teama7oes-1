@@ -2,8 +2,11 @@
 
 @section('content')
 <div class="alert alert-info info2" style="display: none;">
-            <ul></ul>
-    </div>
+    <ul></ul>
+</div>
+<div class="alert alert-success info7" role="alert" style="display: none;">
+    <ul></ul>
+</div>
 <div class='form'>
     <form action="{{ URL::route('account-create-post2') }}" method="post" id="signup2">
         <div class="form-group">
@@ -35,6 +38,7 @@
 <script>
     $(document).ready(function(){
         var info = $('.info2');
+        var success = $('.info7');
 
         $('#signup2').submit(function(e){
             $.ajaxSetup({
@@ -59,6 +63,7 @@
                 data: formData,
                 success: function(data){
                 info.hide().find('ul').empty();
+                success.hide().find('ul').empty();
                 console.log(data);
                 if(!data.success){
                     $.each(data.error , function(index, error){
@@ -66,7 +71,11 @@
                     });
                     info.slideDown();
                 }else{
-                    location.href = "{{URL::route('home')}}";
+                    $.each(data.error , function(index, error){
+                        success.find('ul').append('<li>'+error+'</li>');
+                    });
+                    success.slideDown();
+                    {{--location.href = "{{URL::route('home')}}";--}}
                 }
 
                 },

@@ -70,7 +70,8 @@
                     });
                     info.slideDown();
                 }else{
-                    location.href = "{{Route::currentRouteName()}}";
+                    {{--location.href = "{{Route::currentRouteName()}}";--}}
+                    location.href = "{{URL::route('home')}}";
                 }
 
                 },

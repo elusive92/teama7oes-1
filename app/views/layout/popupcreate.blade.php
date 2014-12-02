@@ -5,6 +5,9 @@
     <div class="alert alert-info info" style="display: none;">
             <ul></ul>
     </div>
+    <div class="alert alert-success info8" role="alert" style="display: none;">
+        <ul></ul>
+    </div>
         <form action="{{ URL::route('account-create-post') }}" method="post" id="signup">
             <div class="form-group">
                 <label for="Email">Email:</label> <input type="text" name="email" class="form-control" id="email2" placeholder="Enter email" {{ (Input::old('email')) ? 'value="' . e(Input::old('email')) . '"' : '' }} />
@@ -36,7 +39,7 @@
 <script>
     $(document).ready(function(){
         var info = $('.info');
-
+        var success = $('.info8');
         $('#signup').submit(function(e){
             $.ajaxSetup({
                 headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
@@ -60,6 +63,7 @@
                 data: formData,
                 success: function(data){
                 info.hide().find('ul').empty();
+                success.hide().find('ul').empty();
                 console.log(data);
                 if(!data.success){
                     $.each(data.error , function(index, error){
@@ -67,7 +71,11 @@
                     });
                     info.slideDown();
                 }else{
-                    location.href = "{{Route::currentRouteName()}}";
+                    $.each(data.error , function(index, error){
+                        success.find('ul').append('<li>'+error+'</li>');
+                    });
+                    success.slideDown();
+                    {{--location.href = "{{Route::currentRouteName()}}";--}}
                 }
 
                 },

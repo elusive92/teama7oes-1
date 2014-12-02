@@ -197,7 +197,10 @@ class AccountController extends BaseController {
 				
 				);
 
-                return Response::json(['success'=>true]);
+                return Response::json([
+                    'success'=>true,
+                    'error'=> array('error' => 'Your account has been created! We have sent you an email to activate your account')
+                ]);
 				//return Redirect::route('home')
 				//	->with('global', 'Your account has been created! We have sent you an email to activate your account.');
 			}
@@ -271,7 +274,10 @@ class AccountController extends BaseController {
 
                 );
 
-                return Response::json(['success'=>true]);
+                return Response::json([
+                    'success'=>true,
+                    'error'=> array('error' => 'Your account has been created! We have sent you an email to activate your account')
+                ]);
                 //return Redirect::route('home')
                 //	->with('global', 'Your account has been created! We have sent you an email to activate your account.');
             }
@@ -378,13 +384,16 @@ class AccountController extends BaseController {
 						$message->to($user->email, $user->username)->subject('Your new password');	
 					});
 
-                    return Response::json(['success' => true]);
+                    return Response::json([
+                        'success' => true,
+                        'error'=> array('error' => 'Your password and activation link has been sent')
+                    ]);
 					
 				}
 			}else{
                 return Response::json([
                     'success'=>false,
-                    'error'=> array('error' => 'There is no user with this email adress')
+                    'error'=> array('error' => 'There is no user with this email address')
                 ]);
             }
 			

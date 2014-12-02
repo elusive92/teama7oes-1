@@ -9,6 +9,9 @@
       <li><a href="{{ URL::route('home')}}">Home</a></li>
       <li>News general</li>
 </ol>
+@if(isset($global))
+    JEST GLOBAL
+@endif
  @if(Session::has('message'))
   <p class="alert alert-info">{{ Session::get('message') }}</p>
  @endif
