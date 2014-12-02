@@ -26,7 +26,7 @@
       </div>
     </li>
         @if(Auth::user()->photo)HTML::image('img/users/'.
-        <li>{{ HTML::image('img/users/'.$user->photo, '', ['width' => '30', 'height' => '30']) }}
+        <li>{{ HTML::image('img/users/'.Auth::user()->photo, '', ['width' => '30', 'height' => '30']) }}
            </li>
         @else 
         <li><img src="{{ URL::asset('/') }}img/default1.jpg" width="30" height="30" /></li>
