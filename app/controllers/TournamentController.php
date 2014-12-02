@@ -26,7 +26,7 @@ class TournamentController extends BaseController {
                 ));
             }
             if($tournament){
-			/return Redirect::route('tournaments');
+			return Redirect::route('tournaments');
 		}
 	}
 
