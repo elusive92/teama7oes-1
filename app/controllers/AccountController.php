@@ -303,42 +303,6 @@ class AccountController extends BaseController {
 		return View::make('account.password');
 	}
 	
-	public function postChangePassword(){
-		$validator = Validator::make(Input::all(), 
-			array(
-				'old_password'	 	=> 'required',
-				'password' 			=> 'required|min:6',
-				'password_again' 	=> 'required|same:password'
-			)
-		);
-		
-		if($validator->fails()){
-			return Redirect::route('account-change-password')
-				->withErrors($validator);
-		}else{
-			
-			$user 			= User::find(Auth::user()->id);
-			
-			$old_password 	= Input::get('old_password');
-			$password 		= Input::get('password');
-			
-			if(Hash::check($old_password, $user->getAuthPassword())){
-				$user->password = Hash::make($password);
-				
-				if($user->save()){
-					return Redirect::route('home')
-						->with('global', 'Your password has been changed.');
-				}
-			}else{
-				return Redirect::route('account-change-password')
-			->with('global', 'Your old password is incorrect.');
-			}
-			
-		}
-		
-		return Redirect::route('account-change-password')
-			->with('global', 'Your password could not be changed.');
-	}
 	
 	public function getForgotPassword(){
 		return View::make('account.forgot');
@@ -470,5 +434,40 @@ class AccountController extends BaseController {
 		}
 		
 	}
+
+
+public function postChangePassword(){
+		$validator = Validator::make(Input::all(), 
+			array(
+				'old_password'	 	=> 'required',
+				'password' 			=> 'required|min:6',
+				'password_again' 	=> 'required|same:password'
+			)
+		);		
+		if($validator->fails()){
+			return Response::json([
+                            'success' => false,
+                            'error' => array('error' => 'Your password could not be changed.'),
+                            'redirect' => Redirect::intended('/')
+                        ]);		
+		}else{			
+			$user 			= User::find(Auth::user()->id);			
+			$old_password 	= Input::get('old_password');
+			$password 		= Input::get('password');
+			
+			if(Hash::check($old_password, $user->getAuthPassword())){
+				$user->password = Hash::make($password);
+				
+				if($user->save()){
+					return Response::json([
+                            'success' => true,
+                            'redirect' => Redirect::intended('/')]);}
+				}
+			}else{
+				return Redirect::route('account-editprofile')
+			->with('global', 'Your old password is incorrect.');
+			}
+			
+		}
 ////////////////////////////////////////////////////////////////////////////////////////////
 }
