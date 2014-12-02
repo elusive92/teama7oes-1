@@ -15,4 +15,12 @@ class ForumController extends BaseController{
     public function thread($id){
 
     }
+
+    public function storeGroup(){
+        $validator = Validator::make(Input::all(),array(
+            'group_name' => 'required|unique:forum_groups'
+        ));
+
+        if($validator)
+    }
 }
