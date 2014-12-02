@@ -73,9 +73,16 @@ class UserController extends BaseController {
                     $friend = true;
                 }
             } else $friend = false;
+
+
+            //$teams = DB::select('select * from teams where id=(
+            //    select team_id from teammembers where user_id=$user->id)', array());
+            $teammembers = Teammember::where('user_id', '=', $user->id); 
+
             return View::make('user.profile')
                 ->with('user', $user)
-                ->with('friend', $friend);
+                ->with('friend', $friend)
+                ->with('teammembers', $teammembers);
         }
 
         return View::make('user.profile')
