@@ -43,7 +43,7 @@ class TournamentController extends BaseController {
 	}
 
 	public function joinTournament(){
-
+        
 	}
 
 

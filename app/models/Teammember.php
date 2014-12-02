@@ -14,4 +14,8 @@ class Teammember extends Eloquent  {
     {
         return $this->hasOne('User', 'id', 'user_id');
     }
+
+    public function team(){
+        return $this->hasOne('Team', 'id', 'team_id')
+    }
 }
