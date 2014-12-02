@@ -43,7 +43,8 @@
         {{ Form::token() }} 
     </label>    
 </form>
-{{ Form::model($news, array('route' => array('news-update', $news->id)), ['method' => 'put'], ['role' => 'form']) }}
+{{ Form::model($news, array('route' => array('news-update', $news->id)), ['method' => 'post'], ['role' => 'form']) }}
+<input name="newsid" type="hidden" value="{{e($news->id)}}">
 {{ Form::label('title', 'Title') }}
 {{ Form::text('title', $news->title) }}
 {{ Form::label('descript', 'Descript') }}
