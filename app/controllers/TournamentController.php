@@ -10,10 +10,12 @@ class TournamentController extends BaseController {
             $descript = Input::get('descript');
             $numberofteams   =  Input::get('numberofteams');
             $numberofplayers   =  Input::get('numberofplayers');
-            $dateStart   =  Input::get('dateStart');
+            $dateStart   = Input::get('dateStart');
             $dateEnd   =  Input::get('dateEnd'); 
             $game_id = Input::get('gameid');
 
+            echo($dateStart);
+            echo($dateEnd);
             if($game_id){
                 $tournament   = Tournament::create(array(
                     'name' => $tournamentname,
@@ -26,7 +28,7 @@ class TournamentController extends BaseController {
                 ));
             }
             if($tournament){
-			return Redirect::route('tournaments');
+			//return Redirect::route('tournaments');
 		}
 	}
 
