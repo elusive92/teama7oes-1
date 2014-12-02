@@ -30,7 +30,7 @@ class NewsController extends BaseController {
             $photo   =  Input::file('photo');
             $game_id = 1;
             
-            $extension = Input::file('photo')->getClientOriginalExtension();
+            $extension = Input::file('photo');
             $destinationPath = 'img/ico/';
 
             $news   = News::create(array(
