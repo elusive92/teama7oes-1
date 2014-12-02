@@ -19,7 +19,7 @@
             <li @if(Request::is('tournaments'))class="active"@endif><a href="{{ URL::route('tournaments')}}">Tournaments</a></li>
           @endif
           <li @if(Request::is('search'))class="active"@endif><a href="{{ URL::route('search')}}">Search</a></li>
-          <li @if(Request::is('forum'))class="active"@endif><a href="{{ URL::route('forum')}}">Forum</a></li>
+          <li @if(Request::is('forum-home'))class="active"@endif><a href="{{ URL::route('forum-home')}}">Forum</a></li>
 
           <?php  $games = DB::table('games')->select('id','gamename')->take(7)->get();?>
           <li class="dropdown" id="usmiech">
