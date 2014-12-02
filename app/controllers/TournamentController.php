@@ -47,9 +47,18 @@ class TournamentController extends BaseController {
 
     public function showTournament($id){
         $tournament = Tournament::where('id', '=', $id)->firstOrFail();
-        
 
-        return View::make('tournament.show')->with('tournament', $tournament);
+        if(Auth::check()){
+            $teams = Team::where('user_id','=', Auth::user()->id)
+                    ->where('game_id', '=', Cookie::get('gameid'));
+
+            if($teams){
+                $addteam = true;
+            } else $addteam = false;
+        } else $addteam = false;
+
+        return View::make('tournament.show')->with('tournament', $tournament)
+                                            ->with('addteam', $addteam);
     }
 
 	
