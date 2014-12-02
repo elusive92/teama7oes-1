@@ -14,8 +14,6 @@ class TournamentController extends BaseController {
             $dateEnd   =  Input::get('dateEnd'); 
             $game_id = Input::get('gameid');
 
-            echo($dateStart);
-            echo($dateEnd);
             if($game_id){
                 $tournament   = Tournament::create(array(
                     'name' => $tournamentname,
@@ -23,12 +21,12 @@ class TournamentController extends BaseController {
                     'numberofteams' => $numberofteams,
                     'numberofplayers' => $numberofplayers,
                     'startdate' => $dateStart,
-                    'regdate' => $dateEnd,   // nie wiem czemu nie wstawia daty, przesyla sie dobrze sprawdzalem echo($dateEnd) wiec input dobrze bierze
+                    'regdate' => $dateEnd,   
                     'game_id' => $game_id
                 ));
             }
             if($tournament){
-			//return Redirect::route('tournaments');
+			/return Redirect::route('tournaments');
 		}
 	}
 
