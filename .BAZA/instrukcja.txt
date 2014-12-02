@@ -2,6 +2,8 @@
 Jak robicie eksport to nie szybki tylko w opcjach zaznaczyc jeszce wyswietlanie zwiazki z kluczem obcym
 
 
+
+teama7oes717 - PK - 2.12.14 - nowa baza chyba
 teama7oesKoek- PK - 1.12.14- dodałem tabelki do froum ale pewno relacje są zle zrobione więc do sprawdzenia:).
 teama7oes.sq - AP 30.11.14 - w sumie chyba nic nowego
 teama7oes94.sq - AP 22.11.14 - ustawienie wartosci domyslnej dla conversacji.
