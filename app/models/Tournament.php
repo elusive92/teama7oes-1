@@ -7,6 +7,6 @@ class Tournament extends Eloquent{
 
     protected $primaryKey = 'id';
 
-    protected $fillable = array('id','game_id','numberofteams','numberofplayers','name','descript','regdata','startdata','status');
+    protected $fillable = array('id','game_id','numberofteams','numberofplayers','name','descript','startdate','regdate','status');
 
 }
