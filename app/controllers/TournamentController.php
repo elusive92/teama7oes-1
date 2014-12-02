@@ -65,8 +65,16 @@ class TournamentController extends BaseController {
         if(Auth::check()){
             $teams = Team::where('user_id','=', Auth::user()->id)
                     ->where('game_id', '=', Cookie::get('gameid'));
+            $teamid = $teams->first()->id;
+            $torunamentid = $tournament->first()->id;
+
+            $teammembers = Tournamentmember::where('team_id','=',$teamid)
+                            ->where('tournament_id','=',$torunamentid);
 
             if($teams->first()){
+                if($teammembers->first()){
+                    $addteam= false;
+                }else
                 $addteam = true;
             } else $addteam = false;
         } else $addteam = false;
