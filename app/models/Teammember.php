@@ -16,6 +16,6 @@ class Teammember extends Eloquent  {
     }
 
     public function team(){
-        return $this->hasOne('Team', 'id', 'team_id')
+        return $this->hasOne('Team', 'id', 'team_id');
     }
 }

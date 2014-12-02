@@ -37,9 +37,10 @@ class FriendlistController extends BaseController {
     public function postFriendPlayer()
     {
 
+
         $id1 = Auth::user()->id;
         $friendplyer = Input::get('friendlist');
-
+if($friendplyer){
         $idfriendplyer = User::where('username', '=', $friendplyer)->firstOrFail();
         $id2 = $idfriendplyer->id;
 
@@ -80,7 +81,7 @@ class FriendlistController extends BaseController {
                 return Redirect::route('friendlistPlayer');
             }
         }
-
+    }
     }
 
     public function postDestroy(){
