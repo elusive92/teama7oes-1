@@ -10,8 +10,8 @@ class TournamentController extends BaseController {
             $descript = Input::get('descript');
             $numberofteams   =  Input::get('numberofteams');
             $numberofplayers   =  Input::get('numberofplayers');
-            $dateStart   = Input::get('dateStart2');
-            $dateEnd   =  Input::get('dateEnd2'); 
+            $dateStart   = Input::get('dateStart');
+            $dateEnd   =  Input::get('dateEnd'); 
             $game_id = Input::get('gameid');
 
             echo($dateStart);
