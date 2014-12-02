@@ -4117,6 +4117,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default .navbar-nav > li > a {
     color: #D40D12;
+    font-weight: bold;
   /*color: #193441;*/
 }
 .navbar-default .navbar-nav > li > a:hover,

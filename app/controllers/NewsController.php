@@ -72,24 +72,40 @@ class NewsController extends BaseController {
     }
 
     public function updateNews(){
-            $news = Input::get('id');
+        $validator = Validator::make(
+            array(
+                'title' => Input::get('title'),
+                'descript' => Input::get('descript'),
+            ),
+            array(
+                'title'             => 'min:5',
+                'descript'              => 'min:5',
+            )
+        );    
+
+        if($validator->fails()){
+            return Redirect::route('home')
+                ->withErrors($validator);
+        }else{
+
             $title = Input::get('title');
             $descript = Input::get('descript');
             $draft   =  Input::get('draft');
             $game_id = 1;
-            
-            News::where('id', $news)->update(array(
+            $id = Input::get('newsid');
+            $news = News::where('id', '=', $id)->first();
 
-            'title' => $title,
-            'descript' => $descript,
-            'draft' => $draft,
-            'game_id' => $game_id
-            ));
+            if($title){$news->title = Input::get('title');}     
+            if($descript){$news->descript = Input::get('descript');}
+            if($draft){$news->draft = Input::get('draft');}           
+            $news->save();  
+
+            if($news->save()){
             
                 return Redirect::route('home')->with('message', 'Your news has been updated');
-            
+            }
 
-    }
+    }}
 
     public function manageNews(){
 
