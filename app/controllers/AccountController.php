@@ -436,8 +436,8 @@ class AccountController extends BaseController {
     $image = Input::file('image');
 
     $filename = Auth::user()->id .".jpg";
-
-    Image::make($image->getRealPath())->resize('200', '200')->save('img/users/'. $filename);
+    if($image){
+    Image::make($image->getRealPath())->resize('200', '200')->save('img/users/'. $filename);}
 		
 		if($validator->fails()){
 			return Redirect::route('account-editprofile')
