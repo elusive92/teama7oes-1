@@ -27,7 +27,7 @@
       <div id="profilebox">
           <div class="profilepic">
             @if($user->photo)
-                {{ HTML::image('img/users/profile/'.$user->photo, '', ['width' => '150', 'height' => '150']) }}
+                {{ HTML::image('img/users/'.$user->photo, '', ['width' => '150', 'height' => '150']) }}
             @else
                 <a href="#"><img src="{{ URL::asset('/') }}img/default1.jpg" width="150" height="150" /></a>
               @endif

@@ -25,12 +25,14 @@
       </ul>
       </div>
     </li>
-        @if(Auth::user()->photo)
-        <li><img src="{{ Auth::user()->photo }}" width="30" height="30" /></li>
+        @if(Auth::user()->photo)HTML::image('img/users/'.
+        <li>{{ HTML::image('img/users/'.$user->photo, '', ['width' => '30', 'height' => '30']) }}
+           </li>
         @else 
         <li><img src="{{ URL::asset('/') }}img/default1.jpg" width="30" height="30" /></li>
         @endif
         <!--<li><a href="#"><img class="message" src="{{ URL::asset('/') }}img/ico/message.png"></a></li>
+         <img src="{{ Auth::user()->photo }}" width="30" height="30" />
         -->
 	
     @else
