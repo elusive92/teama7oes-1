@@ -548,4 +548,19 @@ Route::post('upload', function()
 
 
 });
+/*Forum Testowy Route*/
+Route::group(array('prefix'=> 'forum'), function(){
+    Route::get('/',array(
+        'as' => 'forum-home',
+        'uses' => 'ForumController@index'
+    ));
+    Route::get('/category/{id}', array(
+        'uses' => 'ForumController@category',
+        'as' => 'forum-category'
+    ));
+    Route::get('/thread/{id}', array(
+        'uses' => 'ForumController@thread',
+        'as' => 'forum-thread'
+    ));
+});
 /* */
