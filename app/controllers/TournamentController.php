@@ -40,12 +40,21 @@ class TournamentController extends BaseController {
 
 	}
 
-	public function joinTournament($idtourn){
+	public function joinTournament($id){
         $tournament = Tournament::where('id', '=', $id)->firstOrFail();
         $teams = Team::where('user_id','=', Auth::user()->id)
                     ->where('game_id', '=', Cookie::get('gameid'));
 
-        
+        $idTournament=$tournament->id;
+        $idteam = $teams->first()->id;
+
+        $joinMember = Tournamentmember::create(array(
+                'tournament_id' => $idTournament,
+                'team_id' => $idteam
+            ));
+        if($joinMember){
+            return Redirect::route('home');
+        }
         
 	}
 

@@ -119,8 +119,8 @@ Route::group(array('before' => 'auth'), function() {
     'uses' => 'TournamentController@addTournament'
     ));
     
-    Route::get('/tournament-join', array(
-    'as' => 'joinTournament',
+    Route::get('/tournament-join/{id}', array(
+    'as' => 'join-Tournament',
     'uses' => 'TournamentController@joinTournament'
     ));
 

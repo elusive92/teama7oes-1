@@ -24,7 +24,7 @@
             <p>Start: {{ e($tournament->startdate) }}</p>
         @if(Auth::check())
             @if($tournament->status == 0 & $addteam)
-                    <div class="clear"><a href="{{ URL::route('joinTournament', $tournament->id) }}" class="btn btn-default">Join Tournament</a></div>
+                    <div class="clear"><a href="{{ URL::action('join-Tournament', $tournament->id) }}" class="btn btn-default">Join Tournament</a></div>
             @endif
         @endif
 
