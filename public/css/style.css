@@ -528,3 +528,7 @@ label input[type="file"] {
 #profilebox {
     color: #666;
 }
+
+.panel-body.panel-list-group{
+    padding: 0;
+}
