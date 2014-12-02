@@ -313,12 +313,11 @@ class AccountController extends BaseController {
 		);
 		
 		if($validator->fails()){
-			return Redirect::route('account-change-password')
+			return Redirect::route('account-editprofile')
 				->withErrors($validator);
 		}else{
 			
-			$user 			= User::find(Auth::user()->id);
-			
+			$user 			= User::find(Auth::user()->id);			
 			$old_password 	= Input::get('old_password');
 			$password 		= Input::get('password');
 			
@@ -326,17 +325,16 @@ class AccountController extends BaseController {
 				$user->password = Hash::make($password);
 				
 				if($user->save()){
-					return Redirect::route('home')
-						->with('global', 'Your password has been changed.');
+					return Redirect::route('userprofile', Auth::user()->username);	
 				}
 			}else{
-				return Redirect::route('account-change-password')
+				return Redirect::route('account-editprofile')
 			->with('global', 'Your old password is incorrect.');
 			}
 			
 		}
 		
-		return Redirect::route('account-change-password')
+		return Redirect::route('account-editprofile')
 			->with('global', 'Your password could not be changed.');
 	}
 	
@@ -424,47 +422,37 @@ class AccountController extends BaseController {
 
 ////////////////////////EDYCJA EDYCJA PROFILU/////////////////////////////////////////
 	public function postEdit(){		
-		/*$extension = Input::file('photo')->getClientOriginalExtension();
-
-        if($extension == 'jpg' OR $extension == 'png'){
-
-            $filename = Auth::user()->id;
-            $destinationPath = 'media/profilePhoto/';
-            Input::file('photo')->move($destinationPath, $filename);
-        }*/
-
 		$validator = Validator::make(
             array(
-                'email' => Input::get('email'),
-                'old_password' => Input::get('old_password'),
-                'password' 	=> Input::get('password'),
-				'password_again' => Input::get('password_again'),
                 'about' => Input::get('about'),
                 'from' => Input::get('from'),
             ),
             array(
-                'old_password'	 	=> 'required',
-                'password' 			=> 'min:6',
-				'password_again' 	=> 'same:password',
-				'email'				=> 'required|email',
 				'about' 			=> 'min:5',
-				'from' 				=> 'min:5'
+				'from' 				=> 'min:5',
             )
-        );
+        );    
+
+    $image = Input::file('image');
+
+    $filename = Auth::user()->id .".jpg";
+
+    Image::make($image->getRealPath())->resize('200', '200')->save('img/users/'. $filename);
 		
 		if($validator->fails()){
-			return Redirect::route('home')
+			return Redirect::route('account-editprofile')
 				->withErrors($validator);
 		}else{
+        	$about = Input::get('about');
+			$from = Input::get('from');
 			$index = Auth::user()->id;
 			$user = User::find($index);
-			$user->about = Input::get('about');	
-			$user->email = Input::get('email');
-			$user->photo = $index;
-			$user->fromc = Input::get('from');
+			if($about){$user->about = Input::get('about');}		
+			if($from){$user->comefrom = Input::get('from');}
+			if($image){$user->photo = $filename;}			
 			$user->save();	
 			if($user->save()){
-				return Redirect::route('home')
+				return Redirect::route('userprofile', Auth::user()->username)
 					->with('global', 'Your account has been chaned');
 					}	
 		}
