@@ -24,6 +24,7 @@
         </button>
         </span>
     </a>
+    @if(Cookie::get('gameid'))
     <a class="myteam">
         <span class="rightbutton">        
             <button type="button" class="btn btn-default btn-lg">
@@ -31,6 +32,7 @@
         </button>
         </span>
     </a>
+    @endif
 
 <br><br><br>
 

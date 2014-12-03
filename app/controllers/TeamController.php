@@ -32,7 +32,8 @@ class TeamController extends BaseController {
 
             $keyword = Input::get('keyword');
 
-            $teams = Team::where('teamname', 'LIKE', '%'.$keyword.'%')->get();
+            $teams = Team::where('game_id', '=', Cookie::get('gameid'))
+                        ->where('teamname', 'LIKE', '%'.$keyword.'%')->get();
             if($teams->first()){
                 return Redirect::route('search')->with('teams', $teams);               
                 }  else 
