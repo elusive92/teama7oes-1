@@ -17,7 +17,9 @@
   @elseif(Session::has('success'))
   <p class="alert alert-info">{{ Session::get('success') }}</p>
 @endif
-    @if(Auth::check() && Auth::user()->permissions==2)
+    @if(Auth::check() && (Auth::user()->permissions==2 or Auth::user()->permissions==1 ))
+    <a href="{{URL::route('forum-delete-thread', $thread->id)}}" class="btn btn-default">Delete</a><br><br>
+    @elseif(Auth::check() &&Auth::user()->permissions==1 ))
     <a href="{{URL::route('forum-delete-thread', $thread->id)}}" class="btn btn-default">Delete</a><br><br>
     @endif
 </div>
@@ -36,6 +38,8 @@
          <hr>
          <p class="error-color">{{$comment->body}}</p>
          @if(Auth::check() && Auth::user()->permissions==2)
+         <a href="{{URL::route('forum-delete-comment', $comment->id)}}" class="btn btn-default">Delete Comment</a>
+         @elseif(Auth::check() &&Auth::user()->permissions==1 ))
          <a href="{{URL::route('forum-delete-comment', $comment->id)}}" class="btn btn-default">Delete Comment</a>
          @endif
         </div>
