@@ -6,6 +6,7 @@
 
 @section('content')
 <ol class="breadcrumb">
+      <li><a href="{{URL::route('home')}}">Home</a></li>
       <li><a href="{{ URL::route('forum-home')}}">Forum</a></li>
       <li class="active">{{$category->title}}</li>
 </ol>
@@ -34,9 +35,10 @@
             @endif
             </div>
             <div class="panel body">
-            <div class="list-group panel-list-group">
+            <div class="list-group panel-list-group ">
                 @foreach($threads as $thread)
-                    <a href="{{URL::route('forum-thread',$thread->id)}}" class="list-group-item">{{$thread->title}}</a>
+                   <a href="{{URL::route('forum-thread',$thread->id)}}" class="list-group-item ">{{$thread->title}}</a>
+
                 @endforeach
             </div>
             </div>

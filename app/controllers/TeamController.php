@@ -21,13 +21,12 @@ class TeamController extends BaseController {
                 'keyword' => Input::get('keyword'),
             ),
             array(
-                'keyword' => 'required',
+                'keyword' => 'required|min:3',
             )
         );
 
         if($validator->fails()){
-            return Redirect::route('search')->with('users', false)
-                    ->with('teams', false);
+            return Redirect::route('search')->with('message', 'to long or to short data');
         } 
             else{
 
@@ -35,13 +34,9 @@ class TeamController extends BaseController {
 
             $teams = Team::where('teamname', 'LIKE', '%'.$keyword.'%')->get();
             if($teams->first()){
-                return View::make('search')
-                ->with('users', false)
-                ->with('teams', $teams);               
+                return Redirect::route('search')->with('teams', $teams);               
                 }  else 
-                return View::make('search')
-                ->with('users', false)
-                ->with('teams', false); 
+                return Redirect::route('search')->with('message', 'team are looking for does not exist'); 
 
             }
         }

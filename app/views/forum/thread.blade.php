@@ -7,6 +7,7 @@
 @section('content')
 <div class="clearfix">
 <ol class="breadcrumb pull-left">
+      <li><a href="{{URL::route('home')}}">Home</a></li>
       <li><a href="{{ URL::route('forum-home')}}">Forum</a></li>
       <li><a href="{{ URL::route('forum-category', $thread->category_id) }}">{{$thread->category->title}}</a></li>
       <li class="active">{{$thread->title}}</li>
