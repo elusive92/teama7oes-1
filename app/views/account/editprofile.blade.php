@@ -43,14 +43,23 @@ $(document).ready(function(){
 
     <a class="editprofile">
         <span class="passwordbutton">        
-            <button type="button" class="btn btn-default">
+            <button type="button" class="btn btn-default " style="width:200px">
           <span>Change password</span>
         </button>
         </span>
     </a>    
 
+    <a class="editprofile">
+        <span class="databutton">        
+            <button type="button" class="btn btn-default" style="width:200px">
+          <span>Edit profile data</span>
+        </button>
+        </span>
+    </a>
+
   <div id="profile">
     <div id="left">
+                <div id="brejker"></div>
         <form action="{{ URL::route('account-change-password-post') }}" files="true" method="post" >        
             <div class="form-group">
                 <label for="old_password">Old Password: </label><input type="password" name="old_password" class="form-control" id="old_password" placeholder="Old Password"/>
@@ -61,36 +70,31 @@ $(document).ready(function(){
             <div class="form-group">
                 <label for="password_again">New Password again: </label><input type="password" name="password_again" class="form-control" id="password_again" placeholder="New Password"/>
             </div>
-            <input type="submit" value="Save changed" class="btn btn-default"/>
+            <input type="submit" value="Save changed" class="btn btn-primary" style="width:200px"/>
         {{ Form::token() }}
     </form>   
     </div>
     <p></p>
-    <a class="editprofile">
-        <span class="databutton">        
-            <button type="button" class="btn btn-default">
-          <span>Edit profile data</span>
-        </button>
-        </span>
-    </a>
+
 
     <div id="right">    
+                <div id="brejker"></div>
         {{Form::open(array('url' => '/account/posteditprofile', 'files' => true))}} 
             <div class="form-group">
                 <label for="From">From:</label> 
-                {{ Form::text('from', $from) }}
+                {{ Form::text('from', $from, array('class' => 'form-control')) }}
                 <!--<input type="text" name="from" class="form-control" id="from" placeholder="From" value=<?php echo $from;?>/> -->
             </div>
             <div class="form-group">
                 <label for="about">About:</label> 
-                {{ Form::text('about', $about) }}
+                {{ Form::text('about', $about, array('class' => 'form-control')) }}
                <!-- <input type="text" name="about" class="form-control" id="about" value=<?php echo $about;?> placeholder="About"/>-->
             </div>
             <div class="form-group">
-                {{Form::file('image')}}
+                {{Form::file('image', array('class' => 'upload'))}}
             </div>
 
-            <input type="submit" value="Save changed" class="btn btn-default"/>
+            <input type="submit" value="Save changed" class="btn btn-primary" style="width:200px"/>
         {{Form::close()}} 
     </div>   
   </div>

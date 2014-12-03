@@ -39,10 +39,10 @@
         @if((Auth::user()->permissions == 1) || (Auth::user()->permissions == 2))
         <div id="brejker">
         <div class="newsbutton">
-        <a href="{{ URL::route('news-add')}}" class="btn btn-default btn-xs">
+        <a href="{{ URL::route('news-add')}}" class="btn btn-default btn-xs" style="color:black">
           <span><img src="{{ URL::asset('/') }}img/ico/pencil.png"/></span> Add news
     	</a>
-    	<a href="{{ URL::route('manage-news')}}" class="btn btn-default btn-xs">
+    	<a href="{{ URL::route('manage-news')}}" class="btn btn-default btn-xs" style="color:black">
           <span><img src="{{ URL::asset('/') }}img/ico/news.png"/></span> Manage news
     	</a>
     	</div>

@@ -21,6 +21,7 @@
 					</a>
 					<h3><a href="{{ URL::action('news-show', $new->id) }}">{{$new->title}} </a></h3>
 					<p> {{Str::limit($new->descript, 200)}}</p>
+					<span id="news_list"> </span>
 					<a href="{{ URL::action('news-show', $new->id) }}">Read more </a>
 		@if(Auth::check())
   			    @if((Auth::user()->permissions == 1) || (Auth::user()->permissions == 2))
@@ -38,7 +39,7 @@
         @if(Auth::user()->permissions == 1)
         <div id="brejker">
         <div class="newsbutton">
-        <a href="{{ URL::route('news-add')}}" class="btn btn-default btn-xs">
+        <a href="{{ URL::route('news-add')}}" class="btn btn-default btn-xs" style="color:black">
           <span><img src="{{ URL::asset('/') }}img/ico/pencil.png"/></span> Add news
     	</a>
     	</div>
