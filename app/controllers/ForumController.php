@@ -153,7 +153,7 @@ class ForumController extends BaseController{
             $thread->category_id = $id;
             $thread->group_id = $category->group_id;
             $thread->author_id = Auth::user()->id;
-            $category->date = date("Y-m-d H:i:s");
+            $thread->date = date("Y-m-d H:i:s");
 
             if($thread->save())
             {
@@ -217,6 +217,23 @@ class ForumController extends BaseController{
             {
                 return Redirect::route('forum-thread',$id)->with('success', 'Something went wrong.');
             }
+        }
+    }
+    public function deleteComment($id)
+    {
+        $comment = Forumcomment::find($id);
+        if($comment == null)
+        {
+            return Redirect::route('forum')->with('fail', 'That comment does not exist');
+        }
+        $threadid = $comment->thread->id;
+        if($comment->delete())
+        {
+            return Redirect::route('forum-thread', $threadid)->with('success', 'Comment deleted succesfully.');
+        }
+        else
+        {
+            return Redirect::route('forum-thread', $threadid)->with('fail', 'Something went wrong.');
         }
     }
 }
