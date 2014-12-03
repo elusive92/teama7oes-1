@@ -6,7 +6,7 @@
 
 @section('content')
 <ol class="breadcrumb">
-      <li><a href="{{ URL::route('home')}}">Home</a></li>
+      <li><a href="{{ URL::route('home')}}">Home</a></li>  
       <li>News general</li>
 </ol>
  @if(Session::has('message'))
@@ -36,7 +36,7 @@
 	@endif
 
 	@if(Auth::check())
-        @if(Auth::user()->permissions == 1)
+        @if((Auth::user()->permissions == 1) || (Auth::user()->permissions == 2))
         <div id="brejker">
         <div class="newsbutton">
         <a href="{{ URL::route('news-add')}}" class="btn btn-default btn-xs">
