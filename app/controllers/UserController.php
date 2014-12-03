@@ -17,12 +17,12 @@ class UserController extends BaseController {
                 'keyword' => Input::get('keyword'),
             ),
             array(
-                'keyword' => 'required',
+                'keyword' => 'required|min:3',
             )
         );
 
         if($validator->fails()){
-            return Redirect::route('search')->with('message', 'incorect data');
+            return Redirect::route('search')->with('message', 'to long or to short data');
         } 
             else{
 
