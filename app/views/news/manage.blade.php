@@ -23,7 +23,7 @@
 					<p> {{Str::limit($new->descript, 200)}}</p>
 					<a href="{{ URL::action('news-show', $new->id) }}">Read more </a>
 		@if(Auth::check())
-  			    @if(Auth::user()->permissions == 1)
+  			    @if((Auth::user()->permissions == 1) || (Auth::user()->permissions == 2))
 				|| <a href="{{ URL::action('news-edit', $new->id) }}">Edit </a>||
 					<a href="{{ URL::action('news-delete', $new->id) }}">Delete </a>
     		    @endif
