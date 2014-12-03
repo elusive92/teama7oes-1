@@ -16,9 +16,9 @@
             <div class="panel-heading ">
              @if(Auth::check() && Auth::user()->permissions == 2)
             <div class="clearfix">
-                <h3 class="panel-title pull-left">{{ $category->title }}</h3>
-                <a id="{{$category->id}}" href="#"  data-toggle="modal" data-target="#category_delete" class="btn btn-danger btn-xs pull-right delete_category">Delete</a>
-                <a href="{{URL::route('forum-get-new-thread',$category->id)}}" class="btn btn-success btn-xs pull-right">New Thread</a>
+                <h3 class="panel-title pull-left">{{ $category->title }}</h3><br>
+                <a id="{{$category->id}}" href="#"  data-toggle="modal" data-target="#category_delete" class="btn btn-danger btn-xs delete_category">Delete</a>
+                <a href="{{URL::route('forum-get-new-thread',$category->id)}}" class="btn btn-success btn-xs">New Thread</a>
             </div>
             @else
                <div class="clearfix">
