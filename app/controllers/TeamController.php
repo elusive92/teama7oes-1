@@ -261,7 +261,13 @@ class TeamController extends BaseController {
     public function postEditTeam(){
         if(Cookie::get('gameid')) {
             $teammember = Teammember::where('user_id', '=', Auth::user()->id)
-                ->whereNull('leftdate');
+                ->whereNull('leftdate')
+                ->whereExists(function($query){
+                    $query->select(DB::raw(1))
+                        ->from('teams')
+                        ->whereRaw('teams.id = teammembers.team_id')
+                        ->whereRaw('teams.game_id = '. Cookie::get('gameid') .'');
+                });
             if ($teammember->count()) {
                 $teammember = $teammember->first();
                 $team = Team::where('id', '=', $teammember->team_id);
