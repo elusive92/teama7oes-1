@@ -20,11 +20,9 @@
     <?php $i = 1; ?>
     @foreach($tournaments as $tournament)
     <ul id="news_list">
-        <li class="clearfix">
-                    <a href="">
-                        <img src="{{ URL::asset('/') }}img/avatar_example.jpg" height="100" width="100">
-                    </a>                    
+        <li class="clearfix">                   
                     <h3><a href="{{ URL::action('tournament-show', $tournament->id) }}">{{Str::limit($tournament->name, 40)}} </a></h3>
+                    <p>Description: {{e($tournament->descript)}} </p>
                     <p>Rejestracja do: {{ e($tournament->regdate) }}
                     <p>Start: {{ e($tournament->startdate) }}</p>
         <span id="news_list"> </span>

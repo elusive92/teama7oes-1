@@ -34,7 +34,7 @@
                 <div class="clearfix"><h3 class="panel-title pull-left">{{ $category->title }}</h3></div>
             @endif
             </div>
-            <div class="panel body">
+            <div class="panel body" style="margin-bottom: 0px">
             <div class="list-group panel-list-group ">
                 @foreach($threads as $thread)
                    <a href="{{URL::route('forum-thread',$thread->id)}}" class="list-group-item ">{{$thread->title}}</a>

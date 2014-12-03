@@ -91,7 +91,7 @@ $(document).ready(function(){
                <!-- <input type="text" name="about" class="form-control" id="about" value=<?php echo $about;?> placeholder="About"/>-->
             </div>
             <div class="form-group">
-                {{Form::file('image', array('class' => 'upload'))}}
+                {{Form::file('image')}}
             </div>
 
             <input type="submit" value="Save changed" class="btn btn-primary" style="width:200px"/>

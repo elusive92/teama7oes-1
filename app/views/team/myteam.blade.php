@@ -16,7 +16,7 @@
 </ol>
 @if($teams)
     <div class="rank">
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped ">
         <tr>
             <td></td>
             <td>Team Name</td>

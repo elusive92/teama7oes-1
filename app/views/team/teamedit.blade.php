@@ -29,6 +29,7 @@
 
             {{ Form::close() }}
         </div>
+
         <div class="data">
             <h4>Teammembers: </h4>
             {{ Form::open( array('route' => 'team-add-player', 'class'=>'form-horizontal', 'id' => 'addplayer')) }}
