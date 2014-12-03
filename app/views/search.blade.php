@@ -87,21 +87,21 @@
 
 @if($teams)
 <div class="panel panel-default">
-<div class="panel-heading">teams search results</div>
+<div class="panel-heading">Teams search results</div>
 <table class="table">
     <?php $i = 1; ?>
     <thead></thead>
     <tr>
         <td>#</td>
         <td></td>
-        <td>Username</td>
-        <td>Joined</td>
+        <td>Teamname</td>
+        <td>Team created</td>
     </tr>
 
     @foreach($teams as $team)
     <tr>
         <td><?php echo $i; ?>.</td>
-        <td>@if($team->logo)  img\teams\logos
+        <td>@if($team->logo)
                 {{ HTML::image('img/teams/logos/'.$team->logo, '', ['width' => '20', 'height' => '20']) }}
             @else
                 <a href="{{ URL::route('userprofile', $team->username) }}"><img src="{{ URL::asset('/') }}img/default1.jpg" width="20" height="20" /></a>
