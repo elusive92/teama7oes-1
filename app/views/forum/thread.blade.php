@@ -28,7 +28,7 @@
      <h2 class="error-color">{{$thread->title}}</h2>
      <h5 class="error-color">By: {{$author}} on {{$thread->date}}</h5>
      <div class="sep"></div>
-     <p class="error-color">{{$thread->body}}</p>
+     <p class="error-color" style="margin-top: 10px">{{$thread->body}}</p>
     </div>
 
 @foreach($thread->comments()->get() as $comment)
@@ -36,7 +36,7 @@
 
          <h4 class="error-color">By: {{$comment->author->username}} on {{$comment->data}}</h4>
          <hr>
-         <p class="error-color" style="margin-top: 10px;">{{$comment->body}}</p>
+         <p class="error-color">{{$comment->body}}</p>
          @if(Auth::check() && Auth::user()->permissions==2)
          <a href="{{URL::route('forum-delete-comment', $comment->id)}}" class="btn btn-default">Delete Comment</a>
          @elseif(Auth::check() &&Auth::user()->permissions==1 ))
