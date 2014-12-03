@@ -77,10 +77,14 @@ $(document).ready(function(){
     <div id="right">    
         {{Form::open(array('url' => '/account/posteditprofile', 'files' => true))}} 
             <div class="form-group">
-                <label for="From">From:</label> <input type="text" name="from" class="form-control" id="from" placeholder="From"/>
+                <label for="From">From:</label> 
+                {{ Form::text('from', $from) }}
+                <!--<input type="text" name="from" class="form-control" id="from" placeholder="From" value=<?php echo $from;?>/> -->
             </div>
             <div class="form-group">
-                <label for="about">About:</label> <input type="text" name="about" class="form-control" id="about" placeholder="About"/>
+                <label for="about">About:</label> 
+                {{ Form::text('about', $about) }}
+               <!-- <input type="text" name="about" class="form-control" id="about" value=<?php echo $about;?> placeholder="About"/>-->
             </div>
             <div class="form-group">
                 {{Form::file('image')}}

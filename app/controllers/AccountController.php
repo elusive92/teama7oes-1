@@ -125,8 +125,12 @@ class AccountController extends BaseController {
 	}
 
 
-	public function getEditProfile(){		
-		return View::make('account.editprofile');
+	public function getEditProfile(){
+		$from = Auth::user()->comefrom;
+		$about = Auth::user()->about;
+		
+		return View::make('account.editprofile')->with('from', $from)
+			->with('about', $about);
 	}
 	
 	public function getCreate() {
