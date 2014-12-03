@@ -18,7 +18,7 @@ class MatchController extends BaseController {
                                 ->from('teams')
                                 ->whereRaw('teams.user_id = '.Auth::user()->id.'')
                                 //->whereRaw('teams.game_id = 2')
-                                ->whereRaw('(teams.id = matches.id_teamsA AND teams.game_id = 2) or (teams.id = matches.id_teamsB AND teams.game_id = 2)');
+                                ->whereRaw('(teams.id = matches.id_teamsA AND teams.game_id = '.Cookie::get('gameid').') or (teams.id = matches.id_teamsB AND teams.game_id = '.Cookie::get('gameid').')');
                                 //->orWhereRaw('teams.id = matches.id_teamsB');
                         })
                         ->get();
