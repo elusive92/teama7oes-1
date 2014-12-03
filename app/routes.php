@@ -563,8 +563,10 @@ Route::group(array('prefix'=> 'forum'), function(){
         'as' => 'forum-thread'
     ));
 
-    Route::group(array('before'=>'auth'), function()
+    Route::group(array('before'=>'adminAuth'), function()
     {
+        Route::get('/group/{id}/delete',array('uses'=> 'ForumController@deleteGroup', 'as'=>'forum-delete-group'));
+
         Route::group(array('before'=>'csrf'),function(){
            Route::post('/group',array('uses'=>'ForumController@storeGroup', 'as'=>'forum-store-group'));
         });

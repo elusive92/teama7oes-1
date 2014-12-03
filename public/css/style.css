@@ -541,3 +541,7 @@ label input[type="file"] {
 .panel-body.panel-list-group .list-group .list-group-item:first-child{
     border-radius: 0;
 }
+
+.error-color{
+    color: #FF0000;
+}
