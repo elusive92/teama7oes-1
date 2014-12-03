@@ -31,7 +31,7 @@ class UserController extends BaseController {
             $user = User::where('username', 'LIKE', '%'.$keyword.'%')->get();
 
             if($user->first()){
-                return Redirect::route('search')->with('user', $user);               
+                return Redirect::route('search')->with('users', $user);               
                 }  else 
                 return Redirect::route('search')->with('message', 'user are you looking for does not exist'); 
             }
