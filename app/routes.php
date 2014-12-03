@@ -40,8 +40,43 @@ Route::get('/showMatches/{tournamentId}', array(
 ));
 
 Route::get('/makeMatches/{tournamentId}', array(
-    'as' => 'showMatches',
+    'as' => 'makeMatches',
     'uses' => 'MatchController@settingMatches'
+));
+
+Route::get('/matchResult/{matchId}', array(
+    'as' => 'matchResult',
+    'uses' => 'MatchController@getMatchResult'
+));
+
+Route::get('/matchResultMod/{matchId}', array(
+    'as' => 'matchResultMod',
+    'uses' => 'MatchController@getMatchResultMod'
+));
+
+Route::post('/matchResultA/', array(
+    'as' => 'matchResultPostA',
+    'uses' => 'MatchController@postMatchResultA'
+));
+
+Route::post('/matchResultB/', array(
+    'as' => 'matchResultPostB',
+    'uses' => 'MatchController@postMatchResultB'
+));
+
+Route::post('/matchResultModA/', array(
+    'as' => 'matchResultPostModA',
+    'uses' => 'MatchController@postMatchResultModA'
+));
+
+Route::post('/matchResultModB/', array(
+    'as' => 'matchResultPostModB',
+    'uses' => 'MatchController@postMatchResultModB'
+));
+
+Route::get('/postResult/{tournamentId}/{result}/{teamA}/{teamB}', array(
+    'as' => 'postResult',
+    'uses' => 'MatchController@postResult',
 ));
 
 

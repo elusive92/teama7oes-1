@@ -14,11 +14,40 @@
 @if(Session::has('message'))
   <p class="alert alert-info">{{ Session::get('message') }}</p>
 @endif
+@if($tournamentmembers)
+        <div class="pull-right">
+        		<table class="table table-bordered table-striped" style="color: red">
+                    <tr>
+                        {{--<td>Result</td>--}}
+                        <td>Teamname</td>
+                        <td>Wins</td>
+                        {{--<td>Result</td>--}}
+                    </tr>
+                    @foreach($tournamentmembers as $tournamentmember)
+                    <tr>
+                        {{--<td></td>--}}
+                        <td><a href="{{ URL::route('teamprofile', $tournamentmember['teamname']) }}">{{ $tournamentmember['teamname'] }}</a></td>
+                        <td style="text-align:right">{{ $tournamentmember['wins'] }}</td>
+                        {{--<td></td>--}}
+                    </tr>
 
-		<article>
+
+                    @endforeach
+                </table>
+        </div>
+@endif
+@if($tournament->status == 2)
+    <a href="{{ URL::route('showMatches', $tournament->id) }}" class="btn btn-default">Show Matches</a>
+@endif
+@if(Auth::check())
+    @if(($tournament->status == 1) && (Auth::user()->permissions > 0))
+        <a href="{{ URL::route('makeMatches', $tournament->id) }}" class="btn btn-default">Start Tournament</a>
+    @endif
+@endif
+		<div>
 
 			<p><a href=""><img src="{{ URL::asset('/') }}img/avatar_example.jpg" class="imgsize"></a></p>
-			<h2> {{$tournament->name}} </h3>
+			<h2> {{$tournament->name}} </h2>
 			<p>Description: {{ $tournament->descript }}</p>
 			<p>Rejestracja do: {{ e($tournament->regdate) }}
             <p>Start: {{ e($tournament->startdate) }}</p>
@@ -30,7 +59,9 @@
 
 			<a href="{{ URL::route('tournaments')}}"><span><img src="{{ URL::asset('/') }}img/ico/back.png"/></span> Go back</a>
 			
-		</article>
+		</div>
+
+		<div class="clearfix"></div>
 
 
 @stop

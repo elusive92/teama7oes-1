@@ -96,9 +96,37 @@ class TournamentController extends BaseController {
                 } else $addteam = false;
             } else $addteam = false;
         } else $addteam = false;
+        if($tournament->status == 2){
+            $tournamentmembers = Tournamentmember::where('tournament_id', '=', $id)->get();
+            $resultTable = array();
+            foreach($tournamentmembers as $tournamentmember){
+                $wins = 0;
+                $winsA = Match::where('tournament_id', '=', $id)
+                    ->where('id_teamsA', '=', $tournamentmember->team->id)
+                    ->where('result', '=', 1)
+                    ->count();
+                $winsB = Match::where('tournament_id', '=', $id)
+                    ->where('id_teamsB', '=', $tournamentmember->team->id)
+                    ->where('result', '=', 2)
+                    ->count();
+                $wins = $winsA + $winsB;
+                $resultTable[] = array('teamname'=>$tournamentmember->team->teamname,
+                    'wins'=>$wins);
+            }
+            function cmp($a, $b)
+            {
+                return strcmp($b['wins'], $a['wins']);
+            }
 
+            usort($resultTable, "cmp");
+
+            return View::make('tournament.show')->with('tournament', $tournament)
+                ->with('addteam', $addteam)
+                ->with('tournamentmembers', $resultTable);
+        }
         return View::make('tournament.show')->with('tournament', $tournament)
-                                            ->with('addteam', $addteam);
+                                            ->with('addteam', $addteam)
+            ->with('tournamentmembers', false);
     }
 
 	

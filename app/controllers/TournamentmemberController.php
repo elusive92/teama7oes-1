@@ -1,6 +1,6 @@
 <?php
 
-class TournamentController extends BaseController {
+class TournamentmemberController extends BaseController {
 
 	
 }
