@@ -9,11 +9,7 @@
       <li><a href="{{ URL::route('forum-home')}}">Forum</a></li>
       <li class="active">{{$category->title}}</li>
 </ol>
-@if(Auth::check())
-<div>
-    <a href="{{URL::route('forum-get-new-thread',$category->id)}}" class="btn btn-default">Add Thread</a>
-</div>
-@endif
+
 <div>
 
         <div class="panel panel-primary">

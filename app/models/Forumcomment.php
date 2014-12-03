@@ -9,7 +9,7 @@ class Forumcomment extends Eloquent
 
     protected $primaryKey = 'id';
 
-    protected $fillable = array('id', 'body', 'group_id', 'category_id', 'thread_id', 'author_id', 'date');
+    protected $fillable = array('id', 'body', 'group_id', 'category_id', 'thread_id', 'author_id', 'data');
 
     public function group()
     {
