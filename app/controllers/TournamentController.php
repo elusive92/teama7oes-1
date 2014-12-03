@@ -5,6 +5,8 @@ class TournamentController extends BaseController {
 
 ////////post create tournaments//////////////////
 	public function createTournament(){
+
+
 		
 		 	$tournamentname = Input::get('tournamentname');
             $descript = Input::get('descript');
@@ -47,15 +49,19 @@ class TournamentController extends BaseController {
 
         $idTournament=$tournament->id;
         $idteam = $teams->first()->id;
+        $tournamentPlayer = $tournament->numberofplayers;
 
-        $joinMember = Tournamentmember::create(array(
-                'tournament_id' => $idTournament,
-                'team_id' => $idteam
-            ));
-        if($joinMember){
-            return Redirect::route('home');
-        }
-        
+        $teamsmembers = Teammember::where('team_id','=',$idteam);
+
+        if(sizeof($teamsmembers)>=$tournamentPlayer) {
+            $joinMember = Tournamentmember::create(array(
+                    'tournament_id' => $idTournament,
+                    'team_id' => $idteam
+                ));
+            if($joinMember){
+                return Redirect::route('tournament-show',$id)->with('message', 'Your team has been saved for the tournament');
+            }
+        } else return Redirect::route('tournament-show',$id)->with('message', 'Your team did not have enough players');
 	}
 
 
@@ -65,17 +71,20 @@ class TournamentController extends BaseController {
         if(Auth::check()){
             $teams = Team::where('user_id','=', Auth::user()->id)
                     ->where('game_id', '=', Cookie::get('gameid'));
-            $teamid = $teams->first()->id;
-            $torunamentid = $tournament->first()->id;
-
-            $teammembers = Tournamentmember::where('team_id','=',$teamid)
-                            ->where('tournament_id','=',$torunamentid);
 
             if($teams->first()){
-                if($teammembers->first()){
-                    $addteam= false;
-                }else
-                $addteam = true;
+                $teamid = $teams->first()->id;
+                $torunamentid = $tournament->first()->id;
+
+                $teammembers = Tournamentmember::where('team_id','=',$teamid)
+                                ->where('tournament_id','=',$torunamentid);
+
+                if($teams->first()){
+                    if($teammembers->first()){
+                        $addteam= false;
+                    }else
+                    $addteam = true;
+                } else $addteam = false;
             } else $addteam = false;
         } else $addteam = false;
 
