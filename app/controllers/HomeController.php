@@ -46,7 +46,8 @@ class HomeController extends BaseController {
 
 	public function showSearch(){
 		return View::make('search')
-            ->with('users', false);
+            ->with('users', false)
+            ->with('teams', false);
 	}
 
 	public function showForum(){

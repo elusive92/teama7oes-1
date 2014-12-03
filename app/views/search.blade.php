@@ -85,6 +85,41 @@
 @endif
 
 
+@if($teams)
+<div class="panel panel-default">
+<div class="panel-heading">teams search results</div>
+<table class="table">
+    <?php $i = 1; ?>
+    <thead></thead>
+    <tr>
+        <td>#</td>
+        <td></td>
+        <td>Username</td>
+        <td>Joined</td>
+    </tr>
+
+    @foreach($teams as $team)
+    <tr>
+        <td><?php echo $i; ?>.</td>
+        <td>@if($team->photo)
+                {{ HTML::image('img/users/profile/'.$team->photo, '', ['width' => '20', 'height' => '20']) }}
+            @else
+                <a href="{{ URL::route('userprofile', $team->username) }}"><img src="{{ URL::asset('/') }}img/default1.jpg" width="20" height="20" /></a>
+            @endif
+        </td>
+        <td><a href="{{ URL::route('userprofile', $team->username) }}">{{ e($team->username) }}</a></td>
+        <td style="text-align:left">{{ e($team->created_at) }}</td>
+        <?php $i++; ?>
+    </tr>
+
+
+    @endforeach
+</table>
+</div>
+
+@endif
+
+
 
 
 
@@ -123,6 +158,42 @@ $(document).ready(function(){
         var info = $('.info3');
 
         $('#searchuser').submit(function(e){
+            $.ajaxSetup({
+                headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+            });
+            e.preventDefault();
+
+            var formData = new FormData();
+            formData.append('keyword', $('#keyword').val());
+
+
+            $.ajax({
+                url: '{{ URL::route('search-user') }}',
+                method: 'post',
+                processData: false,
+                contentType: false,
+                cache: false,
+                dataType: 'json',
+                data: formData,
+                success: function(data){
+                info.hide().find('ul').empty();
+                console.log(data);
+                if(!data.success){
+                    $.each(data.error , function(index, error){
+                        info.find('ul').append('<li>'+error+'</li>');
+                    });
+                    info.slideDown();
+                }else{
+                    location.href = "{{Route::currentRouteName()}}";
+                }
+
+                },
+                error: function(){}
+            });
+
+        });
+
+        $('#searchteam').submit(function(e){
             $.ajaxSetup({
                 headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
             });

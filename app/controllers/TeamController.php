@@ -16,10 +16,57 @@ class TeamController extends BaseController {
 
     $keyword = Input::get('keyword');
 
-    $teams = Team::where('teamname', 'LIKE', '%'.$keyword.'%')->get();
+    
     
     foreach ($teams as $team) {
        var_dump($team->teamname);
+    }
+
+
+    $validator = Validator::make(
+            array(
+                'keyword' => Input::get('keyword'),
+            ),
+            array(
+                'keyword' => 'required',
+            )
+        );
+
+        if($validator->fails()){
+            return Response::json([
+                'success' => false,
+                'error' => $validator->errors()->toArray()
+            ]);
+        } else{
+
+        $teams = Team::where('teamname', 'LIKE', '%'.$keyword.'%')->get();
+
+        // $keyword = Input::get('keyword');
+        // $user = User::where('username', 'LIKE', '%'.$keyword.'%')->first();
+        $user = User::where('username', '=', Input::get('keyword'))
+            ->first();
+
+    //var_dump('search results');
+    
+//    foreach ($users as $user) {
+//        var_dump($user->username);
+//
+//    }
+        if($user){
+            if(($user->id) == (Auth::user()->id)){
+                return Response::json([
+                    'success' => false,
+                    'error' => array('error' => 'You cant search yourself.'),
+                    'redirect' => Redirect::intended('/')
+                ]);
+            } 
+
+        }
+        if($keyword){
+
+        }
+    }
+
     }
 
 	}
