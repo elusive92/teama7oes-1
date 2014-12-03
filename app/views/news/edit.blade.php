@@ -11,8 +11,7 @@
       <li class="active"> Edit news
       </li>
 </ol>
-
-{{ Form::model($news, array('route' => array('news-update', $news->id)), ['method' => 'post'], ['role' => 'form'] ) }}
+{{Form::open(array('url' => '/news-edit/update', 'files' => true, 'class'=>'basic-grey'))}} 
 <div class="basic-grey">
   <input name="newsid" type="hidden" value="{{e($news->id)}}">
     <h1>Edit news
@@ -40,14 +39,14 @@
         <input name="photo" id="uploadFile" placeholder="Choose File" disabled="disabled" />
         <div class="fileUpload btn btn-default btn-xs">
             <span><img src="{{ URL::asset('/') }}img/ico/upload.png"/></span> Upload article photo
-            <input id="uploadBtn" type="file" class="upload" />
+        <!--    <input id="uploadBtn" type="file" class="upload" />-->
+            {{Form::file('image', array('class' => 'upload'))}}
         </div>
     </label>
     <br><h1></h1>
      <label>
         <span>&nbsp;</span> 
         <input type="submit" class="button" value="Save edit" />
-        {{ Form::token() }} 
     </label>    
 </div>
 {{ Form::close() }}
