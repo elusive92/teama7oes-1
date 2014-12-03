@@ -9,7 +9,11 @@
       <li><a href="{{ URL::route('forum-home')}}">Forum</a></li>
       <li class="active">{{$category->title}}</li>
 </ol>
-
+@if(Session::has('fail'))
+  <p class="alert alert-info">{{ Session::get('fail') }}</p>
+  @elseif(Session::has('success'))
+  <p class="alert alert-info">{{ Session::get('success') }}</p>
+@endif
 <div>
 
         <div class="panel panel-primary">

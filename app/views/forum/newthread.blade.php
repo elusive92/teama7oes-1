@@ -5,6 +5,11 @@
 @stop
 
 @section('content')
+@if(Session::has('fail'))
+  <p class="alert alert-info">{{ Session::get('fail') }}</p>
+  @elseif(Session::has('success'))
+  <p class="alert alert-info">{{ Session::get('success') }}</p>
+@endif
 <h1>New Thread</h1>
 <form action ="{{URL::route('forum-store-thread', $id)}}" method="post">
 <div class="form-group">

@@ -11,6 +11,11 @@
       <li><a href="{{ URL::route('forum-category', $thread->category_id) }}">{{$thread->category->title}}</a></li>
       <li class="active">{{$thread->title}}</li>
 </ol>
+@if(Session::has('fail'))
+  <p class="alert alert-info">{{ Session::get('fail') }}</p>
+  @elseif(Session::has('success'))
+  <p class="alert alert-info">{{ Session::get('success') }}</p>
+@endif
     @if(Auth::check() && Auth::user()->permissions==2)
     <a href="{{URL::route('forum-delete-thread', $thread->id)}}" class="btn btn-default">Delete</a><br><br>
     @endif

@@ -5,6 +5,11 @@
 @stop
 
 @section('content')
+@if(Session::has('fail'))
+  <p class="alert alert-info">{{ Session::get('fail') }}</p>
+  @elseif(Session::has('success'))
+  <p class="alert alert-info">{{ Session::get('success') }}</p>
+@endif
 @if(Auth::check() && Auth::user()->permissions == 2)
 <div>
     <a href="" class="btn btn-default" data-toggle="modal" data-target="#group_form">Add Group</a>
