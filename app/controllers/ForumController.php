@@ -183,5 +183,40 @@ class ForumController extends BaseController{
             return Redirect::route('forum-category', $category_id)->with('fail', 'Something went wrong.');
         }
     }
-    public function
+    public function storeComment($id)
+    {
+        $thread = Forumthread::find($id);
+        if($thread == null)
+        {
+            return Redirect::route('forum-home')->with('fail', 'That thread does not exist');
+        }
+
+        $validator = Validator::make(Input::all(),array(
+            'body' => 'required|min:!'
+        ));
+        if($validator->fails())
+        {
+            return Redirect::route('forum-thread', $id)->withInput()->withErrors($validator)->with('fail', 'Please fill form correctly');
+        }
+        else
+        {
+            $comment = new Forumcomment;
+            $comment->body = Input::get('body');
+            $comment->author_id = Auth::user()->id;
+            $comment-> group_id = $thread->group->id;
+            $comment-> category_id = $thread->category->id;
+            $comment->data =  date("Y-m-d H:i:s");
+            $comment->thread_id = $thread->id;
+
+
+            if($comment->save())
+            {
+                return Redirect::route('forum-thread',$id)->with('success', 'Your post has beed added.');
+            }
+            else
+            {
+                return Redirect::route('forum-thread',$id)->with('success', 'Something went wrong.');
+            }
+        }
+    }
 }

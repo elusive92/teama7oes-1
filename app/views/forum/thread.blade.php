@@ -21,7 +21,7 @@
      <p class="error-color">{{$thread->body}}</p>
     </div>
 
-@foreach($threats->comments->get() as $comment)
+@foreach($thread->comments()->get() as $comment)
       <div class="well">
 
          <h4 class="error-color">By: {{$comment->author->username}} on {{$comment->date}}</h4>
@@ -31,7 +31,7 @@
 @endforeach
 
 @if(Auth::check())
-    <form action ="{{URL::route('forum-store-thread', $id)}}" method="post">
+    <form action ="{{URL::route('forum-store-comment', $thread->id)}}" method="post">
     <div class="form-group">
         <label for="body">Body: </label>
         <textarea class="form-control" name="body" id="body"></textarea>
@@ -39,7 +39,7 @@
     {{Form::token()}}
 
     <div class="form-group">
-       <input type="submit" value="Save Thread" class="btn btn-primary">
+       <input type="submit" value="Save Comment" class="btn btn-primary">
     </div>
 
     </form>
