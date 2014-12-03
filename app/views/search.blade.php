@@ -9,6 +9,11 @@
       <li><a href="{{ URL::route('home')}}">Home</a></li>
       <li>Search</li>
 </ol>
+
+@if(Session::has('message'))
+  <p class="alert alert-info">{{ Session::get('message') }} </p>
+@endif
+
 <div class="alert alert-info info3" style="display: none;">
         <ul></ul>
 </div>
@@ -50,7 +55,8 @@
 	</div>
 
 
-@if($users)
+@if(Session::has('users'))
+<?php $users=Session::get('users') ?>
 <div class="panel panel-default">
 <div class="panel-heading">Users search results</div>
 <table class="table">
@@ -85,7 +91,8 @@
 @endif
 
 
-@if($teams)
+@if(Session::has('teams'))
+<?php $teams=Session::get('teams') ?>
 <div class="panel panel-default">
 <div class="panel-heading">Teams search results</div>
 <table class="table">

@@ -10,3 +10,14 @@ admin1@gmail.com
 
 
 haslo: qwertyu8
+
+
+
+
+
+
+
+DELETE FROM `teaminvitations` WHERE CURRENT_TIMESTAMP - `date`>7
+
+
+DELETE FROM `messages` WHERE CURRENT_TIMESTAMP - `senddate`>180
