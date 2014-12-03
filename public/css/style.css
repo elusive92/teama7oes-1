@@ -35,7 +35,9 @@ body {
 	text-align: justify;
 	opacity: 0.9;
 }
-
+.main-box td {
+    color: black;
+}
 .main-box a {
      color: #D40D12;
  }

@@ -33,7 +33,7 @@
        
         <div id="searchbtn">
     	{{Form::open(array('route' =>'search-user'))}}
-    		{{Form::text('keyword', null, array('placeholder'=> 'Search User', 'id' =>'keyword'))}}    
+    		{{Form::text('keyword', null, array('placeholder'=> 'Search User', 'id' =>'keyword', 'style'=>'color:black'))}}    
     		{{Form::submit('Search', array('class' => 'btn btn-default'))}}
     	{{Form::close()}}
         </div>
@@ -43,7 +43,7 @@
 	<div id="right">
         <div id="searchbtn">
         	{{Form::open(array('route' =>'search-team'))}}
-        		{{Form::text('keyword', null, array('placeholder'=> 'Search Team'))}}
+        		{{Form::text('keyword', null, array('placeholder'=> 'Search Team', 'style'=>'color:black'))}}
         		{{Form::submit('Search', array('class' => 'btn btn-default'))}}
         	{{Form::close()}}
         </div>
