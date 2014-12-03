@@ -32,8 +32,8 @@
 
     @if(Auth::check())
                 @if((Auth::user()->permissions == 1) || (Auth::user()->permissions == 2))                
-                    Edit    
-                    Delete
+                  <!--  Edit    
+                    Delete-->   
                 @endif
     @endif
     </li>

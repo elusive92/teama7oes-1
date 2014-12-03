@@ -29,11 +29,11 @@
         </div>
 
         <div class="form-group">
-            <label for="dateEnd">Koniec rejestracji:</label> <input type="date" name="dateEnd" class="form-control" id="dateEnd" placeholder="rrrr-mm-dd"/>
+            <label for="dateEnd">Koniec rejestracji:</label> <input type="date" pattern="\d{4}-\d{2}-\d{2}" name="dateEnd" class="form-control" id="dateEnd" placeholder="rrrr-mm-dd"/>
         </div>
 
         <div class="form-group">
-            <label for="dateStart">Data turnieju:</label> <input type="date" name="dateStart" class="form-control" id="dateStart" placeholder="rrrr-mm-dd"/>
+            <label for="dateStart">Data turnieju:</label> <input type="date" pattern="\d{4}-\d{2}-\d{2}" name="dateStart" class="form-control" id="dateStart" placeholder="rrrr-mm-dd"/>
         </div>
 
         <div class="form-group">
