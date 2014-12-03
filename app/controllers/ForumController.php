@@ -15,12 +15,18 @@ class ForumController extends BaseController{
         {
             return Redirect::route('form-home')->with('fail', 'There is no such category.');
         }
-        $threads = $category->threads();
+        $threads = $category->threads()->get();
         return View::make('forum.category')->with('category', $category)->with('threads', $threads);
     }
 
     public function thread($id){
-
+        $thread = Forumthread::find($id);
+        if($thread == null)
+        {
+            return Redirect::route('forum-home')->with('fail', 'That threat does not exist.');
+        }
+        $author = $thread->author()->first()->username;
+        return View::make('forum.thread')->with('thread',$thread)->with('author', $author);
     }
 
     public function storeGroup(){
@@ -115,5 +121,66 @@ class ForumController extends BaseController{
             }
         }
 
+    }
+
+    public function newThread($id)
+    {
+        return View::make('forum.newthread')->with('id', $id);
+    }
+
+    public function storeThread($id)
+    {
+        $category = Forumcategory::find($id);
+        if($category == null)
+        {
+            return Redirect::route('forum-get-new-thread',$id)->with('fail', 'You posted to the invalid category.');
+        }
+
+        $validator = Validator::make(Input::all(),array(
+            'title' => 'required|min:3|max:30',
+            'body' => 'required|min:|max:1000'
+        ));
+
+        if($validator->fails())
+        {
+            return Redirect::route('forum-get-new-thread', $id)->withInput()->withErrors($validator)->with('fail', 'Your input was wrong.');
+        }
+        else
+        {
+            $thread = new Forumthread;
+            $thread->title = Input::get('title');
+            $thread->body = Input::get('body');
+            $thread->category_id = $id;
+            $thread->group_id = $category->group_id;
+            $thread->author_id = Auth::user()->id;
+            $category->date = date("Y-m-d H:i:s");
+
+            if($thread->save())
+            {
+               return Redirect::route('forum-thread', $thread->id)->with('success', 'You thread has been saved.');
+            }
+            else
+            {
+                return Redirect::route('forum-get-new-thread',$id)->with('fail', 'Something went wrong.')->withInput();
+            }
+
+        }
+    }
+    public function deleteThread($id)
+    {
+        $thread = Forumthread::find($id);
+        if($thread == null)
+        {
+            return Redirect::route('forum-home')->with('fail', 'En error has occurred.');
+        }
+        $category_id = $thread->category_id;
+        if($thread->delete())
+        {
+            return Redirect::route('forum-category', $category_id)->with('success', 'The thread has been deleted.');
+        }
+        else
+        {
+            return Redirect::route('forum-category', $category_id)->with('fail', 'Something went wrong.');
+        }
     }
 }
