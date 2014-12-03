@@ -13,12 +13,12 @@
 <div>
     @foreach($groups as $group)
         <div class="panel panel-primary">
-            <div class="panel-heading ">
+            <div class="panel-heading">
             @if(Auth::check() && Auth::user()->permissions == 2)
             <div class="clearfix">
                 <h3 class="panel-title pull-left">{{ $group->title }}</h3>
-                <a id="add-category-{{$group->id}}" href="#"  data-toggle="modal" data-target="#category_modal"  class="btn btn-success btn-xs pull-right new_category">New Category</a>
-                <a id="{{$group->id}}" href="#"  data-toggle="modal" data-target="#group_delete" class="btn btn-danger btn-xs pull-right delete_group">Delete</a>
+                <a id="add-category-{{$group->id}}" href="#"  data-toggle="modal" data-target="#category_modal"  class="btn btn-success btn-xs  new_category">New Category</a>
+                <a id="{{$group->id}}" href="#"  data-toggle="modal" data-target="#group_delete" class="btn btn-danger btn-xs delete_group">Delete</a>
             </div>
             @else
                 <h3 class="panel-title">{{ $group->title }}</h3>
