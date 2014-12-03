@@ -14,14 +14,7 @@ class TeamController extends BaseController {
 
     public function postSearchResults() {
 
-    $keyword = Input::get('keyword');
-
     
-    
-    foreach ($teams as $team) {
-       var_dump($team->teamname);
-    }
-
 
     $validator = Validator::make(
             array(
@@ -33,43 +26,26 @@ class TeamController extends BaseController {
         );
 
         if($validator->fails()){
-            return Response::json([
-                'success' => false,
-                'error' => $validator->errors()->toArray()
-            ]);
-        } else{
+            return Redirect::route('search')->with('users', false)
+                    ->with('teams', false);
+        } 
+            else{
 
-        $teams = Team::where('teamname', 'LIKE', '%'.$keyword.'%')->get();
+            $keyword = Input::get('keyword');
 
-        // $keyword = Input::get('keyword');
-        // $user = User::where('username', 'LIKE', '%'.$keyword.'%')->first();
-        $user = User::where('username', '=', Input::get('keyword'))
-            ->first();
+            $teams = Team::where('teamname', 'LIKE', '%'.$keyword.'%')->get();
+            if($teams->first()){
+                return View::make('search')
+                ->with('users', false)
+                ->with('teams', $teams);               
+                }  else 
+                return View::make('search')
+                ->with('users', false)
+                ->with('teams', false); 
 
-    //var_dump('search results');
+            }
+        }
     
-//    foreach ($users as $user) {
-//        var_dump($user->username);
-//
-//    }
-        if($user){
-            if(($user->id) == (Auth::user()->id)){
-                return Response::json([
-                    'success' => false,
-                    'error' => array('error' => 'You cant search yourself.'),
-                    'redirect' => Redirect::intended('/')
-                ]);
-            } 
-
-        }
-        if($keyword){
-
-        }
-    }
-
-    }
-
-	}
 
 	public function getCreate() {
         if(Cookie::get('gameid')){
