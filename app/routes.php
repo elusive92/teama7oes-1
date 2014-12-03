@@ -34,6 +34,11 @@ Route::get('/tournament/{id}', array(
     'uses' => 'TournamentController@showTournament'
 ));
 
+Route::get('/showMatches/{tournamentId}', array(
+    'as' => 'showMatches',
+    'uses' => 'MatchController@getMatches'
+));
+
 
 
 Route::get('/team/{teamname}', array(
