@@ -5,9 +5,18 @@ class TournamentController extends BaseController {
 
 ////////post create tournaments//////////////////
 	public function createTournament(){
+        
+        $validator = Validator::make(
+            array(
+                'email' => Input::get('email'),
+                'password' => Input::get('password')
+            ),
+            array(
+                'email' => 'required|email',
+                'password' => 'required'
+            )
+        );
 
-
-		
 		 	$tournamentname = Input::get('tournamentname');
             $descript = Input::get('descript');
             $numberofteams   =  Input::get('numberofteams');

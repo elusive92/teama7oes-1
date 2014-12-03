@@ -21,7 +21,7 @@
         </div>
 
         <div class="form-group">
-            <label for="numberofteams">Number of teams:</label> <input type="number" pattern="[0-9]" name="numberofteams" class="form-control" id="numberofteams" placeholder="number of teams"/>
+            <label for="numberofteams">Number of teams:</label> <input type="number" min="8" pattern="[0-9]" name="numberofteams" class="form-control" id="numberofteams" placeholder="number of teams"/>
         </div>
 
         <div class="form-group">
