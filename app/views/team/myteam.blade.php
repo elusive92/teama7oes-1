@@ -39,10 +39,7 @@
 
 <div id="teamsView" class="myteam">
 @if($team)
-    <a href="{{ URL::route('team-quit')}}" class="btn btn-default">Quit team</a>
-    @if(($team->user_id) == (Auth::user()->id))
-        <a href="{{ URL::route('team-edit')}}" class="btn btn-default">Edit team</a>
-    @endif
+
 
     <div class="teamphoto">
     @if($team->logo)
@@ -51,8 +48,7 @@
     </div>
 
     <div class="data">
-        <div  class="teamName"><h1>{{ e($team->teamname) }}</h1></div>
-        <h5>From: </h5>
+        <div  class="teamName"><a href="{{ URL::route('teamprofile', $teamrank->teamname) }}"><h2>{{ e($teamrank->teamname) }}</h2></a></div>
         <h5>Registered: {{ e($team->created_at->format('d F Y')) }}</h5>
         <h5>Games:</h5>
         @if($teammembers)
@@ -63,6 +59,11 @@
         @endif
     </div>
     <div class="sep"></div>
+    <div id="brejker"></div>
+        <p align="right"><a href="{{ URL::route('team-quit')}}" class="btn btn-default btn-sm">Quit team</a>
+    @if(($team->user_id) == (Auth::user()->id))
+        <a href="{{ URL::route('team-edit')}}" class="btn btn-default btn-sm">Edit team</a></p>
+    @endif
 @else
     @if(Auth::check())
         <a href="{{ URL::route('team-create')}}" class="btn btn-default">Create team</a>

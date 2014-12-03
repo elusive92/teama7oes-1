@@ -44,6 +44,11 @@ body {
     color: #ccc;
 }
 
+.data a:hover {
+    color: orange;
+    text-decoration: none;
+}
+
 .logo {
 	padding-left: 40px;
 }
@@ -550,4 +555,9 @@ label input[type="file"] {
 
 .error-color{
     color: #FF0000;
+}
+
+.datateam {
+    float: left;
+    margin-left: 15px;
 }
