@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Czas generowania: 02 Gru 2014, 13:30
+-- Czas generowania: 30 Lis 2014, 15:46
 -- Wersja serwera: 5.6.20
 -- Wersja PHP: 5.5.15
 
@@ -80,75 +80,6 @@ INSERT INTO `conversations` (`id`, `id_A`, `id_B`, `last_activity`, `unreaded`) 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `fcategories`
---
-
-CREATE TABLE IF NOT EXISTS `fcategories` (
-`id` int(11) NOT NULL,
-  `title` varchar(30) COLLATE utf8_bin NOT NULL,
-  `group_id` int(11) NOT NULL,
-  `author_id` int(11) NOT NULL,
-  `date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
-
---
--- RELACJE TABELI `fcategories`:
---   `author_id`
---       `users` -> `id`
---   `group_id`
---       `fgroups` -> `id`
---
-
--- --------------------------------------------------------
-
---
--- Struktura tabeli dla tabeli `fcomments`
---
-
-CREATE TABLE IF NOT EXISTS `fcomments` (
-`id` int(11) NOT NULL,
-  `body` text COLLATE utf8_bin NOT NULL,
-  `group_id` int(11) NOT NULL,
-  `category_id` int(11) NOT NULL,
-  `thread_id` int(11) NOT NULL,
-  `author_id` int(11) NOT NULL,
-  `data` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
-
---
--- RELACJE TABELI `fcomments`:
---   `author_id`
---       `users` -> `id`
---   `category_id`
---       `fcategories` -> `id`
---   `group_id`
---       `fgroups` -> `id`
---   `thread_id`
---       `fthreads` -> `id`
---
-
--- --------------------------------------------------------
-
---
--- Struktura tabeli dla tabeli `fgroups`
---
-
-CREATE TABLE IF NOT EXISTS `fgroups` (
-`id` int(11) NOT NULL,
-  `title` varchar(30) COLLATE utf8_bin NOT NULL,
-  `author_id` int(11) NOT NULL,
-  `date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
-
---
--- RELACJE TABELI `fgroups`:
---   `author_id`
---       `users` -> `id`
---
-
--- --------------------------------------------------------
-
---
 -- Struktura tabeli dla tabeli `friendlist`
 --
 
@@ -177,32 +108,6 @@ INSERT INTO `friendlist` (`id`, `id_adding`, `id_friend`, `data`) VALUES
 (3, 3, 5, '2014-11-12 17:38:21'),
 (4, 6, 7, '2014-11-18 19:21:52'),
 (5, 1, 3, '2014-11-22 15:23:37');
-
--- --------------------------------------------------------
-
---
--- Struktura tabeli dla tabeli `fthreads`
---
-
-CREATE TABLE IF NOT EXISTS `fthreads` (
-`id` int(11) NOT NULL,
-  `title` varchar(30) COLLATE utf8_bin NOT NULL,
-  `body` text COLLATE utf8_bin NOT NULL,
-  `group_id` int(11) NOT NULL,
-  `category_id` int(11) NOT NULL,
-  `author_id` int(11) NOT NULL,
-  `date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
-
---
--- RELACJE TABELI `fthreads`:
---   `author_id`
---       `users` -> `id`
---   `category_id`
---       `fcategories` -> `id`
---   `group_id`
---       `fgroups` -> `id`
---
 
 -- --------------------------------------------------------
 
@@ -601,34 +506,10 @@ ALTER TABLE `conversations`
  ADD PRIMARY KEY (`id`), ADD KEY `idA` (`id_A`), ADD KEY `idB` (`id_B`);
 
 --
--- Indexes for table `fcategories`
---
-ALTER TABLE `fcategories`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `fcomments`
---
-ALTER TABLE `fcomments`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `fgroups`
---
-ALTER TABLE `fgroups`
- ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `friendlist`
 --
 ALTER TABLE `friendlist`
  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`), ADD KEY `adding` (`id_adding`), ADD KEY `friend` (`id_friend`);
-
---
--- Indexes for table `fthreads`
---
-ALTER TABLE `fthreads`
- ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `galleries`
@@ -729,30 +610,10 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 ALTER TABLE `conversations`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT dla tabeli `fcategories`
---
-ALTER TABLE `fcategories`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT dla tabeli `fcomments`
---
-ALTER TABLE `fcomments`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT dla tabeli `fgroups`
---
-ALTER TABLE `fgroups`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT dla tabeli `friendlist`
 --
 ALTER TABLE `friendlist`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT dla tabeli `fthreads`
---
-ALTER TABLE `fthreads`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT dla tabeli `galleries`
 --
