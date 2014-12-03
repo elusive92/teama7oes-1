@@ -32,7 +32,7 @@
 	<div id="left">
        
         <div id="searchbtn">
-    	{{Form::open(array('route' =>'search-user', 'id' => 'searchuser'))}}
+    	{{Form::open(array('route' =>'search-user'))}}
     		{{Form::text('keyword', null, array('placeholder'=> 'Search User', 'id' =>'keyword'))}}    
     		{{Form::submit('Search', array('class' => 'btn btn-default'))}}
     	{{Form::close()}}
@@ -101,13 +101,13 @@
     @foreach($teams as $team)
     <tr>
         <td><?php echo $i; ?>.</td>
-        <td>@if($team->photo)
-                {{ HTML::image('img/users/profile/'.$team->photo, '', ['width' => '20', 'height' => '20']) }}
+        <td>@if($team->logo)  img\teams\logos
+                {{ HTML::image('img/teams/logos/'.$team->logo, '', ['width' => '20', 'height' => '20']) }}
             @else
                 <a href="{{ URL::route('userprofile', $team->username) }}"><img src="{{ URL::asset('/') }}img/default1.jpg" width="20" height="20" /></a>
             @endif
         </td>
-        <td><a href="{{ URL::route('userprofile', $team->username) }}">{{ e($team->username) }}</a></td>
+        <td><a href="{{ URL::route('teamprofile', $team->teamname) }}">{{ e($team->teamname) }}</a></td>
         <td style="text-align:left">{{ e($team->created_at) }}</td>
         <?php $i++; ?>
     </tr>
