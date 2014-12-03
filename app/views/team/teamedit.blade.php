@@ -20,7 +20,7 @@
 </div>
 <div class="myteamedit">
     <div class="teamphoto">
-            <h5>Upload a team logo: </h5>
+            <h4>Upload a team logo: </h4>
             {{ Form::open( array('route' => 'team-edit-post', 'class'=>'form-horizontal', 'files' => true)) }}
 
             {{Form::file('logo')}}
@@ -30,7 +30,7 @@
             {{ Form::close() }}
         </div>
         <div class="data">
-            <h5>Teammembers: </h5>
+            <h4>Teammembers: </h4>
             {{ Form::open( array('route' => 'team-add-player', 'class'=>'form-horizontal', 'id' => 'addplayer')) }}
 
             {{Form::text('name', null, array('class'=>'form-control', 'id' => 'name'))}}
@@ -48,7 +48,6 @@
         @endif
     </div>
     <div class="data">
-        <h5>From: </h5>
 
         @if($teammembers)
             <h5>Teammembers: </h5>
@@ -68,6 +67,7 @@
         @if($teaminvitations)
             <h5>Pending invitations: </h5>
             @foreach($teaminvitations as $teaminvitation)
+
                 <ul class="nav navbar-nav">
                 <li>{{ e($teaminvitation->user->username) }}</li>
                 <li style="float:right; padding-left: 15px;">

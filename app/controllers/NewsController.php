@@ -28,7 +28,7 @@ class NewsController extends BaseController {
             $descript = Input::get('descript');
             $draft   =  Input::get('draft');
             $photo   =  Input::file('photo');
-            $game_id = 1;
+            $game_id = Cookie::get('gameid');
             
             $extension = Input::file('photo');
             $destinationPath = 'img/ico/';
@@ -81,7 +81,7 @@ class NewsController extends BaseController {
             array(
                 'title'  => 'min:5',
                 'descript'  => 'min:5',
-                'draft' => 'required',
+                //'draft' => 'required',
             )
         );    
 

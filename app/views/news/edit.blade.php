@@ -29,10 +29,11 @@
     </label> 
      <label for="Draft">
         <span>Public status :</span>
-        <select name="draft">
+        {{ Form::select('draft', ['publi', 'draft'], 0) }}
+<!--         <select name="draft">
         <option value="0">Publish</option>
         <option value="1">Draft</option>
-        </select>
+        </select> -->
     </label>    
     <label>
         <span>Upload photo :</span>

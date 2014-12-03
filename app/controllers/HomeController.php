@@ -7,7 +7,7 @@ class HomeController extends BaseController {
 		$news = News::where('draft', '=', 0)
 		->orderBy('created_at', 'desc')
 		->get();
-
+	
 
 		
 		return View::make('home')->with('news', $news);
