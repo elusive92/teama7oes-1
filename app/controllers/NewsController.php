@@ -10,13 +10,13 @@ class NewsController extends BaseController {
                 'title' => Input::get('title'),
                 'descript' => Input::get('descript'),
                 'draft' => Input::get('draft'),
-                //'photo' => Input::get('photo'),
+                'photo' => Input::file('photo'),
             ),
             array(
                 'title' => 'required|min:4|max:80',
                 'descript' => 'required|max:3000',
                 'draft' => 'required',
-               // 'photo' => 'required',
+                'photo' => 'required',
             )
         );
 
@@ -95,6 +95,13 @@ class NewsController extends BaseController {
                 ->withErrors($validator);
         }else{
 
+            $filename = str_random(10).".jpg";
+            $image = Input::file('image');
+
+            if($image){
+                Image::make($image->getRealPath())->resize('200', '200')->save('img/news/'. $filename);
+            }
+
             $title = Input::get('title');
             $descript = Input::get('descript');
             $draft   =  Input::get('draft');
@@ -102,6 +109,7 @@ class NewsController extends BaseController {
             $id = Input::get('newsid');
             $news = News::where('id', '=', $id)->first();
 
+            if($image){$news->photo = $filename;}
             if($title){$news->title = Input::get('title');}     
             if($descript){$news->descript = Input::get('descript');}
             if($draft){$news->draft = Input::get('draft');}           
