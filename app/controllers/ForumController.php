@@ -183,4 +183,5 @@ class ForumController extends BaseController{
             return Redirect::route('forum-category', $category_id)->with('fail', 'Something went wrong.');
         }
     }
+    public function
 }
