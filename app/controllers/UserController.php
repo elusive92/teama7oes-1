@@ -22,7 +22,7 @@ class UserController extends BaseController {
         );
 
         if($validator->fails()){
-            return Redirect::route('search')->with('message', 'to long or to short data');
+            return Redirect::route('search')->with('message', 'too short data');
         } 
             else{
 
