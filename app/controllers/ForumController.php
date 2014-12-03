@@ -31,7 +31,7 @@ class ForumController extends BaseController{
 
     public function storeGroup(){
         $validator = Validator::make(Input::all(),array(
-            'group_name' => 'required|unique:fgroups,title'
+            'group_name' => 'required|min:5'
         ));
 
         if($validator->fails()){
