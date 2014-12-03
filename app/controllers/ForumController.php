@@ -102,7 +102,7 @@ class ForumController extends BaseController{
             $group = Forumgroup::find($id);
             if($group == null)
             {
-                return Redirect('forum-home')->with('fail', 'There is no such group.');
+                return Redirect::route('forum-home')->with('fail', 'There is no such group.');
             }
 
             $category = new Forumcategory;
