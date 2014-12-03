@@ -13,12 +13,12 @@ class Forumthread extends Eloquent
 
     public function group()
     {
-        $this->belongsTo('Forumgroup');
+        return $this->belongsTo('Forumgroup');
     }
 
     public function category()
     {
-        $this->belongsTo('Forumcategory','id','category_id');
+        return $this->belongsTo('Forumcategory','category_id');
     }
 
 

@@ -21,5 +21,12 @@
      <p class="error-color">{{$thread->body}}</p>
     </div>
 
-
+@foreach($threats->comments->get() as $comment)
+      <div class="well">
+         <h1 class="error-color">{{$thread->title}}</h1>
+         <h4 class="error-color">By: {{$author}} on {{$thread->date}}</h4>
+         <hr>
+         <p class="error-color">{{$thread->body}}</p>
+        </div>
+@endforeach
 @stop

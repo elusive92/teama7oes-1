@@ -12,7 +12,7 @@ class Forumcategory extends Eloquent
 
     public function group()
     {
-        $this->belongsTo('Forumgroup');
+        return $this->belongsTo('Forumgroup');
     }
     public function threads()
     {
