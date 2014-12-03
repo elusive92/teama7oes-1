@@ -22,8 +22,7 @@ class UserController extends BaseController {
         );
 
         if($validator->fails()){
-            return Redirect::route('search')->with('users', false)
-                    ->with('teams', false);
+            return Redirect::route('search')->with('message', 'incorect data');
         } 
             else{
 
@@ -32,14 +31,9 @@ class UserController extends BaseController {
             $user = User::where('username', 'LIKE', '%'.$keyword.'%')->get();
 
             if($user->first()){
-                return View::make('search')
-                ->with('users', $user)
-                ->with('teams', false);               
+                return Redirect::route('search')->with('user', $user);               
                 }  else 
-                return View::make('search')
-                ->with('users', false)
-                ->with('teams', false); 
-
+                return Redirect::route('search')->with('message', 'user are you looking for does not exist'); 
             }
 
     }
