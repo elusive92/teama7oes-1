@@ -568,6 +568,7 @@ Route::group(array('prefix'=> 'forum'), function(){
 
         Route::get('/group/{id}/delete',array('uses'=> 'ForumController@deleteGroup', 'as'=>'forum-delete-group'));
         Route::get('/category/{id}/delete',array('uses'=> 'ForumController@deleteCategory', 'as'=>'forum-delete-category'));
+        Route::get('/thread/{id}/delete', array('uses'=>'ForumController@deleteThread', 'as' =>'forum-delete-thread'));
 
         Route::group(array('before'=>'csrf'),function(){
            Route::post('/group',array('uses'=>'ForumController@storeGroup', 'as'=>'forum-store-group'));
