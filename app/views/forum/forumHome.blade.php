@@ -5,6 +5,11 @@
 @stop
 
 @section('content')
+<ol class="breadcrumb">
+      <li><a href="{{URL::route('home')}}">Home</a></li>
+      <li class="active">Forum</li>
+
+</ol>
 @if(Session::has('fail'))
   <p class="alert alert-info">{{ Session::get('fail') }}</p>
   @elseif(Session::has('success'))
