@@ -23,21 +23,26 @@ class NewsController extends BaseController {
         if($validator->fails()){
             return Redirect::route('home')
                 ->withErrors($validator);
-        }else{
+        }else{           
+
+            $filename = str_random(10).".jpg";
+            $image = Input::file('image');
+
+            if($image){
+                Image::make($image->getRealPath())->resize('200', '200')->save('img/news/'. $filename);
+            }
+
             $title = Input::get('title');
             $descript = Input::get('descript');
             $draft   =  Input::get('draft');
-            $photo   =  Input::file('photo');
-            $game_id = Cookie::get('gameid');
-            
+            $game_id = Cookie::get('gameid');            
             $extension = Input::file('photo');
-            $destinationPath = 'img/ico/';
 
             $news   = News::create(array(
                 'title' => $title,
                 'descript' => $descript,
                 'draft' => $draft,
-                'photo' => $photo,
+                'photo' => $filename,
                 'game_id' => $game_id
             ));
             if($news){

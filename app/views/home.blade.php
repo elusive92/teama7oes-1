@@ -16,9 +16,15 @@
 		@foreach($news as $new)
 			<ul id="news_list">
 				<li class="clearfix">
+					@if($new->photo)
+					<a href="">
+						{{ HTML::image('img/news/'.$new->photo, '', ['width' => '100', 'height' => '100']) }}
+					</a>
+					@else
 					<a href="">
 						<img src="{{ URL::asset('/') }}img/avatar_example.jpg" height="100" width="100">
 					</a>
+					@endif
 					<h3><a href="{{ URL::action('news-show', $new->id) }}">{{Str::limit($new->title, 40)}} </a></h3>
 					<p> {{Str::limit($new->descript, 200)}}</p>
 <span id="news_list"> </span>

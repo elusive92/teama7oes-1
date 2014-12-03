@@ -11,7 +11,8 @@
       <li class="active"> Add new
       </li>
 </ol>
-<form action="{{ URL::route('news-add-post') }}" method="post" class="basic-grey">
+ {{Form::open(array('url' => '/news-add', 'files' => true, 'class'=>'basic-grey'))}} 
+<!--<form action="{{ URL::route('news-add-post') }}" method="post" class="basic-grey"> -->
     <h1>Add news
         <span>Please fill all the texts in the fields.</span>
     </h1>
@@ -37,16 +38,17 @@
         <input name="photo" id="uploadFile" placeholder="Choose File" disabled="disabled" />
         <div class="fileUpload btn btn-default btn-xs">
             <span><img src="{{ URL::asset('/') }}img/ico/upload.png"/></span> Upload article photo
-            <input id="uploadBtn" type="file" class="upload" />
+            {{Form::file('image', array('class' => 'upload'))}}
         </div>
     </label>
     <br><h1></h1>
      <label>
         <span>&nbsp;</span> 
         <input type="submit" class="button" value="Send" />
-        {{ Form::token() }} 
+        
     </label>    
-</form>
+    {{Form::close()}} 
+<!--</form>-->
 
 <script>
 document.getElementById("uploadBtn").onchange = function () {
