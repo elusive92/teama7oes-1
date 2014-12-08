@@ -53,14 +53,14 @@ class TournamentController extends BaseController {
 
 	public function joinTournament($id){
         $tournament = Tournament::where('id', '=', $id)->firstOrFail();
-        $teams = Team::where('user_id','=', Auth::user()->id)
-                    ->where('game_id', '=', Cookie::get('gameid'));
+        $teams = Team::where('game_id', '=', Cookie::get('gameid'))
+                    ->where('user_id','=', Auth::user()->id);
 
         $idTournament=$tournament->id;
         $idteam = $teams->first()->id;
         $tournamentPlayer = $tournament->numberofplayers;
 
-        $teamsmembers = Teammember::where('team_id','=',$idteam);
+        $teamsmembers = Teammember::where('team_id','=',$idteam)->get();
 
         if(sizeof($teamsmembers)>=$tournamentPlayer) {
             $joinMember = Tournamentmember::create(array(
@@ -89,7 +89,7 @@ class TournamentController extends BaseController {
                                 ->where('tournament_id','=',$torunamentid);
 
                 if($teams->first()){
-                    if($teammembers->first()){
+                    if($teammembers){
                         $addteam= false;
                     }else
                     $addteam = true;

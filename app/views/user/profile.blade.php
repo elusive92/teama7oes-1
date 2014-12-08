@@ -53,8 +53,12 @@
             <p>Member since: {{ e($user->created_at) }}</p>
             <p>Teams: 
               @if($teammembers->first())
-                {{$teammembers->first()->team->teamname}}
+              {{$teammembers->first()->team->teamname}}
+                @foreach($teammembers as $teammember)
+                    {{$teammember->team->teamname}}
+                @endforeach
               @endif
+
             </p>
 
           </div>
