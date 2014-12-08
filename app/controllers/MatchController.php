@@ -62,23 +62,11 @@ class MatchController extends BaseController {
 
         $matches = Match::where('tournament_id', '=', $tournamentId)
             ->get();
-        if(Auth::user()->permissions > 0){
-//            $conflicts = Match::where('tournament_id', '=', $tournamentId)
-//                ->whereExists(function($query){
-//                    $query->select(DB::raw(1))
-//                        ->from('matches')
-//                        ->whereRaw('(matches.resultA <> matches.resultB) AND (matches.resultA <> 0) AND (matches.resultB <> 0) AND (matches.result = 0)');
-//                })
-//                ->get();
-//
-//            return View::make('tournament.test')
-//                ->with('matches', $matches)
-//                ->with('conflicts', $conflicts);
-        }else{
+
             return View::make('tournament.test')
                 ->with('matches', $matches)
                 ->with('conflicts', false);
-        }
+
 
     }
 
