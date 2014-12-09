@@ -33,7 +33,7 @@
               @endif
             @if(Auth::check())
               @if((Auth::user()->permissions == 2) and $user->permissions == 0)
-                        <div class="clear"><a href="{{ URL::route('addFriendList', $user->username) }}" class="btn btn-default">Nadaj Moderatora</a></div>
+                        <div class="clear"><a href="{{ URL::route('addFriendList', $user->username) }}" class="btn btn-default">Add Moderatora</a></div>
               @endif            
                 @if(!(e($user->id ) == e(Auth::user()->id)))
                   {{--<div class="clear"><a href="{{ URL::route('account-editprofile')}}" class="btn btn-default">Edit profile</a></div>--}}
